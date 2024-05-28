@@ -1,0 +1,49 @@
+.main{
+    height: 300px;
+    width: 100%;
+    margin-top: 60px;
+}
+
+.container{
+    display: flex;
+    /* background-color: blue; */
+    justify-content: space-around;
+    align-items: center;
+}
+
+.container1{
+    /* background-color: red; */
+    height: 120px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    
+
+}
+
+.container2:hover{
+    scale: 1.2;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+
+
+
+h5{
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.container p{
+
+    font-size: 11px;
+
+}
+
+.container i{
+    border: 8px solid grey;
+    padding: 10px;
+    border-radius: 35px;
+}
