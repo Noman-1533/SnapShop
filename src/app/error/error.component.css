@@ -1,0 +1,53 @@
+/* Base styles for the container */
+
+.container {
+    text-align: center;
+    width: 100%; /* Increased width for larger display */
+    padding: 40px; /* Increased padding for more space */
+  
+}
+
+.breadcrumb {
+    font-size: 18px; /* Increased font size */
+    color: #999;
+    margin-bottom: 40px; /* Increased margin */
+}
+
+.breadcrumb a {
+    color: #666;
+    text-decoration: none;
+}
+
+.breadcrumb span {
+    color: #000000;
+}
+
+.content h1 {
+    font-size: 85px; /* Increased font size */
+    margin-top: 105px;
+    color: #000000;
+}
+
+.content p {
+    font-size: 18px; /* Increased font size */
+    color: #666;
+    margin-top: 20px; /* Increased margin */
+    margin-bottom: 40px; /* Increased margin */
+}
+
+.home-button {
+    display: inline-block;
+    padding: 10px 20px; 
+    background-color: #d9534f;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px; /* Increased font size */
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+.home-button:hover {
+    background-color: #c9302c;
+}
