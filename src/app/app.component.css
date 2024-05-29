@@ -1,5 +1,5 @@
 .main{
-    height: 300px;
+    height: auto;
     width: 100%;
     margin-top: 60px;
 }
@@ -46,4 +46,11 @@ h5{
     border: 8px solid grey;
     padding: 10px;
     border-radius: 35px;
+}
+
+@media (max-width:775px){
+
+    .container{
+        flex-direction: column;
+    }
 }
