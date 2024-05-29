@@ -110,6 +110,16 @@ ul{
   
 }
 
+@media (max-width:775px){
+
+    .footer{
+        flex-direction: column;
+        height: auto;
+        gap: 40px;
+        padding: 40px;
+    }
+}
+
 
 
 
