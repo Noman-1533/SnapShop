@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+// import { MyCarouselComponent } from './my-carousel/my-carousel.component';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +15,9 @@ import { ProductDetailsComponent } from './products/product-details/product-deta
 import { ProductListComponent } from './products/product-list/product-list.component';
 import { SignUpComponent } from './Authentication/sign-up/sign-up.component';
 import { LoginComponent } from './Authentication/login/login.component';
+import { CardComponent } from './home/card/card.component';
+import { CategoryComponent } from './home/category/category.component';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +30,9 @@ import { LoginComponent } from './Authentication/login/login.component';
     ProductDetailsComponent,
     ProductListComponent,
     SignUpComponent,
-    LoginComponent
+    LoginComponent,
+    CardComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,11 @@
     width: 100%;
     margin-top: 60px;
     margin-bottom: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 40px;
 }
 
 .container{
@@ -59,52 +64,208 @@ h5{
 /* kdjsdjfffffffffffffffffffffffffffffffffffff */
 
 
-/* .container{
-    width: 85vmin;
-    position: absolute;
-    transform: translate(-50%,-50%);
-    top: 50%;
-    left: 50%;
-    overflow: hidden;
-    border: 20px solid #ffffff;
-    border-radius: 8px;
-    box-shadow: 10px 25px 30px rgba(30,30,200,0.3);
-}
-.wrapper{
-    width: 100%;
+/* slider  start */
+
+.FirstSectionTop{
+
     display: flex;
-    animation: slide 16s infinite;
+    justify-content: space-around;
+    
+   
+
 }
-@keyframes slide{
-    0%{
-        transform: translateX(0);
-    }
-    25%{
-        transform: translateX(0);
-    }
-    30%{
-        transform: translateX(-100%);
-    }
-    50%{
-        transform: translateX(-100%);
-    }
-    55%{
-        transform: translateX(-200%);
-    }
-    75%{
-        transform: translateX(-200%);
-    }
-    80%{
-        transform: translateX(-300%);
-    }
-    100%{
-        transform: translateX(-300%);
-    }
+
+.rightListBar{
+
+    height: 350px;
+    width: 22%;
+    /* background-color: aquamarine; */
+    margin-top: -55px;
+    z-index: -1;
+    border-right: 1px solid rgb(158, 151, 151);
 }
-img{
-    width: 100%;
+
+#carouselExample{
+
+    width: 60%;
+    height: 300px;
+    margin-bottom: 90px;
+    margin-top: -25px;
+    /* margin-left: 30vw; */
+    
+    
+
+}
+/* slider  end */
+
+
+
+
+
+
+
+
+/* Card section start  */
+
+.FlashSaleSection{
+    padding: 0px 20px;
+   height: 500px;
+   /* background-color: green; */
+   width: 100%;
+   display: flex;
+   /* background-color: green; */
+   flex-direction: column;
+   align-items: center;
+   justify-content: space-around;
+   
+}
+
+.buttonView{
+    height: 35px;
+    width: 200px;
+    background-color: #DB4444;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    font-size: 14px;
+
+}
+
+.CardList{
+    display: flex;
+    justify-content: space-between;
+    gap: 23px;
+}
+
+.Day{
+
+    display: flex;
+    gap:10px;
+    align-items:normal
+
+    
+    
+}
+
+.Day p{
+    font-size: 0.9em;
+    color: #DB4444;
+}
+
+.box{
+    height: 28px;
+    width: 14px;
+    background-color: #DB4444;
+    border-radius: 3px;
+}
+
+.Tittle{
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 
- */
 
+
+/* Card section End  */
+
+
+
+
+/* enhance your product start  */
+
+.Enhance-Your-Product-Section{
+    height: 400px;
+    width: 80%;
+    background-color: black;
+    margin: 80px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.Left-text-section{
+    height: 300px;
+    width: 35%;
+    color: white;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+}
+
+.Left-text-section p{
+    color: #00FF66;
+
+}
+
+.Left-text-section h3{
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.Left-text-section .buy-now-btn
+{
+    height: 30px;
+    width: 110px;
+    background-color: #00FF66;
+    border: none;
+    color: white;
+    font-size: 12px;
+    border-radius: 3px;
+}
+
+.time{
+    display: flex;
+    text-decoration: none;
+    list-style: none;
+    font-size: 10px;
+    justify-content: space-around;
+    margin-left: -40px;
+    text-align: center;
+    align-items: center;
+}
+
+.time li{
+    border: 2px solid white;
+    height: 50px;
+    width: 50px;
+    border-radius: 35px;
+    text-align:unset;
+    
+    color: black;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+
+    
+}
+
+
+
+.right-img-section{
+    width: 55%;
+    height: 200px;
+    text-align: center;
+    filter: drop-shadow(5px 5px 10px rgb(235, 233, 118));
+    
+   
+
+}
+
+.right-img-section img{
+  width: 80%;
+
+  filter: drop-shadow(5px 5px 10px rgb(59, 59, 59));
+
+  
+  
+}
+
+
+
+/* enhance your product end  */
