@@ -1,5 +1,5 @@
 import { AfterViewInit, Component } from '@angular/core';
-// import { Carousel, initMDB } from "mdb-ui-kit";
+import { Carousel, initMDB } from "mdb-ui-kit";
 
 
 
@@ -11,8 +11,8 @@ import { AfterViewInit, Component } from '@angular/core';
 export class HomeComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
-    // initMDB();  // Initialize MDB components
-    // new Carousel(document.querySelector('.carousel'));
+    initMDB();
+    new Carousel(document.querySelector('.carousel'));
   }
 
 }

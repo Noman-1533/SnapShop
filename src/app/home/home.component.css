@@ -100,6 +100,11 @@ h5{
 
 
 
+.tittle-bar-forTop-rated{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
 
 
@@ -109,7 +114,7 @@ h5{
 
 .FlashSaleSection{
     padding: 0px 20px;
-   height: 500px;
+   height: 600px;
    /* background-color: green; */
    width: 100%;
    display: flex;
@@ -117,21 +122,68 @@ h5{
    flex-direction: column;
    align-items: center;
    justify-content: space-around;
+   /* background-color: green; */
+   margin-bottom: 10px;
    
 }
 
+.Explore-product{
+
+    height: 1000px;
+}
+
 .buttonView{
-    height: 35px;
+    height: 47px;
     width: 200px;
     background-color: #DB4444;
     border: none;
     border-radius: 3px;
     color: white;
     font-size: 14px;
+    margin-top: 20px;
 
 }
 
+.tittle-bar-forTop-rated .buttonViewProduct .buttonView{
+     margin-right: 30px;
+    height: 50px;
+    width: 150px;
+
+}
+
+.horizontalLine{
+    margin-top: 30px;
+    background-color: rgb(232, 214, 214);
+    width: 100%;
+    height: 1px;
+    
+}
+
+.categorysection{
+    height: 500px;
+
+}
+
+.catTittle{
+    margin-bottom: 100px;
+}
+
+.horizontalLine-hrcategory{
+
+    margin-top: 60px;
+    background-color: rgb(232, 214, 214);
+    width: 100%;
+    height: 1px;
+    
+    
+}
+
+
+
+
+
 .CardList{
+    margin-top: 30px;
     display: flex;
     justify-content: space-between;
     gap: 23px;
@@ -176,8 +228,8 @@ h5{
 /* enhance your product start  */
 
 .Enhance-Your-Product-Section{
-    height: 400px;
-    width: 80%;
+    height: 430px;
+    width: 83%;
     background-color: black;
     margin: 80px 0px;
     display: flex;
@@ -202,14 +254,14 @@ h5{
 }
 
 .Left-text-section h3{
-    font-size: 35px;
+    font-size: 40px;
     font-weight: bold;
 }
 
 .Left-text-section .buy-now-btn
 {
-    height: 30px;
-    width: 110px;
+    height: 45px;
+    width: 125px;
     background-color: #00FF66;
     border: none;
     color: white;
@@ -226,12 +278,13 @@ h5{
     margin-left: -40px;
     text-align: center;
     align-items: center;
+   
 }
 
 .time li{
     border: 2px solid white;
-    height: 50px;
-    width: 50px;
+    height: 55px;
+    width: 55px;
     border-radius: 35px;
     text-align:unset;
     
@@ -241,26 +294,37 @@ h5{
     align-items: center;
     justify-content: center;
     font-weight: bold;
+    flex-direction: column;
+   
+   
+    
 
     
+}
+
+.number{
+    margin-bottom: -20px;
+    font-weight: bold;
+    font-size: 12px;
 }
 
 
 
 .right-img-section{
     width: 55%;
-    height: 200px;
+    height: 300px;
     text-align: center;
-    filter: drop-shadow(5px 5px 10px rgb(235, 233, 118));
+    filter: drop-shadow(-30px -20px 100px #555551);
     
    
 
 }
 
 .right-img-section img{
+ 
   width: 80%;
 
-  filter: drop-shadow(5px 5px 10px rgb(59, 59, 59));
+  /* filter: drop-shadow(5px 5px 10px rgb(59, 59, 59)); */
 
   
   
@@ -269,3 +333,43 @@ h5{
 
 
 /* enhance your product end  */
+.newarrivalSec{
+    height: 800px;
+}
+
+.newArival{
+
+    height:500px;
+    width: 75vw;
+    /* background-color: green; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.box1{
+    height: 500px;
+    width:36.7vw;
+    border: 2px solid red;
+    /* background-color: black; */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.boxright{
+    height: 48%;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.boxright-bottom{
+    height: 100%;
+    width: 48%;
+    background-color: black;
+}
