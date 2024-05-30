@@ -11,7 +11,7 @@ import { Carousel, initMDB } from "mdb-ui-kit";
 export class HomeComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
-    initMDB();  // Initialize MDB components
+    initMDB();
     new Carousel(document.querySelector('.carousel'));
   }
 
