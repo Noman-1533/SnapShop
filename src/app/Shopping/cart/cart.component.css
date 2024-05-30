@@ -1,0 +1,16 @@
+.container {
+    max-width: 960px;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+  }
+  .checkout-card .card{
+    width: 28rem;
+  }
+  
