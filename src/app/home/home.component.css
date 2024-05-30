@@ -1,13 +1,12 @@
-.main{
+.main {
     height: auto;
-    width: 100%;
-    margin-top: 60px;
-    margin-bottom: 70px;
+    width: calc(100% - 40px); 
+    margin: 60px 0 70px 80px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 40px;
+    /* background-color: red; */
 }
 
 .container{
@@ -19,8 +18,8 @@
 
 .container1{
     /* background-color: red; */
-    height: 120px;
-    width: 200px;
+    height: 160px;
+    width: 300px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -37,19 +36,19 @@
 
 
 
-h5{
-    font-size: 15px;
+.container h5{
+    font-size: 20px;
     font-weight: 600;
 }
 
 .container p{
 
-    font-size: 11px;
+    font-size: 14px;
 
 }
 
 .container i{
-    border: 8px solid grey;
+    border: 13px solid grey;
     padding: 10px;
     border-radius: 35px;
 }
@@ -108,6 +107,8 @@ h5{
 /* kdjsdjfffffffffffffffffffffffffffffffffffff */
 
 
+
+
 /* slider  start */
 
 .FirstSectionTop{
@@ -120,6 +121,7 @@ h5{
 }
 
 .rightListBar{
+    
 
     
 
@@ -128,13 +130,38 @@ h5{
     /* background-color: aquamarine; */
     margin-top: -55px;
     z-index: -1;
-    border-right: 1px solid rgb(158, 151, 151);
+    border-right: 1.8px solid rgb(219, 215, 215);
+    display: flex;
+    justify-content: space-around;
 }
+
+
+
+.listofContent{
+
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    
+    justify-content: space-around;
+    
+
+}
+
+
+
+.listofContent a{
+    text-decoration: none;
+    color:black;
+    font-size: 17px;
+}
+
+
 
 #carouselExample{
 
     width: 60%;
-    height: 300px;
+    height: 250px;
     margin-bottom: 90px;
     margin-top: -25px;
     /* margin-left: 30vw; */
@@ -159,10 +186,10 @@ h5{
 /* Card section start  */
 
 .FlashSaleSection{
-    padding: 0px 20px;
+    padding: 0px 0px 0px 20px;
    height: 600px;
    /* background-color: green; */
-   width: 92%;
+   width: 95%;
    display: flex;
    /* background-color: green; */
    flex-direction: column;
@@ -170,9 +197,14 @@ h5{
    justify-content: space-around;
    /* background-color: green; */
    margin-bottom: 10px;
+   margin-top: 80px;
    
    
 }
+
+
+
+
 
 .slider{
     /* background-color: red; */
@@ -181,8 +213,10 @@ h5{
 }
 
 .Explore-product{
+    margin-top: 50px;
 
     height: 1000px;
+    padding: 40px;
 }
 
 .buttonView{
@@ -214,6 +248,8 @@ h5{
 
 .categorysection{
     height: 500px;
+    padding: 0px 30px 0px 20px;
+    margin-top: -60px;
 
 }
 
@@ -240,6 +276,15 @@ h5{
     display: flex;
     justify-content: space-between;
     gap: 23px;
+}
+
+.card-group{
+
+    display: flex;
+    gap: 190px;
+    overflow: hidden;
+    justify-content: space-between;
+    
 }
 
 .Day{
@@ -388,11 +433,15 @@ h5{
 /* enhance your product end  */
 .newarrivalSec{
     height: 800px;
+    padding: 20px;
+    padding-top: 0px;
+    margin-top: -30px;
+    
 }
 
 .newArival{
 
-    height:500px;
+    height:600px;
     width: 100%;
     /* background-color: green; */
     display: flex;
@@ -401,7 +450,7 @@ h5{
 }
 
 .box1{
-    height: 500px;
+    height: 90%;
     width:49%;
     /* border: 2px solid red; */
     /* background-color: black; */
@@ -410,10 +459,13 @@ h5{
     flex-direction: column;
     justify-content: space-between;
 
+
+
 }
 
 .box1left{
     background-color: black;
+    
 }
 
 .boxright{
@@ -424,6 +476,19 @@ h5{
     flex-direction: row;
     justify-content: space-between;
 }
+
+.mask{
+    background-color:none;
+
+}
+
+
+.bg-image .box1{
+    filter: drop-shadow(500px 20px 100px #555551);
+
+}
+
+
 
 .boxrighttop{
 
@@ -474,6 +539,32 @@ Attribution required
 
 */
 
+
+.custom-hr{
+    height: 30px;
+    width: 12px;
+    padding: 0px;
+    background-color: #DB4343;
+    text-decoration: none;
+    margin-left: 12px;
+    border-radius: 3px;
+    
+  }
+  .card{
+    border: none;
+  }
+  .related-items{
+    /* "display: flex;align-items:center;margin-bottom: 30px;margin-top: 10px; gap: 15px;" */
+    display: flex;
+    align-items: center;
+    margin-bottom: 5vh;
+    margin-top: 10vh;
+    gap: 15px;
+
+  }
+  .mb{
+    margin-bottom: 10vh;
+  }
 
 
 /* ------------------------------------------------------------------------------------------------- */
