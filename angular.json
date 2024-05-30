@@ -35,6 +35,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/mdb-ui-kit/css/mdb.min.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
@@ -104,6 +105,6 @@
     }
   },
   "cli": {
-    "analytics": "f883b3bd-d298-40a3-9e28-00ab73e90580"
+    "analytics": false
   }
 }

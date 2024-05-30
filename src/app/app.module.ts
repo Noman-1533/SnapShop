@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+// import { MyCarouselComponent } from './my-carousel/my-carousel.component';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +17,11 @@ import { SignUpComponent } from './Authentication/sign-up/sign-up.component';
 import { LoginComponent } from './Authentication/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { CheckoutComponent } from './Shopping/checkout/checkout.component';
+import { CardComponent } from './home/card/card.component';
+import { CategoryComponent } from './home/category/category.component';
+
+import { ErrorComponent } from './error/error.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,12 +35,16 @@ import { CheckoutComponent } from './Shopping/checkout/checkout.component';
     ProductListComponent,
     SignUpComponent,
     LoginComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    CardComponent,
+    CategoryComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
+    HttpClientModule,
     FormsModule
   ],
   providers: [],

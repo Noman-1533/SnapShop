@@ -1,0 +1,15 @@
+.fa {
+    font-size: 1rem;
+    cursor: pointer;
+    margin-right: 0.25rem;
+  }
+  .custom-space-between-each-size{
+    margin-right: -10px;
+  }
+  .input-width {
+    max-width: 70px; /* Set your desired width */
+    text-align: center;
+  }
+  .btn-color{
+    background-color: #DB4343;
+  }
