@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+// import { MyCarouselComponent } from './my-carousel/my-carousel.component';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +15,9 @@ import { ProductDetailsComponent } from './products/product-details/product-deta
 import { ProductListComponent } from './products/product-list/product-list.component';
 import { SignUpComponent } from './Authentication/sign-up/sign-up.component';
 import { LoginComponent } from './Authentication/login/login.component';
+import { CardComponent } from './home/card/card.component';
+import { CategoryComponent } from './home/category/category.component';
+
 import { ErrorComponent } from './error/error.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -29,6 +34,8 @@ import { FormsModule } from '@angular/forms';
     ProductListComponent,
     SignUpComponent,
     LoginComponent,
+    CardComponent,
+    CategoryComponent,
     ErrorComponent
   ],
   imports: [
