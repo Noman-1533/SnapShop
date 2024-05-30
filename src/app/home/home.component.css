@@ -59,7 +59,51 @@ h5{
     .container{
         flex-direction: column;
     }
+
+    .helo{
+        margin-left: 50px;
+        /* background-color: red; */
+    }
 }
+
+@media(max-width:665px)
+{
+  
+
+    .helo{
+        margin-left: 60px;
+        top: 100px;
+        /* background-color: red; */
+        
+    }
+
+    .helo h3{
+          font-size: 0.2vw;
+    }
+
+      
+}
+
+@media(max-width:445px)
+{
+  
+
+    .helo{
+        margin-left: 60px;
+        /* background-color: red; */
+    }
+
+      
+}
+
+@media(max-width:390px)
+{
+    
+
+
+
+}
+
 
 /* kdjsdjfffffffffffffffffffffffffffffffffffff */
 
@@ -76,6 +120,8 @@ h5{
 }
 
 .rightListBar{
+
+    
 
     height: 350px;
     width: 22%;
@@ -116,7 +162,7 @@ h5{
     padding: 0px 20px;
    height: 600px;
    /* background-color: green; */
-   width: 100%;
+   width: 92%;
    display: flex;
    /* background-color: green; */
    flex-direction: column;
@@ -125,6 +171,13 @@ h5{
    /* background-color: green; */
    margin-bottom: 10px;
    
+   
+}
+
+.slider{
+    /* background-color: red; */
+    width: 100%;
+    overflow: hidden;
 }
 
 .Explore-product{
@@ -340,7 +393,7 @@ h5{
 .newArival{
 
     height:500px;
-    width: 75vw;
+    width: 100%;
     /* background-color: green; */
     display: flex;
     justify-content: space-between;
@@ -349,8 +402,8 @@ h5{
 
 .box1{
     height: 500px;
-    width:36.7vw;
-    border: 2px solid red;
+    width:49%;
+    /* border: 2px solid red; */
     /* background-color: black; */
 
     display: flex;
@@ -359,13 +412,23 @@ h5{
 
 }
 
+.box1left{
+    background-color: black;
+}
+
 .boxright{
     height: 48%;
     width: 100%;
-    background-color: black;
+    /* background-color: black; */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.boxrighttop{
+
+    background-color: black;
+
 }
 
 .boxright-bottom{
@@ -373,3 +436,44 @@ h5{
     width: 48%;
     background-color: black;
 }
+
+.helo{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 220px;
+    color: white;
+    width: 200px;
+    /* background-color: red; */
+
+}
+.helo h3{
+  font-weight: bold;
+  font-size: 3vw;
+}
+
+.helo a{
+    color: white;
+}
+
+.carousel-control-next-icon, .carousel-control-prev-icon {
+    display: none;
+
+}
+
+
+
+
+
+/* ------------------------------------------------------------------------------------------------- */
+
+/*
+
+CC 2.0 License Iatek LLC 2018
+Attribution required
+
+*/
+
+
+
+/* ------------------------------------------------------------------------------------------------- */

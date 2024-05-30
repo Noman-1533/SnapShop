@@ -11,7 +11,14 @@
     height: 170px;
 }
 
-.img-box:hover .addToCart{
+/* .img-box:hover .addToCart{
+    display: block;
+    transition: 1s;
+} */
+
+.card1:hover .addToCart{
+    
+    transition: 0.5s;
     display: block;
     transition: 1s;
 }
