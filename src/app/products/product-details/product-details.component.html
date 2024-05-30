@@ -1,92 +1,271 @@
-<div class="container">
-    <div class="ms-3">
+<div class="container" >
+  <div class="ms-3">
     <div class="row my-5 pt-3">
-        <div class="col-xs-6">home/product/details</div>
+      <div class="col-xs-6">home/product/details</div>
     </div>
-<div class="card mb-3 " style="max-width: 80vw;">
-    <div class="row g-0">
-      <div class="col-md-6 img-parent" >
-        <img  src="../assets/rem.png" alt="Gaming pad"class="img-fluid rounded-start" >
-      </div>
-      <div class="col-md-6">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <div class="card-text">
-          <div class="d-flex">
-            <span *ngFor="let star of stars; let i = index;" >
-              <i class="fa " [ngClass]="star ? 'fa-star text-warning' : 'fa-star-o text-muted'"></i>
-            </span>
-            <span>(150 Reviews)</span><pre> | </pre><span style="color: rgb(42, 250, 170);">In stock</span>
+    <div class="card mb-3" style="max-width: 80vw">
+      <div class="row g-0">
+        <div class="col-md-6 img-parent">
+          <img
+            src="https://t3.ftcdn.net/jpg/05/29/07/02/360_F_529070294_O1TeNzh2kMKne8bUlr9xlJhdZ8jSbOVG.jpg"
+            alt="Gaming pad"
+            class="img-fluid rounded-start"
+          />
         </div>
-        <div class="card-text mb-3">$192.00</div>
-        <div class="card-text mb-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum dolores officia soluta repudiandae recusandae sed inventore doloribus neque iusto cumque. <hr></div>
-        <div class="row mb-3">
-          <div class="col-12">
-            <div class="d-flex flex-wrap align-items-center">
-              <span>Size:</span>
-              <ng-container *ngFor="let size of sizes">
-                <div class="form-check form-check-inline custom-space-between-each-size">
-                  <input 
-                    type="radio" 
-                    class="btn-check"  
-                    name="tshirtSize" 
-                    id="{{size}}" 
-                    [value]="size" 
-                    [(ngModel)]="selectedSize"
-                  >
-                  <label 
-                    class="button-design" 
-                    [ngClass]="{'btn-outline-colored': size === selectedSize, 'btn-outline-secondary': size !== selectedSize}" 
-                    for="{{size}}"
-                  >
-                    {{size}}
-                  </label>
+        <div class="col-md-6">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <div class="card-text">
+              <div class="d-flex">
+                <span *ngFor="let star of stars; let i = index">
+                  <i
+                    class="fa"
+                    [ngClass]="
+                      star ? 'fa-star text-warning' : 'fa-star-o text-muted'
+                    "
+                  ></i>
+                </span>
+                <span>(150 Reviews)</span>
+                <pre> | </pre>
+                <span style="color: rgb(42, 250, 170)">In stock</span>
+              </div>
+              <div class="card-text mb-3">$192.00</div>
+              <div class="card-text mb-3">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum
+                dolores officia soluta repudiandae recusandae sed inventore
+                doloribus neque iusto cumque.
+                <hr />
+              </div>
+              <div class="row mb-3">
+                <div class="col-12">
+                  <div class="d-flex flex-wrap align-items-center">
+                    <span>Size:</span>
+                    <ng-container *ngFor="let size of sizes">
+                      <div
+                        class="form-check form-check-inline custom-space-between-each-size"
+                      >
+                        <input
+                          type="radio"
+                          class="btn-check"
+                          name="tshirtSize"
+                          id="{{ size }}"
+                          [value]="size"
+                          [(ngModel)]="selectedSize"
+                        />
+                        <label
+                          class="button-design"
+                          [ngClass]="{
+                            'btn-outline-colored': size === selectedSize,
+                            'btn-outline-secondary': size !== selectedSize
+                          }"
+                          for="{{ size }}"
+                        >
+                          {{ size }}
+                        </label>
+                      </div>
+                    </ng-container>
+                  </div>
                 </div>
-              </ng-container>
+              </div>
+              <div class="d-flex justify-content-between">
+                <div>
+                  <div class="input-group mb-3">
+                    <button
+                      class="btn btn-outline-secondary"
+                      type="button"
+                      (click)="decrement()"
+                    >
+                      -
+                    </button>
+                    <input
+                      type="text"
+                      class="input-width form-control text-center"
+                      [(ngModel)]="amount"
+                      min="0"
+                    />
+                    <button
+                      class="btn btn-outline-secondary"
+                      type="button"
+                      (click)="increment()"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+                <div>
+                  <button class="btn btn-outline-colored" style="width: 15vw">
+                    Buy Now
+                  </button>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <div class="row border-bottom pb-3">
+                    <div class="col">
+                      <div class="d-flex align-items-center">
+                        <i class="me-2 ri-truck-line h3"></i>
+                        <span class="h5">Free Delivery</span>
+                      </div>
+                      <p style="text-decoration: underline" class="ms-4 ps-2">
+                        Check availability of Delivery in your location
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row pb-3">
+                    <div class="col">
+                      <div class="d-flex align-items-center">
+                        <i class="me-2 ri-refresh-line h3"></i>
+                        <span>Return Delivery</span>
+                      </div>
+                      <p class="ms-4 ps-2">Free 30 Days Return</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <p class="card-text">
+                <small class="text-body-secondary"
+                  >Last updated 3 mins ago</small
+                >
+              </p>
             </div>
           </div>
         </div>
-          <div class="d-flex justify-content-between">
-            <div>
-              <div class="input-group mb-3">
-                <button class="btn btn-outline-secondary" type="button" (click)="decrement();">-</button>
-                <input type="text" class="input-width form-control text-center" [(ngModel)]="amount" min="0">
-                <button class="btn btn-outline-secondary" type="button" (click)="increment()">+</button>
+      </div>
+    </div>
+
+    <!-- <div class="card-group">
+      <div class="card">
+        <app-card></app-card>
+      </div>
+      <div class="card">
+        <app-card></app-card>
+      </div>
+      <div class="card">
+        <app-card></app-card>
+      </div>
+      <div class="card">
+        <app-card></app-card>
+      </div>
+      <div class="card">
+        <app-card></app-card>
+      </div>
+      <div class="card">
+        <app-card></app-card>
+      </div>
+      <div class="card">
+        <app-card></app-card>
+      </div>
+      <div class="card">
+        <app-card></app-card>
+      </div>
+      <div class="card">
+        <app-card></app-card>
+      </div>
+      <div class="card">
+        <app-card></app-card>
+      </div>
+      <div class="card">
+        <app-card></app-card>
+      </div>
+      <div class="card">
+        <app-card></app-card>
+      </div>
+    </div> -->
+<div class="mb" >
+  <div class="related-items" >
+    <div class="custom-hr"></div> <h6>Related Items</h6>
+  </div>
+    <div
+    
+      id="carouselExampleControls"
+      class="carousel slide"
+      data-bs-ride="carousel"
+    >
+      <div class="carousel-inner" >
+        <div class="carousel-item active">
+          
+            <div class="card-group" >
+              <div class="card">
+                <app-card></app-card>
+              </div>
+              <div class="card">
+                <app-card></app-card>
+              </div>
+              <div class="card">
+                <app-card></app-card>
+              </div>
+              <div class="card">
+                <app-card></app-card>
+              </div>
+              <div class="card">
+                <app-card></app-card>
               </div>
             </div>
-            <div>
-              <button class="btn btn-outline-colored" style="width: 15vw;">Buy Now</button>
+        
+        </div>
+        <div class="carousel-item">
+          
+          <div class="card-group">
+            <div class="card">
+              <app-card></app-card>
+            </div>
+            <div class="card">
+              <app-card></app-card>
+            </div>
+            <div class="card">
+              <app-card></app-card>
+            </div>
+            <div class="card">
+              <app-card></app-card>
+            </div>
+            <div class="card">
+              <app-card></app-card>
             </div>
           </div>
 
-          <div class="card">
-            <div class="card-body">
-              <div class="row border-bottom pb-3">
-                <div class="col">
-                  <div class="d-flex align-items-center">
-                    <i class="me-2 ri-truck-line h3" ></i>
-                    <span class="h5">Free Delivery</span>
-                    
-                  </div>
-                  <p style="text-decoration: underline;" class="ms-4 ps-2">Check availability of Delivery in your location</p>
-                </div>
+          </div>
+        <div class="carousel-item">
+          
+           <div class="card-group">
+              <div class="card">
+                <app-card></app-card>
               </div>
-              <div class="row pb-3">
-                <div class="col">
-                  <div class="d-flex align-items-center ">
-                    <i class="me-2 ri-refresh-line h3"></i>
-                    <span>Return Delivery</span>
-                  </div>
-                  <p  class="ms-4 ps-2">Free 30 Days Return</p>
-                </div>
+              <div class="card">
+                <app-card></app-card>
+              </div>
+              <div class="card">
+                <app-card></app-card>
+              </div>
+              <div class="card">
+                <app-card></app-card>
+              </div>
+              <div class="card">
+                <app-card></app-card>
               </div>
             </div>
-          </div>
-          
-          <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-        </div>
       </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleControls"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleControls"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
   </div>
-</div>
+
+  </div>
 </div>
