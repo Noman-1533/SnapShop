@@ -5,8 +5,8 @@
     </div>
 <div class="card mb-3 " style="max-width: 80vw;">
     <div class="row g-0">
-      <div class="col-md-6">
-        <img  src="https://t3.ftcdn.net/jpg/05/72/78/52/360_F_572785287_kC9aEOIFW1k4ki4d9BEQ7zxc39yVy79Q.jpg" alt="Gaming pad"class="img-fluid rounded-start" >
+      <div class="col-md-6 img-parent" >
+        <img  src="../assets/rem.png" alt="Gaming pad"class="img-fluid rounded-start" >
       </div>
       <div class="col-md-6">
         <div class="card-body">
@@ -21,22 +21,31 @@
         <div class="card-text mb-3">$192.00</div>
         <div class="card-text mb-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum dolores officia soluta repudiandae recusandae sed inventore doloribus neque iusto cumque. <hr></div>
         <div class="row mb-3">
-            <div class="col-12">
-              <div class="d-flex flex-wrap align-items-center">
-                <span>Size:</span>
-                <ng-container *ngFor="let size of sizes"
-                >
-                  <div class="form-check form-check-inline custom-space-between-each-size"
+          <div class="col-12">
+            <div class="d-flex flex-wrap align-items-center">
+              <span>Size:</span>
+              <ng-container *ngFor="let size of sizes">
+                <div class="form-check form-check-inline custom-space-between-each-size">
+                  <input 
+                    type="radio" 
+                    class="btn-check"  
+                    name="tshirtSize" 
+                    id="{{size}}" 
+                    [value]="size" 
+                    [(ngModel)]="selectedSize"
                   >
-                    <input type="radio" 
-                    class="btn-check" name="tshirtSize" id="{{size}}" [value]="size" [(ngModel)]="selectedSize"
-                    >
-                    <label class="btn btn-outline-primary" for="{{size}}">{{size}}</label>
-                  </div>
-                </ng-container>
-              </div>
+                  <label 
+                    class="button-design" 
+                    [ngClass]="{'btn-outline-colored': size === selectedSize, 'btn-outline-secondary': size !== selectedSize}" 
+                    for="{{size}}"
+                  >
+                    {{size}}
+                  </label>
+                </div>
+              </ng-container>
             </div>
           </div>
+        </div>
           <div class="d-flex justify-content-between">
             <div>
               <div class="input-group mb-3">
@@ -46,7 +55,7 @@
               </div>
             </div>
             <div>
-              <button class="btn btn-primary btn-color" style="width: 15vw;">Buy Now</button>
+              <button class="btn btn-outline-colored" style="width: 15vw;">Buy Now</button>
             </div>
           </div>
 
