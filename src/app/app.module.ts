@@ -18,6 +18,9 @@ import { LoginComponent } from './Authentication/login/login.component';
 import { CardComponent } from './home/card/card.component';
 import { CategoryComponent } from './home/category/category.component';
 
+import { ErrorComponent } from './error/error.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,12 +35,15 @@ import { CategoryComponent } from './home/category/category.component';
     SignUpComponent,
     LoginComponent,
     CardComponent,
-    CategoryComponent
+    CategoryComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
