@@ -1,0 +1,11 @@
+.card-wrapper{
+    width: 90vw;
+    margin-left: 10vw;
+    margin-top: 5vh;
+   
+}
+.card{
+    border: none;
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
