@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-// import { MyCarouselComponent } from './my-carousel/my-carousel.component';
+// import { MyCarouselComponent } from './my-carousel/my-carousel.component';g
 
 
 import { AppRoutingModule } from './app-routing.module';
