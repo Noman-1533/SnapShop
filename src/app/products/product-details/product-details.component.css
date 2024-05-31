@@ -10,6 +10,76 @@
     max-width: 70px; /* Set your desired width */
     text-align: center;
   }
-  .btn-color{
+ 
+  .btn-outline-colored{
     background-color: #DB4343;
+    color: white;
+   }
+
+  .btn-outline-secondary:hover{
+    background-color: #DB4343;
+    color: white;
+  }
+  .btn-outline-secondary{
+    background-color: #f7f3f3;
+  }
+
+  .button-design{
+     border: 1px solid black;
+     border-radius: 4px;
+     font-size: 12pt;
+     height: 33px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 33px;
+     padding: 0;
+     text-align: center;
+  }
+  .btn-outline-colored:active{
+    background-color: #DB4343;
+    color: #f7f3f3;
+  }
+
+  img{
+    height: 400px;
+    width: 400px;
+  }
+
+  .img-parent{
+    text-align: center;
+    padding-top: 5rem;
+    background-color: #f5f5f5;
+  }
+
+  .card-wrapper{
+    display: flex;
+    margin: 50px;
+  }
+
+
+  .custom-hr{
+    height: 30px;
+    width: 12px;
+    padding: 0px;
+    background-color: #DB4343;
+    text-decoration: none;
+    margin-left: 12px;
+    border-radius: 3px;
+    
+  }
+  .card{
+    border: none;
+  }
+  .related-items{
+    /* "display: flex;align-items:center;margin-bottom: 30px;margin-top: 10px; gap: 15px;" */
+    display: flex;
+    align-items: center;
+    margin-bottom: 5vh;
+    margin-top: 10vh;
+    gap: 15px;
+
+  }
+  .mb{
+    margin-bottom: 10vh;
   }
