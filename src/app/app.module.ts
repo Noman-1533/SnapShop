@@ -24,6 +24,7 @@ import { ErrorComponent } from './error/error.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { ProfileComponent } from './profile/profile.component';
+import { ProductCarouselComponent } from './shared/product-carousel/product-carousel.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { ProfileComponent } from './profile/profile.component';
     CardComponent,
     CategoryComponent,
     ErrorComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProductCarouselComponent
   ],
   imports: [
     BrowserModule,
