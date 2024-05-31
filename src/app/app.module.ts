@@ -22,7 +22,9 @@ import { CategoryComponent } from './home/category/category.component';
 
 import { ErrorComponent } from './error/error.component';
 import { HttpClientModule } from '@angular/common/http';
+
 import { ProfileComponent } from './profile/profile.component';
+
 
 @NgModule({
   declarations: [
