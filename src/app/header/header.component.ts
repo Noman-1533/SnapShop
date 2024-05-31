@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-header',
@@ -7,7 +8,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 })
 export class HeaderComponent {
 
-
+constructor(private router:Router){}
   icon = faHeart;
 
    headerText=
@@ -15,6 +16,14 @@ export class HeaderComponent {
     {name:'Home'},
     {name:'Contact'},
     {name:'About'},
-    {name:'Sign Up'},
+    {name:'Sign-Up'},
+    {name:'login'}
    ]
+
+   onClick(id:number){
+    let path=(this.headerText[id].name);
+    
+    this.router.navigate(['/'+path.toLocaleLowerCase()]);
+
+   }
 }

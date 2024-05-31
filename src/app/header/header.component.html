@@ -58,7 +58,7 @@
     <div class="Middletext">
       <ul class="navLink">
         <li>
-          <a href="" *ngFor="let nav of headerText">{{ nav.name }}</a>
+          <a *ngFor="let nav of headerText,let i =index" (click)="onClick(i)">{{ nav.name }}</a>
         </li>
       </ul>
     </div>
@@ -95,13 +95,14 @@
               <!-- Menu icon (hamburger icon) -->
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-              <li><a class="dropdown-item" href="#">Home</a></li>
-              <li><a class="dropdown-item" href="#">Contact</a></li>
-              <li><a class="dropdown-item" href="#">About</a></li>
-              <li><a class="dropdown-item" href="#">Sign Up</a></li>
+              
+              <li><a class="dropdown-item" routerLink="/home">Home</a></li>
+              <li><a class="dropdown-item" routerLink="/contact">Contact</a></li>
+              <li><a class="dropdown-item" routerLink="/about">About</a></li>
+              <li><a class="dropdown-item" routerLink="/sign-up">Sign Up</a></li>
               <li><hr class="dropdown-divider" /></li>
-              <li><a class="dropdown-item" href="#">Add to cart</a></li>
-              <li><a class="dropdown-item" href="#">Separated link</a></li>
+              <li><a class="dropdown-item" routerLink="/cart">Add to cart</a></li>
+              <li><a class="dropdown-item" routerLink="/other">Separated link</a></li>
             </ul>
           </div>
         </li>
