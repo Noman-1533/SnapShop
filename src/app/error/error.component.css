@@ -1,9 +1,16 @@
 /* Base styles for the container */
 
-.container {
+.container-error {
     text-align: center;
-    width: 100%; /* Increased width for larger display */
-    padding: 40px; /* Increased padding for more space */
+    width: 97%;
+    padding: 40px;
+    height: auto;
+    width: calc(100% - 40px);
+    margin: 60px 0 70px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* align-items: center; */
   
 }
 
@@ -11,6 +18,7 @@
     font-size: 18px; /* Increased font size */
     color: #999;
     margin-bottom: 40px; /* Increased margin */
+    
 }
 
 .breadcrumb a {
@@ -22,13 +30,13 @@
     color: #000000;
 }
 
-.content h1 {
+.container-error h1 {
     font-size: 85px; /* Increased font size */
     margin-top: 105px;
     color: #000000;
 }
 
-.content p {
+.container-error p {
     font-size: 18px; /* Increased font size */
     color: #666;
     margin-top: 20px; /* Increased margin */

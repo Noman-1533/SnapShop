@@ -496,7 +496,7 @@
     display: flex;
     flex-direction: column;
     top: 220px;
-    color: white;
+    color: rgb(15, 14, 14);
     width: 200px;
     /* background-color: red; */
 
@@ -508,7 +508,7 @@
 }
 
 .helo a {
-    color: white;
+    color: rgb(17, 16, 16);
 }
 
 .carousel-control-next-icon,
