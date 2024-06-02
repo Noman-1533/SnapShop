@@ -15,6 +15,7 @@ import { ProductDetailsComponent } from './products/product-details/product-deta
 import { ProductListComponent } from './products/product-list/product-list.component';
 import { SignUpComponent } from './Authentication/sign-up/sign-up.component';
 import { LoginComponent } from './Authentication/login/login.component';
+
 import { FormsModule } from '@angular/forms';
 import { CheckoutComponent } from './Shopping/checkout/checkout.component';
 import { CardComponent } from './home/card/card.component';
@@ -22,10 +23,8 @@ import { CategoryComponent } from './home/category/category.component';
 
 import { ErrorComponent } from './error/error.component';
 import { HttpClientModule } from '@angular/common/http';
-
 import { ProfileComponent } from './profile/profile.component';
 import { ProductCarouselComponent } from './shared/product-carousel/product-carousel.component';
-
 
 @NgModule({
   declarations: [
@@ -39,6 +38,7 @@ import { ProductCarouselComponent } from './shared/product-carousel/product-caro
     ProductListComponent,
     SignUpComponent,
     LoginComponent,
+    CheckoutComponent,
     CheckoutComponent,
     CardComponent,
     CategoryComponent,
