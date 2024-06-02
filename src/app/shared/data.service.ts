@@ -1,7 +1,8 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Product } from "./product.model";
+import { Product } from "./../Shared/product.model";
 import { catchError, tap, throwError } from "rxjs";
+
  
 @Injectable({
     providedIn:'root'
@@ -37,11 +38,8 @@ export class DataService{
     }
 
     getAllCategories() {
-        return this.http.get(`https://fakestoreapi.com/products/categories`).pipe(
-            tap((cat) => {
-                console.log(cat);
-            })
-        )
+        return this.http.get(`https://fakestoreapi.com/products/categories`);
+        
     }
 
     getProductsOfCategory(categoryName: string) {

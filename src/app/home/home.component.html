@@ -2,21 +2,10 @@
   <div class="FirstSectionTop">
     <div class="rightListBar">
       <ul class="listofContent">
-        <li>
-          <a href="" style="display: flex; justify-content: space-between"
-            >Flash Sale <span>></span></a
-          >
+        <li *ngFor="let item of combinedArraycategory">
+          <a href="">{{item.category | capitalizeFirst}}</a>
         </li>
-        <li>
-          <a href="" style="display: flex; justify-content: space-between"
-            >Browse By History <span>></span></a
-          >
-        </li>
-        <li><a href="">Top Rated Products</a></li>
-        <li><a href="">Explore Our Products</a></li>
-        <li><a href="">Explore Our Products</a></li>
-        <li><a href="">Explore Our Products</a></li>
-        <li><a href="">New Arival</a></li>
+    
       </ul>
     </div>
 
@@ -96,7 +85,7 @@
       <div class="Tittle">Flash Sale</div>
 
       <div class="CardList">
-        <!-- <div
+        <div
               
                 id="carouselExampleControls"
                 class="carousel slide"
@@ -187,8 +176,8 @@
                   <span class="visually-hidden">Next</span>
                 </button>
               </div>
-            </div> -->
-        <app-product-carousel></app-product-carousel>
+            </div>
+        <!-- <app-product-carousel></app-product-carousel> -->
       </div>
     </div>
 
@@ -208,12 +197,12 @@
       <div class="Tittle catTittle">Browse By Category</div>
 
       <div class="CardList categorycard">
-        <app-category></app-category>
-        <app-category></app-category>
-        <app-category></app-category>
-        <app-category></app-category>
-        <app-category></app-category>
-        <app-category></app-category>
+
+        <div class="" *ngFor="let item of combinedArraycategory">
+          <app-category [cateGory]="item.category" [iconcategory]="item.icon"></app-category>
+          
+
+        </div>
       </div>
 
       <div class="horizontalLine-hrcategory"></div>

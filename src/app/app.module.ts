@@ -24,7 +24,8 @@ import { CategoryComponent } from './home/category/category.component';
 import { ErrorComponent } from './error/error.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileComponent } from './profile/profile.component';
-import { ProductCarouselComponent } from './shared/product-carousel/product-carousel.component';
+import { ProductCarouselComponent } from './Shared/product-carousel/product-carousel.component';
+import { CapitalizeFirstPipe } from './home/capitalize-first.pipe';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ProductCarouselComponent } from './shared/product-carousel/product-caro
     CategoryComponent,
     ErrorComponent,
     ProfileComponent,
-    ProductCarouselComponent
+    ProductCarouselComponent,
+    CapitalizeFirstPipe
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../../shared/data.service';
+import { DataService } from '../../Shared/data.service';
 
 @Component({
   selector: 'app-product-details',
@@ -37,14 +37,14 @@ export class ProductDetailsComponent implements OnInit {
     }
   }
   dataServiceTest() {
-    // let data;
+    let data;
     // this.data.getSingleProduct(2).subscribe((res) => {
     //   console.log(res);
     // });
     // console.log(data);
     // this.data.fetchAllProducts().subscribe();
 
-    // this.data.getAllCategories().subscribe();
+     this.data.getAllCategories().subscribe();
     // this.data.getProductsOfCategory('jewelery').subscribe();
     // this.data.getLimitedProducts(4);
     // this.data.getLimitedProducts(4).subscribe();
