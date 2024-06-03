@@ -115,8 +115,6 @@
 .rightListBar {
 
 
-
-
     height: 350px;
     width: 22%;
     /* background-color: aquamarine; */
@@ -130,7 +128,7 @@
 
 
 .listofContent {
-
+    height: 250px;
     display: flex;
     flex-direction: column;
     list-style: none;
