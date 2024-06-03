@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../Shared/data.service';
+import { Product } from '../../Shared/product.model';
+import { CartService } from '../../Shopping/cart/cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -10,6 +12,9 @@ export class ProductDetailsComponent implements OnInit {
   rating: number = 3.9;
   stars: boolean[] = Array(5).fill(false);
   sizes: string[] = ['XS', 'S', 'M', 'L', 'XL'];
+
+  products: Product[];
+
   deliveryOptions:{name:string,iconClass:string}[] = [
     { name: 'Free Delivery', iconClass: 'bi bi-truck' },
     { name: 'Return Delivery', iconClass: 'bi bi-arrow-return-left' }
@@ -17,7 +22,8 @@ export class ProductDetailsComponent implements OnInit {
 
   selectedSize: string = 'M';
   amount: number = 0;
-  constructor(private data :DataService) { }
+  constructor(private data: DataService,
+  ) { }
   ngOnInit(): void {
     this.updateStars();
     // this.dataServiceTest();
@@ -37,6 +43,11 @@ export class ProductDetailsComponent implements OnInit {
     }
   }
   dataServiceTest() {
+    this.data.getAllProducts().subscribe(
+      (res:Product[]) => {
+        this.products = res;
+      }
+    )
     let data;
     // this.data.getSingleProduct(2).subscribe((res) => {
     //   console.log(res);
@@ -44,10 +55,12 @@ export class ProductDetailsComponent implements OnInit {
     // console.log(data);
     // this.data.fetchAllProducts().subscribe();
 
-     this.data.getAllCategories().subscribe();
+    //  this.data.getAllCategories().subscribe();
     // this.data.getProductsOfCategory('jewelery').subscribe();
     // this.data.getLimitedProducts(4);
     // this.data.getLimitedProducts(4).subscribe();
+
+
   }
 
 }
