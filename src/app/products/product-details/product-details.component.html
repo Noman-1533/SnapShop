@@ -7,33 +7,31 @@
       <div class="row g-0">
         <div class="col-md-6 img-parent">
           <img
-            src="https://t3.ftcdn.net/jpg/05/29/07/02/360_F_529070294_O1TeNzh2kMKne8bUlr9xlJhdZ8jSbOVG.jpg"
+            src="{{selectedproductDetails.image}}"
             alt="Gaming pad"
             class="img-fluid rounded-start"
           />
         </div>
         <div class="col-md-6">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
+            <h5 class="card-title">{{selectedproductDetails.title}}</h5>
             <div class="card-text">
               <div class="d-flex">
-                <span *ngFor="let star of stars; let i = index">
-                  <i
-                    class="fa"
-                    [ngClass]="
-                      star ? 'fa-star text-warning' : 'fa-star-o text-muted'
-                    "
-                  ></i>
-                </span>
-                <span>(150 Reviews)</span>
+                <ul class="list-inline">
+                    
+                  <li class="list-inline-item" *ngFor="let star of ratingArray">
+                      <i class="fa"
+                         [ngClass]="{'fa-star': star === 'full', 'fa-star-half-alt': star === 'half', 'fa-star-o': star === 'empty'}">
+                      </i>
+                    </li>
+                    <li class="list-inline-item count">({{selectedproductDetails.rating.count}})</li>
+              </ul>
                 <pre> | </pre>
                 <span style="color: rgb(42, 250, 170)">In stock</span>
               </div>
-              <div class="card-text mb-3">$192.00</div>
+              <div class="card-text mb-3">${{selectedproductDetails.price}}</div>
               <div class="card-text mb-3">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum
-                dolores officia soluta repudiandae recusandae sed inventore
-                doloribus neque iusto cumque.
+                {{selectedproductDetails.description}}
                 <hr />
               </div>
               <div class="row mb-3">
@@ -134,7 +132,6 @@
         </div>
       </div>
     </div>
-
     <div class="mb">
       <div class="related-items">
         <div class="custom-hr"></div>

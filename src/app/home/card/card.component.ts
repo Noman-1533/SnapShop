@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card',
@@ -7,14 +8,22 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CardComponent implements OnInit{
 
+  constructor(private router:Router){}
   
  
   @Input() cardInfo;
   ratingArray: string[] = [];
 
+
+
+  onClick(id:number){
+    this.router.navigate(['product-details', id]);
+    console.log(id)
+  }
+
   ngOnInit(){
 
-       console.log("from card rating",this.cardInfo.rating.rate);
+       
 
        if (this.cardInfo && this.cardInfo.rating && this.cardInfo.rating.rate) {
         this.setRatingArray(this.cardInfo.rating.rate);

@@ -77,6 +77,7 @@
     /* background-color: red; */
     padding: 8px 0px 0px 0px;
     font-size: 13px;
+    color: black;
 }
 
 .item-price span{
@@ -118,4 +119,11 @@
 
 .topsectionforcart{
     background-color: #F5F5F5;
+}
+
+
+h4:hover{
+    text-decoration: underline;
+    cursor: pointer;
+    color: black;
 }

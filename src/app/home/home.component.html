@@ -1,9 +1,9 @@
 <div class="main">
   <div class="FirstSectionTop">
     <div class="rightListBar">
-      <ul class="listofContent">
-        <li *ngFor="let item of combinedArraycategory">
-          <a href="">{{ item.category | capitalizeFirst }}</a>
+      <ul class="listofContent" >
+        <li  *ngFor="let item of combinedArraycategory">
+          <a (click)="navigateToProductList(item.category)">{{item.category | capitalizeFirst}}</a>
         </li>
       </ul>
     </div>
@@ -174,7 +174,7 @@
     </div>
 
     <div class="buttonViewProduct">
-      <button class="buttonView">View all Products</button>
+      <button class="buttonView" (click)="viewAllProducts()">View all Products</button>
     </div>
 
     <div class="horizontalLine"></div>
@@ -190,10 +190,9 @@
 
       <div class="CardList categorycard">
         <div class="" *ngFor="let item of combinedArraycategory">
-          <app-category
-            [cateGory]="item.category"
-            [iconcategory]="item.icon"
-          ></app-category>
+          <app-category (click)="navigateToProductList(category)" [cateGory]="item.category" [iconcategory]="item.icon"></app-category>
+          
+
         </div>
       </div>
 
@@ -211,7 +210,7 @@
       <div class="tittle-bar-forTop-rated">
         <div class="Tittle">Top Rated Products</div>
         <div class="buttonViewProduct">
-          <button class="buttonView">View all</button>
+          <button class="buttonView" (click)="viewAllProducts()">View all Products</button>
         </div>
       </div>
 
@@ -381,7 +380,7 @@
     </div>
 
     <div class="buttonViewProduct">
-      <button class="buttonView">View all Products</button>
+      <button class="buttonView" (click)="viewAllProducts()">View all Products</button>
     </div>
   </div>
 

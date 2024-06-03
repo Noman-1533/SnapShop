@@ -1,8 +1,8 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Product } from "./../Shared/product.model";
-import { Cart } from "../Shopping/cart/cart.model";
 import { Subject, catchError, tap, throwError } from "rxjs";
+import { Cart } from "../Shopping/cart/cart.model";
 
  
 @Injectable({
@@ -60,13 +60,6 @@ export class DataService{
         )
     }
 
-    getSingleCart(id:number) {
-        return this.http.get<Cart[]>(`https://fakestoreapi.com/carts/user/` + id.toString()).pipe(
-            tap((cart: Cart[]) => {
-                console.log(cart);
-            })
-        )
-    }
     //for sorting by ratting
 
     private sortAndEmitProducts(products: Product[]) {
@@ -102,5 +95,12 @@ export class DataService{
 
 
 
+    getSingleCart(id:number) {
+        return this.http.get<Cart[]>(`https://fakestoreapi.com/carts/user/` + id.toString()).pipe(
+            tap((cart: Cart[]) => {
+                console.log(cart);
+            })
+        )
+    }
  
 }
