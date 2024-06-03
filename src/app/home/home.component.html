@@ -3,66 +3,50 @@
     <div class="rightListBar">
       <ul class="listofContent">
         <li *ngFor="let item of combinedArraycategory">
-          <a href="">{{item.category | capitalizeFirst}}</a>
+          <a href="">{{ item.category | capitalizeFirst }}</a>
         </li>
-    
       </ul>
     </div>
 
-    <div
-      id="carouselExample"
-      class="carousel slide"
-      data-mdb-ride="carousel"
-      style="height: 320px; margin-right: 50px"
-    >
-      <div class="carousel-inner" style="height: 100%">
-        <!-- <div class="carousel-item">
-          <img
-            src="https://mdbcdn.b-cdn.net/img/new/slides/041.jpg"
-            class="d-block w-100"
-            alt="..."
-          />
-        </div> -->
-        <div class="carousel-item active">
-          <img
-            src="https://mdbcdn.b-cdn.net/img/new/slides/042.jpg"
-            class="d-block w-100"
-            alt="..."
-          />
+    <div id="carouselExample" class="carousel slide" data-mdb-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active"id="cursoulDiv" data-bs-interval="2000">
+          <div class="hero">
+            <h1>SnapShop</h1>
+            <hr>
+            <h3>Up to 10% Voucher</h3>
+            <a href="">Shop now -></a>
+          </div>
+          <div class="imageSection">
+            <img src="./assets/imagesHome/pcImage.png" class="d-block w-100" alt="...">
+          </div>
         </div>
-        <div class="carousel-item">
-          <img
-            src="https://mdbcdn.b-cdn.net/img/new/slides/043.jpg"
-            class="d-block w-100"
-            alt="..."
-          />
+
+        
+        <div class="carousel-item" id="cursoulDiv">
+          <div class="hero">
+            <h1>SnapShop</h1>
+            <hr>
+            <h3>Up to 10% Voucher</h3>
+            <a href="">Shop now -></a>
+          </div>
+          <div class="imageSection">
+            <img src="./assets/imagesHome/bagImage.png" class="d-block w-100" alt="..." >
+          </div>
         </div>
       </div>
-      <button
-        class="carousel-control-prev"
-        type="button"
-        data-mdb-target="#carouselExample"
-        data-mdb-slide="prev"
-      >
+      <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExample" data-mdb-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </button>
-      <button
-        class="carousel-control-next"
-        type="button"
-        data-mdb-target="#carouselExample"
-        data-mdb-slide="next"
-      >
+      <button class="carousel-control-next" type="button" data-mdb-target="#carouselExample" data-mdb-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
     </div>
-
-    <div class="helo">
-      <h3>Up to 10% Voucher</h3>
-      <a href="">Shop now -></a>
-    </div>
   </div>
+
+  
 
   <!-- slide card -->
 
@@ -84,152 +68,10 @@
       </div>
       <div class="Tittle">Flash Sale</div>
 
-      <div class="CardList">
-        <div
-              
-                id="carouselExampleControls"
-                class="carousel slide"
-                data-bs-ride="carousel"
-              >
-                <div class="carousel-inner" >
-                  <div class="carousel-item active">
-                    
-                      <div class="card-group">
-                        <div class="card">
-                          <app-card></app-card>
-                        </div>
-                        <div class="card">
-                          <app-card></app-card>
-                        </div>
-                        <div class="card">
-                          <app-card></app-card>
-                        </div>
-                        <div class="card">
-                          <app-card></app-card>
-                        </div>
-                        <div class="card">
-                          <app-card></app-card>
-                        </div>
-                        
-                        
-                      </div>
-                  
-                  </div>
-                  <div class="carousel-item">
-                    
-                    <div class="card-group">
-                      <div class="card">
-                        <app-card></app-card>
-                      </div>
-                      <div class="card">
-                        <app-card></app-card>
-                      </div>
-                      <div class="card">
-                        <app-card></app-card>
-                      </div>
-                      <div class="card">
-                        <app-card></app-card>
-                      </div>
-                      <div class="card">
-                        <app-card></app-card>
-                      </div>
-                      
-                    </div>
-          
-                    </div>
-                  <div class="carousel-item">
-                    
-                     <div class="card-group">
-                        <div class="card">
-                          <app-card></app-card>
-                        </div>
-                        <div class="card">
-                          <app-card></app-card>
-                        </div>
-                        <div class="card">
-                          <app-card></app-card>
-                        </div>
-                        <div class="card">
-                          <app-card></app-card>
-                        </div>
-                        <div class="card">
-                          <app-card></app-card>
-                        </div>
-                      </div>
-                </div>
-                <button
-                  class="carousel-control-prev"
-                  type="button"
-                  data-bs-target="#carouselExampleControls"
-                  data-bs-slide="prev"
-                >
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button
-                  class="carousel-control-next"
-                  type="button"
-                  data-bs-target="#carouselExampleControls"
-                  data-bs-slide="next"
-                >
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-              </div>
-            </div>
-        <!-- <app-product-carousel></app-product-carousel> -->
-      </div>
-    </div>
+      <!-- <div class="CardList"> -->
 
-    <div class="buttonViewProduct">
-      <button class="buttonView">View all Products</button>
-    </div>
 
-    <div class="horizontalLine"></div>
-  </div>
-
-  <div class="FlashSaleSection categorysection">
-    <div class="slider">
-      <div class="Day">
-        <div class="box"></div>
-        <p>Categories</p>
-      </div>
-      <div class="Tittle catTittle">Browse By Category</div>
-
-      <div class="CardList categorycard">
-
-        <div class="" *ngFor="let item of combinedArraycategory">
-          <app-category [cateGory]="item.category" [iconcategory]="item.icon"></app-category>
-          
-
-        </div>
-      </div>
-
-      <div class="horizontalLine-hrcategory"></div>
-    </div>
-  </div>
-
-  <div class="FlashSaleSection mt-0">
-    <div class="slider">
-      <div class="Day">
-        <div class="box"></div>
-        <p>This Month</p>
-      </div>
-
-      <div class="tittle-bar-forTop-rated">
-        <div class="Tittle">Top Rated Products</div>
-        <div class="buttonViewProduct">
-          <button class="buttonView">View all</button>
-        </div>
-      </div>
-
-      <div class="CardList">
-        <!-- <app-card class="cartzoom"></app-card>
-                           <app-card class="cartzoom"></app-card>
-                           <app-card class="cartzoom"></app-card>
-                           <app-card class="cartzoom"></app-card> -->
-
-        <div
+        <!-- <div
           id="carouselExampleControls"
           class="carousel slide"
           data-bs-ride="carousel"
@@ -238,38 +80,38 @@
             <div class="carousel-item active">
               <div class="card-group">
                 <div class="card">
-                  <app-card class="cartzoom"></app-card>
+                  <app-card></app-card>
                 </div>
                 <div class="card">
-                  <app-card class="cartzoom"></app-card>
+                  <app-card></app-card>
                 </div>
                 <div class="card">
-                  <app-card class="cartzoom"></app-card>
+                  <app-card></app-card>
                 </div>
                 <div class="card">
-                  <app-card class="cartzoom"></app-card>
+                  <app-card></app-card>
                 </div>
                 <div class="card">
-                  <app-card class="cartzoom"></app-card>
+                  <app-card></app-card>
                 </div>
               </div>
             </div>
             <div class="carousel-item">
               <div class="card-group">
                 <div class="card">
-                  <app-card class="cartzoom"></app-card>
+                  <app-card></app-card>
                 </div>
                 <div class="card">
-                  <app-card class="cartzoom"></app-card>
+                  <app-card></app-card>
                 </div>
                 <div class="card">
-                  <app-card class="cartzoom"></app-card>
+                  <app-card></app-card>
                 </div>
                 <div class="card">
-                  <app-card class="cartzoom"></app-card>
+                  <app-card></app-card>
                 </div>
                 <div class="card">
-                  <app-card class="cartzoom"></app-card>
+                  <app-card></app-card>
                 </div>
               </div>
             </div>
@@ -317,8 +159,170 @@
               <span class="visually-hidden">Next</span>
             </button>
           </div>
+        </div> -->
+
+
+        <div class="if" *ngIf="numberOfSlidesss!=undefined">
+          <app-product-carousel class="app-product" [numberOfSlides]="numberOfSlidesss"></app-product-carousel>
+        </div>
+
+        
+
+
+        
+      <!-- </div> -->
+    </div>
+
+    <div class="buttonViewProduct">
+      <button class="buttonView">View all Products</button>
+    </div>
+
+    <div class="horizontalLine"></div>
+  </div>
+
+  <div class="FlashSaleSection categorysection">
+    <div class="slider">
+      <div class="Day">
+        <div class="box"></div>
+        <p>Categories</p>
+      </div>
+      <div class="Tittle catTittle">Browse By Category</div>
+
+      <div class="CardList categorycard">
+        <div class="" *ngFor="let item of combinedArraycategory">
+          <app-category
+            [cateGory]="item.category"
+            [iconcategory]="item.icon"
+          ></app-category>
         </div>
       </div>
+
+      <div class="horizontalLine-hrcategory"></div>
+    </div>
+  </div>
+
+  <div class="FlashSaleSection mt-0">
+    <div class="slider">
+      <div class="Day">
+        <div class="box"></div>
+        <p>This Month</p>
+      </div>
+
+      <div class="tittle-bar-forTop-rated">
+        <div class="Tittle">Top Rated Products</div>
+        <div class="buttonViewProduct">
+          <button class="buttonView">View all</button>
+        </div>
+      </div>
+
+
+
+
+
+      <!-- <div class="CardList"> -->
+        <!-- <app-card class="cartzoom"></app-card>
+                           <app-card class="cartzoom"></app-card>
+                           <app-card class="cartzoom"></app-card>
+                           <app-card class="cartzoom"></app-card> -->
+
+        <!-- <div
+          id="carouselExampleControls"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="card-group">
+                <div class="card">
+                  <app-card class="cartzoom"></app-card>
+                </div>
+                <div class="card">
+                  <app-card class="cartzoom"></app-card>
+                </div>
+                <div class="card">
+                  <app-card class="cartzoom"></app-card>
+                </div>
+                <div class="card">
+                  <app-card class="cartzoom"></app-card>
+                </div>
+                
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="card-group">
+                <div class="card">
+                  <app-card class="cartzoom"></app-card>
+                </div>
+                <div class="card">
+                  <app-card class="cartzoom"></app-card>
+                </div>
+                <div class="card">
+                  <app-card class="cartzoom"></app-card>
+                </div>
+                <div class="card">
+                  <app-card class="cartzoom"></app-card>
+                </div>
+                
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="card-group">
+                <div class="card">
+                  <app-card></app-card>
+                </div>
+                <div class="card">
+                  <app-card></app-card>
+                </div>
+                <div class="card">
+                  <app-card></app-card>
+                </div>
+                <div class="card">
+                  <app-card></app-card>
+                </div>
+               
+              </div>
+            </div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#carouselExampleControls"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#carouselExampleControls"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div> -->
+
+      <div class="if" *ngIf="numberOfSlidesRatting!=undefined">
+        <app-product-carousel [numberOfSlides]="numberOfSlidesRatting"></app-product-carousel>
+
+      </div>
+
+      
+
+
+      <!-- <app-product-carousel></app-product-carousel> -->
+
+
+
+
     </div>
   </div>
 
@@ -372,6 +376,8 @@
         <app-card class="cartzoom"></app-card>
         <app-card class="cartzoom"></app-card>
       </div>
+
+      
     </div>
 
     <div class="buttonViewProduct">

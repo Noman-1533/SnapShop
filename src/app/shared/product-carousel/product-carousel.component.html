@@ -4,54 +4,30 @@
   data-bs-ride="carousel"
 >
   <div class="carousel-inner">
-    <div class="carousel-item active">
+
+    
+
+    <div class="div" *ngIf="numberOfSlides!=undefined;else defineed">
+
+    
+
+    <div class="carousel-item" *ngFor="let slides of numberOfSlides;let i=index" [ngClass]="{'active': i === 0}">
       <div class="card-group">
-        <div class="card card-wrapper">
-          <app-card></app-card>
+        <div class="card card-wrapper" *ngFor="let card of slides">
+          <app-card [cardInfo]="card"></app-card>
+          <!-- <button (click)="show(card)">but</button> -->
+          <!-- {{card.title}} -->
         </div>
-        <div class="card card-wrapper">
-          <app-card></app-card>
-        </div>
-        <div class="card card-wrapper">
-          <app-card></app-card>
-        </div>
-        <div class="card card-wrapper">
-          <app-card></app-card>
-        </div>
+      
       </div>
     </div>
-    <div class="carousel-item">
-      <div class="card-group">
-        <div class="card card-wrapper">
-          <app-card></app-card>
-        </div>
-        <div class="card card-wrapper">
-          <app-card></app-card>
-        </div>
-        <div class="card card-wrapper">
-          <app-card></app-card>
-        </div>
-        <div class="card card-wrapper">
-          <app-card></app-card>
-        </div>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <div class="card-group">
-        <div class="card card-wrapper">
-          <app-card></app-card>
-        </div>
-        <div class="card card-wrapper">
-          <app-card></app-card>
-        </div>
-        <div class="card card-wrapper">
-          <app-card></app-card>
-        </div>
-        <div class="card card-wrapper">
-          <app-card></app-card>
-        </div>
-      </div>
-    </div>
+  </div>
+
+    <ng-template #defineed>
+      <div class="div"></div>
+    </ng-template>
+
+
   </div>
   <!-- Carousel controls -->
   <button

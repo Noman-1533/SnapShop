@@ -61,10 +61,8 @@
   /* background-color: red; */
 }
 
-.logo h3{
-
+.logo h3 {
   margin-bottom: 0.7em;
-
 }
 
 .Middletext ul {
@@ -81,7 +79,7 @@
 .navLink a {
   /* background-color: red; */
   padding: 0px 20px;
-  font-size: 18px
+  font-size: 18px;
 }
 
 .navLink a:hover,
@@ -188,6 +186,28 @@
 .search1 > div > input:not(:placeholder-shown) {
   width: 250px;
 } */
+
+/* search  */
+
+.searchgroup {
+  margin-top: 10px;
+}
+
+.searchgroup input {
+  border: none;
+  background-color: #f5f5f5;
+  width: 220px;
+  height: 40px;
+}
+
+.searchgroup button {
+  height: 40px;
+  border: none;
+  width: 40px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+}
+
 .dropdown {
   display: none;
 }
@@ -223,7 +243,6 @@
   .bottom {
     justify-content: space-between;
     padding: 0px 4vw;
-    
   }
 }
 
