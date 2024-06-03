@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Product } from "./../Shared/product.model";
 import { catchError, tap, throwError } from "rxjs";
+import { Cart } from "../Shopping/cart/cart.model";
 
  
 @Injectable({
@@ -11,7 +12,7 @@ export class DataService{
    
     constructor(private http:HttpClient) { }
    
-    fetchAllProducts() {
+    getAllProducts() {
         return this.http.get<Product[]>('https://fakestoreapi.com/products').pipe(
             tap((products:Product[]) => {
                 console.log(products);
@@ -46,6 +47,14 @@ export class DataService{
         return this.http.get<Product[]>(`https://fakestoreapi.com/products/category/${categoryName}`).pipe(
             tap((product: Product[]) => {
                 console.log(product);
+            })
+        )
+    }
+
+    getSingleCart(id:number) {
+        return this.http.get<Cart[]>(`https://fakestoreapi.com/carts/user/` + id.toString()).pipe(
+            tap((cart: Cart[]) => {
+                console.log(cart);
             })
         )
     }
