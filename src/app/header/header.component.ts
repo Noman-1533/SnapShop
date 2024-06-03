@@ -26,4 +26,7 @@ constructor(private router:Router){}
     this.router.navigate(['/'+path.toLocaleLowerCase()]);
 
    }
+   homeClick(){
+    this.router.navigate(['/home']);
+   }
 }

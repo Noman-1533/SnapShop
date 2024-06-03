@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit, inject } from '@angular/core';
 import { Carousel, initMDB } from "mdb-ui-kit";
 import { DataService } from '../Shared/data.service';
+import { Router } from '@angular/router'; 
 
 
 
@@ -23,7 +24,7 @@ export class HomeComponent implements AfterViewInit,OnInit {
 
   private dataService = inject(DataService);
 
-  constructor()
+  constructor(private router: Router)
   {
 
   }
@@ -45,6 +46,12 @@ export class HomeComponent implements AfterViewInit,OnInit {
       }
     );
       
+  }
+  viewAllProducts() {
+    this.router.navigate(['/product-list']);  // Navigate to the product-list page
+  }
+  navigateToProductList(category: string) {
+    this.router.navigate(['/product-list']);
   }
 
  
