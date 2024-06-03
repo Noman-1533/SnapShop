@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../../Shared/data.service';
 
 @Component({
   selector: 'app-product-details',
@@ -16,9 +17,11 @@ export class ProductDetailsComponent implements OnInit {
 
   selectedSize: string = 'M';
   amount: number = 0;
-  constructor() { }
+  constructor(private data :DataService) { }
   ngOnInit(): void {
     this.updateStars();
+    // this.dataServiceTest();
+
   }
   updateStars() {
     this.stars = this.stars.map((_, index) => index < this.rating);
@@ -32,6 +35,19 @@ export class ProductDetailsComponent implements OnInit {
     if (this.amount > 0) { 
       this.amount--;
     }
+  }
+  dataServiceTest() {
+    let data;
+    // this.data.getSingleProduct(2).subscribe((res) => {
+    //   console.log(res);
+    // });
+    // console.log(data);
+    // this.data.fetchAllProducts().subscribe();
+
+     this.data.getAllCategories().subscribe();
+    // this.data.getProductsOfCategory('jewelery').subscribe();
+    // this.data.getLimitedProducts(4);
+    // this.data.getLimitedProducts(4).subscribe();
   }
 
 }
