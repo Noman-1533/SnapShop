@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -7,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductListComponent implements OnInit{
   demoProduct: number[] = Array(10).fill(1)
-  constructor() { }
+  constructor(private router:Router) { }
   ngOnInit(): void {
     // console.log(this.demoProduct);
   }
 
-
+  
 }

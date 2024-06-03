@@ -119,7 +119,7 @@
     width: 22%;
     /* background-color: aquamarine; */
     margin-top: -55px;
-    z-index: -1;
+    /* z-index: -1; */
     border-right: 1.8px solid rgb(219, 215, 215);
     display: flex;
     justify-content: space-around;
@@ -143,6 +143,10 @@
 .listofContent a {
     text-decoration: none;
     color: black;
+    font-size: 17px;
+}
+.listofContent a:hover {
+    text-decoration: underline;
     font-size: 17px;
 }
 
