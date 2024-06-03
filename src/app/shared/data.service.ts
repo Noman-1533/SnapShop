@@ -51,7 +51,7 @@ export class DataService{
         )
     }
 
-    getSingleCart(id:number) {
+    getSingleUserCart(id:number) {
         return this.http.get<Cart[]>(`https://fakestoreapi.com/carts/user/` + id.toString()).pipe(
             tap((cart: Cart[]) => {
                 console.log(cart);

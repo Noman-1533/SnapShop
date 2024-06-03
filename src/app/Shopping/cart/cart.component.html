@@ -1,5 +1,20 @@
+<div *ngIf="deleteClicked" class="overlay">
+  <div class="modal-container">
+    
+      <h4 class="modal-heading">Alert!</h4>
+      <p>Do you really want to delete Item ?</p>
+      <div class="buttons">
+      <button class="btn btn-success" (click)="ConfirmationClicked('close')">Close</button>
+      <button class="btn btn-danger" (click)="ConfirmationClicked('delete')">Delete</button>
+    
+    </div>
+  </div>
+</div>
+<div class="content">
 <div class="card">
     <div class="container mt-5">
+
+      
       <div class="row d-flex justify-content-between">
         <div class="col-md-12">
           <h2>Products</h2>
@@ -28,9 +43,14 @@
                     style="width: 80px;"
                   />
                 </td>
-                <td id="{{ product.id }}Subtotal">
+                <td id="{{ product.productId }}Subtotal">
                   {{ product.price * product.quantity }}
                 </td>
+                <td>
+                  <i
+                  (click)="onCheckDeleteCart(product.productId)"
+                  class="fa-solid fa-trash"></i>
+                  </td>
               </tr>
             </tbody>
           </table>
@@ -131,6 +151,8 @@
       </div>
       <br />
     </div>
+
+  </div>
   </div>
   
   

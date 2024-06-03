@@ -1,6 +1,10 @@
-interface CartProduct{
+export interface CartProduct{
     productId: number,
-    quantity:number
+    quantity: number,
+    image?: string,
+    price?: number,
+    name?: string,
+    
 }
 export interface CartKey{
     name:string,
