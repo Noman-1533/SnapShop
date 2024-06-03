@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,9 +6,49 @@ import { Router } from '@angular/router';
   templateUrl: './card.component.html',
   styleUrl: './card.component.css'
 })
-export class CardComponent {
+export class CardComponent implements OnInit{
+
   constructor(private router:Router){}
-  onClick(){
-    this.router.navigate(['product-details/1'])
+  
+ 
+  @Input() cardInfo;
+  ratingArray: string[] = [];
+
+
+
+  onClick(id:number){
+    this.router.navigate(['product-details', id]);
+    console.log(id)
   }
+
+  ngOnInit(){
+
+       
+
+       if (this.cardInfo && this.cardInfo.rating && this.cardInfo.rating.rate) {
+        this.setRatingArray(this.cardInfo.rating.rate);
+      }  
+
+  }
+
+  setRatingArray(rating: number) {
+    this.ratingArray = [];
+
+    
+    for (let i = 0; i < Math.floor(rating); i++) {
+      this.ratingArray.push('full');
+    }
+
+    
+    if (rating % 1 !== 0) {
+      this.ratingArray.push('half');
+    }
+
+    
+    while (this.ratingArray.length < 5) {
+      this.ratingArray.push('empty');
+    }
+  }
+
+
 }

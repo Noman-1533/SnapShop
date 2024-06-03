@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, OnInit, inject } from '@angular/core';
-import { Carousel, initMDB } from "mdb-ui-kit";
+import { Carousel, initMDB } from 'mdb-ui-kit';
 import { DataService } from '../Shared/data.service';
+import { HomeService } from './home.service';
+
 import { Router } from '@angular/router'; 
 
 
@@ -8,44 +10,110 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.css',
 })
-export class HomeComponent implements AfterViewInit,OnInit {
 
+
+export class HomeComponent implements AfterViewInit, OnInit {
   category;
-  icon = ["ri-computer-line","ri-vip-diamond-line","ri-user-3-line","ri-user-4-line"];
-  combinedArraycategory: { category: string, icon: string }[] = [];
+  icon = [
+    'ri-computer-line',
+    'ri-vip-diamond-line',
+    'ri-user-3-line',
+    'ri-user-4-line',
+  ];
 
-  ngAfterViewInit(){
+
+  topProducts;
+  sliderImages:string[]=[];
+
+  combinedArraycategory: { category: string; icon: string }[] = [];
+  numberOfSlidesRatting: any[];
+  numberOfSlidesss: any[];
+
+  ngAfterViewInit() {
     initMDB();
     new Carousel(document.querySelector('.carousel'));
   }
 
-
   private dataService = inject(DataService);
+  private homeService = inject(HomeService);
 
-  constructor(private router: Router)
-  {
+  constructor(private router: Router) {
+
+
+
+    this.dataService.getLimitedProducts(15).subscribe(
+      data => {
+        this.numberOfSlidesss = data;
+        console.log("Home data 2",this.numberOfSlidesss);
+      }
+    );
+
+
+     
+    this.dataService.getLimitedProductsAddingDiscount(15).subscribe(
+      data => {
+        this.numberOfSlidesRatting = data;
+        console.log("home Top Ratting 1",this.numberOfSlidesRatting);
+      }
+    );
+
+
 
   }
-  ngOnInit(){
+
+
+  ngOnInit() {
+
 
     this.dataService.getAllCategories().subscribe(
-      data => {
+      (data) => {
         this.category = data;
-        console.log(this.category);
         
+
+
         this.combinedArraycategory = this.category.map((cat, index) => {
           return { category: cat, icon: this.icon[index] };
         });
 
-        console.log(this.combinedArraycategory);
+        // console.log(this.combinedArraycategory);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+
+
+
+    this.dataService.getLimitedProducts(20).subscribe(
+      data => {
+        // console.log(data);
+        this.sliderImages = data.map(product => product.image);
+        // console.log(this.sliderImages);
+      
       },
       error => {
         console.error(error);
       }
     );
-      
+
+
+
+
+     
+   
+
+
+
+
+    
+
+
+
+   
+   
+
   }
   viewAllProducts() {
     this.router.navigate(['/product-list']);  // Navigate to the product-list page
@@ -54,6 +122,14 @@ export class HomeComponent implements AfterViewInit,OnInit {
     this.router.navigate(['/product-list']);
   }
 
- 
+  // chunkArray(array, size) {
+  //   const result = [];
+  //   for (let i = 0; i < array.length; i += size) {
+  //     result.push(array.slice(i, i + size));
+  //   }
+  //   return result;
+  // }
+
+
 
 }
