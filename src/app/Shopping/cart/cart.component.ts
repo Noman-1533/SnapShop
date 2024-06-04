@@ -126,7 +126,10 @@ export class CartComponent implements OnInit {
 
   calculateSubtotal(): number {
     let subtotal = 0;
-    this.cartItems.forEach(item => subtotal += item.price * item.quantity);
+    this.cartItems.forEach((item) =>
+    {
+      if (item.saveForCheckout) { subtotal += item.price * item.quantity; }
+    });
     return subtotal;
   }
 
@@ -159,9 +162,17 @@ export class CartComponent implements OnInit {
 
   onCheckout() {
     console.log(this.cartItems);
-    this.checkout.setCheckoutCart(this.cartItems);
+    let checkout: CartProduct[];
+    checkout = this.cartItems.filter(cart => cart.saveForCheckout);
+    console.log(checkout)
+    this.checkout.setCheckoutCart(checkout);
     this.router.navigate(['/checkout'])
 
+  }
+
+  onSaveCheckout(id:number) {
+    let index = this.cartItems.findIndex(cart => cart.productId === id);
+    this.cartItems[index].saveForCheckout = !this.cartItems[index].saveForCheckout;
   }
 }
 
