@@ -25,4 +25,10 @@
     background-color: rgb(201, 62, 7);
     border: none;
   }
+  .d-flex img{
+    transition: .3s;
+  }
+  .d-flex img:hover{
+      transform: scale(1.25);
+  }
   

@@ -83,6 +83,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from './cart.service';
 import { Cart, CartKey, CartProduct } from './cart.model';
+import { CheckoutService } from '../checkout/checkout.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -102,7 +104,10 @@ export class CartComponent implements OnInit {
     id: this.userId
   };
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService,
+    private checkout: CheckoutService,
+    private router:Router
+  ) { }
 
   ngOnInit(): void {
     if (this.isAuthenticate) {
@@ -144,6 +149,13 @@ export class CartComponent implements OnInit {
   }
   updateCart() {
     
+  }
+
+  onCheckout() {
+    console.log(this.cartItems);
+    this.checkout.setCheckoutCart(this.cartItems);
+    this.router.navigate(['/checkout'])
+
   }
 }
 
