@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-6">
       <div class="card">
-        <div class="card-header">Billing Information</div>
+        <!-- <div class="card-header">Billing Information</div> -->
         <div class="card-body">
           <form>
             <!-- Form fields for billing information -->
@@ -44,7 +44,7 @@
             </div>
             <!-- Checkbox for saving information -->
             <div class="form-check mb-3">
-              <input class="form-check-input" type="checkbox" value="" id="save-info" name="save_info">
+              <input class="form-check-input" type="checkbox" value="" id="save-info" name="save_info" (click)="onSaveShippingDetails()">
               <label class="form-check-label" for="save-info">
                 Save this information for faster check-out next time
               </label>
@@ -55,46 +55,48 @@
     </div>
     <div class="col-md-6">
       <div class="card order-summary">
-        <div class="card-header">Order Summary</div>
+        <!-- <div class="card-header">Order Summary</div> -->
         <div class="card-body">
           <!-- Table for order summary -->
           <table class="table table-striped">
             <thead>
               <tr>
                 <th>Item</th>
-                <th>Price</th>
+                <th>Quantity</th>
+                <!-- <th>Price</th> -->
+                <th>Subtotal</th>
               </tr>
             </thead>
             <tbody>
               <!-- Sample items -->
-              <tr>
+              <tr *ngIf="checkoutItems.length===0">No data available to checkout</tr>
+              <!-- <span *ngIf="checkoutItems.length !==0 " > -->
+              <tr 
+                *ngFor="let product of checkoutItems"
+              >
                 <td>
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRN-SANIK_8SW7wrBOQHU3CHDEFIOdhkQaP1Q&s" alt="LCD Monitor" style="width: 40px; height: 40px;" class="me-2">
-                  LCD Monitor
+                  <img src="{{product.image}}" alt="LCD Monitor" style="width: 40px; height: 40px;" class="me-2">
+                  {{product.name | slice :0:20}}<span *ngIf="product.name.length>20"> ...</span>
                 </td>
-                <td>$650</td>
+                  <td>{{product.quantity}}</td>
+                <td>{{product.price*product.quantity}}</td>
               </tr>
-              <tr>
-                <td>
-                  <img src="https://www.startech.com.bd/image/cache/catalog/game-pad/redragon/g808-pr0-harrow/g808-pr0-harrow-0001-228x228.webp" alt="HI Gamepad" style="width: 40px; height: 40px;" class="me-2">
-                  HI Gamepad
-                </td>
-                <td>$1100</td>
-              </tr>
+            <!-- </span> -->
+
               <!-- Subtotal -->
               <tr>
-                <td>Subtotal</td>
-                <td id="subtotal">$1750</td>
+                <td colspan="2">Subtotal</td>
+                <td id="subtotal">${{totalAmount}}</td>
               </tr>
               <!-- Shipping -->
               <tr>
-                <td>Shipping</td>
-                <td id="shipping">Free</td>
+                <td colspan="2">Shipping</td>
+                <td id="shipping"><span *ngIf="totalAmount>=300">Free</span><span *ngIf="totalAmount<300">$24.99</span></td>
               </tr>
               <!-- Total -->
               <tr>
-                <td>Total</td>
-                <td id="total">$1750</td>
+                <td colspan="2">Total</td>
+                <td id="total">${{totalAmount}}</td>
               </tr>
             </tbody>
           </table>
@@ -109,11 +111,10 @@
               <input class="form-check-input" type="radio" name="paymentMethod" id="bank" value="bank" checked>
               <label class="form-check-label" for="bank">Bank</label>
             </div>
-            <div class="d-flex">
-              <img src="https://1000logos.net/wp-content/uploads/2021/02/Bkash-logo.png" alt="VISA" class="img-fluid me-2" style="width: 40px;">
-              <img src="https://1000logos.net/wp-content/uploads/2021/02/Bkash-logo.png" alt="Mastercard" class="img-fluid me-2" style="width: 40px;">
-              <img src="https://1000logos.net/wp-content/uploads/2021/02/Bkash-logo.png" alt="Payoneer" class="img-fluid me-2" style="width: 40px;">
-              <img src="https://1000logos.net/wp-content/uploads/2021/02/Bkash-logo.png" alt="PayPal" class="img-fluid" style="width: 40px;">
+            <div class="d-flex"
+            *ngFor="let payment of paymentMethod"
+            >
+              <img src="{{payment.logo}}" alt="{{payment.name}}" class="img-fluid" style="width: 45px;">              
             </div>
           </div>
           <div class="mt-4">

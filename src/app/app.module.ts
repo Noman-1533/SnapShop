@@ -16,7 +16,7 @@ import { ProductListComponent } from './products/product-list/product-list.compo
 import { SignUpComponent } from './Authentication/sign-up/sign-up.component';
 import { LoginComponent } from './Authentication/login/login.component';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CheckoutComponent } from './Shopping/checkout/checkout.component';
 import { CardComponent } from './home/card/card.component';
 import { CategoryComponent } from './home/category/category.component';
@@ -46,14 +46,15 @@ import { CapitalizeFirstPipe } from './home/capitalize-first.pipe';
     ErrorComponent,
     ProfileComponent,
     ProductCarouselComponent,
-    CapitalizeFirstPipe
+    CapitalizeFirstPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

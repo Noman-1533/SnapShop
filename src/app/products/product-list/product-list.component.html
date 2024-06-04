@@ -1,10 +1,6 @@
-<div class="container" class="card-group card-wrapper">
-    <div
-    *ngFor="let item of demoProduct"
-    
-    >
-        <app-card></app-card>
-        
-
+<div class="container card-group card-wrapper">
+    <div *ngFor="let product of products">
+      <app-card class="card" [cardInfo]="product"></app-card>
     </div>
-</div>
+  </div>
+  
