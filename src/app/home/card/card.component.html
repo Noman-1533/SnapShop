@@ -20,12 +20,12 @@
             <!-- <img src="santo" class="img-fluid" alt="Watch"> -->
             <img src="{{cardInfo.image}}" class="img-fluid" alt="Watch">
             <div class="addToCart">
-                <a href="">Add to Cart</a>
+                <a (click)="onClickCart()">Add to Cart</a>
             </div>
         </div>
         <div  class="thumb-content">
-            <h4 (click)="onClick(cardInfo.id)">HAVIT HV-G92 Gamepad</h4>
-            <p class="item-price"><span>$120 </span></p>
+            <h4 (click)="onClickDetails(cardInfo.id)">{{cardInfo.title}}</h4>
+            <p class="item-price"><span>${{cardInfo.price}} </span></p>
             <div class="star-rating">
                 <ul class="list-inline">
                     

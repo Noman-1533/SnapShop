@@ -36,9 +36,15 @@ export class CheckoutComponent implements OnInit{
   }
   getCheckoutItems() {
     this.checkoutItems = this.checkoutService.getCheckout();
+    
+    this.totalAmount = parseFloat(this.calculateTotal().toFixed(2));
+  }
+  calculateTotal() {
+    let total = 0;
     for (let item of this.checkoutItems) {
-      this.totalAmount += (item.price * item.quantity);
+      total += (item.price * item.quantity);
     }
+    return total;
   }
   onSaveShippingDetails() {
         
