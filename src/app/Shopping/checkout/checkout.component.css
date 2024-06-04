@@ -20,3 +20,9 @@
   .card{
     border: none !important;     /* Remove borders */
   }
+
+  #save-info:checked {
+    background-color: rgb(201, 62, 7);
+    border: none;
+  }
+  
