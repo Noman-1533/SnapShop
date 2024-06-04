@@ -44,7 +44,7 @@
                   />
                 </td>
                 <td id="{{ product.productId }}Subtotal">
-                  {{ product.price * product.quantity }}
+                  ${{ product.price * product.quantity }}
                 </td>
                 <td>
                   <i
@@ -108,7 +108,7 @@
                           Subtotal
                         </label>
                         <div class="col-sm-9">
-                          $<span id="subtotal">{{
+                          <span id="subtotal">{{
                             calculateSubtotal() | currency
                           }}</span>
                         </div>
@@ -126,7 +126,7 @@
                           Total
                         </label>
                         <div class="col-sm-9">
-                          $<span id="total">{{
+                          <span id="total">{{
                             calculateTotal() | currency
                           }}</span>
                         </div>
@@ -135,7 +135,7 @@
                         <button
                           type="button"
                           class="btn btn-danger w-50 proceed-checkout"
-                          routerLink="/checkout"
+                          (click)="onCheckout()"
                         >
                           Proceed to Checkout
                         </button>
