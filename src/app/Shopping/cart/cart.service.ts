@@ -4,6 +4,7 @@ import { DataService } from "../../Shared/data.service";
 import { Cart, CartKey, CartProduct } from "./cart.model";
 import { forkJoin, tap } from "rxjs";
 import { Product } from "../../Shared/product.model";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class CartService {
   cart: Cart[] = [];
   cartKey: CartKey;
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService,private router:Router) { }
 
   setCartKey(name: string, id: number) {
     this.cartKey = { name, id };
@@ -74,60 +75,47 @@ export class CartService {
   }
 
   addToCart(newCart: Cart) {
-        let foundItem = false;
+    let foundItem = false;
 
-        for (let item of this.cart) {
-        for (let product of item.products) {
-            if (product.productId === newCart.products[0].productId) {
-            foundItem = true;
-            break;
-            }
+    for (let item of this.cart) {
+      for (let product of item.products) {
+        if (product.productId === newCart.products[0].productId) {
+          foundItem = true;
+          break;
         }
-        if (foundItem) break;
-        }
-
-        if (!foundItem) {
-        this.cart.push(newCart);
-        this.saveDataInLocalStorage();
-        } else {
-        alert('Already in Cart');
-        }
+      }
+      if (foundItem) break;
     }
+
+    if (!foundItem) {
+      this.cart.push(newCart);
+      this.saveDataInLocalStorage();
+      console.log(this.cart);
+      alert('Successfully added to CART')
+    } else {
+      alert('Already in Cart');
+    }
+  }
+
+  onCreateCart(product: Product) {
+    const newCart: Cart = {
+      id: Date.now(), // Generate a unique ID for the cart item
+      userId: this.cartKey.id,
+      date: new Date().toISOString(),
+      products: [{
+        productId: product.id,
+        quantity: 1, // Default quantity is 1
+        image: product.image,
+        price: product.price,
+        name: product.title
+      }]
+    };
+    this.addToCart(newCart);
+  }
+   
     
-    // addToCart(product: Product) {
-    //     const newCart: Cart = {
-    //       id: Date.now(), // Generate a unique ID for the cart item
-    //       userId: this.cartKey.id,
-    //       date: new Date().toISOString(),
-    //       products: [{
-    //         productId: product.id,
-    //         quantity: 1, // Default quantity is 1
-    //         image: product.image,
-    //         price: product.price,
-    //         name: product.title
-    //       }]
-    //     };
-    
-    //     let foundItem = false;
-    
-    //     for (let item of this.cart) {
-    //       for (let cartProduct of item.products) {
-    //         if (cartProduct.productId === product.id) {
-    //           foundItem = true;
-    //           //cartProduct.quantity += 1; // Increment quantity if product already in cart
-    //           break;
-    //         }
-    //       }
-    //       if (foundItem) break;
-    //     }
-    
-    //     if (!foundItem) {
-    //       this.cart.push(newCart);
-    //     }
-    
-    //     this.saveDataInLocalStorage();
-    // }
-    
+
+
 
   getCartItems(): CartProduct[] {
     let cartProduct: CartProduct[] = [];

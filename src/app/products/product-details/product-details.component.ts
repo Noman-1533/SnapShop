@@ -29,18 +29,22 @@ export class ProductDetailsComponent implements OnInit {
   sizes: string[] = ['XS', 'S', 'M', 'L', 'XL'];
 
   products: Product[];
+  selectedSize: string = 'M';
+  amount: number = 0;
+  userId = 3;
 
   deliveryOptions:{name:string,iconClass:string}[] = [
     { name: 'Free Delivery', iconClass: 'bi bi-truck' },
     { name: 'Return Delivery', iconClass: 'bi bi-arrow-return-left' }
   ];
 
-  selectedSize: string = 'M';
-  amount: number = 0;
 
 
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute,
+    private cartService:CartService
+
+  ) {
 
     this.selectedproductDetails = this.route.snapshot.data['product'];
 
@@ -110,6 +114,7 @@ export class ProductDetailsComponent implements OnInit {
       this.selectedproductDetails = product;
       this.dataService.getProductsOfCategory(product.category).subscribe(categoryProducts => {
         this.RelatedProducts = categoryProducts;
+        console.log(this.RelatedProducts);
       });
 
     });
@@ -169,6 +174,10 @@ export class ProductDetailsComponent implements OnInit {
 
 
 
-
+  onClickCart() {
+    this.cartService.setCartKey('cart', this.userId);
+    this.cartService.saveDataInCart(this.cartService.isDataInLocalStorage(), this.userId);
+    this.cartService.onCreateCart(this.selectedproductDetails);
+  }
 
 }

@@ -139,7 +139,7 @@ export class HomeComponent implements AfterViewInit, OnInit {
     this.router.navigate(['/product-list']);  
   }
   navigateToProductList(category: string) {
-    this.router.navigate(['/product-list']);
+    this.router.navigate(['/product-list'],{queryParams:{Category:category}});
   }
 
 
