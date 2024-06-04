@@ -127,3 +127,9 @@ h4:hover{
     cursor: pointer;
     color: black;
 }
+
+/* Add to cart hover style */
+
+.addToCart a:hover{
+    cursor: pointer;
+}

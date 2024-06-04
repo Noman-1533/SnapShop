@@ -41,9 +41,15 @@
   text-align: center;
 }
 
+.btn-outline-colored {
+  transition: .3s;
+}
 .btn-outline-colored:active {
   background-color: #DB4343;
   color: #f7f3f3;
+}
+.btn-outline-colored:hover {
+  transform: scale(1.2);
 }
 
 img {
@@ -93,4 +99,10 @@ img {
 .card-wrapper {
   display: flex;
   margin: 50px;
+}
+
+.fa-cart-plus{
+  font-size: 25px;
+  padding-left: 0;
+  
 }
