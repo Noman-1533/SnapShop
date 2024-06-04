@@ -1,3 +1,136 @@
+
+//Inital code
+// import { Injectable } from "@angular/core";
+// import { DataService } from "../../Shared/data.service";
+// import { Cart, CartKey, CartProduct } from "./cart.model";
+// import { forkJoin, tap } from "rxjs";
+// import { Product } from "../../Shared/product.model";
+
+// @Injectable({
+//     providedIn: 'root'
+// })
+// export class CartService {
+//     cart: Cart[] = [];
+//     cartKey: CartKey;
+
+//     constructor(private dataService: DataService) { }
+
+//     setCartKey(name: string, id: number) {
+//         this.cartKey = { name, id };
+//     }
+
+//     isDataInLocalStorage() {
+//         console.log(this.cartKey);
+//         const value = localStorage.getItem(JSON.stringify(this.cartKey));
+//         return value !== null;
+//     }
+
+//     private getDataFromLocalStorage() {
+//         const value = localStorage.getItem(JSON.stringify(this.cartKey));
+//         this.cart = JSON.parse(value);
+//         console.log('Data from localStorage');
+//     }
+//     private getDataFromAPI(userId: number) {
+//         this.dataService.getSingleUserCart(userId).subscribe(
+//             (res: Cart[]) => {
+//                 this.cart = res;
+//                 console.log('Data from API');
+//                 console.log(this.cart);
+//                 const requests = [];
+
+//                 for (let item of this.cart) {
+//                     for (let product of item.products) {
+//                         requests.push(
+//                             this.dataService.getSingleProduct(product.productId).pipe(
+//                                 tap((productDetails: Product) => {
+//                                     product.image = productDetails.image;
+//                                     product.price = productDetails.price;
+//                                     product.name = productDetails.title;
+//                                 })
+//                             )
+//                         );
+//                     }
+//                 }
+
+//                 forkJoin(requests).subscribe(() => {
+//                     console.log('All product details fetched');
+//                     this.saveDataInLocalStorage();
+//                 });
+//             }
+//         );
+//     }
+//     saveDataInCart(hasData: boolean, userId: number) {
+//         if (hasData) {
+//             this.getDataFromLocalStorage();
+//         } else {
+//             this.getDataFromAPI(userId);
+//         }
+//     }
+
+//     saveDataInLocalStorage() {
+//         if (this.cartKey?.id) {
+//             console.log('Save in Local');
+//             localStorage.setItem(JSON.stringify(this.cartKey), JSON.stringify(this.cart));
+//         }
+//     }
+
+//     addToCart(newCart: Cart) {
+//         let foundItem = false;
+
+//         for (let item of this.cart) {
+//             for (let product of item.products) {
+//                 if (product.productId === newCart.products[0].productId) {
+//                     foundItem = true;
+//                     break;
+//                 }
+//             }
+//             if (foundItem) break;
+//         }
+
+//         if (!foundItem) {
+//             this.cart.push(newCart);
+//         } else {
+//             alert('Already in Cart');
+//         }
+//     }
+
+//     getCartItems() {
+//         let cartProduct: CartProduct[] = [];
+//         for (let item of this.cart) {
+//             for (let product of item.products) {
+//                 cartProduct.push(product);
+//             }
+//         }
+//         return cartProduct;
+//     }
+//     updateLocalCartItems(cartProduct: CartProduct[]) {
+//     //     const value = localStorage.getItem(JSON.stringify(this.cartKey));
+//     //     let newCart = JSON.parse(value);
+//     //     let flag = false;
+//     //     for (let item of this.cart) {
+//     //         let index = 0;
+//     //         for (let product of item.products) {
+//     //             let id = product.productId;
+//     //             for (let innerProduct of cartProduct) {
+
+//     //                 if (innerProduct.productId !== id) {
+                        
+//     //                     flag = true;
+//     //                 }
+//     //             }
+//     //             index++;
+//     //         }
+//     //     }
+//     //     this.cart = newCart;
+//     //     console.log(newCart);
+//     //     console.log(this.cart);
+//     //     this.saveDataInLocalStorage();
+        
+//     }
+// }
+
+
+//check start
 import { Injectable } from "@angular/core";
 import { DataService } from "../../Shared/data.service";
 import { Cart, CartKey, CartProduct } from "./cart.model";
@@ -5,128 +138,128 @@ import { forkJoin, tap } from "rxjs";
 import { Product } from "../../Shared/product.model";
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class CartService {
-    cart: Cart[] = [];
-    cartKey: CartKey;
+  cart: Cart[] = [];
+  cartKey: CartKey;
 
-    constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService) { }
 
-    setCartKey(name: string, id: number) {
-        this.cartKey = { name, id };
-    }
+  setCartKey(name: string, id: number) {
+    this.cartKey = { name, id };
+  }
 
-    isDataInLocalStorage() {
-        console.log(this.cartKey);
-        const value = localStorage.getItem(JSON.stringify(this.cartKey));
-        return value !== null;
-    }
+  isDataInLocalStorage() {
+    const value = localStorage.getItem(JSON.stringify(this.cartKey));
+    return value !== null;
+  }
 
-    private getDataFromLocalStorage() { 
-        const value = localStorage.getItem(JSON.stringify(this.cartKey));
-        this.cart = JSON.parse(value);
-        console.log('Data from localStorage');
-    }
-    private getDataFromAPI(userId: number) { 
-        this.dataService.getSingleUserCart(userId).subscribe(
-            (res: Cart[]) => {
-                this.cart = res;
-                console.log('Data from API');
-                console.log(this.cart);
-                const requests = [];
+  private getDataFromLocalStorage() {
+    const value = localStorage.getItem(JSON.stringify(this.cartKey));
+    this.cart = JSON.parse(value);
+    console.log('Data from localStorage');
+  }
 
-                for (let item of this.cart) {
-                    for (let product of item.products) {
-                        requests.push(
-                            this.dataService.getSingleProduct(product.productId).pipe(
-                                tap((productDetails: Product) => {
-                                    product.image = productDetails.image;
-                                    product.price = productDetails.price;
-                                    product.name = productDetails.title;
-                                })
-                            )
-                        );
-                    }
-                }
-
-                forkJoin(requests).subscribe(() => {
-                    console.log('All product details fetched');
-                    this.saveDataInLocalStorage();
-                });
-            }
-        );
-    }
-    saveDataInCart(hasData: boolean, userId: number) {
-        if (hasData) {
-            this.getDataFromLocalStorage();
-        } else {
-            this.getDataFromAPI(userId);
-        }
-    }
-
-    saveDataInLocalStorage() {
-        if (this.cartKey?.id) {
-            console.log('Save in Local');
-            localStorage.setItem(JSON.stringify(this.cartKey), JSON.stringify(this.cart));
-        }
-    }
-
-    addToCart(newCart: Cart) {
-        let foundItem = false;
+  private getDataFromAPI(userId: number) {
+    this.dataService.getSingleUserCart(userId).subscribe(
+      (res: Cart[]) => {
+        this.cart = res;
+        console.log('Data from API');
+        const requests = [];
 
         for (let item of this.cart) {
-            for (let product of item.products) {
-                if (product.productId === newCart.products[0].productId) {
-                    foundItem = true;
-                    break;
-                }
-            }
-            if (foundItem) break;
+          for (let product of item.products) {
+            requests.push(
+              this.dataService.getSingleProduct(product.productId).pipe(
+                tap((productDetails: Product) => {
+                  product.image = productDetails.image;
+                  product.price = productDetails.price;
+                  product.name = productDetails.title;
+                })
+              )
+            );
+          }
         }
 
-        if (!foundItem) {
-            this.cart.push(newCart);
-        } else {
-            alert('Already in Cart');
+        forkJoin(requests).subscribe(() => {
+          console.log('All product details fetched');
+          this.saveDataInLocalStorage();
+        });
+      }
+    );
+  }
+
+  saveDataInCart(hasData: boolean, userId: number) {
+    if (hasData) {
+      this.getDataFromLocalStorage();
+    } else {
+      this.getDataFromAPI(userId);
+    }
+  }
+
+  saveDataInLocalStorage() {
+    if (this.cartKey?.id) {
+      console.log('Save in Local');
+      localStorage.setItem(JSON.stringify(this.cartKey), JSON.stringify(this.cart));
+    }
+  }
+
+  addToCart(newCart: Cart) {
+    let foundItem = false;
+
+    for (let item of this.cart) {
+      for (let product of item.products) {
+        if (product.productId === newCart.products[0].productId) {
+          foundItem = true;
+          break;
         }
+      }
+      if (foundItem) break;
     }
 
-    getCartItems() {
-        let cartProduct: CartProduct[] = [];
-        for (let item of this.cart) {
-            for (let product of item.products) {
-                cartProduct.push(product);
-            }
-        }
-        return cartProduct;
+    if (!foundItem) {
+      this.cart.push(newCart);
+      this.saveDataInLocalStorage();
+    } else {
+      alert('Already in Cart');
     }
-    updateLocalCartItems(cartProduct: CartProduct[]) {
-    //     const value = localStorage.getItem(JSON.stringify(this.cartKey));
-    //     let newCart = JSON.parse(value);
-    //     let flag = false;
-    //     for (let item of this.cart) { 
-    //         let index = 0;
-    //         for (let product of item.products) { 
-    //             let id = product.productId;
-    //             for (let innerProduct of cartProduct) { 
+  }
 
-    //                 if (innerProduct.productId !== id) { 
-                        
-    //                     flag = true;
-    //                 }
-    //             }
-    //             index++;
-    //         }
-    //     }
-    //     this.cart = newCart;
-    //     console.log(newCart);
-    //     console.log(this.cart);
-    //     this.saveDataInLocalStorage();
-        
+  getCartItems(): CartProduct[] {
+    let cartProduct: CartProduct[] = [];
+    for (let item of this.cart) {
+      for (let product of item.products) {
+        cartProduct.push(product);
+      }
     }
+    return cartProduct;
+  }
+
+  updateLocalCartItems(updatedCartProducts: CartProduct[]) {
+    if (!this.cart) return;
+    for (let cart of this.cart) {
+      for (let i = 0; i < cart.products.length; i++) {
+        let updatedProduct = updatedCartProducts.find(p => p.productId === cart.products[i].productId);
+        if (updatedProduct) {
+          cart.products.splice(i, 1, updatedProduct);
+        }
+      }
+    }
+    this.saveDataInLocalStorage();
+  }
+
+  deleteCartItem(productId: number) {
+    for (let cart of this.cart) {
+      cart.products = cart.products.filter(product => product.productId !== productId);
+    }
+    this.cart = this.cart.filter(cart => cart.products.length > 0);
+    this.saveDataInLocalStorage();
+  }
 }
 
+
+//check end
 
 
 
