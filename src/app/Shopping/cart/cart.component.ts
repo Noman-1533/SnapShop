@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from './cart.service';
 import { Cart, CartKey, CartProduct } from './cart.model';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class CartComponent implements OnInit {
     id: this.userId
   };
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService,private router: Router) { }
   ngOnInit(): void {
     if (this.isAuthenticate) {
       this.cartService.setCartKey('cart', this.userId);
@@ -75,5 +76,8 @@ export class CartComponent implements OnInit {
       this.deleteClicked = false;
       this.deleteCartId = null;
     }
+  }
+  navigateToCheckout() {
+    this.router.navigate(['/checkout']);
   }
 }
