@@ -15,9 +15,14 @@ import { ActivatedRoute, Params } from '@angular/router';
 export class ProductDetailsComponent implements OnInit {
 
   dataService = inject(DataService);
+  starLoad=false;
+  inPage=false;
 
-  selectedproductDetails;
+  selectedproductDetails:Product;
+  
+  RelatedProducts;
   ratingArray: string[] = [];
+  
 
   rating: number = 3.9;
   stars: boolean[] = Array(5).fill(false);
@@ -32,38 +37,92 @@ export class ProductDetailsComponent implements OnInit {
 
   selectedSize: string = 'M';
   amount: number = 0;
-  constructor(private data: DataService,private route:ActivatedRoute
-  ) { }
+
+
+
+  constructor(private route: ActivatedRoute) {
+
+    this.selectedproductDetails = this.route.snapshot.data['product'];
+
+  }
+
+
+
+
   ngOnInit(): void {
-    this.updateStars();
+
+
+    // this.updateStars();
     // this.dataServiceTest();
 
-    this.route.params.subscribe(
-      (params:Params)=>
-        {
-          const id = +params['id'];
-          this.dataService.getSingleProduct(id).subscribe(
-            data=>{
-              this.selectedproductDetails=data;
-              console.log(this.selectedproductDetails);
-            }
-          );
-          
-          // this.selectedId=id;
-          
-        }
-    );
 
 
-    if (this.selectedproductDetails && this.selectedproductDetails.rating && this.selectedproductDetails.rating.rate) {
-      this.setRatingArray(this.selectedproductDetails.rating.rate);
-    } 
+      
+      const resolvedData = this.route.snapshot.data['productData'];
+      this.selectedproductDetails = resolvedData.product;
+      this.RelatedProducts = resolvedData.categoryProducts;
+
+      this.inPage=false;
+
+     
+     
+    
+        this.route.params.subscribe(params => {
+          const productId=+params['id'];
+
+          if (productId && this.inPage) {
+            this.fetchProductDetails(productId);
+          }
+        });
+      
+    
+      
     
 
+
+
+
+
+
+    setTimeout(
+      ()=>{
+        if (this.selectedproductDetails && this.selectedproductDetails.rating && this.selectedproductDetails.rating.rate) {
+          this.setRatingArray(this.selectedproductDetails.rating.rate);
+          this.starLoad=true;
+          
+        } 
+      }
+      
+      ,10000)
+
+    }
+
+
+
+
+  fetchProductDetails(productId: number): void {
+
+    console.log("fetch called")
+
+
+    this.dataService.getSingleProduct(productId).subscribe(product => {
+
+      this.selectedproductDetails = product;
+      this.dataService.getProductsOfCategory(product.category).subscribe(categoryProducts => {
+        this.RelatedProducts = categoryProducts;
+      });
+
+    });
+
+
   }
-  updateStars() {
-    this.stars = this.stars.map((_, index) => index < this.rating);
-  }
+
+
+
+
+  // updateStars() {
+  //   this.stars = this.stars.map((_, index) => index < this.rating);
+  // }
 
   increment() {
     this.amount++;
@@ -74,26 +133,19 @@ export class ProductDetailsComponent implements OnInit {
       this.amount--;
     }
   }
-  dataServiceTest() {
-    this.data.getAllProducts().subscribe(
-      (res:Product[]) => {
-        this.products = res;
-      }
-    )
-    let data;
-    // this.data.getSingleProduct(2).subscribe((res) => {
-    //   console.log(res);
-    // });
-    // console.log(data);
-    // this.data.fetchAllProducts().subscribe();
-
-    //  this.data.getAllCategories().subscribe();
-    // this.data.getProductsOfCategory('jewelery').subscribe();
-    // this.data.getLimitedProducts(4);
-    // this.data.getLimitedProducts(4).subscribe();
 
 
-  }
+
+  // dataServiceTest() {
+  //   this.dataService.getAllProducts().subscribe(
+  //     (res:Product[]) => {
+  //       this.products = res;
+  //     }
+  //   )
+  //   let data;
+   
+
+  
 
 
   setRatingArray(rating: number) {
@@ -114,5 +166,9 @@ export class ProductDetailsComponent implements OnInit {
       this.ratingArray.push('empty');
     }
   }
+
+
+
+
 
 }

@@ -9,13 +9,15 @@ import { ErrorComponent } from './error/error.component';
 import { LoginComponent } from './Authentication/login/login.component';
 import { SignUpComponent } from './Authentication/sign-up/sign-up.component';
 import { ProductListComponent } from './products/product-list/product-list.component';
+import { HomeResolverService } from './home/home-resolver.service';
+import { ProductDetailsResolverService } from './products/product-details/product-details-resolver.service';
 
 const routes: Routes = 
   [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
-    { path: 'home', component: HomeComponent },
+    { path: 'home', component: HomeComponent, resolve: { homeData: HomeResolverService } },
     { path: 'product-list', component: ProductListComponent },
-    { path: 'product-details/:id', component: ProductDetailsComponent },
+    { path: 'product-details/:id', component: ProductDetailsComponent, resolve: { productData: ProductDetailsResolverService } },
     { path: 'cart', component: CartComponent },
     { path: 'checkout', component: CheckoutComponent },
     { path: 'profile', component: ProfileComponent },

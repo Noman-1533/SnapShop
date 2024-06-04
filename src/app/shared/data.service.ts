@@ -55,7 +55,7 @@ export class DataService{
     getProductsOfCategory(categoryName: string) {
         return this.http.get<Product[]>(`https://fakestoreapi.com/products/category/${categoryName}`).pipe(
             tap((product: Product[]) => {
-                console.log(product);
+                console.log("cat",product);
             })
         )
     }
@@ -94,6 +94,13 @@ export class DataService{
     getRandomDiscount() {
         return 5 + Math.floor(Math.random() * 21);
       }
+
+
+
+
+
+
+      
 
 
 
