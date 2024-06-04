@@ -3,7 +3,7 @@ import { Carousel, initMDB } from 'mdb-ui-kit';
 import { DataService } from '../Shared/data.service';
 import { HomeService } from './home.service';
 
-import { Router } from '@angular/router'; 
+import { ActivatedRoute, Router } from '@angular/router'; 
 
 
 
@@ -37,31 +37,63 @@ export class HomeComponent implements AfterViewInit, OnInit {
   }
 
   private dataService = inject(DataService);
-  private homeService = inject(HomeService);
-
-  constructor(private router: Router) {
 
 
 
-    this.dataService.getLimitedProducts(15).subscribe(
-      data => {
-        this.numberOfSlidesss = data;
-        console.log("Home data 2",this.numberOfSlidesss);
-      }
-    );
+
+  // constructor(private router: Router) {
+
+
+
+  //   this.dataService.getLimitedProducts(15).subscribe(
+  //     data => {
+  //       this.numberOfSlidesss = data;
+  //       console.log("Home data 2",this.numberOfSlidesss);
+  //     }
+  //   );
 
 
      
-    this.dataService.getLimitedProductsAddingDiscount(15).subscribe(
-      data => {
-        this.numberOfSlidesRatting = data;
-        console.log("home Top Ratting 1",this.numberOfSlidesRatting);
-      }
-    );
+  //   this.dataService.getLimitedProductsAddingDiscount(15).subscribe(
+  //     data => {
+  //       this.numberOfSlidesRatting = data;
+  //       console.log("home Top Ratting 1",this.numberOfSlidesRatting);
+  //     }
+  //   );
 
 
 
+  // }
+
+
+  constructor(private route: ActivatedRoute,private router:Router) {
+
+    const data = this.route.snapshot.data['homeData'];
+
+    console.log("data",data);
+
+
+    this.category = data.categories;
+
+    this.numberOfSlidesss = data.limitedProducts;    // for card of top product 
+
+    this.numberOfSlidesRatting = data.limitedProductsWithDiscount;  // for card of top rated product 
+
+    // this.sliderImages = data.sliderImages;  
+
+
+    this.combinedArraycategory = this.category.map((cat, index) => {
+      
+      return { category: cat, icon: this.icon[index] };
+
+
+    });
   }
+
+
+
+
+
 
 
   ngOnInit() {
@@ -100,36 +132,15 @@ export class HomeComponent implements AfterViewInit, OnInit {
 
 
 
-
-     
-   
-
-
-
-
-    
-
-
-
-   
    
 
   }
   viewAllProducts() {
-    this.router.navigate(['/product-list']);  // Navigate to the product-list page
+    this.router.navigate(['/product-list']);  
   }
   navigateToProductList(category: string) {
     this.router.navigate(['/product-list']);
   }
-
-  // chunkArray(array, size) {
-  //   const result = [];
-  //   for (let i = 0; i < array.length; i += size) {
-  //     result.push(array.slice(i, i + size));
-  //   }
-  //   return result;
-  // }
-
 
 
 }

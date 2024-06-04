@@ -89,7 +89,6 @@ export class DataService {
     this.productDetailsSort.next(products);
   }
 
-  
   getLimitedProductsAddingDiscount(limit: number): Observable<Product[]> {
     const url = `https://fakestoreapi.com/products?limit=${limit}`;
     return this.http.get<Product[]>(url).pipe(
@@ -105,28 +104,9 @@ export class DataService {
       })
     );
   }
- 
 
-    getSingleCart(id:number) {
-        return this.http.get<Cart[]>(`https://fakestoreapi.com/carts/user/` + id.toString()).pipe(
-            tap((cart: Cart[]) => {
-                console.log(cart);
-            })
-        )
-    }
-    //for sorting by ratting
-
-   
-
-
-   
-
-    getRandomDiscount() {
-        return 5 + Math.floor(Math.random() * 21);
-      }
-
-
+  private getRandomDiscount(): number {
+    return 5 + Math.floor(Math.random() * 21);
+  }
   
-
- 
 }
