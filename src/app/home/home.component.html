@@ -362,22 +362,17 @@
         <div class="Tittle">Explore Our Products</div>
       </div>
 
-      <div class="CardList">
-        <app-card class="cartzoom"></app-card>
-        <app-card class="cartzoom"></app-card>
-        <app-card class="cartzoom"></app-card>
-        <app-card class="cartzoom"></app-card>
-      </div>
 
-      <div class="CardList">
-        <app-card class="cartzoom"></app-card>
-        <app-card class="cartzoom"></app-card>
-        <app-card class="cartzoom"></app-card>
-        <app-card class="cartzoom"></app-card>
+
+      <div class="if" *ngIf="numberOfSlidesss!=undefined">
+        <app-product-list class="app-product" [numberOfSlides]="numberOfSlidesss"></app-product-list>
+        
       </div>
 
       
     </div>
+
+
 
     <div class="buttonViewProduct">
       <button class="buttonView" (click)="viewAllProducts()">View all Products</button>

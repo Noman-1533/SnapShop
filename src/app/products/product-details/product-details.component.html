@@ -3,6 +3,13 @@
     <div class="row my-5 pt-3">
       <div class="col-xs-6">home/product/details</div>
     </div>
+
+
+     <div class="div" *ngIf="selectedproductDetails==undefined && starLoad;else defiinedSelect">
+
+     </div>
+
+<ng-template #defiinedSelect>
     <div class="card mb-3" style="max-width: 80vw">
       <div class="row g-0">
         <div class="col-md-6 img-parent">
@@ -17,15 +24,19 @@
             <h5 class="card-title">{{selectedproductDetails.title}}</h5>
             <div class="card-text">
               <div class="d-flex">
-                <ul class="list-inline">
-                    
-                  <li class="list-inline-item" *ngFor="let star of ratingArray">
-                      <i class="fa"
-                         [ngClass]="{'fa-star': star === 'full', 'fa-star-half-alt': star === 'half', 'fa-star-o': star === 'empty'}">
-                      </i>
-                    </li>
-                    <li class="list-inline-item count">({{selectedproductDetails.rating.count}})</li>
-              </ul>
+                <div class="star-rating">
+                  <ul class="list-inline">
+                      
+                    <li class="list-inline-item" *ngFor="let star of ratingArray">
+                        
+                        <i class="fa" [ngClass]="{'fa-star': star === 'full', 'fa-star-half-alt': star === 'half', 'fa-star-o': star === 'empty'}" style="color: #FCA32E"></i>
+                      
+     
+                      </li>
+                      <li class="list-inline-item count">({{selectedproductDetails.rating.count}})</li>
+                </ul>
+              </div>
+                <!-- <span>({{selectedproductDetails.rating.count}})</span> -->
                 <pre> | </pre>
                 <span style="color: rgb(42, 250, 170)">In stock</span>
               </div>
@@ -122,6 +133,8 @@
                 </div>
               </div>
 
+              
+
               <p class="card-text">
                 <small class="text-body-secondary"
                   >Last updated 3 mins ago</small
@@ -132,14 +145,28 @@
         </div>
       </div>
     </div>
+
+
+  </ng-template>
+
+
+
+
+
+
+
+
+
+
+
     <div class="mb">
       <div class="related-items">
         <div class="custom-hr"></div>
         <h6>Related Items</h6>
       </div>
-      <app-product-carousel></app-product-carousel>
+      <app-product-carousel [numberOfSlides]="RelatedProducts"></app-product-carousel>
     </div>
   </div>
 </div>
 
-<button class="btn btn-primary" (click)="dataServiceTest()">test</button>
+<!-- <button class="btn btn-primary" (click)="dataServiceTest()">test</button> -->

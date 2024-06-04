@@ -15,6 +15,9 @@ export class ProductCarouselComponent implements OnInit{
 
   @Input() numberOfSlides=[[]];
 
+
+  @Input () Category;
+
   ngOnInit(): void {
 
     
@@ -29,6 +32,13 @@ export class ProductCarouselComponent implements OnInit{
 
             });
           });
+
+
+
+          
+
+
+        
        
         
     
