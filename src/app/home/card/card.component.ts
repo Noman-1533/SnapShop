@@ -12,6 +12,8 @@ export class CardComponent implements OnInit{
   
  
   @Input() cardInfo;
+
+  
   ratingArray: string[] = [];
 
 

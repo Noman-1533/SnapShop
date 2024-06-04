@@ -18,6 +18,7 @@ const routes: Routes =
     { path: 'home', component: HomeComponent, resolve: { homeData: HomeResolverService } },
     { path: 'product-list', component: ProductListComponent },
     { path: 'product-details/:id', component: ProductDetailsComponent, resolve: { productData: ProductDetailsResolverService } },
+    // { path: 'product-details/:id', component: ProductDetailsComponent},
     { path: 'cart', component: CartComponent },
     { path: 'checkout', component: CheckoutComponent },
     { path: 'profile', component: ProfileComponent },

@@ -189,6 +189,11 @@
     justify-content: space-between;
     align-items: center;
   }
+
+  .active{
+    background-color: red;
+    
+  }
   
 .tittle-bar-forTop-rated {
   display: flex;
@@ -237,10 +242,22 @@
   margin-top: 20px;
 }
 
+.buttonViewProduct .buttonView:hover{
+  scale: 1.04;
+  transition: 0.3s;
+  background-color: #ac3131;
+
+}
+
 .tittle-bar-forTop-rated .buttonViewProduct .buttonView {
-  margin-right: 30px;
+  margin-right: 20em;
   height: 50px;
   width: 150px;
+}
+
+.carousel-control-prev-icon[_ngcontent-ng-c3651018213], .carousel-control-next-icon[_ngcontent-ng-c3651018213] {
+  
+display: none;
 }
 
 .horizontalLine {
