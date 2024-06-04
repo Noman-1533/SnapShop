@@ -114,6 +114,7 @@ export class ProductDetailsComponent implements OnInit {
       this.selectedproductDetails = product;
       this.dataService.getProductsOfCategory(product.category).subscribe(categoryProducts => {
         this.RelatedProducts = categoryProducts;
+        console.log(this.RelatedProducts);
       });
 
     });

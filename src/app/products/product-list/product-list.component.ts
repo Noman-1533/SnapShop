@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { DataService } from '../../Shared/data.service';
 import { Product } from '../../Shared/product.model';
 
@@ -12,13 +12,44 @@ export class ProductListComponent implements OnInit{
   demoProduct: number[] = Array(10).fill(1)
   @Input() numberOfSlides;
   products: Product[] = [];
+  Category:string="";
 
-  constructor(private router:Router,private dataService: DataService) { }
+  inShow_All=false;
+  qparam: any;
+
+  constructor(private router:Router,private dataService: DataService,private route:ActivatedRoute) { }
   ngOnInit(): void {
 
-    this.dataService.getAllProducts().subscribe((products) => {
+    this.qparam=this.route.queryParams.subscribe(
+      (queryparam:Params)=>{
+        this.Category = queryparam['Category'];
+      }
+     );
+    //  console.log("cat :",this.Category)
+    
+
+
+
+    if(this.Category==undefined)
+      {
+        
+
+      this.dataService.getAllProducts().subscribe((products) => {
       this.products = products;
+
     });
+
+     }
+     else{
+
+      this.dataService.getProductsOfCategory(this.Category).subscribe((products) => {
+        this.products = products;
+      });
+
+     }
+
+
+
 
 
     this.numberOfSlides = this.chunkArray(this.numberOfSlides,5);
@@ -32,6 +63,12 @@ export class ProductListComponent implements OnInit{
       });
     });
 
+
+
+    
+
+
+     
 
   }
 
