@@ -83,7 +83,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from './cart.service';
 import { Cart, CartKey, CartProduct } from './cart.model';
+
+
 import { CheckoutService } from '../checkout/checkout.service';
+
 import { Router } from '@angular/router';
 
 @Component({
@@ -103,6 +106,9 @@ export class CartComponent implements OnInit {
     name: 'cart',
     id: this.userId
   };
+
+
+  
 
   constructor(private cartService: CartService,
     private checkout: CheckoutService,
