@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Product } from '../../Shared/product.model';
+import { Cart } from '../../Shopping/cart/cart.model';
+import { CartService } from '../../Shopping/cart/cart.service';
 
 @Component({
   selector: 'app-card',
@@ -8,19 +11,25 @@ import { Router } from '@angular/router';
 })
 export class CardComponent implements OnInit{
 
-  constructor(private router:Router){}
+  userId: number=3;
+  constructor(private router: Router,
+    private cartService:CartService
+  ){}
   
  
-  @Input() cardInfo;
-
-  
+  @Input() cardInfo:Product;
   ratingArray: string[] = [];
 
 
 
-  onClick(id:number){
+  onClickDetails(id:number){
     this.router.navigate(['product-details', id]);
     console.log(id)
+  }
+  onClickCart() {
+    this.cartService.setCartKey('cart', this.userId);
+    this.cartService.saveDataInCart(this.cartService.isDataInLocalStorage(), this.userId);
+    this.cartService.onCreateCart(this.cardInfo);
   }
 
   ngOnInit(){
