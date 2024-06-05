@@ -155,7 +155,7 @@
                 name="paymentMethod"
                 id="bank"
                 value="bank"
-                checked
+                
               />
               <label class="form-check-label" for="bank">Bank</label>
             </div>
@@ -176,6 +176,7 @@
                 name="paymentMethod"
                 id="cod"
                 value="cod"
+                checked
               />
               <label class="form-check-label" for="cod">Cash on Delivery</label>
             </div>
@@ -187,10 +188,11 @@
                 class="form-control me-2"
                 id="couponCode"
                 placeholder="Coupon Code"
+                
               />
               <button
                 type="button"
-                class="btn btn-danger apply-coupon w-50"
+                class="btn btn-primary apply-coupon w-50"
                 style="white-space: nowrap"
               >
                 Apply Coupon
@@ -198,7 +200,7 @@
             </div>
           </div>
           <div>
-            <button  class="btn btn-danger" (click)="onSubmit()">Place Order</button>
+            <button type="submit" class="btn btn-primary" (click)="onPlaceOrder()" [disabled]="checkoutItems.length===0">Place Order</button>
           </div>
         </div>
       </div>
