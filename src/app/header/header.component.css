@@ -64,10 +64,11 @@
 .logo h3 {
   margin-bottom: 0.7em;
   cursor: pointer;
-
+  transition: .18s;
 }
 .logo h3:hover {
-  font-size: 2em; 
+  /* font-size: 2em;  */
+  transform: scale(1.05);
 }
 
 .Middletext ul {
