@@ -23,10 +23,6 @@ export class CartService {
     return this.cartKey;
   }
 
-  getCartKey() {
-    return this.cartKey;
-  }
-
   isDataInLocalStorage() {
     const value = localStorage.getItem(JSON.stringify(this.cartKey));
     return value !== null;

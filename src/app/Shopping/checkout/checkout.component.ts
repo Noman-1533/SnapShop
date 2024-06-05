@@ -44,9 +44,6 @@ export class CheckoutComponent implements OnInit {
       emailAddress: ['', [Validators.required, Validators.email]],
       saveInfo: [false]
     });
-  }
-
-  ngOnInit(): void {
     this.cartService.setCartKey("shippingDetails", this.userId);
     this.cartKey = this.cartService.getCartKey();
     this.getCheckoutItems();
