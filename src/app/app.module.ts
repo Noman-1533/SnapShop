@@ -26,6 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProfileComponent } from './profile/profile.component';
 import { ProductCarouselComponent } from './Shared/product-carousel/product-carousel.component';
 import { CapitalizeFirstPipe } from './home/capitalize-first.pipe';
+import { ContactComponent } from './contact/contact.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import { CapitalizeFirstPipe } from './home/capitalize-first.pipe';
     ProfileComponent,
     ProductCarouselComponent,
     CapitalizeFirstPipe,
+    ContactComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

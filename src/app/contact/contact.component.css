@@ -1,0 +1,39 @@
+
+.breadcrumb a {
+    text-decoration: none;
+    color: #333;
+}
+
+.breadcrumb span {
+    color: #888;
+}
+
+.contact-info .contact-method {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.contact-info .contact-method .icon {
+    font-size: 24px;
+}
+
+.contact-form .form-control {
+    padding: 15px;
+    font-size: 16px;
+    border: none; /* Add this line to remove the border */
+    background-color: #f4f4f4c5; /* Change background color to ash */
+    border-radius: 4px;
+}
+
+
+.contact-form button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+
+.icon {
+    font-size: 24px;
+}
