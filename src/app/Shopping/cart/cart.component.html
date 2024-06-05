@@ -25,6 +25,7 @@
                 <th scope="col">Price</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Subtotal</th>
+                <th scope="col">Checkout</th>
               </tr>
             </thead>
             <tbody>
@@ -45,6 +46,9 @@
                 </td>
                 <td id="{{ product.productId }}Subtotal">
                   ${{ product.price * product.quantity }}
+                </td>
+                <td>
+                  <input type="checkbox" (click)="onSaveCheckout(product.productId)" [checked]="product.saveForCheckout">
                 </td>
                 <td>
                   <i

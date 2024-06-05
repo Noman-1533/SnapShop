@@ -45,6 +45,7 @@ export class CartService {
                   product.image = productDetails.image;
                   product.price = productDetails.price;
                   product.name = productDetails.title;
+                  product.saveForCheckout = true;
                 })
               )
             );
@@ -107,7 +108,8 @@ export class CartService {
         quantity: 1, // Default quantity is 1
         image: product.image,
         price: product.price,
-        name: product.title
+        name: product.title,
+        saveForCheckout:true
       }]
     };
     this.addToCart(newCart);
