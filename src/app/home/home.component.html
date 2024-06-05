@@ -1,7 +1,9 @@
 <div class="main">
 
-
-
+  <div *ngIf="isLoading">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+<div *ngIf="!isLoading">
   <div class="FirstSectionTop">
     <div class="rightListBar">
       <ul class="listofContent" >
@@ -511,3 +513,5 @@
     </div>
   </div>
 </div>
+</div>
+ 

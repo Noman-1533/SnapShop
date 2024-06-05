@@ -23,7 +23,7 @@ export class HomeComponent implements AfterViewInit, OnInit {
     'ri-user-4-line',
   ];
 
-
+  isLoading: boolean = true;
   topProducts;
   sliderImages:string[]=[];
 
@@ -114,6 +114,8 @@ export class HomeComponent implements AfterViewInit, OnInit {
       (error) => {
         console.error(error);
       }
+
+      
     );
 
 
@@ -129,7 +131,10 @@ export class HomeComponent implements AfterViewInit, OnInit {
         console.error(error);
       }
     );
-
+    
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 1000); // Adjust the timeout as needed
 
 
    
@@ -141,6 +146,7 @@ export class HomeComponent implements AfterViewInit, OnInit {
   navigateToProductList(category: string) {
     this.router.navigate(['/product-list'],{queryParams:{Category:category}});
   }
+  
 
 
 }
