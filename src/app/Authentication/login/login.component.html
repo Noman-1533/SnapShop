@@ -8,24 +8,26 @@
       <h2>Log in to SnapShop</h2>
       <p>Enter your details below</p>
 
-
-
-      <form #ngForm="ngForm" >
-        <input type="text" placeholder="Username" required />
-        <input type="password" placeholder="Password" required />
-        
-
-
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <input
+          type="text"
+          name="username"
+          placeholder="Username"
+          formControlName="username"
+          required
+        />
+        <input
+          type="password"
+          password="password"
+          placeholder="Password"
+          formControlName="password"
+          required
+        />
 
         <div class="button-group">
-          <button type="submit">LogIn</button>
+          <button class="btn" type="submit" [disabled]="!loginForm.valid">Log In</button>
           <div class="forgot"><a href="#">Forgot Password?</a></div>
         </div>
-
-
-        <!-- <div class="bottom">
-          <a href="#">Sign Up</a>
-        </div> -->
       </form>
     </div>
   </div>

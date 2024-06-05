@@ -1,34 +1,39 @@
-
 <div class="container">
     <div class="image-section">
-        <img src="assets/shopping-image.png" alt="Sign Up">
+      <img src="assets/shopping-image.png" alt="Sign Up">
     </div>
     <div class="form-section">
-        <h2>Sign Up</h2>
-        <p>Enter your details below</p>
-        <form>
-            <div class="input-group">
-                <input type="text" placeholder="First Name" required>
-                <input type="text" placeholder="Last Name" required>
-            </div>
-            <div class="input-group">
-                <input type="text" placeholder="City" required>
-                <input type="text" placeholder="Street">
-            </div>
-            <div class="input-group">
-                <input type="text" placeholder="Geo location" >
-                <input type="text" placeholder="Zip Code" required>
-            </div>
-            <input type="email" placeholder="Email" required>
-            <input type="text" placeholder="User Name" required>
-            <input type="password" placeholder="Password" required>
-            <input type="password" placeholder="Confirm Password" required>
-            <div class="button-group">
-                <button type="submit">Sign Up</button>
-            </div>
-        </form>
-        <div class="bottom">
-            <p>Already have an account? <a href="#">Log In</a></p>
+      <h2>Sign Up</h2>
+      <p>Enter your details below</p>
+      <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+        <div class="input-group">
+          <input type="text" placeholder="First Name" formControlName="firstName" required>
+          <input type="text" placeholder="Last Name" formControlName="lastName" required>
         </div>
+  
+        <div class="input-group">
+          <input type="text" placeholder="City" formControlName="city" required>
+          <input type="text" placeholder="Street" formControlName="street">
+        </div>
+  
+        <div class="input-group">
+          <input type="text" placeholder="Geo location" formControlName="geoLocation">
+          <input type="text" placeholder="Zip Code" formControlName="zipCode" required>
+        </div>
+  
+        <input type="email" placeholder="Email" formControlName="email" required>
+        <input type="text" placeholder="User Name" formControlName="username" required>
+        <input type="password" placeholder="Password" formControlName="password" required>
+        <input type="password" placeholder="Confirm Password" formControlName="confirmPassword" required>
+  
+        <div class="button-group">
+          <button class="btn" type="submit" [disabled]="signUpForm.valid">Sign Up</button>
+        </div>
+      </form>
+  
+      <div class="bottom">
+        <p>Already have an account? <a href="#">Log In</a></p>
+      </div>
     </div>
-</div>
+  </div>
+  

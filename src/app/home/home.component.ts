@@ -4,6 +4,7 @@ import { DataService } from '../Shared/data.service';
 import { HomeService } from './home.service';
 
 import { ActivatedRoute, Router } from '@angular/router'; 
+import { AuthService } from '../Authentication/login/auth.service';
 
 
 
@@ -66,7 +67,7 @@ export class HomeComponent implements AfterViewInit, OnInit {
   // }
 
 
-  constructor(private route: ActivatedRoute,private router:Router) {
+  constructor(private route: ActivatedRoute,private router:Router,private authService:AuthService) {
 
     const data = this.route.snapshot.data['homeData'];
 
@@ -148,5 +149,16 @@ export class HomeComponent implements AfterViewInit, OnInit {
   }
   
 
+
+  
+
+  // getLogId()
+  // {
+  //  this.authService.LoggedUserId.subscribe(
+  //   data =>{
+  //     console.log(data);
+  //   }
+  //  );
+  // }
 
 }
