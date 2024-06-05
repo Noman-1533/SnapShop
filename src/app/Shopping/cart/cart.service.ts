@@ -18,6 +18,9 @@ export class CartService {
   setCartKey(name: string, id: number) {
     this.cartKey = { name, id };
   }
+  getCartKey() {
+    return this.cartKey;
+  }
 
   isDataInLocalStorage() {
     const value = localStorage.getItem(JSON.stringify(this.cartKey));
