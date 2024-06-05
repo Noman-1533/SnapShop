@@ -40,6 +40,9 @@
 
   </nav> -->
 
+           
+
+
 <nav class="nav">
   <div class="topNav">
     <div class="left"></div>
@@ -61,7 +64,8 @@
           <a
             *ngFor="let nav of headerText; let i = index"
             (click)="onClick(i)"
-            >{{ nav.name }}</a
+            
+            ><span *ngIf="nav.name!='login' || !isLoggedIn">{{ nav.name }}</span></a
           >
         </li>
       </ul>
@@ -91,9 +95,11 @@
             <i class="ri-shopping-cart-2-line"></i>
           </a>
 
-          <a routerLink="/profile" routerLinkActive="active-link">
+          <a routerLink="/profile" routerLinkActive="active-link" *ngIf="isLoggedIn" class="logout-parent">
             <i class="ri-user-3-line"></i>
+
           </a>
+          <button class="btn btn-primary" (click)="logout()" *ngIf="isLoggedIn">log out</button>
 
           <!-- <i  class="fa-regular fa-user"></i>   -->
 

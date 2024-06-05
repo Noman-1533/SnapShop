@@ -288,3 +288,29 @@
     text-decoration: underline;
   }
 }
+
+
+.logout-parent{
+
+display: flex;
+/* background-color: red; */
+
+
+}
+
+.btn-primary{
+  background-color: var(--button-color);
+  border: none;
+  box-shadow: none;
+  text-transform: lowercase;
+
+  
+
+}
+
+.btn-primary:hover{
+  scale: 1.04;
+  transition: 0.1s;
+  box-shadow: none;
+  
+}

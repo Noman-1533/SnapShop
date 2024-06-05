@@ -11,6 +11,7 @@ import { catchError, tap } from 'rxjs/operators';
 export class DataService {
 
   productDetailsSort = new Subject<any>();
+  Users = new Subject();
 
   constructor(private http: HttpClient) { }
 
@@ -125,6 +126,18 @@ export class DataService {
         return 5 + Math.floor(Math.random() * 21);
       }
 
+
+
+
+   getAllUser()
+   {
+    return this.http.get<string[]>(`https://fakestoreapi.com/users`).pipe(
+      catchError(error => {
+        console.error('Error fetching users:', error);
+        return throwError(error);
+      })
+    );
+   }
 
   
 
