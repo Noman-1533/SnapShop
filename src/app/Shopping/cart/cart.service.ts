@@ -19,6 +19,9 @@ export class CartService {
   setCartKey(name: string, id: number) {
     this.cartKey = { name, id };
   }
+  getCartKey() {
+    return this.cartKey;
+  }
 
   getCartKey() {
     return this.cartKey;

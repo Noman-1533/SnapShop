@@ -96,6 +96,8 @@ import { Subscription } from 'rxjs';
 })
 export class CartComponent implements OnInit,OnDestroy {
   cartItems: CartProduct[];
+  //cartItems = new BehaviorSubject<CartProduct[]>([]);
+
   deleteClicked: boolean = false;
   deleteCartId: number = null;  
   hasData = false;

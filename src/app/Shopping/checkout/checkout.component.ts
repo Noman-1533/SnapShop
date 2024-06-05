@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CheckoutService } from './checkout.service';
-import { CartProduct } from '../cart/cart.model';
+import { CartKey, CartProduct } from '../cart/cart.model';
 import { PaymentMethod } from './payment.model';
 import { CartService } from '../cart/cart.service';
 import { Router } from '@angular/router';
@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
+  userId = 3;
+  cartKey: CartKey;
   checkoutForm: FormGroup;
   checkoutItems: CartProduct[] = [];
   paymentMethod: PaymentMethod[] = [
@@ -44,6 +46,13 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
+  ngOnInit(): void {
+    this.cartService.setCartKey("shippingDetails", this.userId);
+    this.cartKey = this.cartService.getCartKey();
+    this.getCheckoutItems();
+    this.loadSavedData();
+  }
+
   getCheckoutItems() {
     this.checkoutItems = this.checkoutService.getCheckout();
     
@@ -65,6 +74,20 @@ export class CheckoutComponent implements OnInit {
     if (this.checkoutForm.valid) {
       // handle form submission
       console.log(this.checkoutForm.value);
+      const formData = this.checkoutForm.value;
+      if (formData.saveInfo) {
+        localStorage.setItem(JSON.stringify(this.cartKey),JSON.stringify(formData));
+      }
+      // else {
+      //   localStorage.removeItem('checkoutFormData');
+      // }
+    }
+  }
+  loadSavedData() {
+    const savedData = localStorage.getItem(JSON.stringify(this.cartKey));
+    console.log(savedData);
+    if (savedData) {
+      this.checkoutForm.patchValue(JSON.parse(savedData));
     }
   }
   onPlaceOrder() {
@@ -76,4 +99,5 @@ export class CheckoutComponent implements OnInit {
       this.router.navigate(['/home'])  
     }
   }
+
 }
