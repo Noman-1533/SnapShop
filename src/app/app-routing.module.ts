@@ -11,6 +11,8 @@ import { SignUpComponent } from './Authentication/sign-up/sign-up.component';
 import { ProductListComponent } from './products/product-list/product-list.component';
 import { HomeResolverService } from './home/home-resolver.service';
 import { ProductDetailsResolverService } from './products/product-details/product-details-resolver.service';
+import { ContactComponent } from './contact/contact.component';
+import { AboutComponent } from './about/about.component';
 
 const routes: Routes = 
   [
@@ -24,6 +26,8 @@ const routes: Routes =
     { path: 'profile', component: ProfileComponent },
     { path: 'login', component: LoginComponent },
     { path: 'sign-up', component: SignUpComponent },
+    {path:"contact",component:ContactComponent},
+    {path:"about",component:AboutComponent},
     { path: '**', component: ErrorComponent } 
   ];
 
