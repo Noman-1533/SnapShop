@@ -79,7 +79,6 @@
 // }
 
 
-//check start
 import { Component, OnInit } from '@angular/core';
 import { CartService } from './cart.service';
 import { Cart, CartKey, CartProduct } from './cart.model';
@@ -174,7 +173,6 @@ export class CartComponent implements OnInit {
     let index = this.cartItems.findIndex(cart => cart.productId === id);
     this.cartItems[index].saveForCheckout = !this.cartItems[index].saveForCheckout;
   }
+
 }
 
-
-//check end

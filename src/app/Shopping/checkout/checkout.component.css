@@ -61,3 +61,11 @@
 .d-flex img:hover {
   transform: scale(1.25);
 }
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red !important
+}
+.form-text{
+  color: red;;
+}
+
