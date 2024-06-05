@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CheckoutService } from './checkout.service';
-import { CartProduct } from '../cart/cart.model';
+import { CartKey, CartProduct } from '../cart/cart.model';
 import { PaymentMethod } from './payment.model';
+import { CartService } from '../cart/cart.service';
 
 @Component({
   selector: 'app-checkout',
@@ -10,6 +11,8 @@ import { PaymentMethod } from './payment.model';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
+  userId = 3;
+  cartKey: CartKey;
   checkoutForm: FormGroup;
   checkoutItems: CartProduct[] = [];
   paymentMethod: PaymentMethod[] = [
@@ -20,7 +23,7 @@ export class CheckoutComponent implements OnInit {
   ];
   totalAmount = 0;
 
-  constructor(private fb: FormBuilder, private checkoutService: CheckoutService) {
+  constructor(private fb: FormBuilder, private checkoutService: CheckoutService, private cartService:CartService) {
     this.checkoutForm = this.fb.group({
       firstName: ['', Validators.required],
       companyName: [''],
@@ -34,7 +37,10 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.cartService.setCartKey("shippingDetails", this.userId);
+    this.cartKey = this.cartService.getCartKey();
     this.getCheckoutItems();
+    this.loadSavedData();
   }
 
   getCheckoutItems() {
@@ -58,6 +64,21 @@ export class CheckoutComponent implements OnInit {
     if (this.checkoutForm.valid) {
       // handle form submission
       console.log(this.checkoutForm.value);
+      const formData = this.checkoutForm.value;
+      if (formData.saveInfo) {
+        localStorage.setItem(JSON.stringify(this.cartKey),JSON.stringify(formData));
+      }
+      // else {
+      //   localStorage.removeItem('checkoutFormData');
+      // }
     }
   }
+  loadSavedData() {
+    const savedData = localStorage.getItem(JSON.stringify(this.cartKey));
+    console.log(savedData);
+    if (savedData) {
+      this.checkoutForm.patchValue(JSON.parse(savedData));
+    }
+  }
+
 }
