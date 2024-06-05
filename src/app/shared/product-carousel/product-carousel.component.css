@@ -4,8 +4,10 @@
 
 
 .card-wrapper {
-    display: flex;
+    display: flex !important;
     margin: 50px;
+    flex-wrap: wrap !important;
+    background-color: red !important;
 }
 
 
