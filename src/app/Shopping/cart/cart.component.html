@@ -18,6 +18,8 @@
       <div class="row d-flex justify-content-between">
         <div class="col-md-12">
           <h2>Products</h2>
+
+          
           <table class="table table-striped">
             <thead>
               <tr>
@@ -54,14 +56,17 @@
               </tr>
             </tbody>
           </table>
+
+
+
                     <div class="row">
             <div class="col-xs-12 d-flex justify-content-between mt-4">
               <div class="col-xs-6">
-                <a href="#" class="btn btn-secondary">Return To Shop</a>
+                <a class="btnnUpdate btn-secondary">Return To Shop</a>
               </div>
               <div class="col-xs-6">
                 <button
-                  class="btn btn-danger update-cart"
+                  class="btnnUpdate update-cart"
                   style="align-items: right"
                   (click)="updateCart()"
                 >Update Cart
@@ -83,7 +88,7 @@
                   />
                   <button
                     type="button"
-                    class="btn btn-danger apply-coupon"
+                    class="btnn apply-coupon"
                     style="white-space: nowrap"
                   >
                     Apply Coupon
@@ -134,7 +139,7 @@
                       <div class="d-flex justify-content-center">
                         <button
                           type="button"
-                          class="btn btn-danger w-50 proceed-checkout"
+                          class="btnProcess w-50 proceed-checkout"
                           (click)="onCheckout()"
                         >
                           Proceed to Checkout
