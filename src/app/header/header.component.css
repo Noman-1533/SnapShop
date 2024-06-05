@@ -288,3 +288,15 @@
     text-decoration: underline;
   }
 }
+
+
+/* cart Item Number */
+.cartItemNumber{
+  color: rgb(240, 234, 234);
+  font-size: 13px;
+  background-color:var(--button-color);
+  padding: 1px 6px;
+  border-radius: 35px;
+  /* margin-bottom: 100px; */
+  position: absolute;
+}

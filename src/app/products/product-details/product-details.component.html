@@ -5,23 +5,23 @@
     </div>
 
 
-     <div class="div" *ngIf="selectedproductDetails==undefined && starLoad;else defiinedSelect">
+     <div class="div" *ngIf="selectedProductDetails==undefined && starLoad;else definedSelect">
 
      </div>
 
-<ng-template #defiinedSelect>
+<ng-template #definedSelect>
     <div class="card mb-3" style="max-width: 80vw">
       <div class="row g-0">
         <div class="col-md-6 img-parent">
           <img
-            src="{{selectedproductDetails.image}}"
+            src="{{selectedProductDetails.image}}"
             alt="Gaming pad"
             class="img-fluid rounded-start"
           />
         </div>
         <div class="col-md-6">
           <div class="card-body">
-            <h5 class="card-title">{{selectedproductDetails.title}}</h5>
+            <h5 class="card-title">{{selectedProductDetails.title}}</h5>
             <div class="card-text">
               <div class="d-flex">
                 <div class="star-rating">
@@ -33,16 +33,16 @@
                       
      
                       </li>
-                      <li class="list-inline-item count">({{selectedproductDetails.rating.count}})</li>
+                      <li class="list-inline-item count">({{selectedProductDetails.rating.count}})</li>
                 </ul>
               </div>
-                <!-- <span>({{selectedproductDetails.rating.count}})</span> -->
+                <!-- <span>({{selectedProductDetails.rating.count}})</span> -->
                 <pre> | </pre>
                 <span style="color: rgb(42, 250, 170)">In stock</span>
               </div>
-              <div class="card-text mb-3">${{selectedproductDetails.price}}</div>
+              <div class="card-text mb-3">${{selectedProductDetails.price}}</div>
               <div class="card-text mb-3">
-                {{selectedproductDetails.description}}
+                {{selectedProductDetails.description}}
                 <hr />
               </div>
               <div class="row mb-3">
@@ -56,7 +56,7 @@
                         <input
                           type="radio"
                           class="btn-check"
-                          name="tshirtSize"
+                          name="tShirtSize"
                           id="{{ size }}"
                           [value]="size"
                           [(ngModel)]="selectedSize"
@@ -151,12 +151,6 @@
 
 
   </ng-template>
-
-
-
-
-
-
 
 
 
