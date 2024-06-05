@@ -6,24 +6,6 @@
     width: 100%;
   }
 
-  /* tr, td, th {
-    background-color: red;
-  
-    padding: 20px;
-    gap: 30px;
-    margin-top: 30px;
-    box-shadow: 5px 5px 5px black;
-  
-  }
-
-  tr{
-    margin-top: 500px;
-  }
-
-  .trr{
-    padding: 100px;
-  } */
-  
   .btn-primary,
   .btn-secondary {
     width: 100%;
@@ -79,55 +61,26 @@
   transition: opacity 0.5s ease-in-out;
 }
 
-
-.buttons{
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-
-}
-
 button{
+  transition: .3s;
+}
+.btn-primary,.btn-primary:hover,.btn-secondary:hover
+{
   background-color: var(--button-color);
   color: white;
-  
-}
-
-.btnn{
-  padding: 8px 15px;
+  box-shadow: none;
   border: none;
-  border-radius: 3px;
 }
-
+.btn-primary:hover{
+  transform: scale(1.05);
+}
+.btn-secondary{
+  background-color: transparent;
+  color: black;
+  transition: .3s;
+}
 .btnProcess{
   padding: 8px 20px;
   border: none;
   border-radius: 3px;
-}
-
-.btnn:hover ,.btnProcess:hover{
-  scale: 1.04;
-  transition: 0.3s;
-  background-color: var(--button-color-hover);
-}
-
-.btnnUpdate{
-
-  padding: 8px 15px;
-  border: none;
-  border-radius: 3px;
-  background-color: transparent;
-  border: 1px solid rgb(38, 39, 38);
-  color: black;
-  text-decoration: none;
-  
-
-}
-
-.btnnUpdate:hover{
-  scale: 1.04;
-  transition: 0.3s;
-  background-color: var(--button-color);
-  color: white;
-  border: none;
 }

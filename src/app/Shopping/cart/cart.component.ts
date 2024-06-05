@@ -79,8 +79,7 @@
 // }
 
 
-//check start
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CartService } from './cart.service';
 import { Cart, CartKey, CartProduct } from './cart.model';
 
@@ -88,20 +87,23 @@ import { Cart, CartKey, CartProduct } from './cart.model';
 import { CheckoutService } from '../checkout/checkout.service';
 
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit,OnDestroy {
   cartItems: CartProduct[];
+  //cartItems = new BehaviorSubject<CartProduct[]>([]);
+
   deleteClicked: boolean = false;
   deleteCartId: number = null;  
   hasData = false;
   isAuthenticate = true;
   userId: number = 3;
-
+  cartChangesSubscription: Subscription;
   cartKey: CartKey = {
     name: 'cart',
     id: this.userId
@@ -120,6 +122,11 @@ export class CartComponent implements OnInit {
       this.cartService.setCartKey('cart', this.userId);
       this.hasData = this.cartService.isDataInLocalStorage();
       this.cartService.saveDataInCart(this.hasData, this.userId);
+      this.cartChangesSubscription = this.cartService.changeOnCart.subscribe(
+        () => {
+          this.cartItems = this.cartService.getCartItems();
+        }
+      )
       this.cartItems = this.cartService.getCartItems();
     }
   }
@@ -151,6 +158,7 @@ export class CartComponent implements OnInit {
     if (status === 'close') {
       this.deleteClicked = false;
     } else {
+      if(this.deleteCartId!==null)
       this.onDeleteCart(this.deleteCartId);
       this.deleteClicked = false;
       this.deleteCartId = null;
@@ -174,7 +182,9 @@ export class CartComponent implements OnInit {
     let index = this.cartItems.findIndex(cart => cart.productId === id);
     this.cartItems[index].saveForCheckout = !this.cartItems[index].saveForCheckout;
   }
+  ngOnDestroy(): void {
+    this.cartChangesSubscription.unsubscribe();
+  }
+
 }
 
-
-//check end

@@ -18,7 +18,7 @@ export class ProductDetailsComponent implements OnInit {
   starLoad=false;
   inPage=false;
 
-  selectedproductDetails:Product;
+  selectedProductDetails:Product;
   
   RelatedProducts;
   ratingArray: string[] = [];
@@ -46,7 +46,7 @@ export class ProductDetailsComponent implements OnInit {
 
   ) {
 
-    this.selectedproductDetails = this.route.snapshot.data['product'];
+    this.selectedProductDetails = this.route.snapshot.data['product'];
 
   }
 
@@ -63,7 +63,7 @@ export class ProductDetailsComponent implements OnInit {
 
       
       const resolvedData = this.route.snapshot.data['productData'];
-      this.selectedproductDetails = resolvedData.product;
+      this.selectedProductDetails = resolvedData.product;
       this.RelatedProducts = resolvedData.categoryProducts;
 
       this.inPage=false;
@@ -90,8 +90,8 @@ export class ProductDetailsComponent implements OnInit {
 
     setTimeout(
       ()=>{
-        if (this.selectedproductDetails && this.selectedproductDetails.rating && this.selectedproductDetails.rating.rate) {
-          this.setRatingArray(this.selectedproductDetails.rating.rate);
+        if (this.selectedProductDetails && this.selectedProductDetails.rating && this.selectedProductDetails.rating.rate) {
+          this.setRatingArray(this.selectedProductDetails.rating.rate);
           this.starLoad=true;
           
         } 
@@ -111,7 +111,7 @@ export class ProductDetailsComponent implements OnInit {
 
     this.dataService.getSingleProduct(productId).subscribe(product => {
 
-      this.selectedproductDetails = product;
+      this.selectedProductDetails = product;
       this.dataService.getProductsOfCategory(product.category).subscribe(categoryProducts => {
         this.RelatedProducts = categoryProducts;
         console.log(this.RelatedProducts);
@@ -177,7 +177,7 @@ export class ProductDetailsComponent implements OnInit {
   onClickCart() {
     this.cartService.setCartKey('cart', this.userId);
     this.cartService.saveDataInCart(this.cartService.isDataInLocalStorage(), this.userId);
-    this.cartService.onCreateCart(this.selectedproductDetails);
+    this.cartService.onCreateCart(this.selectedProductDetails);
   }
 
 }
