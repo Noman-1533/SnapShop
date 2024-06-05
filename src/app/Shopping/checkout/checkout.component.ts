@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CheckoutService } from './checkout.service';
 import { CartProduct } from '../cart/cart.model';
 import { PaymentMethod } from './payment.model';
+import { CartService } from '../cart/cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -20,8 +22,17 @@ export class CheckoutComponent implements OnInit {
   ];
   totalAmount = 0;
 
-  constructor(private fb: FormBuilder, private checkoutService: CheckoutService) {
-    this.checkoutForm = this.fb.group({
+  constructor(private formBuilder: FormBuilder,
+    private checkoutService: CheckoutService,
+    private cartService: CartService,
+    private router:Router
+  ) {
+   
+  }
+
+  ngOnInit(): void {
+    this.getCheckoutItems();
+    this.checkoutForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       companyName: [''],
       streetAddress: ['', Validators.required],
@@ -31,10 +42,6 @@ export class CheckoutComponent implements OnInit {
       emailAddress: ['', [Validators.required, Validators.email]],
       saveInfo: [false]
     });
-  }
-
-  ngOnInit(): void {
-    this.getCheckoutItems();
   }
 
   getCheckoutItems() {
@@ -58,6 +65,15 @@ export class CheckoutComponent implements OnInit {
     if (this.checkoutForm.valid) {
       // handle form submission
       console.log(this.checkoutForm.value);
+    }
+  }
+  onPlaceOrder() {
+    if (this.checkoutItems.length > 0) {
+      console.log(this.checkoutItems);
+      for (let cart of this.checkoutItems) {
+        this.cartService.deleteCartItem(cart.productId);
+      }
+      this.router.navigate(['/home'])  
     }
   }
 }
