@@ -4,6 +4,7 @@ export interface CartProduct{
     image?: string,
     price?: number,
     name?: string,
+    saveForCheckout?: boolean;
     
 }
 export interface CartKey{
