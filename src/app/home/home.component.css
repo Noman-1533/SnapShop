@@ -191,10 +191,7 @@
     align-items: center;
   }
 
-  .active{
-    background-color: red;
-    
-  }
+  
   
 .tittle-bar-forTop-rated {
   display: flex;
@@ -411,7 +408,7 @@ display: none;
 }
 
 .right-img-section img {
-  width: 80%;
+  width: 70%;
 
   /* filter: drop-shadow(5px 5px 10px rgb(59, 59, 59)); */
 }
