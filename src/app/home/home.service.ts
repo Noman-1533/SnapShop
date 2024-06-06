@@ -1,5 +1,5 @@
 import { Injectable, OnInit, inject } from '@angular/core';
-import { DataService } from '../Shared/data.service';
+import { DataService } from '../shared/data.service';
 
 @Injectable({
   providedIn: 'root',
