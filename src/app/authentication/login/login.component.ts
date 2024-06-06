@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
-import { DataService } from '../../Shared/data.service';
+import { DataService } from '../../shared/data.service';
 import { UserService } from './user.service';
 
 @Component({
