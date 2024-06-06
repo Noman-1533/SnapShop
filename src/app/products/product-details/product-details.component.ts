@@ -2,7 +2,8 @@ import { Component, OnInit, inject } from '@angular/core';
 import { DataService } from '../../shared/data.service';
 import { Product } from '../../shared/product.model';
 import { CartService } from '../../shopping/cart/cart.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { UserService } from '../../authentication/login/user.service';
 
 @Component({
   selector: 'app-product-details',
@@ -23,18 +24,25 @@ export class ProductDetailsComponent implements OnInit {
   products: Product[];
   selectedSize: string = 'M';
   amount: number = 0;
-  userId = 3;
+  userId: number;
 
   deliveryOptions: { name: string; iconClass: string }[] = [
     { name: 'Free Delivery', iconClass: 'bi bi-truck' },
     { name: 'Return Delivery', iconClass: 'bi bi-arrow-return-left' },
   ];
 
-  constructor(private route: ActivatedRoute, private cartService: CartService) {
-    this.selectedProductDetails = this.route.snapshot.data['product'];
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private cartService: CartService,
+    private useData: UserService,
+    private router:Router
+  ) {}
 
   ngOnInit(): void {
+    if (this.useData.LoggedUserId !== -1) {
+      this.userId = this.useData.LoggedUserId;
+    }
+    this.selectedProductDetails = this.route.snapshot.data['product'];
     const resolvedData = this.route.snapshot.data['productData'];
     this.selectedProductDetails = resolvedData.product;
     this.RelatedProducts = resolvedData.categoryProducts;
@@ -104,11 +112,16 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   onClickCart() {
-    let key = this.cartService.setKey('cart', this.userId);
-    this.cartService.saveDataInCart(
-      this.cartService.isDataInLocalStorage(key),
-      key
-    );
-    this.cartService.onCreateCart(this.selectedProductDetails, key);
+    if (this.userId !== null) {
+      let key = this.cartService.setKey('cart', this.userId);
+      this.cartService.saveDataInCart(
+        this.cartService.isDataInLocalStorage(key),
+        key
+      );
+      this.cartService.onCreateCart(this.selectedProductDetails, key);
+    }
+    else {
+      this.router.navigate['/login'];
+    }
   }
 }

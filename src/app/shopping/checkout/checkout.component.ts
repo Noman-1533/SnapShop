@@ -5,6 +5,7 @@ import { Key, CartProduct } from '../cart/cart.model';
 import { PaymentMethod } from './payment.model';
 import { CartService } from '../cart/cart.service';
 import { Router } from '@angular/router';
+import { UserService } from '../../authentication/login/user.service';
 
 @Component({
   selector: 'app-checkout',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./checkout.component.css'],
 })
 export class CheckoutComponent implements OnInit {
-  userId = 3;
+  userId :number;
   shippingKey: Key;
   checkoutForm: FormGroup;
   checkoutItems: CartProduct[] = [];
@@ -40,10 +41,15 @@ export class CheckoutComponent implements OnInit {
     private formBuilder: FormBuilder,
     private checkoutService: CheckoutService,
     private cartService: CartService,
-    private router: Router
+    private usedData:UserService,
+    private router: Router,
+
   ) {}
 
   ngOnInit(): void {
+    if (this.usedData.LoggedUserId !== -1) {
+      this.userId = this.usedData.LoggedUserId;
+    }
     this.getCheckoutItems();
     this.checkoutForm = this.formBuilder.group({
       firstName: ['', Validators.required],

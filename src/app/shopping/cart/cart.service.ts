@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { DataService } from '../../shared/data.service';
 import { Cart, Key, CartProduct } from './cart.model';
-import { Subject, forkJoin, tap } from 'rxjs';
+import { BehaviorSubject, Subject, forkJoin, tap } from 'rxjs';
 import { Product } from '../../shared/product.model';
 import { Router } from '@angular/router';
 
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class CartService {
-  changeOnCart = new Subject<Cart[]>();
+  changeOnCart = new BehaviorSubject<Cart[]>([]);
   cart: Cart[] = [];
 
   constructor(private dataService: DataService, private router: Router) {}
