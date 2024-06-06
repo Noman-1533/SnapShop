@@ -2,19 +2,19 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
-import { CartComponent } from './Shopping/cart/cart.component';
-import { CheckoutComponent } from './Shopping/checkout/checkout.component';
+import { CartComponent } from './shopping/cart/cart.component';
+import { CheckoutComponent } from './shopping/checkout/checkout.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ErrorComponent } from './error/error.component';
-import { LoginComponent } from './Authentication/login/login.component';
-import { SignUpComponent } from './Authentication/sign-up/sign-up.component';
+import { LoginComponent } from './authentication/login/login.component';
+import { SignUpComponent } from './authentication/sign-up/sign-up.component';
 import { ProductListComponent } from './products/product-list/product-list.component';
 import { HomeResolverService } from './home/home-resolver.service';
 import { ProductDetailsResolverService } from './products/product-details/product-details-resolver.service';
 
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
-import { AuthGuard } from './Authentication/login/auth.guard.service';
+import { AuthGuard } from './authentication/login/auth.guard.service';
 
 const routes: Routes = 
   [
