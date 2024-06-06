@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { CartService } from '../shopping/cart/cart.service';
-import { Key } from '../Shopping/cart/cart.model';
+import { Key } from '../shopping/cart/cart.model';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../authentication/login/auth.service';
 import { UserService } from '../authentication/login/user.service';

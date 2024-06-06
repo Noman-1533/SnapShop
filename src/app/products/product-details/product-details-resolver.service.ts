@@ -6,8 +6,8 @@ import {
 } from '@angular/router';
 import { Observable, forkJoin } from 'rxjs';
 import { map, mergeAll } from 'rxjs/operators';
-import { DataService } from '../../Shared/data.service';
-import { Product } from '../../Shared/product.model';
+import { DataService } from '../../shared/data.service';
+import { Product } from '../../shared/product.model';
 
 @Injectable({
   providedIn: 'root',

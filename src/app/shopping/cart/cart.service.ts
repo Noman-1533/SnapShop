@@ -1,9 +1,9 @@
 //check start
 import { Injectable } from '@angular/core';
-import { DataService } from '../../Shared/data.service';
+import { DataService } from '../../shared/data.service';
 import { Cart, Key, CartProduct } from './cart.model';
 import { Subject, forkJoin, tap } from 'rxjs';
-import { Product } from '../../Shared/product.model';
+import { Product } from '../../shared/product.model';
 import { Router } from '@angular/router';
 
 @Injectable({

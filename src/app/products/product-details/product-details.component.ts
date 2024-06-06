@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { DataService } from '../../shared/data.service';
-import { Product } from '../../Shared/product.model';
+import { Product } from '../../shared/product.model';
 import { CartService } from '../../shopping/cart/cart.service';
 import { ActivatedRoute, Params } from '@angular/router';
 

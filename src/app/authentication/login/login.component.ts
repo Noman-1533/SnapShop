@@ -13,6 +13,7 @@ import { UserService } from './user.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  isFormSubmitted: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -23,8 +24,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = new FormGroup({
-      username: new FormControl(null, [Validators.required]),
-      password: new FormControl(null, [Validators.required]),
+      username: new FormControl(null, [Validators.required, Validators.minLength(3)]),
+      password: new FormControl(null, [Validators.required, Validators.minLength(5)]),
     });
 
     this.setData();
@@ -39,9 +40,10 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.isFormSubmitted = true;
+
     if (this.loginForm.valid) {
-      const username = this.loginForm.value.username;
-      const password = this.loginForm.value.password;
+      const { username, password } = this.loginForm.value;
 
       // console.log(username, password);
       let authObs: Observable<any>;
@@ -60,5 +62,13 @@ export class LoginComponent implements OnInit {
         }
       );
     }
+  }
+
+  get username() {
+    return this.loginForm.get('username');
+  }
+
+  get password() {
+    return this.loginForm.get('password');
   }
 }
