@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 import { Observable, forkJoin, map } from 'rxjs';
-import { DataService } from '../Shared/data.service';
+import { DataService } from '../shared/data.service';
 
 @Injectable({
   providedIn: 'root',

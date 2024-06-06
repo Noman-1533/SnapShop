@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { DataService } from '../../Shared/data.service';
-import { Product } from '../../Shared/product.model';
+import { DataService } from '../../shared/data.service';
+import { Product } from '../../shared/product.model';
 
 @Component({
   selector: 'app-product-list',

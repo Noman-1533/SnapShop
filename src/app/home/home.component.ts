@@ -1,11 +1,11 @@
 import { AfterViewInit, Component, OnInit, inject } from '@angular/core';
 import { Carousel, initMDB } from 'mdb-ui-kit';
-import { DataService } from '../Shared/data.service';
+import { DataService } from '../shared/data.service';
 import { HomeService } from './home.service';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../Authentication/login/auth.service';
-import { UserService } from '../Authentication/login/user.service';
+import { AuthService } from '../authentication/login/auth.service';
+import { UserService } from '../authentication/login/user.service';
 
 @Component({
   selector: 'app-home',
