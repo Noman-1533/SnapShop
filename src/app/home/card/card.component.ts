@@ -33,9 +33,12 @@ export class CardComponent implements OnInit {
     console.log(id);
   }
   onClickCart() {
-    let key=this.cartService.setKey('cart', this.userId);
-    this.cartService.saveDataInCart(this.cartService.isDataInLocalStorage(key), key);
-    this.cartService.onCreateCart(this.cardInfo,key);
+    let key = this.cartService.setKey('cart', this.userId);
+    this.cartService.saveDataInCart(
+      this.cartService.isDataInLocalStorage(key),
+      key
+    );
+    this.cartService.onCreateCart(this.cardInfo, key);
   }
 
   setRatingArray(rating: number) {

@@ -10,8 +10,8 @@
 }
 
 .carousel-control-prev,
-.carousel-control-next{
-    display: none;
+.carousel-control-next {
+  display: none;
 }
 
 .container {
@@ -118,81 +118,79 @@
   font-size: 17px;
 }
 .listofContent a:hover {
-    text-decoration: underline;
-    font-size: 17px;
-    cursor: pointer;
+  text-decoration: underline;
+  font-size: 17px;
+  cursor: pointer;
 }
 
 #carouselExample {
-    width: 60%;
-    height: 370px;
-    margin-bottom: 90px;
-    margin-top: -25px;
-    position: relative;
-    background-color: black;
-    border: 2px solid rgb(101, 97, 97);
-  }
-  
-  .carousel-inner {
-    height: 100%;
-  }
-  
-  #cursoulDiv {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    height: 100%;
-  }
-  
-  .hero {
-    color: white;
-    padding: 10px;
-    width: 30%;
-    background: rgba(0, 0, 0, 0.5);
-  }
-  
-  .imageSection {
-    height: 100%;
-    width: 40%; 
-    background-color: black;
-    padding: 20px;
-  }
-  
-  .carousel-item img {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .carousel-control-prev,
-  .carousel-control-next {
-    z-index: 2;
-  }
-  
-  .hero h3 {
-    margin: 0;
-    font-size: 3vw;
-    color: white;
-  }
-  
-  .hero a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  .hero a:hover {
-    text-decoration: underline;
-  }
-  
-  .tittle-bar-forTop-rated {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+  width: 60%;
+  height: 370px;
+  margin-bottom: 90px;
+  margin-top: -25px;
+  position: relative;
+  background-color: black;
+  border: 2px solid rgb(101, 97, 97);
+}
 
-  
-  
+.carousel-inner {
+  height: 100%;
+}
+
+#cursoulDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+}
+
+.hero {
+  color: white;
+  padding: 10px;
+  width: 30%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.imageSection {
+  height: 100%;
+  width: 40%;
+  background-color: black;
+  padding: 20px;
+}
+
+.carousel-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  z-index: 2;
+}
+
+.hero h3 {
+  margin: 0;
+  font-size: 3vw;
+  color: white;
+}
+
+.hero a {
+  color: white;
+  text-decoration: none;
+}
+
+.hero a:hover {
+  text-decoration: underline;
+}
+
+.tittle-bar-forTop-rated {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .tittle-bar-forTop-rated {
   display: flex;
   justify-content: space-between;
@@ -240,11 +238,10 @@
   margin-top: 20px;
 }
 
-.buttonViewProduct .buttonView:hover{
+.buttonViewProduct .buttonView:hover {
   scale: 1.04;
   transition: 0.3s;
   background-color: #ac3131;
-
 }
 
 .tittle-bar-forTop-rated .buttonViewProduct .buttonView {
@@ -253,9 +250,9 @@
   width: 150px;
 }
 
-.carousel-control-prev-icon[_ngcontent-ng-c3651018213], .carousel-control-next-icon[_ngcontent-ng-c3651018213] {
-  
-display: none;
+.carousel-control-prev-icon[_ngcontent-ng-c3651018213],
+.carousel-control-next-icon[_ngcontent-ng-c3651018213] {
+  display: none;
 }
 
 .horizontalLine {
@@ -288,10 +285,7 @@ display: none;
   justify-content: space-around;
   gap: 25px;
   /* background-color: red; */
- 
 }
-
-
 
 /* .card-group {
   display: flex;

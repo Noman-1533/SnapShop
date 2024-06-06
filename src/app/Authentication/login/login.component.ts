@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
-import { DataService } from '../../Shared/data.service';
+import { DataService } from '../../shared/data.service';
 import { UserService } from './user.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private dataService: DataService,
-    private userService:UserService
+    private userService: UserService
   ) {}
 
   ngOnInit() {
@@ -27,22 +27,16 @@ export class LoginComponent implements OnInit {
       password: new FormControl(null, [Validators.required]),
     });
 
-     this.setData();
-    
+    this.setData();
   }
 
-
-  setData()
-  {
+  setData() {
     this.dataService.getAllUser().subscribe((users) => {
       // console.log("users",users);
 
       this.userService.Users.next(users);
     });
-
   }
-
-
 
   onSubmit(): void {
     if (this.loginForm.valid) {
@@ -53,7 +47,6 @@ export class LoginComponent implements OnInit {
       let authObs: Observable<any>;
 
       authObs = this.authService.login(username, password);
-      
 
       authObs.subscribe(
         (resData) => {

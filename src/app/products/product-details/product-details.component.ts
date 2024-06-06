@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { DataService } from '../../Shared/data.service';
+import { DataService } from '../../shared/data.service';
 import { Product } from '../../Shared/product.model';
-import { CartService } from '../../Shopping/cart/cart.service';
+import { CartService } from '../../shopping/cart/cart.service';
 import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
@@ -104,11 +104,11 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   onClickCart() {
-    let key =this.cartService.setKey('cart', this.userId);
+    let key = this.cartService.setKey('cart', this.userId);
     this.cartService.saveDataInCart(
       this.cartService.isDataInLocalStorage(key),
       key
     );
-    this.cartService.onCreateCart(this.selectedProductDetails,key);
+    this.cartService.onCreateCart(this.selectedProductDetails, key);
   }
 }

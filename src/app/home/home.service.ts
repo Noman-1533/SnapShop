@@ -2,31 +2,18 @@ import { Injectable, OnInit, inject } from '@angular/core';
 import { DataService } from '../Shared/data.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class HomeService implements OnInit{
-
+export class HomeService implements OnInit {
   numberOfSlides;
 
   dataService = inject(DataService);
 
   constructor() {}
 
-  ngOnInit(){
+  ngOnInit() {}
 
-  }
-
-  splitProducts()
-  {
+  splitProducts() {
     return this.dataService.getLimitedProducts(15);
-
   }
-  
- 
-
-
-
-
-
-   
 }
