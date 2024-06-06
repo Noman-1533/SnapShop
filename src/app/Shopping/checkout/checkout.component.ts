@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CheckoutService } from './checkout.service';
-import { CartKey, CartProduct } from '../cart/cart.model';
+import { Key, CartProduct } from '../cart/cart.model';
 import { PaymentMethod } from './payment.model';
 import { CartService } from '../cart/cart.service';
 import { Router } from '@angular/router';
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class CheckoutComponent implements OnInit {
   userId = 3;
-  cartKey: CartKey;
+  shippingKey: Key;
   checkoutForm: FormGroup;
   checkoutItems: CartProduct[] = [];
   paymentMethod: PaymentMethod[] = [
@@ -44,8 +44,7 @@ export class CheckoutComponent implements OnInit {
       emailAddress: ['', [Validators.required, Validators.email]],
       saveInfo: [false]
     });
-    this.cartService.setCartKey("shippingDetails", this.userId);
-    this.cartKey = this.cartService.getCartKey();
+    this.shippingKey = this.cartService.setKey('shippingDetails', this.userId);
     this.getCheckoutItems();
     this.loadSavedData();
   }
@@ -69,19 +68,15 @@ export class CheckoutComponent implements OnInit {
 
   onSubmit() {
     if (this.checkoutForm.valid) {
-      // handle form submission
       console.log(this.checkoutForm.value);
       const formData = this.checkoutForm.value;
       if (formData.saveInfo) {
-        localStorage.setItem(JSON.stringify(this.cartKey),JSON.stringify(formData));
+        localStorage.setItem(JSON.stringify(this.shippingKey),JSON.stringify(formData));
       }
-      // else {
-      //   localStorage.removeItem('checkoutFormData');
-      // }
     }
   }
   loadSavedData() {
-    const savedData = localStorage.getItem(JSON.stringify(this.cartKey));
+    const savedData = localStorage.getItem(JSON.stringify(this.shippingKey));
     console.log(savedData);
     if (savedData) {
       this.checkoutForm.patchValue(JSON.parse(savedData));
@@ -89,11 +84,13 @@ export class CheckoutComponent implements OnInit {
   }
   onPlaceOrder() {
     if (this.checkoutItems.length > 0) {
+      this.onSubmit();
+      let key: Key = this.cartService.setKey('cart', this.userId);
       console.log(this.checkoutItems);
       for (let cart of this.checkoutItems) {
-        this.cartService.deleteCartItem(cart.productId);
+        this.cartService.deleteCartItem(cart.productId,key);
       }
-      this.router.navigate(['/home'])  
+      this.router.navigate(['/cart'])  
     }
   }
 
