@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       }
     );
 
-    this.authService.loggedIn.next(false);
+    // this.authService.loggedIn.next(false);
   }
   getCartItemNumber() {
     this.key = this.cartService.setKey('cart', this.userId);
@@ -67,7 +67,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   logout() {
     this.authService.loggedIn.next(false);
     this.userService.LoggedUser.next(null);
-    this.userService.LoggedUserId.next(-1);
+    this.userService.LoggedUserId=-1;
     this.router.navigate['/home'];
   }
 

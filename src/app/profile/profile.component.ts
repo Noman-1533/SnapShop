@@ -10,7 +10,7 @@ import { UserService } from '../authentication/login/user.service';
 })
 export class ProfileComponent implements OnInit {
   activeTab: string = 'profile';
-  loggoedInUser;
+  loggedInUser;
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -18,8 +18,8 @@ export class ProfileComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.userService.LoggedUser.subscribe((user) => {
-      this.loggoedInUser = user;
-      console.log(this.loggoedInUser);
+      this.loggedInUser = user;
+      console.log(this.loggedInUser);
     });
   }
 

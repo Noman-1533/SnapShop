@@ -6,6 +6,7 @@ import { CheckoutService } from '../checkout/checkout.service';
 
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { UserService } from '../../authentication/login/user.service';
 
 @Component({
   selector: 'app-cart',
@@ -20,18 +21,23 @@ export class CartComponent implements OnInit, OnDestroy {
   deleteCartId: number = null;
   hasData = false;
   isAuthenticate = true;
-  userId: number = 3;
+  userId: number ;
   cartChangesSubscription: Subscription;
   key: Key;
 
   constructor(
     private cartService: CartService,
     private checkout: CheckoutService,
-    private router: Router
+    private router: Router,
+    private userData:UserService
   ) {}
 
   ngOnInit(): void {
     if (this.isAuthenticate) {
+      if (this.userData.LoggedUserId !== -1) {
+        this.userId = this.userData.LoggedUserId;
+        console.log(this.userId);
+      }
       this.key = this.cartService.setKey('cart', this.userId);
       this.hasData = this.cartService.isDataInLocalStorage(this.key);
       this.cartService.saveDataInCart(this.hasData, this.key);
@@ -41,6 +47,7 @@ export class CartComponent implements OnInit, OnDestroy {
         }
       );
       this.cartItems = this.cartService.getCartItems();
+      
     }
   }
 
