@@ -1,15 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  Validators,
-} 
-
-from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { DataService } from '../../Shared/data.service';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +14,12 @@ import { DataService } from '../../Shared/data.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
-  constructor(private authService:AuthService,private router:Router,private dataService:DataService) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private dataService: DataService,
+    private userService:UserService
+  ) {}
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -27,23 +27,20 @@ export class LoginComponent implements OnInit {
       password: new FormControl(null, [Validators.required]),
     });
 
-
-    const user = this.dataService.getAllUser().subscribe(
-
-      users=>{
-
-        console.log(users);
-
-        this.authService.Users.next(users);
-
-
-      }
-
-    );
-
-
+     this.setData();
+    
   }
 
+
+  setData()
+  {
+    this.dataService.getAllUser().subscribe((users) => {
+      // console.log("users",users);
+
+      this.userService.Users.next(users);
+    });
+
+  }
 
 
 
@@ -52,34 +49,23 @@ export class LoginComponent implements OnInit {
       const username = this.loginForm.value.username;
       const password = this.loginForm.value.password;
 
-      console.log(username,password);
+      // console.log(username, password);
+      let authObs: Observable<any>;
+
+      authObs = this.authService.login(username, password);
       
-      let authObs:Observable<any>;
-
-
-      authObs = this.authService.login(username,password);
-      // this.router.navigate(['']);
 
       authObs.subscribe(
-        resData=>{
-
-          this.authService.setLoggedInUserId(username);
+        (resData) => {
+          this.userService.setLoggedInUserId(username);
           localStorage.setItem('token', resData.token);
           this.authService.loggedIn.next(true);
-          alert("Logged in ");
+          alert('Logged in ');
+        },
+        (error) => {
+          alert('Wrong Password');
         }
-        ,error=>{
-          alert("Wrong Password");
-        }
-      )
-      
-     
-      
-
+      );
+    }
   }
-
-}
-
-
-
 }

@@ -1,59 +1,76 @@
 <div class="main">
-
-
   <!-- <button class="btn btn-primary" (click)="getLogId()">getId</button> -->
-
 
   <div class="FirstSectionTop">
     <div class="rightListBar">
-      <ul class="listofContent" >
-        <li  *ngFor="let item of combinedArraycategory">
-          <a (click)="navigateToProductList(item.category)">{{item.category | capitalizeFirst}}</a>
+      <ul class="listofContent">
+        <li *ngFor="let item of combinedArraycategory">
+          <a (click)="navigateToProductList(item.category)">{{
+            item.category | capitalizeFirst
+          }}</a>
         </li>
       </ul>
     </div>
 
     <div id="carouselExample" class="carousel slide" data-mdb-ride="carousel">
       <div class="carousel-inner">
-        <div class="carousel-item active"id="cursoulDiv" data-bs-interval="2000">
+        <div
+          class="carousel-item active"
+          id="cursoulDiv"
+          data-bs-interval="2000"
+        >
           <div class="hero">
             <h1>SnapShop</h1>
-            <hr>
+            <hr />
             <h3>Up to 10% Voucher</h3>
             <a href="">Shop now -></a>
           </div>
           <div class="imageSection">
-            <img src="./assets/imagesHome/pcImage.png" class="d-block w-100" alt="...">
+            <img
+              src="./assets/imagesHome/pcImage.png"
+              class="d-block w-100"
+              alt="..."
+            />
           </div>
         </div>
 
-        
         <div class="carousel-item" id="cursoulDiv">
           <div class="hero">
             <h1>SnapShop</h1>
-            <hr>
+            <hr />
             <h3>Up to 10% Voucher</h3>
             <a href="">Shop now -></a>
           </div>
           <div class="imageSection">
-            <img src="./assets/imagesHome/bagImage.png" class="d-block w-100" alt="..." >
+            <img
+              src="./assets/imagesHome/bagImage.png"
+              class="d-block w-100"
+              alt="..."
+            />
           </div>
         </div>
       </div>
 
-
-      <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExample" data-mdb-slide="prev">
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-mdb-target="#carouselExample"
+        data-mdb-slide="prev"
+      >
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </button>
-      <button class="carousel-control-next" type="button" data-mdb-target="#carouselExample" data-mdb-slide="next">
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-mdb-target="#carouselExample"
+        data-mdb-slide="next"
+      >
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
     </div>
   </div>
-
-  
 
   <!-- slide card -->
 
@@ -77,8 +94,7 @@
 
       <!-- <div class="CardList"> -->
 
-
-        <!-- <div
+      <!-- <div
           id="carouselExampleControls"
           class="carousel slide"
           data-bs-ride="carousel"
@@ -168,20 +184,20 @@
           </div>
         </div> -->
 
+      <div class="if" *ngIf="numberOfSlidesss != undefined">
+        <app-product-carousel
+          class="app-product"
+          [numberOfSlides]="numberOfSlidesss"
+        ></app-product-carousel>
+      </div>
 
-        <div class="if" *ngIf="numberOfSlidesss!=undefined">
-          <app-product-carousel class="app-product" [numberOfSlides]="numberOfSlidesss"></app-product-carousel>
-        </div>
-
-        
-
-
-        
       <!-- </div> -->
     </div>
 
     <div class="buttonViewProduct">
-      <button class="buttonView" (click)="viewAllProducts()">View all Products</button>
+      <button class="buttonView" (click)="viewAllProducts()">
+        View all Products
+      </button>
     </div>
 
     <div class="horizontalLine"></div>
@@ -197,9 +213,11 @@
 
       <div class="CardList categorycard">
         <div class="" *ngFor="let item of combinedArraycategory">
-          <app-category (click)="navigateToProductList(item.category)" [cateGory]="item.category" [iconcategory]="item.icon"></app-category>
-          
-
+          <app-category
+            (click)="navigateToProductList(item.category)"
+            [cateGory]="item.category"
+            [iconcategory]="item.icon"
+          ></app-category>
         </div>
       </div>
 
@@ -217,21 +235,19 @@
       <div class="tittle-bar-forTop-rated">
         <div class="Tittle">Top Rated Products</div>
         <div class="buttonViewProduct">
-          <button class="buttonView" (click)="viewAllProducts()">View all Products</button>
+          <button class="buttonView" (click)="viewAllProducts()">
+            View all Products
+          </button>
         </div>
       </div>
 
-
-
-
-
       <!-- <div class="CardList"> -->
-        <!-- <app-card class="cartzoom"></app-card>
+      <!-- <app-card class="cartzoom"></app-card>
                            <app-card class="cartzoom"></app-card>
                            <app-card class="cartzoom"></app-card>
                            <app-card class="cartzoom"></app-card> -->
 
-        <!-- <div
+      <!-- <div
           id="carouselExampleControls"
           class="carousel slide"
           data-bs-ride="carousel"
@@ -316,19 +332,13 @@
         </div>
       </div> -->
 
-      <div class="if" *ngIf="numberOfSlidesRatting!=undefined">
-        <app-product-carousel [numberOfSlides]="numberOfSlidesRatting"></app-product-carousel>
-
+      <div class="if" *ngIf="numberOfSlidesRatting != undefined">
+        <app-product-carousel
+          [numberOfSlides]="numberOfSlidesRatting"
+        ></app-product-carousel>
       </div>
 
-      
-
-
       <!-- <app-product-carousel></app-product-carousel> -->
-
-
-
-
     </div>
   </div>
 
@@ -369,20 +379,18 @@
         <div class="Tittle">Explore Our Products</div>
       </div>
 
-
-
-      <div class="if" *ngIf="numberOfSlidesss!=undefined">
-        <app-product-list class="app-product" [numberOfSlides]="numberOfSlidesss"></app-product-list>
-
+      <div class="if" *ngIf="numberOfSlidesss != undefined">
+        <app-product-list
+          class="app-product"
+          [numberOfSlides]="numberOfSlidesss"
+        ></app-product-list>
       </div>
-
-      
     </div>
 
-
-
     <div class="buttonViewProduct">
-      <button class="buttonView" (click)="viewAllProducts()">View all Products</button>
+      <button class="buttonView" (click)="viewAllProducts()">
+        View all Products
+      </button>
     </div>
   </div>
 

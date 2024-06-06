@@ -58,7 +58,7 @@ export class ProductListComponent implements OnInit{
     this.numberOfSlides.forEach(slide => {
       slide.forEach(product => {
         product.discount = this.getRandomDiscount();
-        console.log("data from coursol split ", this.numberOfSlides);
+        // console.log("data from coursol split ", this.numberOfSlides);
 
       });
     });
