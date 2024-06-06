@@ -21,7 +21,9 @@ export class HomeComponent implements AfterViewInit, OnInit {
     'ri-user-4-line',
   ];
 
-  sliderImages: string[] = [];
+  isLoading: boolean = true;
+  topProducts;
+  sliderImages:string[]=[];
 
   combinedArraycategory: { category: string; icon: string }[] = [];
   numberOfSlidesRatting: any[];
@@ -64,6 +66,8 @@ export class HomeComponent implements AfterViewInit, OnInit {
       (error) => {
         console.error(error);
       }
+
+      
     );
 
     this.dataService.getLimitedProducts(20).subscribe(
@@ -76,6 +80,14 @@ export class HomeComponent implements AfterViewInit, OnInit {
         console.error(error);
       }
     );
+    
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 1000); // Adjust the timeout as needed
+
+
+   
+
   }
   viewAllProducts() {
     this.router.navigate(['/product-list']);
@@ -85,8 +97,10 @@ export class HomeComponent implements AfterViewInit, OnInit {
       queryParams: { Category: category },
     });
   }
+  
 
 
+  
 
   getLogId()
   {

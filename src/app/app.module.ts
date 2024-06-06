@@ -28,6 +28,7 @@ import { ProductCarouselComponent } from './Shared/product-carousel/product-caro
 import { CapitalizeFirstPipe } from './home/capitalize-first.pipe';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
+import { LoadingSpinnerComponent } from './Shared/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { AboutComponent } from './about/about.component';
     CapitalizeFirstPipe,
     ContactComponent,
     AboutComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,
