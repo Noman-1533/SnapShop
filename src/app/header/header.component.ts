@@ -5,6 +5,7 @@ import { CartService } from '../Shopping/cart/cart.service';
 import { Key } from '../Shopping/cart/cart.model';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../Authentication/login/auth.service';
+import { UserService } from '../Authentication/login/user.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -14,7 +15,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private cartService: CartService
+    private cartService: CartService,
+    private userService:UserService
   ) {}
   icon = faHeart;
   isLoggedIn = false;
@@ -41,6 +43,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.currentCartItem = this.cartService.getCartItems().length;
       }
     );
+
+    this.authService.loggedIn.next(false);
   }
   getCartItemNumber() {
     this.key = this.cartService.setKey('cart', this.userId);
@@ -62,6 +66,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   logout() {
     this.authService.loggedIn.next(false);
+    this.userService.LoggedUser.next(null);
+    this.userService.LoggedUserId.next(-1);
     this.router.navigate['/home'];
   }
 

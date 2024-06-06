@@ -49,7 +49,7 @@
 }
 
 .p-3.border:hover {
-  background-color: #d32525; 
+  background-color: var(--button-color); 
 }
 
 .p-3.border:hover h3,

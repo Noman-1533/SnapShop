@@ -28,19 +28,12 @@ export class ProductCarouselComponent implements OnInit{
           this.numberOfSlides.forEach(slide => {
             slide.forEach(product => {
               product.discount = this.getRandomDiscount();
-              console.log("data from coursol split ", this.numberOfSlides);
+              // console.log("data from coursol split ", this.numberOfSlides);
 
             });
           });
 
-
-
-          
-
-
-        
-       
-        
+ 
     
   }
 
@@ -57,7 +50,7 @@ export class ProductCarouselComponent implements OnInit{
 
 
   getRandomDiscount() {
-    return 5 + Math.floor(Math.random() * 21);
+    return 5 + 25;
   }
 
 
