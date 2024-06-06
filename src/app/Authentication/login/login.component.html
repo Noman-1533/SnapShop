@@ -8,7 +8,10 @@
       <h2>Log in to SnapShop</h2>
       <p>Enter your details below</p>
 
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" style="display: flex; align-items: right;">
+
+
+       
         <input
           type="text"
           name="username"
@@ -16,6 +19,12 @@
           formControlName="username"
           required
         />
+        <div *ngIf="username.invalid && (username.touched || username.dirty || isFormSubmitted)" class="text-danger" >
+          <span *ngIf="username.errors?.['required']">This is required</span>
+          <span *ngIf="username.errors?.['minlength']">Minimum length is 3 characters</span>
+        </div>
+
+        
         <input
           type="password"
           password="password"
@@ -23,13 +32,15 @@
           formControlName="password"
           required
         />
+        <div *ngIf="password.invalid && (password.touched || password.dirty || isFormSubmitted)" class="text-danger">
+          <span *ngIf="password.errors?.['required']">This is required</span>
+          <span *ngIf="password.errors?.['minlength']">Minimum length is 5 characters</span>
+        </div>
 
         <div class="button-group">
-          <button class="btn" type="submit" [disabled]="!loginForm.valid">
-            Log In
-          </button>
-          <div class="forgot"><a routerLink="/sign-up">Dont have account ?sign Up</a></div>
-          
+          <button class="btn" type="submit" [disabled]="loginForm.invalid">Log In</button>
+
+          <div class="forgot"><a href="#">Forgot Password?</a></div>
         </div>
       </form>
     </div>
