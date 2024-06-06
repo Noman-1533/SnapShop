@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     { name: 'Home' },
     { name: 'Contact' },
     { name: 'About' },
-    { name: 'Our Products' },
+    { name: 'Products' },
     { name: 'login' },
   ];
   currentCartItem: number;
@@ -54,7 +54,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   onClick(id: number) {
     let path = this.headerText[id].name;
 
-    if (path === 'Our Products') {
+    if (path === 'Products') {
       path = 'product-list';
     }
 

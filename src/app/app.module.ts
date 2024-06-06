@@ -52,6 +52,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     ContactComponent,
     AboutComponent,
     LoadingSpinnerComponent,
+    
   ],
   imports: [
     BrowserModule,

@@ -14,7 +14,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  loggedIn = new BehaviorSubject(true);
+  loggedIn = new BehaviorSubject(false);
 
   login(username: string, password: string): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(this.LOGIN_URL, { username, password });
