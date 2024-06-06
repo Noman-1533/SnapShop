@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 import { Observable, forkJoin, map } from 'rxjs';
-import { DataService } from '../Shared/data.service';
+import { DataService } from '../shared/data.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,19 +15,9 @@ export class HomeResolverService implements Resolve<any> {
 
       limitedProducts: this.dataService.getLimitedProducts(15),
 
-      limitedProductsWithDiscount: this.dataService.getLimitedProductsAddingDiscount(15),
+      limitedProductsWithDiscount:
+        this.dataService.getLimitedProductsAddingDiscount(15),
 
-    //   sliderImages: this.dataService.getLimitedProducts(20).pipe(
-
-    //     map(
-    //         products => 
-    //             products.map(
-    //                 product => 
-    //                     product.image
-    //             )
-
-    //        )
-    //   )
     });
   }
 }

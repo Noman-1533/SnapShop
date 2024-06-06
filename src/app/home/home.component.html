@@ -237,98 +237,15 @@
           <p>Today's</p>
         </div>
         <div class="Tittle">Flash Sale</div>
+    <div class="FlashSaleSection">
+      <div class="slider">
+        <div class="Day">
+          <div class="box"></div>
+          <p>Today's</p>
+        </div>
+        <div class="Tittle">Flash Sale</div>
 
-        <!-- <div class="CardList"> -->
-
-        <!-- <div
-          id="carouselExampleControls"
-          class="carousel slide"
-          data-bs-ride="carousel"
-        >
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <div class="card-group">
-                <div class="card">
-                  <app-card></app-card>
-                </div>
-                <div class="card">
-                  <app-card></app-card>
-                </div>
-                <div class="card">
-                  <app-card></app-card>
-                </div>
-                <div class="card">
-                  <app-card></app-card>
-                </div>
-                <div class="card">
-                  <app-card></app-card>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="card-group">
-                <div class="card">
-                  <app-card></app-card>
-                </div>
-                <div class="card">
-                  <app-card></app-card>
-                </div>
-                <div class="card">
-                  <app-card></app-card>
-                </div>
-                <div class="card">
-                  <app-card></app-card>
-                </div>
-                <div class="card">
-                  <app-card></app-card>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="card-group">
-                <div class="card">
-                  <app-card></app-card>
-                </div>
-                <div class="card">
-                  <app-card></app-card>
-                </div>
-                <div class="card">
-                  <app-card></app-card>
-                </div>
-                <div class="card">
-                  <app-card></app-card>
-                </div>
-                <div class="card">
-                  <app-card></app-card>
-                </div>
-              </div>
-            </div>
-            <button
-              class="carousel-control-prev"
-              type="button"
-              data-bs-target="#carouselExampleControls"
-              data-bs-slide="prev"
-            >
-              <span
-                class="carousel-control-prev-icon"
-                aria-hidden="true"
-              ></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button
-              class="carousel-control-next"
-              type="button"
-              data-bs-target="#carouselExampleControls"
-              data-bs-slide="next"
-            >
-              <span
-                class="carousel-control-next-icon"
-                aria-hidden="true"
-              ></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
-        </div> -->
+       
 
         <div class="if" *ngIf="numberOfSlidesss != undefined">
           <app-product-carousel
@@ -339,7 +256,14 @@
 
         <!-- </div> -->
       </div>
+        <!-- </div> -->
+      </div>
 
+      <div class="buttonViewProduct">
+        <button class="buttonView" (click)="viewAllProducts()">
+          View all Products
+        </button>
+      </div>
       <div class="buttonViewProduct">
         <button class="buttonView" (click)="viewAllProducts()">
           View all Products
@@ -348,7 +272,16 @@
 
       <div class="horizontalLine"></div>
     </div>
+      <div class="horizontalLine"></div>
+    </div>
 
+    <div class="FlashSaleSection categorysection">
+      <div class="slider">
+        <div class="Day">
+          <div class="box"></div>
+          <p>Categories</p>
+        </div>
+        <div class="Tittle catTittle">Browse By Category</div>
     <div class="FlashSaleSection categorysection">
       <div class="slider">
         <div class="Day">
@@ -366,11 +299,29 @@
             ></app-category>
           </div>
         </div>
+        <div class="CardList categorycard">
+          <div class="" *ngFor="let item of combinedArraycategory">
+            <app-category
+              (click)="navigateToProductList(item.category)"
+              [cateGory]="item.category"
+              [iconcategory]="item.icon"
+            ></app-category>
+          </div>
+        </div>
 
         <div class="horizontalLine-hrcategory"></div>
       </div>
     </div>
+        <div class="horizontalLine-hrcategory"></div>
+      </div>
+    </div>
 
+    <div class="FlashSaleSection mt-0">
+      <div class="slider">
+        <div class="Day">
+          <div class="box"></div>
+          <p>This Month</p>
+        </div>
     <div class="FlashSaleSection mt-0">
       <div class="slider">
         <div class="Day">
@@ -509,11 +460,35 @@
         <img src="../assets\CardImg\jbl.png" alt="" />
       </div>
     </div>
+    <div class="Enhance-Your-Product-Section">
+      <div class="Left-text-section">
+        <p>Category</p>
+        <h3>Enhance Your Music Experience</h3>
+        <ul class="time">
+          <li><span class="number">23</span> <br />Hours</li>
+          <li><span class="number">05</span> <br />Days</li>
+          <li><span class="number">59</span> <br />minutes</li>
+          <li><span class="number">35</span> <br />seconds</li>
+        </ul>
+        <button class="buy-now-btn">Buy Now</button>
+      </div>
+      <div class="right-img-section">
+        <img src="../assets\CardImg\jbl.png" alt="" />
+      </div>
+    </div>
 
+    <!-- our product -->
     <!-- our product -->
 
     <!-- Explore our product start  -->
+    <!-- Explore our product start  -->
 
+    <div class="FlashSaleSection Explore-product">
+      <div class="slider">
+        <div class="Day">
+          <div class="box"></div>
+          <p>Our Products</p>
+        </div>
     <div class="FlashSaleSection Explore-product">
       <div class="slider">
         <div class="Day">
@@ -524,7 +499,17 @@
         <div class="tittle-bar-forTop-rated">
           <div class="Tittle">Explore Our Products</div>
         </div>
+        <div class="tittle-bar-forTop-rated">
+          <div class="Tittle">Explore Our Products</div>
+        </div>
 
+        <div class="if" *ngIf="numberOfSlidesss != undefined">
+          <app-product-list
+            class="app-product"
+            [numberOfSlides]="numberOfSlidesss"
+          ></app-product-list>
+        </div>
+      </div>
         <div class="if" *ngIf="numberOfSlidesss != undefined">
           <app-product-list
             class="app-product"
@@ -539,9 +524,17 @@
         </button>
       </div>
     </div>
+      <div class="buttonViewProduct">
+        <button class="buttonView" (click)="viewAllProducts()">
+          View all Products
+        </button>
+      </div>
+    </div>
 
     <!-- Explore our product end  -->
+    <!-- Explore our product end  -->
 
+    <!-- new Arival start  -->
     <!-- new Arival start  -->
 
     <div class="FlashSaleSection newarrivalSec">
@@ -551,7 +544,18 @@
           <p>Featured</p>
         </div>
         <div class="Tittle catTittle">New Arival</div>
+    <div class="FlashSaleSection newarrivalSec">
+      <div class="slider">
+        <div class="Day">
+          <div class="box"></div>
+          <p>Featured</p>
+        </div>
+        <div class="Tittle catTittle">New Arival</div>
 
+        <div class="newArival">
+          <div class="box1 box1left">
+            <div class="bg-image" style="margin: 35px">
+              <img src="./assets\newAribal\img1.png" />
         <div class="newArival">
           <div class="box1 box1left">
             <div class="bg-image" style="margin: 35px">
@@ -569,12 +573,97 @@
               </div>
             </div>
           </div>
+              <div
+                class="mask text-light d-flex justify-content-end flex-column"
+                style="margin-left: auto"
+              >
+                <h4 style="font-weight: bold">PlayStation 5</h4>
+                <h5 style="color: rgb(139, 142, 145)">
+                  Black and White version of the PS5 coming out on sale.
+                </h5>
+                <a href="" style="color: white">Shop Now</a>
+              </div>
+            </div>
+          </div>
 
           <div class="box1">
             <div class="boxright boxrighttop">
               <div class="bg-image" style="margin: 0px 0px 0px 27px">
                 <img src="./assets\newAribal\img22.png" />
+          <div class="box1">
+            <div class="boxright boxrighttop">
+              <div class="bg-image" style="margin: 0px 0px 0px 27px">
+                <img src="./assets\newAribal\img22.png" />
 
+                <div
+                  class="mask text-light d-flex justify-content-end flex-column"
+                  style="padding: 0px 0px 25px 0px"
+                >
+                  <h4 style="font-weight: bold">Women’s Collections</h4>
+                  <h5 style="color: rgb(139, 142, 145)">
+                    Featured woman collections that give you another vibe.
+                  </h5>
+                  <a href="" style="color: white">Shop Now</a>
+                </div>
+              </div>
+            </div>
+            <div class="boxright">
+              <div class="boxright-bottom">
+                <div
+                  class="bg-image"
+                  style="
+                    max-width: 22rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                  "
+                >
+                  <img
+                    src="./assets\newAribal\img 5.png"
+                    style="text-align: left"
+                  />
+                  <div
+                    class="mask text-light d-flex justify-content-end flex-column"
+                    style="padding: 0px 0px 17px 25px"
+                  >
+                    <h4 style="font-weight: bold">Speakers</h4>
+                    <h5 style="color: rgb(139, 142, 145)">
+                      Black and White version of the PS5 coming out on sale.
+                    </h5>
+                    <a href="" style="color: white">Shop Now</a>
+                  </div>
+                </div>
+              </div>
+              <div class="boxright-bottom">
+                <div
+                  class="bg-image"
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                  "
+                >
+                  <img
+                    src="./assets\newAribal\img 6.png"
+                    style="text-align: left"
+                  />
+                  <div
+                    class="mask text-light d-flex justify-content-end flex-column"
+                    style="padding: 0px 0px 0px 20px"
+                  >
+                    <h4 style="font-weight: bold">Perfume</h4>
+                    <h5 style="color: rgb(139, 142, 145)">
+                      GUCCI INTENSE OUD EDP.
+                    </h5>
+                    <a href="" style="color: white">Shop Now</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
                 <div
                   class="mask text-light d-flex justify-content-end flex-column"
                   style="padding: 0px 0px 25px 0px"
@@ -667,4 +756,23 @@
       </div>
     </div>
   </div>
+    <div class="container">
+      <div class="first container1">
+        <i class="fa-solid fa-truck"></i>
+        <h5>FREE AND FAST DELIVERY</h5>
+        <p>Free delivery for all orders over $140</p>
+      </div>
+      <div class="Second container1">
+        <i class="fa-solid fa-headphones"></i>
+        <h5>24/7 CUSTOMER SERVICE</h5>
+        <p>Friendly 24/7 customer support</p>
+      </div>
+      <div class="Third container1">
+        <i class="fa-regular fa-square-check"></i>
+        <h5>MONEY BACK GUARANTEE</h5>
+        <p>We reurn money within 30 days</p>
+      </div>
+    </div>
+  </div>
 </div>
+

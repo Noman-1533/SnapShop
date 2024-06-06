@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
-import { DataService } from '../../Shared/data.service';
+import { DataService } from '../../shared/data.service';
 import { UserService } from './user.service';
 
 @Component({
@@ -13,47 +13,42 @@ import { UserService } from './user.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  isFormSubmitted: boolean = false;
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private dataService: DataService,
-    private userService:UserService
+    private userService: UserService
   ) {}
 
   ngOnInit() {
     this.loginForm = new FormGroup({
-      username: new FormControl(null, [Validators.required]),
-      password: new FormControl(null, [Validators.required]),
+      username: new FormControl(null, [Validators.required, Validators.minLength(3)]),
+      password: new FormControl(null, [Validators.required, Validators.minLength(5)]),
     });
 
-     this.setData();
-    
+    this.setData();
   }
 
-
-  setData()
-  {
+  setData() {
     this.dataService.getAllUser().subscribe((users) => {
       // console.log("users",users);
 
       this.userService.Users.next(users);
     });
-
   }
 
-
-
   onSubmit(): void {
+    this.isFormSubmitted = true;
+
     if (this.loginForm.valid) {
-      const username = this.loginForm.value.username;
-      const password = this.loginForm.value.password;
+      const { username, password } = this.loginForm.value;
 
       // console.log(username, password);
       let authObs: Observable<any>;
 
       authObs = this.authService.login(username, password);
-      
 
       authObs.subscribe(
         (resData) => {
@@ -67,5 +62,13 @@ export class LoginComponent implements OnInit {
         }
       );
     }
+  }
+
+  get username() {
+    return this.loginForm.get('username');
+  }
+
+  get password() {
+    return this.loginForm.get('password');
   }
 }

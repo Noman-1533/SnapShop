@@ -1,17 +1,16 @@
 import { Injectable } from "@angular/core";
-import { Product } from "../../Shared/product.model";
+import { Product } from "../../shared/product.model";
  
 @Injectable({
-    providedIn:"root"
+  providedIn: 'root',
 })
-export class CardService{
-    cardItem: Product;
+export class CardService {
+  cardItem: Product;
 
-    
-    setCardItem(newCard:Product) {
-        this.cardItem = newCard;
-    }
-    getCardItem() {
-        return this.cardItem;
-    }
+  setCardItem(newCard: Product) {
+    this.cardItem = newCard;
+  }
+  getCardItem() {
+    return this.cardItem;
+  }
 }

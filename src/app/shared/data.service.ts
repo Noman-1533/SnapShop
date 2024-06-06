@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Product } from './../Shared/product.model';
-import { Cart } from '../Shopping/cart/cart.model';
+import { Product } from './../shared/product.model';
+import { Cart } from '../shopping/cart/cart.model';
 import { Subject, Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 

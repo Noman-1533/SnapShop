@@ -30,29 +30,29 @@
 }
 
 input.ng-invalid.ng-touched {
-  border: 1px solid red !important
+  border: 1px solid red !important;
 }
-.form-text{
-  color: red;;
+.form-text {
+  color: red;
 }
 
-.btn-primary,.btn-primary:hover{
-  background-color:#DB4444 ;
+.btn-primary,
+.btn-primary:hover {
+  background-color: #db4444;
   box-shadow: none;
   border: none;
-  transition: .3s;
+  transition: 0.3s;
 }
-.btn-primary:hover{
-
+.btn-primary:hover {
   transform: scale(1.05);
 }
 
-.btn{
-   background-color: var(--button-color) !important;
-   box-shadow: none !important;;
+.btn {
+  background-color: var(--button-color) !important;
+  box-shadow: none !important;
 }
 
-.btn:hover{
+.btn:hover {
   scale: 1.04 !important;
   transition: 0.4s !important;
 }

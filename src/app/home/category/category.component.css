@@ -1,30 +1,29 @@
-.catBox{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    /* padding: 10px 60px; */
-    /* border: 1px solid rgb(121, 117, 117); */
-    border-radius: 4px;
-    box-shadow: 0px 0px 0px 1px rgba(192, 184, 184, 0.05), inset 0px 0px 0px 1px rgba(209, 213, 219,1);
-    height: 180px;
-    width:190px;
-
+.catBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* padding: 10px 60px; */
+  /* border: 1px solid rgb(121, 117, 117); */
+  border-radius: 4px;
+  box-shadow: 0px 0px 0px 1px rgba(192, 184, 184, 0.05),
+    inset 0px 0px 0px 1px rgba(209, 213, 219, 1);
+  height: 180px;
+  width: 190px;
 }
 
-.catBox i{
-    font-size: 60px;
-    padding: 0;
+.catBox i {
+  font-size: 60px;
+  padding: 0;
 }
 
-.catBox p{
-    font-size: 20px;
+.catBox p {
+  font-size: 20px;
 }
 
-.catBox:hover{
-    background-color:  var(--button-color);
-    scale: 1.05;
-    color: white;
-    transition: 0.5s;
-
+.catBox:hover {
+  background-color: var(--button-color);
+  scale: 1.05;
+  color: white;
+  transition: 0.5s;
 }

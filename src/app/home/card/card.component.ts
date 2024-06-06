@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Product } from '../../Shared/product.model';
-import { Cart } from '../../Shopping/cart/cart.model';
-import { CartService } from '../../Shopping/cart/cart.service';
+import { Product } from '../../shared/product.model';
+import { Cart } from '../../shopping/cart/cart.model';
+import { CartService } from '../../shopping/cart/cart.service';
 
 @Component({
   selector: 'app-card',
@@ -33,12 +33,12 @@ export class CardComponent implements OnInit {
     console.log(id);
   }
   onClickCart() {
-    this.cartService.setCartKey('cart', this.userId);
+    let key = this.cartService.setKey('cart', this.userId);
     this.cartService.saveDataInCart(
-      this.cartService.isDataInLocalStorage(),
-      this.userId
+      this.cartService.isDataInLocalStorage(key),
+      key
     );
-    this.cartService.onCreateCart(this.cardInfo);
+    this.cartService.onCreateCart(this.cardInfo, key);
   }
 
   setRatingArray(rating: number) {

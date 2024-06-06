@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import { CartService } from '../Shopping/cart/cart.service';
-import { CartKey } from '../Shopping/cart/cart.model';
+import { CartService } from '../shopping/cart/cart.service';
+import { Key } from '../shopping/cart/cart.model';
 import { Subscription } from 'rxjs';
-import { AuthService } from '../Authentication/login/auth.service';
-import { UserService } from '../Authentication/login/user.service';
+import { AuthService } from '../authentication/login/auth.service';
+import { UserService } from '../authentication/login/user.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private router: Router,
     private authService: AuthService,
     private cartService: CartService,
-    private userService:UserService
+    private userService: UserService
   ) {}
   icon = faHeart;
   isLoggedIn = false;
@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ];
   currentCartItem: number;
   userId: number = 3;
-  cartKey: CartKey;
+  key: Key;
   cartUpdateSubscription: Subscription;
 
   ngOnInit(): void {
@@ -47,9 +47,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authService.loggedIn.next(false);
   }
   getCartItemNumber() {
-    this.cartService.setCartKey('cart', this.userId);
-    this.cartKey = this.cartService.getCartKey();
-    this.currentCartItem = this.cartService.getCartItemNumber(this.cartKey);
+    this.key = this.cartService.setKey('cart', this.userId);
+    this.currentCartItem = this.cartService.getCartItemNumber(this.key);
   }
 
   onClick(id: number) {

@@ -1,45 +1,48 @@
-<div *ngIf="cardInfo===undefined;else content">
-   
-  </div>
+<div *ngIf="cardInfo === undefined; else content"></div>
 
-  <ng-template #content>
-
-<div class="col-sm-3  card1">
+<ng-template #content>
+  <div class="col-sm-3 card1">
     <div class="thumb-wrapper">
-
-
-        <div class="topsectionforcart">
-        <span class="wish-icon discount"><button class="discountbutton">-%</button></span>
+      <div class="topsectionforcart">
+        <span class="wish-icon discount"
+          ><button class="discountbutton">-%</button></span
+        >
         <!-- <span class="wish-icon discount"><button class="discountbutton">{{cardInfo.rating.rate}}</button></span> -->
         <span class="wish-icon"><i class="ri-heart-3-line"></i></span>
+      </div>
+
+      <div class="img-box">
+        <!-- <img src="santo" class="img-fluid" alt="Watch"> -->
+        <img src="{{ cardInfo.image }}" class="img-fluid" alt="Watch" />
+        <div class="addToCart">
+          <a (click)="onClickCart()">Add to Cart</a>
         </div>
-
-
-
-        <div class="img-box">
-            <!-- <img src="santo" class="img-fluid" alt="Watch"> -->
-            <img src="{{cardInfo.image}}" class="img-fluid" alt="Watch">
-            <div class="addToCart">
-                <a (click)="onClickCart()">Add to Cart</a>
-            </div>
+      </div>
+      <div class="thumb-content">
+        <h4 (click)="onClickDetails(cardInfo.id)">{{ cardInfo.title }}</h4>
+        <p class="item-price">
+          <span>${{ cardInfo.price }} </span>
+        </p>
+        <div class="star-rating">
+          <ul class="list-inline">
+            <li class="list-inline-item" *ngFor="let star of ratingArray">
+              <i
+                class="fa"
+                [ngClass]="{
+                  'fa-star': star === 'full',
+                  'fa-star-half-alt': star === 'half',
+                  'fa-star-o': star === 'empty'
+                }"
+              >
+              </i>
+            </li>
+            <li class="list-inline-item count">
+              ({{ cardInfo.rating.count }})
+            </li>
+          </ul>
         </div>
-        <div  class="thumb-content">
-            <h4 (click)="onClickDetails(cardInfo.id)">{{cardInfo.title}}</h4>
-            <p class="item-price"><span>${{cardInfo.price}} </span></p>
-            <div class="star-rating">
-                <ul class="list-inline">
-                    
-                    <li class="list-inline-item" *ngFor="let star of ratingArray">
-                        <i class="fa"
-                           [ngClass]="{'fa-star': star === 'full', 'fa-star-half-alt': star === 'half', 'fa-star-o': star === 'empty'}">
-                        </i>
-                      </li>
-                      <li class="list-inline-item count">({{cardInfo.rating.count}})</li>
-                </ul>
-            </div>
-            <!-- <a href="#" class="btn btn-primary">Add to Cart</a> -->
-        </div>						
+        <!-- <a href="#" class="btn btn-primary">Add to Cart</a> -->
+      </div>
     </div>
-</div>
-
+  </div>
 </ng-template>
