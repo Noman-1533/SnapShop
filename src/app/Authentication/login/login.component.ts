@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { DataService } from '../../Shared/data.service';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private dataService: DataService
+    private dataService: DataService,
+    private userService:UserService
   ) {}
 
   ngOnInit() {
@@ -26,11 +28,22 @@ export class LoginComponent implements OnInit {
       password: new FormControl(null, [Validators.required, Validators.minLength(5)]),
     });
 
-    this.dataService.getAllUser().subscribe((users) => {
-      console.log(users);
-      this.authService.Users.next(users);
-    });
+     this.setData();
+    
   }
+
+
+  setData()
+  {
+    this.dataService.getAllUser().subscribe((users) => {
+      // console.log("users",users);
+
+      this.userService.Users.next(users);
+    });
+
+  }
+
+
 
   onSubmit(): void {
     this.isFormSubmitted = true;
@@ -38,18 +51,18 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       const { username, password } = this.loginForm.value;
 
-      console.log(username, password);
-
+      // console.log(username, password);
       let authObs: Observable<any>;
+
       authObs = this.authService.login(username, password);
+      
 
       authObs.subscribe(
         (resData) => {
-          this.authService.setLoggedInUserId(username);
+          this.userService.setLoggedInUserId(username);
           localStorage.setItem('token', resData.token);
           this.authService.loggedIn.next(true);
-          alert('Logged in');
-          this.router.navigate(['']);
+          alert('Logged in ');
         },
         (error) => {
           alert('Wrong Password');

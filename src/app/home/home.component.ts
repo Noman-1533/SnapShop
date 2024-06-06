@@ -3,18 +3,15 @@ import { Carousel, initMDB } from 'mdb-ui-kit';
 import { DataService } from '../Shared/data.service';
 import { HomeService } from './home.service';
 
-import { ActivatedRoute, Router } from '@angular/router'; 
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../Authentication/login/auth.service';
-
-
+import { UserService } from '../Authentication/login/user.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-
-
 export class HomeComponent implements AfterViewInit, OnInit {
   category;
   icon = [
@@ -39,78 +36,32 @@ export class HomeComponent implements AfterViewInit, OnInit {
 
   private dataService = inject(DataService);
 
-
-
-
-  // constructor(private router: Router) {
-
-
-
-  //   this.dataService.getLimitedProducts(15).subscribe(
-  //     data => {
-  //       this.numberOfSlidesss = data;
-  //       console.log("Home data 2",this.numberOfSlidesss);
-  //     }
-  //   );
-
-
-     
-  //   this.dataService.getLimitedProductsAddingDiscount(15).subscribe(
-  //     data => {
-  //       this.numberOfSlidesRatting = data;
-  //       console.log("home Top Ratting 1",this.numberOfSlidesRatting);
-  //     }
-  //   );
-
-
-
-  // }
-
-
-  constructor(private route: ActivatedRoute,private router:Router,private authService:AuthService) {
-
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private authService: AuthService,
+    private userService:UserService
+  ) {
     const data = this.route.snapshot.data['homeData'];
-
-    console.log("data",data);
-
-
+    console.log('data', data);
     this.category = data.categories;
-
-    this.numberOfSlidesss = data.limitedProducts;    // for card of top product 
-
-    this.numberOfSlidesRatting = data.limitedProductsWithDiscount;  // for card of top rated product 
-
-    // this.sliderImages = data.sliderImages;  
-
-
+    this.numberOfSlidesss = data.limitedProducts; // for card of top product
+    this.numberOfSlidesRatting = data.limitedProductsWithDiscount; // for card of top rated product
     this.combinedArraycategory = this.category.map((cat, index) => {
-      
       return { category: cat, icon: this.icon[index] };
-
-
     });
   }
 
-
-
-
-
-
-
   ngOnInit() {
-
-
     this.dataService.getAllCategories().subscribe(
       (data) => {
         this.category = data;
-        
-
 
         this.combinedArraycategory = this.category.map((cat, index) => {
           return { category: cat, icon: this.icon[index] };
         });
 
-        // console.log(this.combinedArraycategory);
+       
       },
       (error) => {
         console.error(error);
@@ -119,16 +70,13 @@ export class HomeComponent implements AfterViewInit, OnInit {
       
     );
 
-
-
     this.dataService.getLimitedProducts(20).subscribe(
-      data => {
+      (data) => {
         // console.log(data);
-        this.sliderImages = data.map(product => product.image);
+        this.sliderImages = data.map((product) => product.image);
         // console.log(this.sliderImages);
-      
       },
-      error => {
+      (error) => {
         console.error(error);
       }
     );
@@ -142,23 +90,30 @@ export class HomeComponent implements AfterViewInit, OnInit {
 
   }
   viewAllProducts() {
-    this.router.navigate(['/product-list']);  
+    this.router.navigate(['/product-list']);
   }
   navigateToProductList(category: string) {
-    this.router.navigate(['/product-list'],{queryParams:{Category:category}});
+    this.router.navigate(['/product-list'], {
+      queryParams: { Category: category },
+    });
   }
   
 
 
   
 
-  // getLogId()
-  // {
-  //  this.authService.LoggedUserId.subscribe(
-  //   data =>{
-  //     console.log(data);
-  //   }
-  //  );
-  // }
+  getLogId()
+  {
+   this.userService.LoggedUserId.subscribe(
+    data =>{
+      console.log("id",data);
+    }
+   );
 
+   this.userService.LoggedUser.subscribe(
+    data =>{
+      console.log("user:",data);
+    }
+   );
+  }
 }

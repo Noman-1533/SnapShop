@@ -15,43 +15,12 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  loggedIn= new BehaviorSubject(true);
-  Users=new BehaviorSubject(null);
-  LoggedUserId=new Subject();
-  LoggedUser=new Subject();
+  loggedIn = new BehaviorSubject(true);
+
 
   login(username: string, password: string): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(this.LOGIN_URL, { username, password });
-    
-  }
-
-  setLoggedInUserId(username:string){
-
-    // console.log(this.Users.value[1]);
-
-    for(let i=0;i<this.Users.value.length;i++)
-      {
-        if(this.Users.value[i].username===username)
-          {
-            this.LoggedUserId.next(this.Users.value[i].id);
-            this.LoggedUser.next(this.Users.value[i]);
-          }
-      }
-
-  }
-
-  getLoggedInUserId()
-  {
-       return this.LoggedUserId;
-  }
-
-
-  getLoggedInUser()
-  {
-    return this.LoggedUser;
   }
 
   
-
-
 }
