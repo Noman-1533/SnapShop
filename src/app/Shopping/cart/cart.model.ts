@@ -7,7 +7,7 @@ export interface CartProduct{
     saveForCheckout?: boolean;
     
 }
-export interface CartKey{
+export interface Key{
     name:string,
     id: number
 }

@@ -1,7 +1,7 @@
 //check start
 import { Injectable } from '@angular/core';
 import { DataService } from '../../Shared/data.service';
-import { Cart, CartKey, CartProduct } from './cart.model';
+import { Cart, Key, CartProduct } from './cart.model';
 import { Subject, forkJoin, tap } from 'rxjs';
 import { Product } from '../../Shared/product.model';
 import { Router } from '@angular/router';
@@ -12,28 +12,25 @@ import { Router } from '@angular/router';
 export class CartService {
   changeOnCart = new Subject<Cart[]>();
   cart: Cart[] = [];
-  cartKey: CartKey;
 
   constructor(private dataService: DataService, private router: Router) {}
 
-  setCartKey(name: string, id: number) {
-    this.cartKey = { name, id };
-  }
-  getCartKey() {
-    return this.cartKey;
+  setKey(name: string, id: number) {
+    let key:Key = { name, id };
+    return key;
   }
 
-  isDataInLocalStorage() {
-    const value = localStorage.getItem(JSON.stringify(this.cartKey));
+  isDataInLocalStorage(Key: Key) {
+    const value = localStorage.getItem(JSON.stringify(Key));
     return value !== null;
   }
-  getCartItemNumber(cartKey: CartKey) {
-    this.getDataFromLocalStorage();
+  getCartItemNumber(key: Key) {
+    this.getDataFromLocalStorage(key);
     console.log(this.cart);
     return this.getCartItems().length;
   }
-  private getDataFromLocalStorage() {
-    const value = localStorage.getItem(JSON.stringify(this.cartKey));
+  private getDataFromLocalStorage(key: Key) {
+    const value = localStorage.getItem(JSON.stringify(key));
     this.cart = JSON.parse(value);
     console.log('Data from localStorage');
   }
@@ -61,33 +58,32 @@ export class CartService {
 
       forkJoin(requests).subscribe(() => {
         console.log('All product details fetched');
-        this.saveDataInLocalStorage();
-        this.getDataFromLocalStorage();
+        let key = this.setKey('cart', userId);
+        this.saveDataInLocalStorage(key);
+        this.getDataFromLocalStorage(key);
         this.changeOnCart.next(this.cart);
       });
     });
   }
 
-  saveDataInCart(hasData: boolean, userId: number) {
+  saveDataInCart(hasData: boolean, key: Key) {
     if (hasData) {
-      this.getDataFromLocalStorage();
+      this.getDataFromLocalStorage(key);
     } else {
-      this.getDataFromAPI(userId);
+      this.getDataFromAPI(key.id);
     }
     this.changeOnCart.next(this.cart);
   }
 
-  saveDataInLocalStorage() {
-    if (this.cartKey?.id) {
+  saveDataInLocalStorage(key: Key) {
+    if (key?.id) {
       console.log('Save in Local');
-      localStorage.setItem(
-        JSON.stringify(this.cartKey),
-        JSON.stringify(this.cart)
-      );
+      console.log(key);
+      localStorage.setItem(JSON.stringify(key), JSON.stringify(this.cart));
     }
   }
 
-  addToCart(newCart: Cart) {
+  addToCart(newCart: Cart, key: Key) {
     let foundItem = false;
 
     for (let item of this.cart) {
@@ -102,7 +98,7 @@ export class CartService {
 
     if (!foundItem) {
       this.cart.push(newCart);
-      this.saveDataInLocalStorage();
+      this.saveDataInLocalStorage(key);
       this.changeOnCart.next(this.cart);
       console.log(this.cart);
       alert('Successfully added to CART');
@@ -111,10 +107,10 @@ export class CartService {
     }
   }
 
-  onCreateCart(product: Product) {
+  onCreateCart(product: Product, key: Key) {
     const newCart: Cart = {
       id: Date.now(), // Generate a unique ID for the cart item
-      userId: this.cartKey.id,
+      userId: key.id,
       date: new Date().toISOString(),
       products: [
         {
@@ -127,11 +123,10 @@ export class CartService {
         },
       ],
     };
-    this.addToCart(newCart);
+    this.addToCart(newCart, key);
   }
 
   getCartItems(): CartProduct[] {
-   
     let cartProduct: CartProduct[] = [];
     for (let item of this.cart) {
       for (let product of item.products) {
@@ -141,7 +136,7 @@ export class CartService {
     return cartProduct;
   }
 
-  updateLocalCartItems(updatedCartProducts: CartProduct[]) {
+  updateLocalCartItems(updatedCartProducts: CartProduct[], key: Key) {
     if (!this.cart) return;
     for (let cart of this.cart) {
       for (let i = 0; i < cart.products.length; i++) {
@@ -153,18 +148,18 @@ export class CartService {
         }
       }
     }
-    this.saveDataInLocalStorage();
+    this.saveDataInLocalStorage(key);
     this.changeOnCart.next(this.cart);
   }
 
-  deleteCartItem(productId: number) {
+  deleteCartItem(productId: number, key: Key) {
     for (let cart of this.cart) {
       cart.products = cart.products.filter(
         (product) => product.productId !== productId
       );
     }
     this.cart = this.cart.filter((cart) => cart.products.length > 0);
-    this.saveDataInLocalStorage();
+    this.saveDataInLocalStorage(key);
     this.changeOnCart.next(this.cart);
   }
 }
@@ -173,7 +168,7 @@ export class CartService {
 
 // import { Injectable } from "@angular/core";
 // import { DataService } from "../../Shared/data.service";
-// import { Cart, CartKey, CartProduct } from "./cart.model";
+// import { Cart, key, CartProduct } from "./cart.model";
 // import { forkJoin, Observable, of } from "rxjs";
 // import { map, switchMap, tap } from "rxjs/operators";
 // import { Product } from "../../Shared/product.model";
@@ -183,16 +178,16 @@ export class CartService {
 // })
 // export class CartService {
 //     cart: Cart[] = [];
-//     cartKey: CartKey;
+//     key: key;
 
 //     constructor(private dataService: DataService) { }
 
-//     setCartKey(name: string, id: number) {
-//         this.cartKey = { name, id };
+//     setkey(name: string, id: number) {
+//         key = { name, id };
 //     }
 
 //     isDataInLocalStorage(): boolean {
-//         const value = localStorage.getItem(JSON.stringify(this.cartKey));
+//         const value = localStorage.getItem(JSON.stringify(key));
 //         return value !== null;
 //     }
 
@@ -205,7 +200,7 @@ export class CartService {
 //     }
 
 //     private loadCartFromLocalStorage(): void {
-//         const value = localStorage.getItem(JSON.stringify(this.cartKey));
+//         const value = localStorage.getItem(JSON.stringify(key));
 //         if (value) {
 //             this.cart = JSON.parse(value);
 //             console.log('Data from localStorage', this.cart);
@@ -254,9 +249,9 @@ export class CartService {
 //     }
 
 //     saveDataInLocalStorage(): void {
-//         if (this.cartKey?.id) {
+//         if (key?.id) {
 //             console.log('Save in Local Storage');
-//             localStorage.setItem(JSON.stringify(this.cartKey), JSON.stringify(this.cart));
+//             localStorage.setItem(JSON.stringify(key), JSON.stringify(this.cart));
 //         }
 //     }
 

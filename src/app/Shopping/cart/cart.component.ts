@@ -81,7 +81,7 @@
 
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CartService } from './cart.service';
-import { Cart, CartKey, CartProduct } from './cart.model';
+import { Cart,Key, CartProduct } from './cart.model';
 
 
 import { CheckoutService } from '../checkout/checkout.service';
@@ -104,10 +104,7 @@ export class CartComponent implements OnInit,OnDestroy {
   isAuthenticate = true;
   userId: number = 3;
   cartChangesSubscription: Subscription;
-  cartKey: CartKey = {
-    name: 'cart',
-    id: this.userId
-  };
+  key:Key 
 
 
   
@@ -119,9 +116,9 @@ export class CartComponent implements OnInit,OnDestroy {
 
   ngOnInit(): void {
     if (this.isAuthenticate) {
-      this.cartService.setCartKey('cart', this.userId);
-      this.hasData = this.cartService.isDataInLocalStorage();
-      this.cartService.saveDataInCart(this.hasData, this.userId);
+      this.key=this.cartService.setKey('cart', this.userId);
+      this.hasData = this.cartService.isDataInLocalStorage(this.key);
+      this.cartService.saveDataInCart(this.hasData, this.key);
       this.cartChangesSubscription = this.cartService.changeOnCart.subscribe(
         () => {
           this.cartItems = this.cartService.getCartItems();
@@ -151,7 +148,7 @@ export class CartComponent implements OnInit,OnDestroy {
 
   onDeleteCart(productId: number) {
     this.cartItems = this.cartItems.filter(item => item.productId !== productId);
-    this.cartService.deleteCartItem(productId);
+    this.cartService.deleteCartItem(productId,this.key);
   }
 
   ConfirmationClicked(status: string) {
