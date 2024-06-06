@@ -1,22 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
 :root {
-    --main-color: #317EEB;
-    --button-color: #D74048;
-    --button-color-hover: #a12c32;
-    --body-color: #E0E0E0;
-    --box-color: white;
-  }
-
-
-*{
-    box-sizing: border-box;
-    /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
-
-    font-family: 'Trebuchet MS', sans-serif;
-
+  --button-color: #d74048;
+  --button-color-hover: #a12c32;
 }
 
-html, body{
-    height: 100vh;
-    width: 100%;
+* {
+  box-sizing: border-box;
+
+  font-family: "Trebuchet MS", sans-serif;
+}
+
+html,
+body {
+  height: 100vh;
+  width: 100%;
 }

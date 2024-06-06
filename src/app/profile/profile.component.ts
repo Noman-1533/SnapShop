@@ -11,7 +11,7 @@ import { UserService } from '../Authentication/login/user.service';
 export class ProfileComponent implements OnInit{
   activeTab: string = 'profile';
   loggoedInUser;
-  constructor(private router: Router,private authService:AuthService,private userService:UserService) {}
+  constructor(private router: Router,private userService:UserService) {}
   ngOnInit(): void {
     this.userService.LoggedUser.subscribe(
       user=>{
