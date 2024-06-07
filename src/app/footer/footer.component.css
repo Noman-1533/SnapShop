@@ -90,6 +90,30 @@ ul {
   margin-left: 5px;
 }
 
+.input-container {
+  position: relative;
+  display: inline-block;
+}
+
+.input-container input[type="search"] {
+  width: 100%;
+  padding-right: 30px;
+  padding: 10px;
+}
+
+.input-container i {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #888; 
+}
+
+.input-container i{
+  font-size: 15px;
+}
+
 @media (max-width: 775px) {
   .footer {
     flex-direction: column;

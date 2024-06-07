@@ -40,7 +40,6 @@ export class ProductListComponent implements OnInit {
         });
     }
 
-    this.numberOfSlides = this.chunkArray(this.numberOfSlides, 5);
 
     this.numberOfSlides.forEach((slide) => {
       slide.forEach((product) => {
@@ -50,16 +49,12 @@ export class ProductListComponent implements OnInit {
     });
   }
 
-  chunkArray(array, size) {
-    const result = [];
-    for (let i = 0; i < array.length; i += size) {
-      result.push(array.slice(i, i + size));
-    }
-    return result;
-  }
+  arrayLength=0
+
+ 
 
   getRandomDiscount() {
-    return 5 + Math.floor(Math.random() * 21);
+    return 5 + 21;
 
     // demoProduct: number[] = Array(10).fill(1)
   }

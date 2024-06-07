@@ -9,6 +9,13 @@
   /* background-color: red; */
 }
 
+.categorysection .carousel-control-prev, .carousel-control-next {
+  width: 0.5rem;
+  height: 2.1rem;
+  display: none !important;
+}
+
+
 
 .topSectioSlider{
   width: 100%;
@@ -403,7 +410,7 @@
   height: 430px;
   width: 83%;
   background-color: black;
-  margin: 80px 0px;
+  margin: 80px 120px;
   display: flex;
   align-items: center;
   justify-content: space-around;

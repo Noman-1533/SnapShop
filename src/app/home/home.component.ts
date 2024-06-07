@@ -30,9 +30,10 @@ export class HomeComponent implements AfterViewInit, OnInit {
   numberOfSlidesss: any[];
 
   ngAfterViewInit() {
-    initMDB();
-    new Carousel(document.querySelector('.carousel'));
-  }
+  //   initMDB();
+  //   new Carousel(document.querySelector('.carousel'));
+  //
+   }
 
   private dataService = inject(DataService);
 
