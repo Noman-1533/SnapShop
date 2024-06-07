@@ -5,6 +5,7 @@ import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { DataService } from '../../shared/data.service';
 import { UserService } from './user.service';
+import { User } from './user.model';
 
 @Component({
   selector: 'app-login',
@@ -32,33 +33,37 @@ export class LoginComponent implements OnInit {
   }
 
   setData() {
-    this.dataService.getAllUser().subscribe((users) => {
+    this.dataService.getAllUser().subscribe((users:any) => {
       // console.log("users",users);
-
       this.userService.Users.next(users);
+      ;
     });
   }
 
   onSubmit(): void {
+
+
     this.isFormSubmitted = true;
 
     if (this.loginForm.valid) {
       const { username, password } = this.loginForm.value;
 
-      // console.log(username, password);
       let authObs: Observable<any>;
 
       authObs = this.authService.login(username, password);
 
       authObs.subscribe(
         (resData) => {
+          const token = resData.token; 
           this.userService.setLoggedInUserId(username);
-          localStorage.setItem('token', resData.token);
+          const userData = this.userService.getLoggedInUser();
+          console.log(userData);
+          localStorage.setItem('loggedInUser', JSON.stringify(userData));
           this.authService.loggedIn.next(true);
-          alert('Logged in ');
+          alert('Logged in successfully');
         },
         (error) => {
-          alert('Wrong Password');
+          alert('Invalid username or password');
         }
       );
     }

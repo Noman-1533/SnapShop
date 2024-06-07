@@ -1,25 +1,34 @@
+/* General card styles */
 .card {
   border: none;
 }
 
+/* Card wrapper styles */
 .card-wrapper {
   display: flex !important;
   margin: 50px;
   flex-wrap: wrap !important;
-  /* background-color: red !important; */
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  /* background-color: red; */
+  box-shadow: none;
 }
 
-/* carousel style for buttons  */
+/* Carousel control button styles */
 .custom-control-prev,
 .custom-control-next {
   position: absolute;
-  top: -20%;
+  top:-7%;
   width: 5%;
   height: 10%;
   display: flex;
   align-items: center;
   justify-content: center;
   background: transparent;
+  transform: translateY(-50%);
+  z-index: 50;
+  
 }
 
 .custom-control-prev {
@@ -35,4 +44,22 @@
   width: 0.5rem;
   height: 2.1rem;
   color: black;
+}
+
+@media (max-width: 1200px) {
+  .card-wrapper {
+    flex: 1 1 30%;
+  }
+}
+
+@media (max-width: 992px) {
+  .card-wrapper {
+    flex: 1 1 45%;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-wrapper {
+    flex: 1 1 100%;
+  }
 }

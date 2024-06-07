@@ -4,44 +4,37 @@ import { DataService } from '../data.service';
 @Component({
   selector: 'app-product-carousel',
   templateUrl: './product-carousel.component.html',
-  styleUrl: './product-carousel.component.css',
+  styleUrls: ['./product-carousel.component.css'], // Corrected the typo here
 })
 export class ProductCarouselComponent implements OnInit {
   dataService = inject(DataService);
 
-  // numberOfSlides=[];
+  // Correct type annotation and initialization
+  @Input() numberOfSlides: any[] = [];
 
-  @Input() numberOfSlides = [[]];
-
-  @Input() Category;
+  @Input() Category: string;
 
   ngOnInit(): void {
-    // console.log("data from coursol  before split ", this.numberOfSlides);
+    if (this.numberOfSlides.length > 0) {
+      this.numberOfSlides = this.chunkArray(this.numberOfSlides, 4);
 
-    this.numberOfSlides = this.chunkArray(this.numberOfSlides, 5);
-
-    this.numberOfSlides.forEach((slide) => {
-      slide.forEach((product) => {
-        product.discount = this.getRandomDiscount();
-        // console.log("data from coursol split ", this.numberOfSlides);
+      this.numberOfSlides.forEach((slide) => {
+        slide.forEach((product) => {
+          product.discount = this.getRandomDiscount();
+        });
       });
-    });
+    }
   }
 
-
-   arrLength=0;
-   
-
-  chunkArray(array, size) {
-    this.arrLength = array.length;
-    const result = [];
-    for (let i = 0; i < this.arrLength; i += size) {
+  chunkArray(array: any[], size: number): any[][] {
+    const result: any[][] = [];
+    for (let i = 0; i < array.length; i += size) {
       result.push(array.slice(i, i + size));
     }
     return result;
   }
 
-  getRandomDiscount() {
-    return 5 + 25;
+  getRandomDiscount(): number {
+    return Math.floor(Math.random() * 21) + 5; // Random discount between 5 and 25
   }
 }
