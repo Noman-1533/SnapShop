@@ -381,7 +381,7 @@
 
   background-color: var(--button-color) !important;
   border-radius: 35px!important;
-};
+}
 
 .navbar{
   height: 80px !important;
@@ -391,3 +391,40 @@
 
 
 
+
+
+
+/* Search Suggestions Styling */
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #fff; 
+  border: 1px solid #ddd;
+  border-top: none;
+  z-index: 1000;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.suggestions li {
+  padding: 8px 12px;
+}
+
+.suggestions a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+}
+
+.suggestions li:hover {
+  background-color: #f0f0f0;
+}

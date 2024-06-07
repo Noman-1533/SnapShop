@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
 export class UserService {
   Users = new BehaviorSubject(null);
   LoggedUserId = -1;
-  LoggedUser ;
+  LoggedUser;
 
   setLoggedInUserId(userNameToGet: string) {
     this.Users.subscribe((Users) => {
