@@ -134,7 +134,11 @@
                           Shipping
                         </label>
                         <div class="col-sm-9">
-                          <span id="shipping">Free</span>
+                          <span id="shipping">
+                            <span *ngIf="shippingCharge && calculateSubtotal()">{{shippingCharge | currency}}</span>
+                            <span *ngIf="shippingCharge && !calculateSubtotal()">$0.00</span>
+                            <span *ngIf="!shippingCharge && calculateSubtotal()">Free</span>
+                          </span>
                         </div>
                       </div>
                       <div class="row mb-3">

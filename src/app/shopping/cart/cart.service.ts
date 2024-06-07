@@ -24,16 +24,41 @@ export class CartService {
     const value = localStorage.getItem(JSON.stringify(Key));
     return value !== null;
   }
-  getCartItemNumber(key: Key) {
-    this.getDataFromLocalStorage(key);
-    console.log(this.cart);
-    return this.getCartItems().length;
-  }
+  
+  // private getDataFromLocalStorage(key: Key) {
+  //   const value = localStorage.getItem(JSON.stringify(key));
+  //   this.cart = JSON.parse(value);
+  //   console.log('Data from localStorage');
+  // }
+
+
+
   private getDataFromLocalStorage(key: Key) {
     const value = localStorage.getItem(JSON.stringify(key));
-    this.cart = JSON.parse(value);
-    console.log('Data from localStorage');
+    if (value) {
+      this.cart = this.removeDuplicateProducts(JSON.parse(value));
+      console.log('Data from localStorage');
+    }
   }
+  
+  // Function to remove duplicate products
+  private removeDuplicateProducts(carts: Cart[]): Cart[] {
+    const uniqueProductIds = new Set<number>();
+  
+    return carts.map(cart => {
+      cart.products = cart.products.filter(product => {
+        if (uniqueProductIds.has(product.productId)) {
+          return false;
+        } else {
+          uniqueProductIds.add(product.productId);
+          return true;
+        }
+      });
+      return cart;
+    });
+  }
+  
+
 
   private getDataFromAPI(userId: number) {
     this.dataService.getSingleUserCart(userId).subscribe((res: Cart[]) => {
@@ -50,6 +75,7 @@ export class CartService {
                 product.price = productDetails.price;
                 product.name = productDetails.title;
                 product.saveForCheckout = false;
+                product.quantity=1;
               })
             )
           );
@@ -62,23 +88,25 @@ export class CartService {
         this.saveDataInLocalStorage(key);
         this.getDataFromLocalStorage(key);
         this.changeOnCart.next(this.cart);
+        // this.changeOnCart.asObservable();
       });
     });
   }
 
-  saveDataInCart(hasData: boolean, key: Key) {
-    if (hasData) {
+  saveDataInCart( key: Key) {
+    if (this.isDataInLocalStorage(key)) {
       this.getDataFromLocalStorage(key);
     } else {
       this.getDataFromAPI(key.id);
     }
+    //  return this.changeOnCart.asObservable();
     this.changeOnCart.next(this.cart);
   }
 
   saveDataInLocalStorage(key: Key) {
     if (key?.id) {
-      console.log('Save in Local');
-      console.log(key);
+      // console.log('Save in Local');
+      // console.log(key);
       localStorage.setItem(JSON.stringify(key), JSON.stringify(this.cart));
     }
   }
@@ -126,9 +154,9 @@ export class CartService {
     this.addToCart(newCart, key);
   }
 
-  getCartItems(): CartProduct[] {
+  getCartItems(cart:Cart[]): CartProduct[] {
     let cartProduct: CartProduct[] = [];
-    for (let item of this.cart) {
+    for (let item of cart) {
       for (let product of item.products) {
         cartProduct.push(product);
       }
@@ -137,7 +165,7 @@ export class CartService {
   }
 
   updateLocalCartItems(updatedCartProducts: CartProduct[], key: Key) {
-    if (!this.cart) return;
+    if (!this.cart) return new BehaviorSubject<Cart[]>([]);
     for (let cart of this.cart) {
       for (let i = 0; i < cart.products.length; i++) {
         let updatedProduct = updatedCartProducts.find(
@@ -149,7 +177,7 @@ export class CartService {
       }
     }
     this.saveDataInLocalStorage(key);
-    this.changeOnCart.next(this.cart);
+    return this.changeOnCart.asObservable();
   }
 
   deleteCartItem(productId: number, key: Key) {
@@ -160,6 +188,12 @@ export class CartService {
     }
     this.cart = this.cart.filter((cart) => cart.products.length > 0);
     this.saveDataInLocalStorage(key);
-    this.changeOnCart.next(this.cart);
+     this.changeOnCart.next(this.cart);
+  }
+  getCartItemNumber(key: Key) {
+    this.saveDataInCart(key);
+    this.getDataFromLocalStorage(key);
+    console.log(this.cart);
+    return this.changeOnCart.asObservable();
   }
 }
