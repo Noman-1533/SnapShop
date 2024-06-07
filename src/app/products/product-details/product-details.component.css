@@ -101,3 +101,13 @@ img {
   font-size: 25px;
   padding-left: 0;
 }
+.breadcrumb-link {
+  text-decoration: none;
+  color: black;
+}
+
+.breadcrumb-link:hover {
+  text-decoration: none;
+  color: black;
+}
+
