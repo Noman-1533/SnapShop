@@ -61,6 +61,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('loggedInUser', JSON.stringify(userData));
           this.authService.loggedIn.next(true);
           alert('Logged in successfully');
+          this.router.navigate(['/home']);
         },
         (error) => {
           alert('Invalid username or password');

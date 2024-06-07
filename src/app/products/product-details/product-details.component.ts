@@ -69,7 +69,7 @@ export class ProductDetailsComponent implements OnInit {
         }
       },
 
-      10000
+      100
     );
   }
   fetchProductDetails(productId: number): void {
