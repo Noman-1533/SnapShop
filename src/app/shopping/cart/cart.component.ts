@@ -21,7 +21,8 @@ export class CartComponent implements OnInit, OnDestroy {
   deleteCartId: number = null;
   hasData = false;
   isAuthenticate = true;
-  userId: number ;
+  userId: number;
+  shippingCharge: number = 24.99;
   cartChangesSubscription: Subscription;
   key: Key;
 
@@ -40,29 +41,37 @@ export class CartComponent implements OnInit, OnDestroy {
       }
       this.key = this.cartService.setKey('cart', this.userId);
       this.hasData = this.cartService.isDataInLocalStorage(this.key);
-      this.cartService.saveDataInCart(this.hasData, this.key);
+      this.cartService.saveDataInCart(this.key)
       this.cartChangesSubscription = this.cartService.changeOnCart.subscribe(
-        () => {
-          this.cartItems = this.cartService.getCartItems();
-        }
+        {
+          next: (res) => {
+            console.log(res);
+          
+          this.cartItems = this.cartService.getCartItems(res);
+        }}
       );
-      this.cartItems = this.cartService.getCartItems();
+      // this.cartItems = this.cartService.getCartItems();
       
     }
   }
 
   calculateSubtotal(): number {
-    let subtotal = 0;
+    let subTotal = 0;
+    // console.log('Form Cart',this.cartItems);
     this.cartItems.forEach((item) => {
       if (item.saveForCheckout) {
-        subtotal += item.price * item.quantity;
+        subTotal += (item.price * item.quantity);
       }
     });
-    return subtotal;
+    console.log(subTotal,this.shippingCharge)
+    subTotal >= 300 ? this.shippingCharge = 0 : this.shippingCharge=24.99;
+    console.log(subTotal,this.shippingCharge)
+    return subTotal;
   }
 
   calculateTotal(): number {
-    return this.calculateSubtotal();
+    let subTotal = this.calculateSubtotal();
+    return subTotal+( subTotal?this.shippingCharge:0);
   }
 
   onCheckDeleteCart(productId: number) {
@@ -86,7 +95,9 @@ export class CartComponent implements OnInit, OnDestroy {
       this.deleteCartId = null;
     }
   }
-  updateCart() {}
+  updateCart() {
+    
+  }
 
   onCheckout() {
     console.log(this.cartItems);

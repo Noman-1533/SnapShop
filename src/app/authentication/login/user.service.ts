@@ -6,6 +6,7 @@ import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
 })
 export class UserService {
   Users = new BehaviorSubject(null);
+  loginChanged = new BehaviorSubject<number>(-1);
   LoggedUserId = -1;
   LoggedUser ;
 
@@ -15,7 +16,8 @@ export class UserService {
         if (Users[i].username === userNameToGet) {
           this.LoggedUserId=Users[i].id;
           // console.log('user id :', Users[i].id);
-          this.LoggedUser=Users[i];
+          this.LoggedUser = Users[i];
+          this.loginChanged.next( this.LoggedUserId);
         }
       }
     });
