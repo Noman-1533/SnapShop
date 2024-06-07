@@ -314,18 +314,19 @@
 .buttonView {
   height: 47px;
   width: 200px;
-  background-color: #db4444;
+  background-color: var(--button-color);
   border: none;
   border-radius: 3px;
   color: white;
   font-size: 14px;
-  margin-top: 20px;
+  z-index: 50000;
+  /* margin-top: 20px; */
 }
 
 .buttonViewProduct .buttonView:hover {
   scale: 1.04;
   transition: 0.3s;
-  background-color: #ac3131;
+  background-color: var(--button-color-hover);
 }
 
 .tittle-bar-forTop-rated .buttonViewProduct .buttonView {
