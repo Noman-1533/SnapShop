@@ -1,10 +1,6 @@
-<div
-  id="carouselExampleControls"
-  class="carousel slide"
-  data-bs-ride="carousel"
->
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
-    <div class="div" *ngIf="numberOfSlides != undefined; else defineed">
+    <div *ngIf="numberOfSlides != undefined; else defineed">
       <div
         class="carousel-item"
         *ngFor="let slides of numberOfSlides; let i = index"
@@ -14,6 +10,8 @@
           <div class="card card-wrapper" *ngFor="let card of slides">
             <app-card [cardInfo]="card"></app-card>
           </div>
+
+
         </div>
       </div>
     </div>

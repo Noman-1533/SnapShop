@@ -17,10 +17,11 @@ export class ProfileComponent implements OnInit {
     private userService: UserService
   ) {}
   ngOnInit(): void {
-    this.userService.LoggedUser.subscribe((user) => {
-      this.loggedInUser = user;
-      console.log(this.loggedInUser);
-    });
+
+      debugger;
+    
+      this.loggedInUser = this.userService.getLoggedInUser();
+    
   }
 
   setActiveTab(tab: string): void {
