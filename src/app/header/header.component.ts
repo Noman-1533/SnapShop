@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     { name: 'login' },
   ];
   currentCartItem: number;
-  userId: number = 3;
+  userId: number ;
   key: Key;
   cartUpdateSubscription: Subscription;
 
@@ -57,14 +57,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.isLoggedIn = data;
       console.log("logged user ",this.isLoggedIn)
     });
-
-
-    this.getCartItemNumber();
-    this.cartUpdateSubscription = this.cartService.changeOnCart.subscribe(
-      () => {
-        this.currentCartItem = this.cartService.getCartItems().length;
-      }
-    );
+    this.userService.loginChanged.subscribe((res) => {
+      this.userId = res;
+      this.getCartItemNumber();
+    })
+    
   }
 
   onSearch(event: any): void {
@@ -84,7 +81,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   getCartItemNumber() {
     this.key = this.cartService.setKey('cart', this.userId);
-    this.currentCartItem = this.cartService.getCartItemNumber(this.key);
+    this.cartService.getCartItemNumber(this.key).subscribe({
+      next: (res) => {
+        this.currentCartItem = this.cartService.getCartItems(res).length;
+      }
+    });
   }
 
   onClick(id: number) {
