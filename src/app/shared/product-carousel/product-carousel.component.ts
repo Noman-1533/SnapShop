@@ -28,9 +28,14 @@ export class ProductCarouselComponent implements OnInit {
     });
   }
 
+
+   arrLength=0;
+   
+
   chunkArray(array, size) {
+    this.arrLength = array.length;
     const result = [];
-    for (let i = 0; i < array.length; i += size) {
+    for (let i = 0; i < this.arrLength; i += size) {
       result.push(array.slice(i, i + size));
     }
     return result;
