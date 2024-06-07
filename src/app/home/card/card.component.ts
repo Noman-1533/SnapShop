@@ -40,10 +40,7 @@ export class CardComponent implements OnInit {
   onClickCart() {
     if (this.userId!==null) {
       let key = this.cartService.setKey('cart', this.userId);
-      this.cartService.saveDataInCart(
-        this.cartService.isDataInLocalStorage(key),
-        key
-      );
+      this.cartService.saveDataInCart(key);
       this.cartService.onCreateCart(this.cardInfo, key);
     } else {
       this.router.navigate['/login'];
