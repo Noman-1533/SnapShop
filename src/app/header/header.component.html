@@ -71,16 +71,18 @@
       </button>
 
       <div class = "collapse navbar-collapse order-lg-1" id = "navMenu">
-          <ul class = "navbar-nav mx-auto text-center">
-              <li class = "nav-item px-2 py-2"  *ngFor="let nav of headerText; let i = index"
-              (click)="onClick(i)">
-                  <a class = "nav-link text-dark" *ngIf="nav.name!='login' || !isLoggedIn">{{ nav.name }}</a>
-              </li>
-              
-
-              
-
-          </ul>
+        <ul class="navbar-nav mx-auto text-center">
+          <li class="nav-item px-2 py-2" *ngFor="let nav of headerText; let i = index">
+            <a 
+              class="nav-link text-dark"
+              *ngIf="nav.name !== 'login' || !isLoggedIn"
+              [routerLink]="nav.name === 'Products' ? '/product-list' : '/' + nav.name.toLowerCase()"
+              routerLinkActive="active"
+            >
+              {{ nav.name }}
+            </a>
+          </li>
+      </ul>
       </div>
   </div>
 </nav>
