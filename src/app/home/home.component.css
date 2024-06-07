@@ -207,15 +207,7 @@
   align-items: center;
 }
 
-    width: 60%;
-    height: 370px;
-    margin-bottom: 90px;
-    margin-top: -25px;
-    /* position: relative; */
-    background-color: black;
-    border: 2px solid rgb(101, 97, 97);
-  }
-  
+
   .carousel-inner {
     height: 100%;
   }
