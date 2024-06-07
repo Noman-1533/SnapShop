@@ -428,3 +428,22 @@
 .suggestions li:hover {
   background-color: #f0f0f0;
 }
+/* header.component.css */
+/* header.component.css */
+/* header.component.css */
+.nav-link.active {
+  font-weight: bold;
+  /* color: #ff0000 !important; Ensure this color is applied */
+  text-decoration: underline;
+}
+
+/* You may need to increase specificity if there are competing styles */
+/* .navbar-nav .nav-item .nav-link.active {
+  color: #007bff !important;
+  font-weight: bold;
+  text-decoration: underline;
+} */
+
+/* header.component.css */
+
+
