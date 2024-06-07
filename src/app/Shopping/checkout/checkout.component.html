@@ -13,18 +13,23 @@
                 formControlName="firstName"
                 class="form-control"
               />
-              <span *ngIf="!checkoutForm.get('firstName').valid && checkoutForm.get('firstName').touched"
-                 class="help-block"
+              <span
+                *ngIf="
+                  !checkoutForm.get('firstName').valid &&
+                  checkoutForm.get('firstName').touched
+                "
+                class="help-block"
               >
-                <span *ngIf="checkoutForm.get('firstName').errors['required']" class="form-text">
+                <span
+                  *ngIf="checkoutForm.get('firstName').errors['required']"
+                  class="form-text"
+                >
                   This field is required!
                 </span>
               </span>
             </div>
             <div class="mb-3">
-              <label for="company-name" class="form-label"
-                >Company Name</label
-              >
+              <label for="company-name" class="form-label">Company Name</label>
               <input
                 type="text"
                 id="company-name"
@@ -155,7 +160,6 @@
                 name="paymentMethod"
                 id="bank"
                 value="bank"
-                
               />
               <label class="form-check-label" for="bank">Bank</label>
             </div>
@@ -188,7 +192,6 @@
                 class="form-control me-2"
                 id="couponCode"
                 placeholder="Coupon Code"
-                
               />
               <button
                 type="button"
@@ -200,7 +203,14 @@
             </div>
           </div>
           <div>
-            <button type="submit" class="btn btn-primary" (click)="onPlaceOrder()" [disabled]="checkoutItems.length===0">Place Order</button>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              (click)="onPlaceOrder()"
+              [disabled]="checkoutItems.length === 0"
+            >
+              Place Order
+            </button>
           </div>
         </div>
       </div>

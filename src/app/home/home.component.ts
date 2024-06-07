@@ -1,11 +1,11 @@
 import { AfterViewInit, Component, OnInit, inject } from '@angular/core';
 import { Carousel, initMDB } from 'mdb-ui-kit';
-import { DataService } from '../Shared/data.service';
+import { DataService } from '../shared/data.service';
 import { HomeService } from './home.service';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../Authentication/login/auth.service';
-import { UserService } from '../Authentication/login/user.service';
+import { AuthService } from '../authentication/login/auth.service';
+import { UserService } from '../authentication/login/user.service';
 
 @Component({
   selector: 'app-home',
@@ -23,16 +23,17 @@ export class HomeComponent implements AfterViewInit, OnInit {
 
   isLoading: boolean = true;
   topProducts;
-  sliderImages:string[]=[];
+  sliderImages: string[] = [];
 
   combinedArraycategory: { category: string; icon: string }[] = [];
   numberOfSlidesRatting: any[];
   numberOfSlidesss: any[];
 
   ngAfterViewInit() {
-    initMDB();
-    new Carousel(document.querySelector('.carousel'));
-  }
+  //   initMDB();
+  //   new Carousel(document.querySelector('.carousel'));
+  //
+   }
 
   private dataService = inject(DataService);
 
@@ -40,7 +41,7 @@ export class HomeComponent implements AfterViewInit, OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
-    private userService:UserService
+    private userService: UserService
   ) {
     const data = this.route.snapshot.data['homeData'];
     console.log('data', data);
@@ -60,14 +61,10 @@ export class HomeComponent implements AfterViewInit, OnInit {
         this.combinedArraycategory = this.category.map((cat, index) => {
           return { category: cat, icon: this.icon[index] };
         });
-
-       
       },
       (error) => {
         console.error(error);
       }
-
-      
     );
 
     this.dataService.getLimitedProducts(20).subscribe(
@@ -80,14 +77,10 @@ export class HomeComponent implements AfterViewInit, OnInit {
         console.error(error);
       }
     );
-    
+
     setTimeout(() => {
       this.isLoading = false;
     }, 1000); // Adjust the timeout as needed
-
-
-   
-
   }
   viewAllProducts() {
     this.router.navigate(['/product-list']);
@@ -97,23 +90,5 @@ export class HomeComponent implements AfterViewInit, OnInit {
       queryParams: { Category: category },
     });
   }
-  
 
-
-  
-
-  getLogId()
-  {
-   this.userService.LoggedUserId.subscribe(
-    data =>{
-      console.log("id",data);
-    }
-   );
-
-   this.userService.LoggedUser.subscribe(
-    data =>{
-      console.log("user:",data);
-    }
-   );
-  }
 }

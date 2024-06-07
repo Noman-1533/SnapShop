@@ -1,4 +1,4 @@
-export interface PaymentMethod{
-    logo: string,
-    name:string
+export interface PaymentMethod {
+  logo: string;
+  name: string;
 }

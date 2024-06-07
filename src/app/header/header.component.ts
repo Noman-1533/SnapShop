@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import { CartService } from '../Shopping/cart/cart.service';
-import { Key } from '../Shopping/cart/cart.model';
+import { CartService } from '../shopping/cart/cart.service';
+import { Key } from '../shopping/cart/cart.model';
 import { Subscription } from 'rxjs';
-import { AuthService } from '../Authentication/login/auth.service';
-import { UserService } from '../Authentication/login/user.service';
+import { AuthService } from '../authentication/login/auth.service';
+import { UserService } from '../authentication/login/user.service';
 import { HeaderService } from './header.service';
 
 @Component({
@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     { name: 'Home' },
     { name: 'Contact' },
     { name: 'About' },
-    { name: 'Our Products' },
+    { name: 'Products' },
     { name: 'login' },
   ];
   currentCartItem: number;
@@ -69,6 +69,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
 
     
+    // this.authService.loggedIn.next(false);
   }
 
   onSearch(event: any): void {
@@ -94,7 +95,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   onClick(id: number) {
     let path = this.headerText[id].name;
 
-    if (path === 'Our Products') {
+    if (path === 'Products') {
       path = 'product-list';
     }
 
@@ -108,8 +109,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   logout() {
     this.authService.loggedIn.next(false);
     this.userService.LoggedUser.next(null);
-    this.userService.LoggedUserId.next(-1);
-    this.router.navigate(['/home']);
+    this.userService.LoggedUserId=-1;
+    this.router.navigate['/home'];
   }
 
   ngOnDestroy(): void {

@@ -1,8 +1,9 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Product } from '../../Shared/product.model';
-import { Cart } from '../../Shopping/cart/cart.model';
-import { CartService } from '../../Shopping/cart/cart.service';
+import { Product } from '../../shared/product.model';
+import { Cart } from '../../shopping/cart/cart.model';
+import { CartService } from '../../shopping/cart/cart.service';
+import { UserService } from '../../authentication/login/user.service';
 
 @Component({
   selector: 'app-card',
@@ -10,17 +11,21 @@ import { CartService } from '../../Shopping/cart/cart.service';
   styleUrl: './card.component.css',
 })
 export class CardComponent implements OnInit {
-  userId: number = 3;
+  userId: number ;
   @Input() cardInfo: Product;
   ratingArray: string[] = [];
 
   constructor(
     private router: Router,
     private cartService: CartService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private userData:UserService
   ) {}
 
   ngOnInit() {
+    if (this.userData.LoggedUserId !== -1) {
+      this.userId = this.userData.LoggedUserId;
+    }
     if (this.cardInfo && this.cardInfo.rating && this.cardInfo.rating.rate) {
       this.setRatingArray(this.cardInfo.rating.rate);
     }
@@ -33,9 +38,16 @@ export class CardComponent implements OnInit {
     console.log(id);
   }
   onClickCart() {
-    let key=this.cartService.setKey('cart', this.userId);
-    this.cartService.saveDataInCart(this.cartService.isDataInLocalStorage(key), key);
-    this.cartService.onCreateCart(this.cardInfo,key);
+    if (this.userId!==null) {
+      let key = this.cartService.setKey('cart', this.userId);
+      this.cartService.saveDataInCart(
+        this.cartService.isDataInLocalStorage(key),
+        key
+      );
+      this.cartService.onCreateCart(this.cardInfo, key);
+    } else {
+      this.router.navigate['/login'];
+    }
   }
 
   setRatingArray(rating: number) {

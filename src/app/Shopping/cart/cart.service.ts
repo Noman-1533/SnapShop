@@ -1,22 +1,22 @@
 //check start
 import { Injectable } from '@angular/core';
-import { DataService } from '../../Shared/data.service';
+import { DataService } from '../../shared/data.service';
 import { Cart, Key, CartProduct } from './cart.model';
-import { Subject, forkJoin, tap } from 'rxjs';
-import { Product } from '../../Shared/product.model';
+import { BehaviorSubject, Subject, forkJoin, tap } from 'rxjs';
+import { Product } from '../../shared/product.model';
 import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  changeOnCart = new Subject<Cart[]>();
+  changeOnCart = new BehaviorSubject<Cart[]>([]);
   cart: Cart[] = [];
 
   constructor(private dataService: DataService, private router: Router) {}
 
   setKey(name: string, id: number) {
-    let key:Key = { name, id };
+    let key: Key = { name, id };
     return key;
   }
 
@@ -163,117 +163,3 @@ export class CartService {
     this.changeOnCart.next(this.cart);
   }
 }
-
-//check end
-
-// import { Injectable } from "@angular/core";
-// import { DataService } from "../../Shared/data.service";
-// import { Cart, key, CartProduct } from "./cart.model";
-// import { forkJoin, Observable, of } from "rxjs";
-// import { map, switchMap, tap } from "rxjs/operators";
-// import { Product } from "../../Shared/product.model";
-
-// @Injectable({
-//     providedIn: 'root'
-// })
-// export class CartService {
-//     cart: Cart[] = [];
-//     key: key;
-
-//     constructor(private dataService: DataService) { }
-
-//     setkey(name: string, id: number) {
-//         key = { name, id };
-//     }
-
-//     isDataInLocalStorage(): boolean {
-//         const value = localStorage.getItem(JSON.stringify(key));
-//         return value !== null;
-//     }
-
-//     saveDataInCart(hasData: boolean, userId: number): void {
-//         if (hasData) {
-//             this.loadCartFromLocalStorage();
-//         } else {
-//             this.loadCartFromAPI(userId);
-//         }
-//     }
-
-//     private loadCartFromLocalStorage(): void {
-//         const value = localStorage.getItem(JSON.stringify(key));
-//         if (value) {
-//             this.cart = JSON.parse(value);
-//             console.log('Data from localStorage', this.cart);
-//         }
-//     }
-
-//     private loadCartFromAPI(userId: number): void {
-//         this.dataService.getSingleUserCart(userId).pipe(
-//             tap((res: Cart[]) => {
-//                 this.cart = res;
-//                 console.log('Data from API', this.cart);
-//             }),
-//             switchMap((carts: Cart[]) => {
-//                 const productRequests: Observable<Product>[] = [];
-//                 carts.forEach(cart => {
-//                     cart.products.forEach(product => {
-//                         productRequests.push(this.dataService.getSingleProduct(product.productId));
-//                     });
-//                 });
-//                 return productRequests.length > 0 ? forkJoin(productRequests) : of([]);
-//             })
-//         ).subscribe((products: Product[]) => {
-//             this.updateCartProducts(products);
-//             this.saveDataInLocalStorage();
-//         });
-//     }
-
-//     private updateCartProducts(products: Product[]): void {
-//         const productMap = new Map<number, Product>();
-//         products.forEach(product => {
-//             productMap.set(product.id, product);
-//         });
-
-//         this.cart.forEach(cart => {
-//             cart.products.forEach(product => {
-//                 const updatedProduct = productMap.get(product.productId);
-//                 if (updatedProduct) {
-//                     product.image = updatedProduct.image;
-//                     product.price = updatedProduct.price;
-//                     product.name = updatedProduct.title;
-//                 }
-//             });
-//         });
-
-//         console.log('Updated cart with product details', this.cart);
-//     }
-
-//     saveDataInLocalStorage(): void {
-//         if (key?.id) {
-//             console.log('Save in Local Storage');
-//             localStorage.setItem(JSON.stringify(key), JSON.stringify(this.cart));
-//         }
-//     }
-
-//     addToCart(newCart: Cart): void {
-//         const foundItem = this.cart.some(item =>
-//             item.products.some(product => product.productId === newCart.products[0].productId)
-//         );
-
-//         if (!foundItem) {
-//             this.cart.push(newCart);
-//         } else {
-//             alert('Already in Cart');
-//         }
-//     }
-
-//     getCartItems(): CartProduct[] {
-//         const cartProducts: CartProduct[] = [];
-//         this.cart.forEach(cart => {
-//             cart.products.forEach(product => {
-//                 cartProducts.push(product);
-//             });
-//         });
-//         return cartProducts;
-//     }
-// }
