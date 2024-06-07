@@ -18,6 +18,7 @@ export class ProductDetailsComponent implements OnInit {
   RelatedProducts;
   ratingArray: string[] = [];
   sizes: string[] = ['XS', 'S', 'M', 'L', 'XL'];
+  breadcrumbPath: string;
 
   products: Product[];
   selectedSize: string = 'M';
@@ -53,6 +54,7 @@ export class ProductDetailsComponent implements OnInit {
       if (productId && this.inPage) {
         this.fetchProductDetails(productId);
       }
+      this.updateBreadcrumbPath();
     });
 
     setTimeout(
@@ -70,6 +72,11 @@ export class ProductDetailsComponent implements OnInit {
       100
     );
   }
+
+  updateBreadcrumbPath(): void {
+    this.breadcrumbPath = this.router.url;  // Update the breadcrumb path based on the current URL
+  }
+
   fetchProductDetails(productId: number): void {
     console.log('fetch called');
     this.dataService.getSingleProduct(productId).subscribe((product) => {
