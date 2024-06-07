@@ -18,7 +18,6 @@ export class ProfileComponent implements OnInit {
   ) {}
   ngOnInit(): void {
 
-      debugger;
     
       this.loggedInUser = this.userService.getLoggedInUser();
     
