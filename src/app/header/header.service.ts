@@ -22,6 +22,6 @@ export class HeaderService {
     if (!query) {
       return [];
     }
-    return items.filter(item => item.title.toLowerCase().startsWith(query.toLowerCase()));
+    return items.filter(item => item.title.toLowerCase().includes(query.toLowerCase()));
   }
 }

@@ -11,7 +11,7 @@ import { UserService } from '../../authentication/login/user.service';
   styleUrl: './card.component.css',
 })
 export class CardComponent implements OnInit {
-  userId: number ;
+  userId: number = -1;
   @Input() cardInfo: Product;
   ratingArray: string[] = [];
 
@@ -19,13 +19,13 @@ export class CardComponent implements OnInit {
     private router: Router,
     private cartService: CartService,
     private cdr: ChangeDetectorRef,
-    private userData:UserService
+    private userService: UserService
   ) {}
 
   ngOnInit() {
-    if (this.userData.LoggedUserId !== -1) {
-      this.userId = this.userData.LoggedUserId;
-    }
+    this.userService.loginChanged.subscribe((res) => {
+      this.userId = res;
+    });
     if (this.cardInfo && this.cardInfo.rating && this.cardInfo.rating.rate) {
       this.setRatingArray(this.cardInfo.rating.rate);
     }
@@ -38,12 +38,12 @@ export class CardComponent implements OnInit {
     console.log(id);
   }
   onClickCart() {
-    if (this.userId!==null) {
+    if (this.userId !== -1) {
       let key = this.cartService.setKey('cart', this.userId);
       this.cartService.saveDataInCart(key);
       this.cartService.onCreateCart(this.cardInfo, key);
     } else {
-      this.router.navigate['/login'];
+      this.router.navigate(['/login']);
     }
   }
 

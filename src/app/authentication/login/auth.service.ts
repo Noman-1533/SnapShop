@@ -20,7 +20,8 @@ export class AuthService implements OnInit {
     
     if (storedUser) {
         const parsedUser = JSON.parse(storedUser);
-        this.userService.LoggedUser=parsedUser;
+      this.userService.LoggedUser = parsedUser;
+      this.userService.loginChanged.next(parsedUser.id);
         this.loggedIn.next(true);
       
     } else {
