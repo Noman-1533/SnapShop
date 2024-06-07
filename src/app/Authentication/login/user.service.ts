@@ -8,7 +8,7 @@ export class UserService {
   Users = new BehaviorSubject(null);
   loginChanged = new BehaviorSubject<number>(-1);
   LoggedUserId = -1;
-  LoggedUser ;
+  LoggedUser;
 
   setLoggedInUserId(userNameToGet: string) {
     this.Users.subscribe((Users) => {

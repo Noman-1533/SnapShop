@@ -1,25 +1,24 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { CartService } from '../shopping/cart/cart.service';
 import { Key } from '../shopping/cart/cart.model';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../authentication/login/auth.service';
 import { UserService } from '../authentication/login/user.service';
+import { HeaderService } from './header.service';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  constructor(
-    private router: Router,
-    private authService: AuthService,
-    private cartService: CartService,
-    private userService: UserService
-  ) {}
   icon = faHeart;
   isLoggedIn = false;
+  items: any[] = [];
+  filteredItems: any[] = [];
+  searchText: string = '';
 
   headerText = [
     { name: 'Home' },
@@ -33,7 +32,29 @@ export class HeaderComponent implements OnInit, OnDestroy {
   key: Key;
   cartUpdateSubscription: Subscription;
 
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private cartService: CartService,
+    private userService: UserService,
+    private headerService: HeaderService
+  ) {
+    // Subscribe to router events to clear the search text and filtered items on navigation
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.clearSearch();
+      }
+    });
+  }
+
   ngOnInit(): void {
+
+    this.headerService.getItems().subscribe((data: any[]) => {
+      this.items = data;
+    });
+
+    
+
     this.authService.loggedIn.subscribe((data) => {
       this.isLoggedIn = data;
     });
@@ -47,8 +68,28 @@ export class HeaderComponent implements OnInit, OnDestroy {
     //   }
     // );
 
+
+
+
+    
     // this.authService.loggedIn.next(false);
   }
+
+  onSearch(event: any): void {
+    this.searchText = event.target.value;
+
+    if (this.searchText.trim() === '') {
+      this.filteredItems = []; // Reset to no items when search is cleared
+    } else {
+      this.filteredItems = this.headerService.searchItems(this.searchText, this.items);
+    }
+  }
+
+  clearSearch(): void {
+    this.searchText = '';
+    this.filteredItems = []; // Clear filtered items
+  }
+
   getCartItemNumber() {
     this.key = this.cartService.setKey('cart', this.userId);
     this.cartService.getCartItemNumber(this.key).subscribe({
@@ -67,6 +108,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     this.router.navigate(['/' + path.toLocaleLowerCase()]);
   }
+
   homeClick() {
     this.router.navigate(['/home']);
   }
@@ -79,6 +121,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.cartUpdateSubscription.unsubscribe();
+    if (this.cartUpdateSubscription) {
+      this.cartUpdateSubscription.unsubscribe();
+    }
   }
 }
