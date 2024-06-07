@@ -112,3 +112,8 @@ export class ProductDetailsComponent implements OnInit {
     this.cartService.onCreateCart(this.selectedProductDetails, key);
   }
 }
+
+
+
+
+
