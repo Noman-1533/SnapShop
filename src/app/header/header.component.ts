@@ -51,13 +51,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     this.headerService.getItems().subscribe((data: any[]) => {
       this.items = data;
+      
     });
 
     
 
     this.authService.loggedIn.subscribe((data) => {
       this.isLoggedIn = data;
+      console.log("logged user ",this.isLoggedIn)
     });
+
+
     this.getCartItemNumber();
     this.cartUpdateSubscription = this.cartService.changeOnCart.subscribe(
       () => {
@@ -107,8 +111,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   logout() {
+
+    localStorage.removeItem('loggedInUser');
     this.authService.loggedIn.next(false);
-    this.userService.LoggedUser.next(null);
+    this.userService.LoggedUser=null;
     this.userService.LoggedUserId=-1;
     this.router.navigate['/home'];
   }
