@@ -6,7 +6,7 @@
   display: flex !important;
   margin: 50px;
   flex-wrap: wrap !important;
-  background-color: red !important;
+  /* background-color: red !important; */
 }
 
 /* carousel style for buttons  */

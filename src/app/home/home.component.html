@@ -1,3 +1,50 @@
+<div class="topSectioSlider" *ngIf="!isLoading">
+  <header
+    id="header"
+    class="vh-100 carousel slide"
+    data-bs-ride="carousel"
+    style="padding-top: 104px"
+  >
+    <div class="container h-100 d-flex align-items-center carousel-inner">
+      <div class="text-center carousel-item active">
+        <div>
+          <div style="display: flex; flex-direction: column; justify-content: space-around;align-items: center;">
+            <img src="../../assets/imagesHome/bagImage.png" style="width: 120px;">
+            <h2 class="text-capitalize text-white">best price & offer</h2>
+            <h1 class="py-2 fw-bold text-white">new season</h1>
+            <a href="#" class="btn mt-3 text-uppercase">buy now</a>
+          </div>
+        </div>
+      </div>
+      <div class="text-center carousel-item">
+       <div style="display: flex; flex-direction: column; justify-content: space-around;align-items: center;">
+        <img src="../../assets/imagesHome/pcImage.png" style="width: 140px;">
+          <h2 class="text-capitalize text-white">best price & offer</h2>
+          <h1 class="py-2 fw-bold text-white">new season</h1>
+          <a href="#" class="btn mt-3 text-uppercase">buy now</a>
+        </div>
+      </div>
+    </div>
+
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#header"
+      data-bs-slide="prev"
+    >
+      <i class="ri-arrow-left-s-line" style="font-size: 50px"></i>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#header"
+      data-bs-slide="next"
+    >
+      <i class="ri-arrow-right-s-line" style="font-size: 50px"></i>
+    </button>
+  </header>
+</div>
+
 <div class="main">
   <div *ngIf="isLoading">
     <app-loading-spinner></app-loading-spinner>
@@ -5,7 +52,7 @@
   <div *ngIf="!isLoading">
     <!-- <button class="btn btn-primary" (click)="getLogId()">getId</button> -->
 
-    <div class="FirstSectionTop">
+    <!-- <div class="FirstSectionTop">
       <div class="rightListBar">
         <ul class="listofContent">
           <li *ngFor="let item of combinedArraycategory">
@@ -74,7 +121,13 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
-    </div>
+    </div> -->
+
+    <!-- slide card -->
+
+    <!-- slide card -->
+
+    <!-- dsjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj -->
 
     <div class="FlashSaleSection">
       <div class="slider">
@@ -148,6 +201,11 @@
         </div>
       </div>
     </div>
+
+    <!-- 
+
+            enhence exp
+         -->
 
     <div class="Enhance-Your-Product-Section">
       <div class="Left-text-section">
@@ -302,6 +360,8 @@
     </div>
 
     <!-- new Arival end  -->
+
+    <!-- dsjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj -->
 
     <div class="container">
       <div class="first container1">

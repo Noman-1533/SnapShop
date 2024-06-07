@@ -30,9 +30,10 @@ export class HomeComponent implements AfterViewInit, OnInit {
   numberOfSlidesss: any[];
 
   ngAfterViewInit() {
-    initMDB();
-    new Carousel(document.querySelector('.carousel'));
-  }
+  //   initMDB();
+  //   new Carousel(document.querySelector('.carousel'));
+  //
+   }
 
   private dataService = inject(DataService);
 
@@ -90,13 +91,4 @@ export class HomeComponent implements AfterViewInit, OnInit {
     });
   }
 
-  getLogId() {
-    this.userService.LoggedUserId.subscribe((data) => {
-      console.log('id', data);
-    });
-
-    this.userService.LoggedUser.subscribe((data) => {
-      console.log('user:', data);
-    });
-  }
 }
