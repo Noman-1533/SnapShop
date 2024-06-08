@@ -6,9 +6,12 @@ import { CartProduct } from '../cart/cart.model';
 })
 export class CheckoutService {
   cartToCheckout: CartProduct[] = [];
-
-  setCheckoutCart(cart: CartProduct[]) {
+  totalAmount: number = 0;
+  discount: number = 0;
+  setCheckoutCart(cart: CartProduct[],Amount:number,discount:number) {
     this.cartToCheckout = cart;
+    this.totalAmount = Amount
+    this.discount = discount;
   }
   getCheckout() {
     return this.cartToCheckout;

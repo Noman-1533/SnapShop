@@ -135,7 +135,11 @@
                 </tr>
                 <tr>
                     <td colspan="2">Subtotal</td>
-                    <td id="subtotal">${{ totalAmount }}</td>
+                    <td id="subtotal">${{ calculateSubTotal() }}</td>
+                </tr>
+                <tr *ngIf="discount">
+                  <td colspan="2">Discount</td>
+                  <td>-{{discount}}</td>
                 </tr>
                 <tr>
                     <td colspan="2">Shipping</td>
@@ -208,7 +212,7 @@
               type="submit"
               class="btn btn-primary"
               (click)="onPlaceOrder()"
-              [disabled]="checkoutItems.length === 0"
+              [disabled]="checkoutItems.length === 0||checkoutForm.invalid"
             >
               Place Order
             </button>
