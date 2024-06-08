@@ -56,3 +56,27 @@ input.ng-invalid.ng-touched {
   scale: 1.04 !important;
   transition: 0.4s !important;
 }
+
+/* Style for table*/
+
+.fixed-height-table {
+  display: block; /* Enables overflow to work on tbody */
+  max-height: 400px; /* Set the fixed height you desire */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.fixed-height-table thead,
+.fixed-height-table tbody {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.fixed-height-table th,
+.fixed-height-table td {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  height: 50px; /* Set the fixed height for table rows */
+  line-height: 50px; /* Center align text vertically */
+}
