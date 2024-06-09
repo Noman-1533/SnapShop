@@ -1,38 +1,45 @@
-<div class="Login-container">
-  <div class="image-section">
-    <img src="assets/shopping-image.png" alt="Shopping" />
-  </div>
 
-  <div class="form-section">
-    <div class="form-box">
-      <h2>Log in to SnapShop</h2>
-      <p>Enter your details below</p>
+    <div class="fullLoginPage">
+      <div class="imageSectionloginPage">
+        <img src="../../../assets/shopping-image.png">
+      </div>
 
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          formControlName="username"
-          required
-        />
-        <input
-          type="password"
-          password="password"
-          placeholder="Password"
-          formControlName="password"
-          required
-        />
+      <div class="LoginForm">
+       
+          <div class="form-class">
+            <h2>Log in to SnapShop</h2>
+            <p>Enter your details below</p>
 
-        <div class="button-group">
-          <button class="btn" type="submit" [disabled]="!loginForm.valid">
-            Log In
-          </button>
-          <div class="forgot">
-            <a routerLink="/sign-up">Dont have account ?sign Up</a>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+              <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                formControlName="username"
+                required
+              />
+              <span class="text-danger">Username is Required*</span>
+              <input
+                type="password"
+                password="password"
+                placeholder="Password"
+                formControlName="password"
+                required
+              />
+              <span class="text-danger">Password is Required*</span>
+
+
+              <div class="button-group">
+                <button class="btn" type="submit" [disabled]="!loginForm.valid">
+                  Log In
+                </button>
+                <div class="forgot">
+                  <a routerLink="/sign-up">Don't have account?<span class="signUp"> sign Up</span></a>
+                </div>
+              </div>
+            </form>
           </div>
-        </div>
-      </form>
+        
+      </div>
     </div>
-  </div>
-</div>
+ 
