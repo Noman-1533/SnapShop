@@ -1,22 +1,16 @@
-/* @import "~bootstrap-icons/font/bootstrap-icons.css" */
-
 .nav {
   height: 120px;
   width: 100%;
   position: fixed;
   top: 0px;
   z-index: 1005;
-  /* background-color: red; */
-  /* position: fixed; */
 }
 
-
-.navbar{
+.navbar {
   top: 35px;
   box-shadow: 0px 0px 0px 1px rgba(99, 97, 97, 0.05),
-  inset 0px 0px 0px 1px rgb(222, 227, 235);
+    inset 0px 0px 0px 1px rgb(222, 227, 235);
 }
-
 
 .topNav {
   height: 35px;
@@ -133,12 +127,6 @@
 
 .ri-user-3-line {
   font-size: 20px;
-  /* border: 1px solid black; */
-  /* padding: 3px 7px; */
-  /* border-radius: 50px; */
-  /* background-color: #DB4444; */
-  /* color: rgb(233, 220, 220); */
-  /* box-shadow: 1px 1px 10px rgb(99, 96, 96); */
 }
 
 .ri-menu-3-fill {
@@ -152,75 +140,18 @@
 }
 /* Default color for icons */
 .icon-header a {
-  color: black; /* Use your desired color */
+  color: black;
   text-decoration: none;
 }
 
 /* Color for active links */
 .active-link {
-  color: #007bff; /* Change this to your desired active color */
+  color: #007bff;
 }
 
-/* Optional: Add transition for smooth color change */
 .icon-header a {
   transition: color 0.3s ease;
 }
-/* .navLink li a {
-  cursor: pointer; 
-} */
-
-/* okdjfdkfvd */
-
-/* .search {
-  margin: 20px;
-}
-
-.search1 > div {
-  display: inline-block;
-  position: relative;
-}
-
-.search1 > div:after {
-  content: "";
-  background: rgb(24, 23, 23);
-  width: 4px;
-  height: 10px;
-  position: absolute;
-  top: 23px;
-  right: -2px;
-  transform: rotate(135deg);
-}
-
-.search1 > div > input {
-  margin-top: 7px;
-  color: rgb(17, 16, 16);
-  font-size: 16px;
-  background: transparent;
-  width: 15px;
-  height: 20px;
-  padding: 10px;
-  border: solid 1px rgb(27, 26, 26);
-  outline: none;
-  border-radius: 50px;
-  transition: width 0.5s;
-}
-
-.search1 > div > input::placeholder {
-  color: #424040;
-  opacity: 0;
-  transition: opacity 150ms ease-out;
-  font-size: 10px;
-  padding: 5px;
-}
-
-.search1 > div > input:focus::placeholder {
-  opacity: 1;
-}
-
-.search1 > div > input:focus,
-.search1 > div > input:not(:placeholder-shown) {
-  width: 250px;
-} */
 
 /* search  */
 
@@ -231,7 +162,7 @@
 .searchgroup input {
   border: none;
   background-color: #f5f5f5;
-  width: 14vw;
+  width: 20vw;
   height: 40px;
 }
 
@@ -267,7 +198,6 @@
     display: none;
   }
 
-  
   .dropdown {
     display: block;
   }
@@ -297,16 +227,13 @@
   }
 }
 
-
 .nav-link:hover,
-.fw-lighter:hover{
-  color: var(--button-color)!important;
+.fw-lighter:hover {
+  color: var(--button-color) !important;
   cursor: pointer;
   scale: 1.03;
   transition: 0.3s;
 }
-
-
 
 .logout-parent {
   display: flex;
@@ -336,30 +263,19 @@
   position: absolute;
 }
 
-/* bootstrap */
-
-
-/* .navbar-toggler-icon{
-  color: black;
-  border: 2px solid red;
-} */
-
-/* #header{
-  background: url("../../assets/images/banner-img-1.jpg") top/cover no-repeat;
-} */
-.carousel-inner h1{
+.carousel-inner h1 {
   font-size: 60px;
   font-family: var(--lg-font);
 }
-.carousel-item .btn{
-  border-color: #fff!important;
+.carousel-item .btn {
+  border-color: #fff !important;
 }
-.carousel-item .btn:hover{
+.carousel-item .btn:hover {
   border-color: pink !important;
 }
 
 /* title */
-.title h2::before{
+.title h2::before {
   position: absolute;
   content: "";
   width: 4px;
@@ -368,31 +284,23 @@
   left: -20px;
   top: 50%;
   -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-          transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
-
-.btn{
+.btn {
   box-shadow: none !important;
 }
 
 .bg-primary {
-
   background-color: var(--button-color) !important;
-  border-radius: 35px!important;
+  border-radius: 35px !important;
 }
 
-.navbar{
+.navbar {
   /* height: 80px !important; */
   font-family: "Trebuchet MS", sans-serif !important;
 }
-
-
-
-
-
-
 
 /* Search Suggestions Styling */
 .search-container {
@@ -405,14 +313,17 @@
   position: absolute;
   top: 100%;
   left: 0;
+  right: 20%;
   width: 100%;
-  background-color: #fff; 
+  background-color: #fff;
   border: 1px solid #ddd;
   border-top: none;
   z-index: 1000;
   list-style: none;
   margin: 0;
   padding: 0;
+  overflow: scroll;
+  height: 30vh;
 }
 
 .suggestions li {
@@ -445,8 +356,6 @@
 } */
 
 /* header.component.css */
-
-
 
 .search-container {
   position: relative;

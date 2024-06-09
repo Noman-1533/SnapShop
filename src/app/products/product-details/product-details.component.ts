@@ -17,14 +17,13 @@ export class ProductDetailsComponent implements OnInit {
   selectedProductDetails: Product;
   RelatedProducts;
   ratingArray: string[] = [];
-  rating: number = 3.9;
-  stars: boolean[] = Array(5).fill(false);
   sizes: string[] = ['XS', 'S', 'M', 'L', 'XL'];
+  breadcrumbPath: string;
 
   products: Product[];
   selectedSize: string = 'M';
   amount: number = 0;
-  userId: number;
+  userId: number = -1;
 
   deliveryOptions: { name: string; iconClass: string }[] = [
     { name: 'Free Delivery', iconClass: 'bi bi-truck' },
@@ -34,14 +33,14 @@ export class ProductDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private cartService: CartService,
-    private useData: UserService,
-    private router:Router
+    private userService: UserService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    if (this.useData.LoggedUserId !== -1) {
-      this.userId = this.useData.LoggedUserId;
-    }
+    this.userService.loginChanged.subscribe((res) => {
+      this.userId = res;
+    });
     this.selectedProductDetails = this.route.snapshot.data['product'];
     const resolvedData = this.route.snapshot.data['productData'];
     this.selectedProductDetails = resolvedData.product;
@@ -55,6 +54,7 @@ export class ProductDetailsComponent implements OnInit {
       if (productId && this.inPage) {
         this.fetchProductDetails(productId);
       }
+      this.updateBreadcrumbPath();
     });
 
     setTimeout(
@@ -72,6 +72,11 @@ export class ProductDetailsComponent implements OnInit {
       100
     );
   }
+
+  updateBreadcrumbPath(): void {
+    this.breadcrumbPath = this.router.url;  // Update the breadcrumb path based on the current URL
+  }
+
   fetchProductDetails(productId: number): void {
     console.log('fetch called');
     this.dataService.getSingleProduct(productId).subscribe((product) => {
@@ -112,18 +117,18 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   onClickCart() {
-    if (this.userId !== null) {
+    if (this.userId !== -1) {
       let key = this.cartService.setKey('cart', this.userId);
       this.cartService.saveDataInCart(key);
       this.cartService.onCreateCart(this.selectedProductDetails, key);
+    } else {
+      this.router.navigate(['/login']);
     }
-    else {
-      this.router.navigate['/login'];
+  }
+  onBuyItem() {
+    if (this.userId !== -1) {
+    } else {
+      this.router.navigate(['/login']);
     }
   }
 }
-
-
-
-
-

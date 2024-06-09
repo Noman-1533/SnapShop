@@ -61,17 +61,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.userId = res;
       this.getCartItemNumber();
     })
-    // this.cartUpdateSubscription = this.cartService.changeOnCart.subscribe(
-    //   () => {
-    //     this.currentCartItem = this.cartService.getCartItems().length;
-    //   }
-    // );
-
-
-
-
     
-    // this.authService.loggedIn.next(false);
   }
 
   onSearch(event: any): void {
