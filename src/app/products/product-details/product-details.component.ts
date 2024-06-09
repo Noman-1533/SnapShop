@@ -15,7 +15,7 @@ export class ProductDetailsComponent implements OnInit {
   starLoad = false;
   inPage = false;
   selectedProductDetails: Product;
-  RelatedProducts;
+  RelatedProducts:Product[]=[];
   ratingArray: string[] = [];
   sizes: string[] = ['XS', 'S', 'M', 'L', 'XL'];
   breadcrumbPath: string;
@@ -49,11 +49,14 @@ export class ProductDetailsComponent implements OnInit {
     this.inPage = false;
 
     this.route.params.subscribe((params) => {
-      const productId = +params['id'];
+      console.log(params);
 
-      if (productId && this.inPage) {
-        this.fetchProductDetails(productId);
-      }
+      this.fetchProductDetails(params['id'])
+      // const productId = +params['id'];
+
+      // if (productId && this.inPage) {
+      //   this.fetchProductDetails(productId);
+      // }
       this.updateBreadcrumbPath();
     });
 
@@ -84,8 +87,9 @@ export class ProductDetailsComponent implements OnInit {
       this.dataService
         .getProductsOfCategory(product.category)
         .subscribe((categoryProducts) => {
-          this.RelatedProducts = categoryProducts;
-          console.log(this.RelatedProducts);
+          console.log('hab ',categoryProducts);
+          // this.RelatedProducts = categoryProducts;
+          console.log('form details ',this.RelatedProducts);
         });
     });
   }

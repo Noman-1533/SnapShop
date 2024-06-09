@@ -5,7 +5,7 @@ import { Cart, Key, CartProduct } from './cart.model';
 import { CheckoutService } from '../checkout/checkout.service';
 
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { UserService } from '../../authentication/login/user.service';
 
 @Component({
@@ -25,6 +25,13 @@ export class CartComponent implements OnInit, OnDestroy {
   shippingCharge: number = 24.99;
   cartChangesSubscription: Subscription;
   key: Key;
+
+
+   coupon: string='';
+
+  totalAmount: number = 0;
+
+  totalChange = new BehaviorSubject<number>(0);
 
   constructor(
     private cartService: CartService,
@@ -50,6 +57,9 @@ export class CartComponent implements OnInit, OnDestroy {
           this.cartItems = this.cartService.getCartItems(res);
         }}
       );
+      this.totalChange.subscribe((res) => {
+        this.totalAmount = res;
+      })
       // this.cartItems = this.cartService.getCartItems();
       
     }
@@ -69,9 +79,10 @@ export class CartComponent implements OnInit, OnDestroy {
     return subTotal;
   }
 
-  calculateTotal(): number {
+  calculateTotal() {
     let subTotal = this.calculateSubtotal();
-    return subTotal+( subTotal?this.shippingCharge:0);
+    subTotal = subTotal + (subTotal ? this.shippingCharge : 0);
+    this.totalChange.next(subTotal);
   }
 
   onCheckDeleteCart(productId: number) {
@@ -104,14 +115,23 @@ export class CartComponent implements OnInit, OnDestroy {
     let checkout: CartProduct[];
     checkout = this.cartItems.filter((cart) => cart.saveForCheckout);
     console.log(checkout);
-    this.checkout.setCheckoutCart(checkout);
+
+    this.checkout.setCheckoutCart(checkout,this.totalAmount,20);
     this.router.navigate(['/checkout']);
   }
 
-  onSaveCheckout(id: number) {
+  onSaveForCheckout(id: number) {
     let index = this.cartItems.findIndex((cart) => cart.productId === id);
     this.cartItems[index].saveForCheckout =
       !this.cartItems[index].saveForCheckout;
+  }
+  onApplyCoupon() {
+    console.log(this.coupon);
+    if (this.coupon === 'save20') {
+      let updatedTotal: number = this.totalAmount-20;
+      this.totalChange.next(updatedTotal);
+      this.coupon = '';
+    }
   }
   ngOnDestroy(): void {
     this.cartChangesSubscription.unsubscribe();
