@@ -93,6 +93,17 @@ input[type="password"],
 .text-danger {
   padding: 10px 0px;
   border: none;
+  border-radius: 0;
+  outline: none;
+  margin-bottom: 12px;
+  width: 99%;
+  transition: border-color 0.3s;
+}
+
+input[type="text"],
+input[type="password"]{
+  padding: 10px 0px;
+  border: none;
   border-bottom: 2px solid #ccc;
   border-radius: 0;
   outline: none;
