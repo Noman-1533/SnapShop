@@ -17,32 +17,40 @@
 
 
 
-.topSectioSlider{
+.topSectioSlider {
   width: 100%;
-  height: 100vh;
-  /* background-color: red; */
-  margin-top: -170px;
-  /* position: relative; */
+  height: 50vh;
+  margin-top: -70px;
 }
 
-#header{
-  
+#header {
   background: url("../../assets/images/banner-img-1.jpg") top/cover no-repeat;
 }
 
-
-
-/* .carousel-control-prev,
-.carousel-control-next{
-    display: none;
-} */
-
 .container {
   display: flex;
-  /* background-color: blue; */
   justify-content: space-around;
   align-items: center;
 }
+
+.carousel-item {
+  text-align: center;
+}
+
+.carousel-item img {
+  max-width: 100%;
+  height: auto;
+}
+
+.carousel-item h1,
+.carousel-item h2,
+.carousel-item a.btn {
+  font-size: 18px;
+}
+
+
+
+
 
 .container1 {
   /* background-color: red; */
@@ -279,6 +287,13 @@
 
   height: 1000px;
   padding: 40px;
+}
+
+.Explore-product .slider{
+
+  /* background-color: red; */
+  margin-bottom: 20px;
+
 }
 
 .buttonView {
@@ -559,7 +574,7 @@ Attribution required
   height: 30px;
   width: 12px;
   padding: 0px;
-  background-color: #db4343;
+  /* background-color: #db4343; */
   text-decoration: none;
   margin-left: 12px;
   border-radius: 3px;
@@ -586,68 +601,106 @@ Attribution required
 
 
 
+
+
+
+
+
+
+
+
+
+
 @media (max-width: 1330px) {
   
   .FlashSaleSection{
-  /* height: auto; */
   margin-bottom: 100px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .carousel-item h1,
+  .carousel-item h2,
+  .carousel-item a.btn {
+    font-size: 36px;
   }
 }
 
 
 
-@media (max-width: 994px) {
-  .container {
-    flex-direction: column;
+@media (max-width: 999px) {
+  .carousel-item img {
+    max-width: 100%;
+    height: auto;
   }
+
+  .container {
+   width: 100%;
+   margin: 0;
+   flex-direction: column;
+
+  }
+
+  .sliderDiv{
+    width: 20px;
+    margin: 0;
+  }
+
+  .car{
+    margin: 0;
+  }
+
 
   .newarrivalSec {
     height: auto;
   }
 
   .newArival{
-    /* background-color: green; */
     flex-direction: column;
     height: auto;
     gap:30px
   }
 
+  .categorysection {
+
+    flex-wrap: wrap;
+    height: auto;
+
+  }
+  .CardList{
+    flex-wrap: wrap;
+  }
+
 }
 
 
 
 
 
-@media (max-width: 775px) {
-  
-  .helo {
-    margin-left: 50px;
-    background-color: red;
+@media (min-width: 992px) {
+  .carousel-item h1,
+  .carousel-item h2,
+  .carousel-item a.btn {
+    font-size: 32px;
+  }
+}
+
+@media (min-width: 768px) {
+  .carousel-item h1,
+  .carousel-item h2,
+  .carousel-item a.btn {
+    font-size: 28px;
+  }
+}
+
+@media (min-width: 576px) {
+  .carousel-item h1,
+  .carousel-item h2,
+  .carousel-item a.btn {
+    font-size: 24px;
   }
 }
 
 
 
 
-
-@media (max-width: 665px) {
-  .helo {
-    margin-left: 60px;
-    top: 100px;
-    /* background-color: red; */
-  }
-
-  .helo h3 {
-    font-size: 0.2vw;
-  }
-}
-
-@media (max-width: 445px) {
-  .helo {
-    margin-left: 60px;
-    /* background-color: red; */
-  }
-}
-
-@media (max-width: 390px) {
-}

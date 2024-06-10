@@ -28,6 +28,7 @@ import { CapitalizeFirstPipe } from './home/capitalize-first.pipe';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { TextComponent } from './text/text.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     ContactComponent,
     AboutComponent,
     LoadingSpinnerComponent,
+    TextComponent,
     
   ],
   imports: [

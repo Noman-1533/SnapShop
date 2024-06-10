@@ -80,11 +80,15 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   onCheckDeleteCart(productId: number) {
+
+    // debugger;
     this.deleteClicked = true;
     this.deleteCartId = productId;
   }
 
   onDeleteCart(productId: number) {
+
+    
     this.cartItems = this.cartItems.filter(
       (item) => item.productId !== productId
     );
