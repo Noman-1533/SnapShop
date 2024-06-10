@@ -39,7 +39,7 @@ export class CardComponent implements OnInit {
   }
   onClickCart() {
 
-   debugger;
+  //  debugger;
     if (this.userId !== -1) {
       let key=this.cartService.setKey('cart', this.userId)
       
