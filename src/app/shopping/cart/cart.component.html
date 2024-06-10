@@ -48,6 +48,7 @@
                     [(ngModel)]="product.quantity"
                     class="form-control form-control-sm quantity-input"
                     style="width: 80px"
+                    (ngModelChange)="calculateSubtotal();calculateTotal()"
                   />
                 </td>
                 <td id="{{ product.productId }}Subtotal">
@@ -56,7 +57,7 @@
                 <td>
                   <input
                     type="checkbox"
-                    (click)="onSaveForCheckout(product.productId);calculateTotal()"
+                    (click)="onSaveForCheckout(product.productId);calculateSubtotal();calculateTotal();"
                     [checked]="product.saveForCheckout"
                   />
                 </td>
@@ -128,7 +129,7 @@
                         </label>
                         <div class="col-sm-9">
                           <span id="subtotal">{{
-                            calculateSubtotal() | currency
+                            subtotalAmount | currency
                           }}</span>
                         </div>
                       </div>
@@ -139,13 +140,13 @@
                         <div class="col-sm-9">
                           <span id="shipping">
                             <span
-                              *ngIf="shippingCharge && calculateSubtotal()"
+                              *ngIf="shippingCharge && subtotalAmount"
                               >{{ shippingCharge | currency }}</span
                             >
-                            <span *ngIf="shippingCharge && !calculateSubtotal()"
+                            <span *ngIf="shippingCharge && !subtotalAmount"
                               >$0.00</span
                             >
-                            <span *ngIf="!shippingCharge && calculateSubtotal()"
+                            <span *ngIf="!shippingCharge && subtotalAmount"
                               >Free</span
                             >
                           </span>

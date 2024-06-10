@@ -93,7 +93,8 @@ export class CartService {
     });
   }
 
-  saveDataInCart( key: Key) {
+  saveDataInCart(key: Key) {
+    console.log(key)
     if (this.isDataInLocalStorage(key)) {
       this.getDataFromLocalStorage(key);
     } else {
@@ -186,11 +187,13 @@ export class CartService {
         (product) => product.productId !== productId
       );
     }
+    console.log('From delete', this.cart, key);
     this.cart = this.cart.filter((cart) => cart.products.length > 0);
     this.saveDataInLocalStorage(key);
-     this.changeOnCart.next(this.cart);
+    this.changeOnCart.next(this.cart);
   }
   getCartItemNumber(key: Key) {
+    // console.log('from item',key);
     this.saveDataInCart(key);
     this.getDataFromLocalStorage(key);
     console.log(this.cart);
