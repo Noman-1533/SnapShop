@@ -81,7 +81,7 @@ export class DataService {
 
   getSingleUserCart(id: number): Observable<Cart[]> {
     return this.http
-      .get<Cart[]>(`https://fakestoreapi.com/carts/user/${id}`)
+      .get<Cart[]>(`https://fakestoreapi.com/carts/user/`+id)
       .pipe(
         catchError((error) => {
           console.error('Error fetching cart:', error);
