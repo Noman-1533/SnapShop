@@ -56,7 +56,7 @@
                 <td>
                   <input
                     type="checkbox"
-                    (click)="onSaveCheckout(product.productId)"
+                    (click)="onSaveForCheckout(product.productId);calculateTotal()"
                     [checked]="product.saveForCheckout"
                   />
                 </td>
@@ -93,6 +93,7 @@
               <div class="col-md-6 d-flex align-items-start p-0">
                 <div class="d-flex align-items-center mb-3">
                   <input
+                  [(ngModel)]="coupon"
                     type="text"
                     class="form-control me-2"
                     id="couponCode"
@@ -102,6 +103,8 @@
                     type="button"
                     class="btn btn-primary"
                     style="white-space: nowrap"
+                   
+                    (click)="onApplyCoupon()"
                   >
                     Apply Coupon
                   </button>
@@ -135,9 +138,16 @@
                         </label>
                         <div class="col-sm-9">
                           <span id="shipping">
-                            <span *ngIf="shippingCharge && calculateSubtotal()">{{shippingCharge | currency}}</span>
-                            <span *ngIf="shippingCharge && !calculateSubtotal()">$0.00</span>
-                            <span *ngIf="!shippingCharge && calculateSubtotal()">Free</span>
+                            <span
+                              *ngIf="shippingCharge && calculateSubtotal()"
+                              >{{ shippingCharge | currency }}</span
+                            >
+                            <span *ngIf="shippingCharge && !calculateSubtotal()"
+                              >$0.00</span
+                            >
+                            <span *ngIf="!shippingCharge && calculateSubtotal()"
+                              >Free</span
+                            >
                           </span>
                         </div>
                       </div>
@@ -147,7 +157,7 @@
                         </label>
                         <div class="col-sm-9">
                           <span id="total">{{
-                            calculateTotal() | currency
+                            totalAmount | currency
                           }}</span>
                         </div>
                       </div>
@@ -168,7 +178,7 @@
           </div>
         </div>
       </div>
-      <br />
+      <br/>
     </div>
   </div>
 </div>

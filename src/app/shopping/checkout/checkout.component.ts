@@ -36,6 +36,7 @@ export class CheckoutComponent implements OnInit {
     },
   ];
   totalAmount = 0;
+  discount: number = 0;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -68,10 +69,11 @@ export class CheckoutComponent implements OnInit {
 
   getCheckoutItems() {
     this.checkoutItems = this.checkoutService.getCheckout();
+    this.discount = this.checkoutService.discount;
 
-    this.totalAmount = parseFloat(this.calculateTotal().toFixed(2));
+    this.totalAmount = parseFloat(this.checkoutService.totalAmount.toFixed(2));
   }
-  calculateTotal() {
+  calculateSubTotal() {
     let total = 0;
     for (let item of this.checkoutItems) {
       total += item.price * item.quantity;
