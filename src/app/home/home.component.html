@@ -137,12 +137,16 @@
         </div>
         <div class="Tittle">Flash Sale</div>
 
-        <div class="if" *ngIf="numberOfSlidesss != undefined">
+
+
+        <div class="if" *ngIf="numberOfSlidesss">
           <app-product-carousel
             class="app-product"
             [numberOfSlides]="numberOfSlidesss"
           ></app-product-carousel>
         </div>
+
+
 
         <!-- </div> -->
       </div>
@@ -239,7 +243,7 @@
           <div class="Tittle">Explore Our Products</div>
         </div>
 
-        <div class="if" *ngIf="numberOfSlidesss != undefined">
+        <div class="if" *ngIf="numberOfSlidesss">
           <app-product-list
             class="app-product"
             [numberOfSlides]="numberOfSlidesss"

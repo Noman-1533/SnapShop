@@ -81,7 +81,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   getCartItemNumber() {
-    this.key = this.cartService.setKey('cart', this.userId);
+    this.key=this.cartService.setKey('cart', this.userId);
     this.cartService.getCartItemNumber(this.key).subscribe({
       next: (res) => {
         this.currentCartItem = this.cartService.getCartItems(res).length;
@@ -103,6 +103,22 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.router.navigate(['/home']);
   }
 
+  addToCart()
+  {
+    this.authService.loggedIn.subscribe(
+      user=>{
+        if(user)
+          {
+            this.router.navigate(['/cart']);
+          }
+          else{
+            alert("You have to login first");
+            this.router.navigate(['/login']);
+          }
+      }
+    );
+  }
+
 
   logIn()
   {
@@ -111,10 +127,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   logout() {
 
+    
+
     localStorage.removeItem('loggedInUser');
     this.authService.loggedIn.next(false);
     this.userService.LoggedUser=null;
     this.userService.LoggedUserId=-1;
+    this.userService.loginChanged.next(-1);
     this.router.navigate(['/home']);
   }
 

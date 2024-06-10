@@ -62,7 +62,7 @@ export class CheckoutComponent implements OnInit {
       emailAddress: ['', [Validators.required, Validators.email]],
       saveInfo: [false],
     });
-    this.shippingKey = this.cartService.setKey('shippingDetails', this.userId);
+    this.shippingKey=this.cartService.setKey('shippingDetails', this.userId)
     this.getCheckoutItems();
     this.loadSavedData();
   }
@@ -107,7 +107,7 @@ export class CheckoutComponent implements OnInit {
   onPlaceOrder() {
     if (this.checkoutItems.length > 0) {
       this.onSubmit();
-      let key: Key = this.cartService.setKey('cart', this.userId);
+      let key: Key=this.cartService.setKey('cart', this.userId);
       console.log(this.checkoutItems);
       for (let cart of this.checkoutItems) {
         this.cartService.deleteCartItem(cart.productId, key);
