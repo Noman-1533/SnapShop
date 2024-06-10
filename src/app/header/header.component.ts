@@ -66,14 +66,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   onSearch(event: any): void {
     this.searchText = event.target.value;
-
+  
     if (this.searchText.trim() === '') {
       this.filteredItems = []; // Reset to no items when search is cleared
+      this.router.navigate(['/home']); 
     } else {
       this.filteredItems = this.headerService.searchItems(this.searchText, this.items);
     }
   }
-
+  
   clearSearch(): void {
     this.searchText = '';
     this.filteredItems = []; // Clear filtered items

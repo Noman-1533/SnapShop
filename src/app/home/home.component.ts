@@ -82,6 +82,7 @@ export class HomeComponent implements AfterViewInit, OnInit {
         console.error(error);
       }
     );
+    
 
     setTimeout(() => {
       this.isLoading = false;
