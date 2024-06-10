@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     { name: 'Contact' },
     { name: 'About' },
     { name: 'Products' },
-    { name: 'login' },
+    // { name: 'login' },
   ];
   currentCartItem: number;
   userId: number ;
@@ -100,6 +100,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   homeClick() {
     this.router.navigate(['/home']);
+  }
+
+
+  logIn()
+  {
+    this.router.navigate(["/login"]);
   }
 
   logout() {
