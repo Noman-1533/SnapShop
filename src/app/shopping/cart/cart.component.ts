@@ -134,7 +134,7 @@ export class CartComponent implements OnInit, OnDestroy {
     this.usedCouponError = usedCouponError;
     this.invalidTotalError = invalidTotalError;
     
-
+  }
   ngOnDestroy(): void {
     this.cartChangesSubscription.unsubscribe();
   }
