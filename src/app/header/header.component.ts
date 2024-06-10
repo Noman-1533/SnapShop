@@ -66,21 +66,22 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   onSearch(event: any): void {
     this.searchText = event.target.value;
-
+  
     if (this.searchText.trim() === '') {
       this.filteredItems = []; // Reset to no items when search is cleared
+      this.router.navigate(['/home']); 
     } else {
       this.filteredItems = this.headerService.searchItems(this.searchText, this.items);
     }
   }
-
+  
   clearSearch(): void {
     this.searchText = '';
     this.filteredItems = []; // Clear filtered items
   }
 
   getCartItemNumber() {
-    this.key = this.cartService.setKey('cart', this.userId);
+    this.key=this.cartService.setKey('cart', this.userId);
     this.cartService.getCartItemNumber(this.key).subscribe({
       next: (res) => {
         this.currentCartItem = this.cartService.getCartItems(res).length;
@@ -102,6 +103,22 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.router.navigate(['/home']);
   }
 
+  addToCart()
+  {
+    this.authService.loggedIn.subscribe(
+      user=>{
+        if(user)
+          {
+            this.router.navigate(['/cart']);
+          }
+          else{
+            alert("You have to login first");
+            this.router.navigate(['/login']);
+          }
+      }
+    );
+  }
+
 
   logIn()
   {
@@ -110,10 +127,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   logout() {
 
+    
+
     localStorage.removeItem('loggedInUser');
     this.authService.loggedIn.next(false);
     this.userService.LoggedUser=null;
     this.userService.LoggedUserId=-1;
+    this.userService.loginChanged.next(-1);
     this.router.navigate(['/home']);
   }
 

@@ -1,8 +1,7 @@
-//check start
 import { Injectable } from '@angular/core';
 import { DataService } from '../../shared/data.service';
 import { Cart, Key, CartProduct } from './cart.model';
-import { BehaviorSubject, Subject, forkJoin, tap } from 'rxjs';
+import { BehaviorSubject, forkJoin, tap } from 'rxjs';
 import { Product } from '../../shared/product.model';
 import { Router } from '@angular/router';
 
@@ -12,6 +11,11 @@ import { Router } from '@angular/router';
 export class CartService {
   changeOnCart = new BehaviorSubject<Cart[]>([]);
   cart: Cart[] = [];
+  availableCoupon: { name: string; amount: number; used: boolean }[] = [
+    { name: 'save20', amount: 20, used: false },
+    { name: 'save10', amount: 10, used: false },
+    { name: 'save30', amount: 30, used: false },
+  ];
 
   constructor(private dataService: DataService, private router: Router) {}
 
@@ -24,29 +28,20 @@ export class CartService {
     const value = localStorage.getItem(JSON.stringify(Key));
     return value !== null;
   }
-  
-  // private getDataFromLocalStorage(key: Key) {
-  //   const value = localStorage.getItem(JSON.stringify(key));
-  //   this.cart = JSON.parse(value);
-  //   console.log('Data from localStorage');
-  // }
-
-
 
   private getDataFromLocalStorage(key: Key) {
     const value = localStorage.getItem(JSON.stringify(key));
     if (value) {
       this.cart = this.removeDuplicateProducts(JSON.parse(value));
-      console.log('Data from localStorage');
+      console.log('Data retrieved from localStorage');
     }
   }
-  
-  // Function to remove duplicate products
+
   private removeDuplicateProducts(carts: Cart[]): Cart[] {
     const uniqueProductIds = new Set<number>();
-  
-    return carts.map(cart => {
-      cart.products = cart.products.filter(product => {
+
+    return carts.map((cart) => {
+      cart.products = cart.products.filter((product) => {
         if (uniqueProductIds.has(product.productId)) {
           return false;
         } else {
@@ -57,13 +52,11 @@ export class CartService {
       return cart;
     });
   }
-  
-
 
   private getDataFromAPI(userId: number) {
     this.dataService.getSingleUserCart(userId).subscribe((res: Cart[]) => {
       this.cart = res;
-      console.log('Data from API');
+      console.log('Data retrieved from API');
       const requests = [];
 
       for (let item of this.cart) {
@@ -75,7 +68,7 @@ export class CartService {
                 product.price = productDetails.price;
                 product.name = productDetails.title;
                 product.saveForCheckout = false;
-                product.quantity=1;
+                product.quantity = 1;
               })
             )
           );
@@ -88,25 +81,21 @@ export class CartService {
         this.saveDataInLocalStorage(key);
         this.getDataFromLocalStorage(key);
         this.changeOnCart.next(this.cart);
-        // this.changeOnCart.asObservable();
       });
     });
   }
 
-  saveDataInCart( key: Key) {
+  saveDataInCart(key: Key) {
     if (this.isDataInLocalStorage(key)) {
       this.getDataFromLocalStorage(key);
     } else {
       this.getDataFromAPI(key.id);
     }
-    //  return this.changeOnCart.asObservable();
     this.changeOnCart.next(this.cart);
   }
 
   saveDataInLocalStorage(key: Key) {
     if (key?.id) {
-      // console.log('Save in Local');
-      // console.log(key);
       localStorage.setItem(JSON.stringify(key), JSON.stringify(this.cart));
     }
   }
@@ -137,13 +126,13 @@ export class CartService {
 
   onCreateCart(product: Product, key: Key) {
     const newCart: Cart = {
-      id: Date.now(), // Generate a unique ID for the cart item
+      id: Date.now(),
       userId: key.id,
       date: new Date().toISOString(),
       products: [
         {
           productId: product.id,
-          quantity: 1, // Default quantity is 1
+          quantity: 1,
           image: product.image,
           price: product.price,
           name: product.title,
@@ -154,7 +143,7 @@ export class CartService {
     this.addToCart(newCart, key);
   }
 
-  getCartItems(cart:Cart[]): CartProduct[] {
+  getCartItems(cart: Cart[]): CartProduct[] {
     let cartProduct: CartProduct[] = [];
     for (let item of cart) {
       for (let product of item.products) {
@@ -188,12 +177,58 @@ export class CartService {
     }
     this.cart = this.cart.filter((cart) => cart.products.length > 0);
     this.saveDataInLocalStorage(key);
-     this.changeOnCart.next(this.cart);
+    this.changeOnCart.next(this.cart);
   }
+
   getCartItemNumber(key: Key) {
     this.saveDataInCart(key);
     this.getDataFromLocalStorage(key);
-    console.log(this.cart);
     return this.changeOnCart.asObservable();
+  }
+
+  onApplyCoupon(
+    subtotalAmount: number,
+    totalAmount: number,
+    discount: number,
+    coupon: string
+  ): {
+    subtotalAmount: number;
+    totalAmount: number;
+    discount: number;
+    invalidCouponError: boolean;
+    usedCouponError: boolean;
+    invalidTotalError: boolean;
+  } {
+    let updatedTotalAmount = totalAmount;
+    let updatedDiscount = discount;
+    let invalidCouponError = false;
+    let usedCouponError = false;
+    let invalidTotalError = false;
+
+    const correctCoupon = this.availableCoupon.find((item) => item.name === coupon);
+
+    if (correctCoupon) {
+      if (!correctCoupon.used && subtotalAmount > 0) {
+        invalidCouponError = usedCouponError = invalidTotalError = false;
+        updatedTotalAmount -= correctCoupon.amount;
+        updatedDiscount += correctCoupon.amount;
+        correctCoupon.used = true;
+      } else if (!correctCoupon.used && subtotalAmount <= 0) {
+        invalidTotalError = true;
+      } else {
+        usedCouponError = true;
+      }
+    } else {
+      invalidCouponError = true;
+    }
+
+    return {
+      subtotalAmount,
+      totalAmount: updatedTotalAmount,
+      discount: updatedDiscount,
+      invalidCouponError,
+      usedCouponError,
+      invalidTotalError,
+    };
   }
 }

@@ -1,9 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CartService } from './cart.service';
 import { Cart, Key, CartProduct } from './cart.model';
-
 import { CheckoutService } from '../checkout/checkout.service';
-
 import { Router } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { UserService } from '../../authentication/login/user.service';
@@ -15,8 +13,6 @@ import { UserService } from '../../authentication/login/user.service';
 })
 export class CartComponent implements OnInit, OnDestroy {
   cartItems: CartProduct[];
-  //cartItems = new BehaviorSubject<CartProduct[]>([]);
-
   deleteClicked: boolean = false;
   deleteCartId: number = null;
   hasData = false;
@@ -26,71 +22,73 @@ export class CartComponent implements OnInit, OnDestroy {
   cartChangesSubscription: Subscription;
   key: Key;
 
-
-   coupon: string='';
+  coupon: string = '';
+  usedCouponError: boolean = false;
+  invalidCouponError: boolean = false;
+  invalidTotalError: boolean = false;
 
   totalAmount: number = 0;
+  subtotalAmount: number = 0;
+  discount: number = 0;
 
   totalChange = new BehaviorSubject<number>(0);
+  subtotalChange = new BehaviorSubject<number>(0);
 
   constructor(
     private cartService: CartService,
     private checkout: CheckoutService,
     private router: Router,
-    private userData:UserService
+    private userData: UserService
   ) {}
 
   ngOnInit(): void {
-    if (this.isAuthenticate) {
-      if (this.userData.LoggedUserId !== -1) {
-        this.userId = this.userData.LoggedUserId;
-        console.log(this.userId);
-      }
+    this.userData.loginChanged.subscribe((res) => {
+      this.userId = res;
       this.key = this.cartService.setKey('cart', this.userId);
       this.hasData = this.cartService.isDataInLocalStorage(this.key);
-      this.cartService.saveDataInCart(this.key)
-      this.cartChangesSubscription = this.cartService.changeOnCart.subscribe(
-        {
-          next: (res) => {
-            console.log(res);
-          
-          this.cartItems = this.cartService.getCartItems(res);
-        }}
-      );
+      this.cartService.saveDataInCart(this.key);
+    });
+
+    this.cartChangesSubscription = this.cartService.changeOnCart.subscribe({
+      next: (res) => {
+        this.cartItems = this.cartService.getCartItems(res);
+      },
+    });
+    this.subtotalChange.subscribe((res) => {
+      this.subtotalAmount = res;
       this.totalChange.subscribe((res) => {
         this.totalAmount = res;
-      })
-      // this.cartItems = this.cartService.getCartItems();
-      
-    }
+      });
+    });
   }
 
-  calculateSubtotal(): number {
+  calculateSubtotal() {
     let subTotal = 0;
-    // console.log('Form Cart',this.cartItems);
     this.cartItems.forEach((item) => {
       if (item.saveForCheckout) {
-        subTotal += (item.price * item.quantity);
+        subTotal += item.price * item.quantity;
       }
     });
-    console.log(subTotal,this.shippingCharge)
-    subTotal >= 300 ? this.shippingCharge = 0 : this.shippingCharge=24.99;
-    console.log(subTotal,this.shippingCharge)
-    return subTotal;
+    subTotal >= 300 ? (this.shippingCharge = 0) : (this.shippingCharge = 24.99);
+    this.subtotalChange.next(subTotal);
   }
 
   calculateTotal() {
-    let subTotal = this.calculateSubtotal();
+    let subTotal = this.subtotalAmount;
     subTotal = subTotal + (subTotal ? this.shippingCharge : 0);
     this.totalChange.next(subTotal);
   }
 
   onCheckDeleteCart(productId: number) {
+
+    // debugger;
     this.deleteClicked = true;
     this.deleteCartId = productId;
   }
 
   onDeleteCart(productId: number) {
+
+    
     this.cartItems = this.cartItems.filter(
       (item) => item.productId !== productId
     );
@@ -101,22 +99,16 @@ export class CartComponent implements OnInit, OnDestroy {
     if (status === 'close') {
       this.deleteClicked = false;
     } else {
-      if (this.deleteCartId !== null) this.onDeleteCart(this.deleteCartId);
+      if (this.deleteCartId) this.onDeleteCart(this.deleteCartId);
       this.deleteClicked = false;
       this.deleteCartId = null;
     }
   }
-  updateCart() {
-    
-  }
-
+  updateCart() {}
   onCheckout() {
-    console.log(this.cartItems);
     let checkout: CartProduct[];
     checkout = this.cartItems.filter((cart) => cart.saveForCheckout);
-    console.log(checkout);
-
-    this.checkout.setCheckoutCart(checkout,this.totalAmount,20);
+    this.checkout.setCheckoutCart(checkout, this.totalAmount, this.discount);
     this.router.navigate(['/checkout']);
   }
 
@@ -125,14 +117,23 @@ export class CartComponent implements OnInit, OnDestroy {
     this.cartItems[index].saveForCheckout =
       !this.cartItems[index].saveForCheckout;
   }
+
   onApplyCoupon() {
-    console.log(this.coupon);
-    if (this.coupon === 'save20') {
-      let updatedTotal: number = this.totalAmount-20;
-      this.totalChange.next(updatedTotal);
-      this.coupon = '';
-    }
+    const { subtotalAmount, totalAmount, discount, invalidCouponError, usedCouponError, invalidTotalError } = this.cartService.onApplyCoupon(
+      this.subtotalAmount,
+      this.totalAmount,
+      this.discount,
+      this.coupon
+    );
+
+    this.subtotalAmount = subtotalAmount;
+    this.totalAmount = totalAmount;
+    this.discount = discount;
+    this.invalidCouponError = invalidCouponError;
+    this.usedCouponError = usedCouponError;
+    this.invalidTotalError = invalidTotalError;
   }
+
   ngOnDestroy(): void {
     this.cartChangesSubscription.unsubscribe();
   }

@@ -2,8 +2,9 @@ import { Component, OnInit, inject } from '@angular/core';
 import { DataService } from '../../shared/data.service';
 import { Product } from '../../shared/product.model';
 import { CartService } from '../../shopping/cart/cart.service';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
 import { UserService } from '../../authentication/login/user.service';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-product-details',
@@ -34,10 +35,20 @@ export class ProductDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private cartService: CartService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private viewportScroller: ViewportScroller
   ) {}
 
   ngOnInit(): void {
+
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.viewportScroller.scrollToPosition([0, 0]);
+      }
+    });
+
+
+
     this.userService.loginChanged.subscribe((res) => {
       this.userId = res;
     });
@@ -122,7 +133,7 @@ export class ProductDetailsComponent implements OnInit {
 
   onClickCart() {
     if (this.userId !== -1) {
-      let key = this.cartService.setKey('cart', this.userId);
+      let key= this.cartService.setKey('cart', this.userId)
       this.cartService.saveDataInCart(key);
       this.cartService.onCreateCart(this.selectedProductDetails, key);
     } else {

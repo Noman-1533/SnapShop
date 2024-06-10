@@ -15,6 +15,7 @@ import { User } from './user.model';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   isFormSubmitted: boolean = false;
+  passwordFieldType: string = 'password';
 
   constructor(
     private authService: AuthService,
@@ -25,36 +26,30 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = new FormGroup({
-      username: new FormControl(null, Validators.required),
-      password: new FormControl(null, Validators.required),
+      username: new FormControl(null, [Validators.required, Validators.minLength(3)]),
+      password: new FormControl(null, [Validators.required, Validators.minLength(5)]),
     });
 
     this.setData();
   }
 
   setData() {
-    this.dataService.getAllUser().subscribe((users:any) => {
-      // console.log("users",users);
+    this.dataService.getAllUser().subscribe((users: any) => {
       this.userService.Users.next(users);
-      ;
     });
   }
 
   onSubmit(): void {
-
-
     this.isFormSubmitted = true;
 
     if (this.loginForm.valid) {
       const { username, password } = this.loginForm.value;
-
       let authObs: Observable<any>;
-
       authObs = this.authService.login(username, password);
 
       authObs.subscribe(
         (resData) => {
-          const token = resData.token; 
+          const token = resData.token;
           this.userService.setLoggedInUserId(username);
           const userData = this.userService.getLoggedInUser();
           console.log(userData);

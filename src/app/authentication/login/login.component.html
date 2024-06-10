@@ -18,7 +18,13 @@
                 formControlName="username"
                 required
               />
-              <span *ngIf="loginForm.get('username').touched && loginForm.get('username').invalid" class="text-danger">Username is Required*</span>
+              <span *ngIf="(username.touched || username.dirty) && username.hasError('required')" class="text-danger">
+                Username is required*
+              </span>
+              <span *ngIf="(username.touched || username.dirty) && username.hasError('minlength')" class="text-danger">
+                Username must be at least 3 characters
+              </span>
+              
               <input
                 type="password"
                 password="password"
@@ -27,8 +33,11 @@
                 required
               />
 
-              <span *ngIf="loginForm.get('password').touched && loginForm.get('password').hasError('required')" class="text-danger">
-                Password is Required*
+              <span *ngIf="(password.touched || password.dirty) && password.hasError('required')" class="text-danger">
+                Password is required*
+              </span>
+              <span *ngIf="(password.touched || password.dirty) && password.hasError('minlength')" class="text-danger">
+                Password must be at least 5 characters
               </span>
              
               <div class="button-group">

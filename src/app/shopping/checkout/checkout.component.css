@@ -80,3 +80,10 @@ input.ng-invalid.ng-touched {
   height: 50px; /* Set the fixed height for table rows */
   line-height: 50px; /* Center align text vertically */
 }
+
+/* Style for the error message */
+.error-messages{
+  color: #db4444;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
