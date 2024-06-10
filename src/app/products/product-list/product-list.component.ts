@@ -41,12 +41,12 @@ export class ProductListComponent implements OnInit {
     }
 
 
-    this.numberOfSlides.forEach((slide) => {
-      slide.forEach((product) => {
-        product.discount = this.getRandomDiscount();
-        // console.log("data from coursol split ", this.numberOfSlides);
-      });
-    });
+    // this.numberOfSlides.forEach((slide) => {
+    //   slide.forEach((product) => {
+    //     product.discount = this.getRandomDiscount();
+    //     // console.log("data from coursol split ", this.numberOfSlides);
+    //   });
+    // });
   }
 
   arrayLength=0

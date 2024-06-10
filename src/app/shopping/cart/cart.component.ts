@@ -86,11 +86,15 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   onCheckDeleteCart(productId: number) {
+
+    // debugger;
     this.deleteClicked = true;
     this.deleteCartId = productId;
   }
 
   onDeleteCart(productId: number) {
+
+    
     this.cartItems = this.cartItems.filter(
       (item) => item.productId !== productId
     );
@@ -98,6 +102,9 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   ConfirmationClicked(status: string) {
+
+    debugger;
+
     if (status === 'close') {
       this.deleteClicked = false;
     } else {
