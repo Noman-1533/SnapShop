@@ -13,43 +13,30 @@ import { UserService } from '../../authentication/login/user.service';
   styleUrls: ['./checkout.component.css'],
 })
 export class CheckoutComponent implements OnInit {
-  userId :number;
+  userId: number;
   shippingKey: Key;
   checkoutForm: FormGroup;
   checkoutItems: CartProduct[] = [];
-  paymentMethod: PaymentMethod[] = [
-    {
-      logo: 'https://www.freepnglogos.com/uploads/verified-by-visa-logo-png-0.png',
-      name: 'VISA',
-    },
-    {
-      logo: 'https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-transparent-png-stickpng-10.png',
-      name: 'Mastercard',
-    },
-    {
-      logo: 'https://1000logos.net/wp-content/uploads/2021/02/Bkash-logo.png',
-      name: 'Bkash',
-    },
-    {
-      logo: 'https://www.freepnglogos.com/uploads/paypal-logo-png-29.png',
-      name: 'PayPal',
-    },
-  ];
+  paymentMethod: PaymentMethod[] = [/* Payment methods array */];
   totalAmount = 0;
   discount: number = 0;
+  subtotalAmount: number = 0;
+  invalidCouponError: boolean = false;
+  usedCouponError: boolean = false;
+  invalidTotalError: boolean = false;
+  couponCode: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
     private checkoutService: CheckoutService,
     private cartService: CartService,
-    private usedData:UserService,
-    private router: Router,
-
+    private userData: UserService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    if (this.usedData.LoggedUserId !== -1) {
-      this.userId = this.usedData.LoggedUserId;
+    if (this.userData.LoggedUserId !== -1) {
+      this.userId = this.userData.LoggedUserId;
     }
     this.getCheckoutItems();
     this.checkoutForm = this.formBuilder.group({
@@ -62,17 +49,17 @@ export class CheckoutComponent implements OnInit {
       emailAddress: ['', [Validators.required, Validators.email]],
       saveInfo: [false],
     });
-    this.shippingKey=this.cartService.setKey('shippingDetails', this.userId)
-    this.getCheckoutItems();
+    this.shippingKey = this.cartService.setKey('shippingDetails', this.userId);
     this.loadSavedData();
   }
 
   getCheckoutItems() {
     this.checkoutItems = this.checkoutService.getCheckout();
     this.discount = this.checkoutService.discount;
-
     this.totalAmount = parseFloat(this.checkoutService.totalAmount.toFixed(2));
+    this.subtotalAmount = this.calculateSubTotal();
   }
+
   calculateSubTotal() {
     let total = 0;
     for (let item of this.checkoutItems) {
@@ -87,7 +74,6 @@ export class CheckoutComponent implements OnInit {
 
   onSubmit() {
     if (this.checkoutForm.valid) {
-      console.log(this.checkoutForm.value);
       const formData = this.checkoutForm.value;
       if (formData.saveInfo) {
         localStorage.setItem(
@@ -97,18 +83,34 @@ export class CheckoutComponent implements OnInit {
       }
     }
   }
+
   loadSavedData() {
     const savedData = localStorage.getItem(JSON.stringify(this.shippingKey));
-    console.log(savedData);
     if (savedData) {
       this.checkoutForm.patchValue(JSON.parse(savedData));
     }
   }
+
+  onApplyCoupon() {
+    const { subtotalAmount, totalAmount, discount, invalidCouponError, usedCouponError, invalidTotalError } = this.cartService.onApplyCoupon(
+      this.subtotalAmount,
+      this.totalAmount,
+      this.discount,
+      this.couponCode
+    );
+
+    this.subtotalAmount = subtotalAmount;
+    this.totalAmount = totalAmount;
+    this.discount = discount;
+    this.invalidCouponError = invalidCouponError;
+    this.usedCouponError = usedCouponError;
+    this.invalidTotalError = invalidTotalError;
+  }
+
   onPlaceOrder() {
     if (this.checkoutItems.length > 0) {
       this.onSubmit();
-      let key: Key=this.cartService.setKey('cart', this.userId);
-      console.log(this.checkoutItems);
+      let key: Key = this.cartService.setKey('cart', this.userId);
       for (let cart of this.checkoutItems) {
         this.cartService.deleteCartItem(cart.productId, key);
       }
