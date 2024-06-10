@@ -146,11 +146,19 @@ export class CartComponent implements OnInit, OnDestroy {
           this.usedCouponError =
           this.invalidTotalError =
             false;
-        let updatedTotal: number = this.totalAmount - correctCoupon.amount;
+        let updatedTotal: number;
+        if (this.totalAmount > this.discount) {
+          updatedTotal = this.totalAmount - correctCoupon.amount;
+        
         this.coupon = '';
         correctCoupon.used = true;
         this.discount += correctCoupon.amount;
-        this.totalChange.next(updatedTotal);
+          this.totalChange.next(updatedTotal);
+        } else {
+          this.invalidTotalError = true;
+          this.invalidCouponError =
+            this.usedCouponError = false;
+        }
       } else if (!correctCoupon.used && this.subtotalAmount <= 0) {
         this.invalidTotalError = true;
         this.invalidCouponError = this.usedCouponError = false;

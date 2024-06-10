@@ -78,6 +78,7 @@ export class CheckoutComponent implements OnInit {
     for (let item of this.checkoutItems) {
       total += item.price * item.quantity;
     }
+    total = parseFloat(total.toFixed(2));
     return total;
   }
 

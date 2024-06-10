@@ -61,7 +61,7 @@ input.ng-invalid.ng-touched {
 
 .fixed-height-table {
   display: block; /* Enables overflow to work on tbody */
-  max-height: 400px; /* Set the fixed height you desire */
+  max-height: 300px; /* Set the fixed height you desire */
   overflow-y: auto; /* Enable vertical scrolling */
 }
 
@@ -76,7 +76,18 @@ input.ng-invalid.ng-touched {
 .fixed-height-table td {
   overflow: hidden;
   white-space: nowrap;
+  text-align: center;
   text-overflow: ellipsis;
   height: 50px; /* Set the fixed height for table rows */
   line-height: 50px; /* Center align text vertically */
+}
+#subtotal,#shipping,#total,#discount{
+  text-align: right;
+}
+
+
+/* card */
+.card{
+  border: none;
+  box-shadow: none;
 }

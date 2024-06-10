@@ -13,15 +13,16 @@
   </div>
 </div>
 <div class="content">
-  <div class="card">
+  <div class="">
     <div class="container mt-5">
       <div class="row d-flex justify-content-between">
-        <div class="col-md-12">
+        <div class="col-md-12 ">
+          <div class="table-height">
           <h2>Products</h2>
 
-          <table class="table table-striped">
+          <table class="table">
             <thead>
-              <tr>
+              <tr class="box-style">
                 <th scope="col">Product</th>
                 <th scope="col">Price</th>
                 <th scope="col">Quantity</th>
@@ -30,7 +31,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let product of cartItems">
+              <tr *ngFor="let product of cartItems" class="box-style">
                 <td>
                   <img
                     src="{{ product.image }}"
@@ -70,6 +71,7 @@
               </tr>
             </tbody>
           </table>
+        </div>
 
           <div class="row">
             <div class="col-xs-12 d-flex justify-content-between mt-4">
@@ -180,7 +182,7 @@
               <div class="col-md-6 coupon-error">
                 <span *ngIf="invalidCouponError">invalid Coupon!</span>
                 <span *ngIf="usedCouponError">Coupon Already Used!</span>
-                <span *ngIf="invalidTotalError">Please select some item for getting Discount!</span>
+                <span *ngIf="invalidTotalError">Please select more item for getting Discount!</span>
               </div>
             </div>
           </div>
