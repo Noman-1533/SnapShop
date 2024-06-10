@@ -45,7 +45,7 @@ export class HomeComponent implements AfterViewInit, OnInit {
   ) {
 
 
-    debugger;
+    // debugger;
     const data = this.route.snapshot.data['homeData'];
     console.log('data', data);
     console.log('num', this.numberOfSlidesss);

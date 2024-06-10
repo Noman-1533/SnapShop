@@ -84,4 +84,8 @@ button {
   border-radius: 3px;
 }
 
+.coupon-error{
+  margin-top: -245px;
+  color: red;
+}
 
