@@ -138,13 +138,11 @@
 .ri-shopping-cart-2-line {
   font-size: 20px;
 }
-/* Default color for icons */
 .icon-header a {
   color: black;
   text-decoration: none;
 }
 
-/* Color for active links */
 .active-link {
   color: #007bff;
 }
@@ -191,6 +189,13 @@
 
 .dropdown-item {
   color: rgb(209, 198, 198);
+}
+
+.btn:active {
+  background-color: transparent !important;
+  border:2px solid var(--button-color);
+  transition: 0.5s;
+  color: black;
 }
 
 @media (max-width: 990px) {

@@ -38,6 +38,8 @@ export class CardComponent implements OnInit {
     console.log(id);
   }
   onClickCart() {
+
+   debugger;
     if (this.userId !== -1) {
       let key = this.cartService.setKey('cart', this.userId);
       this.cartService.saveDataInCart(key);
