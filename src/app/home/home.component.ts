@@ -45,6 +45,7 @@ export class HomeComponent implements AfterViewInit, OnInit {
   ) {
 
 
+    
     // debugger;
     const data = this.route.snapshot.data['homeData'];
     console.log('data', data);

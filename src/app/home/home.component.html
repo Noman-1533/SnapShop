@@ -1,133 +1,27 @@
-<div class="topSectioSlider" *ngIf="!isLoading">
-  <header
-    id="header"
-    class="vh-100 carousel slide"
-    data-bs-ride="carousel"
-    style="padding-top: 104px"
-  >
-    <div class="container h-100 d-flex align-items-center carousel-inner">
-      <div class="text-center carousel-item active">
-        <div>
-          <div style="display: flex; flex-direction: column; justify-content: space-around;align-items: center;">
-            <img src="../../assets/imagesHome/bagImage.png" style="width: 120px;">
-            <h2 class="text-capitalize text-white">best price & offer</h2>
-            <h1 class="py-2 fw-bold text-white">new season</h1>
-            <a href="#" class="btn mt-3 text-uppercase">buy now</a>
-          </div>
-        </div>
-      </div>
-      <div class="text-center carousel-item">
-       <div style="display: flex; flex-direction: column; justify-content: space-around;align-items: center;">
-        <img src="../../assets/imagesHome/pcImage.png" style="width: 140px;">
-          <h2 class="text-capitalize text-white">best price & offer</h2>
-          <h1 class="py-2 fw-bold text-white">new season</h1>
-          <a href="#" class="btn mt-3 text-uppercase">buy now</a>
-        </div>
-      </div>
-    </div>
 
-    <button
-      class="carousel-control-prev"
-      type="button"
-      data-bs-target="#header"
-      data-bs-slide="prev"
-    >
-      <i class="ri-arrow-left-s-line" style="font-size: 50px"></i>
-    </button>
-    <button
-      class="carousel-control-next"
-      type="button"
-      data-bs-target="#header"
-      data-bs-slide="next"
-    >
-      <i class="ri-arrow-right-s-line" style="font-size: 50px"></i>
-    </button>
-  </header>
-</div>
+<div class="topSectioSlider">
+  <app-text></app-text>
+ </div>
+
+<ng-container *ngIf="isLoading ;else homeComponent">
+  <app-loading-spinner></app-loading-spinner>
+</ng-container>
+
+<ng-template #homeComponent>
+
+
+
+
+
+
+
 
 <div class="main">
-  <div *ngIf="isLoading">
-    <app-loading-spinner></app-loading-spinner>
-  </div>
-  <div *ngIf="!isLoading">
-    <!-- <button class="btn btn-primary" (click)="getLogId()">getId</button> -->
+  
+  <div>
 
-    <!-- <div class="FirstSectionTop">
-      <div class="rightListBar">
-        <ul class="listofContent">
-          <li *ngFor="let item of combinedArraycategory">
-            <a (click)="navigateToProductList(item.category)">{{
-              item.category | capitalizeFirst
-            }}</a>
-          </li>
-        </ul>
-      </div>
 
-      <div id="carouselExample" class="carousel slide" data-mdb-ride="carousel">
-        <div class="carousel-inner">
-          <div
-            class="carousel-item active"
-            id="cursoulDiv"
-            data-bs-interval="2000"
-          >
-            <div class="hero">
-              <h1>SnapShop</h1>
-              <hr />
-              <h3>Up to 10% Voucher</h3>
-              <a href="">Shop now -></a>
-            </div>
-            <div class="imageSection">
-              <img
-                src="./assets/imagesHome/pcImage.png"
-                class="d-block w-100"
-                alt="..."
-              />
-            </div>
-          </div>
-
-          <div class="carousel-item" id="cursoulDiv">
-            <div class="hero">
-              <h1>SnapShop</h1>
-              <hr />
-              <h3>Up to 10% Voucher</h3>
-              <a href="">Shop now -></a>
-            </div>
-            <div class="imageSection">
-              <img
-                src="./assets/imagesHome/bagImage.png"
-                class="d-block w-100"
-                alt="..."
-              />
-            </div>
-          </div>
-        </div>
-
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-mdb-target="#carouselExample"
-          data-mdb-slide="prev"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-mdb-target="#carouselExample"
-          data-mdb-slide="next"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-    </div> -->
-
-    <!-- slide card -->
-
-    <!-- slide card -->
-
-    <!-- dsjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj -->
+    <!-- dfirst section start-->
 
     <div class="FlashSaleSection">
       <div class="slider">
@@ -137,16 +31,12 @@
         </div>
         <div class="Tittle">Flash Sale</div>
 
-
-
         <div class="if" *ngIf="numberOfSlidesss">
           <app-product-carousel
             class="app-product"
             [numberOfSlides]="numberOfSlidesss"
           ></app-product-carousel>
         </div>
-
-
 
         <!-- </div> -->
       </div>
@@ -386,3 +276,6 @@
     </div>
   </div>
 </div>
+
+
+</ng-template>
