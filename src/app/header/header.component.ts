@@ -80,7 +80,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   getCartItemNumber() {
-    this.key = this.cartService.setKey('cart', this.userId);
+    this.key=this.cartService.setKey('cart', this.userId);
     this.cartService.getCartItemNumber(this.key).subscribe({
       next: (res) => {
         this.currentCartItem = this.cartService.getCartItems(res).length;

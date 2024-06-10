@@ -133,7 +133,7 @@ export class ProductDetailsComponent implements OnInit {
 
   onClickCart() {
     if (this.userId !== -1) {
-      let key = this.cartService.setKey('cart', this.userId);
+      let key= this.cartService.setKey('cart', this.userId)
       this.cartService.saveDataInCart(key);
       this.cartService.onCreateCart(this.selectedProductDetails, key);
     } else {

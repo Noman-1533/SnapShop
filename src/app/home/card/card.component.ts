@@ -41,7 +41,8 @@ export class CardComponent implements OnInit {
 
    debugger;
     if (this.userId !== -1) {
-      let key = this.cartService.setKey('cart', this.userId);
+      let key=this.cartService.setKey('cart', this.userId)
+      
       this.cartService.saveDataInCart(key);
       this.cartService.onCreateCart(this.cardInfo, key);
     } else {

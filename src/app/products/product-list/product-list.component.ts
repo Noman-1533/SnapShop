@@ -40,22 +40,23 @@ export class ProductListComponent implements OnInit {
         });
     }
 
-
-    this.numberOfSlides.forEach((slide) => {
-      slide.forEach((product) => {
-        product.discount = this.getRandomDiscount();
-        // console.log("data from coursol split ", this.numberOfSlides);
-      });
-    });
+    // if (this.numberOfSlides) {
+    //   this.numberOfSlides.forEach((slide:any[]) => {
+    //     slide.forEach((product) => {
+    //       product.discount = this.getRandomDiscount();
+    //       // console.log("data from coursol split ", this.numberOfSlides);
+    //     });
+    //   });
+    // }
   }
 
   arrayLength=0
 
  
 
-  getRandomDiscount() {
-    return 5 + 21;
+  // getRandomDiscount() {
+  //   return 5 + 21;
 
-    // demoProduct: number[] = Array(10).fill(1)
-  }
+  //   // demoProduct: number[] = Array(10).fill(1)
+  // }
 }
