@@ -27,18 +27,18 @@ export class CartComponent implements OnInit, OnDestroy {
   key: Key;
 
   coupon: string = '';
-  availableCoupon: { name: string, amount: number, used: boolean }[] = [
-    {name:'save20',amount:20,used:false},
-    {name:'save10',amount:10,used:false},
-    {name:'save30',amount:30,used:false}
-  ]
+  availableCoupon: { name: string; amount: number; used: boolean }[] = [
+    { name: 'save20', amount: 20, used: false },
+    { name: 'save10', amount: 10, used: false },
+    { name: 'save30', amount: 30, used: false },
+  ];
   usedCouponError: boolean = false;
   invalidCouponError: boolean = false;
+  invalidTotalError: boolean = false;
 
   totalAmount: number = 0;
   subtotalAmount: number = 0;
   discount: number = 0;
-
 
   totalChange = new BehaviorSubject<number>(0);
   subtotalChange = new BehaviorSubject<number>(0);
@@ -51,31 +51,28 @@ export class CartComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-   
-      
     this.userData.loginChanged.subscribe((res) => {
       this.userId = res;
       // console.log('form onInit',this.userId);
-      this.key=this.cartService.setKey('cart', this.userId)
+      this.key = this.cartService.setKey('cart', this.userId);
       this.hasData = this.cartService.isDataInLocalStorage(this.key);
       this.cartService.saveDataInCart(this.key);
     });
-      
-      this.cartChangesSubscription = this.cartService.changeOnCart.subscribe({
-        next: (res) => {
-          console.log(res);
 
-          this.cartItems = this.cartService.getCartItems(res);
-        },
+    this.cartChangesSubscription = this.cartService.changeOnCart.subscribe({
+      next: (res) => {
+        console.log(res);
+
+        this.cartItems = this.cartService.getCartItems(res);
+      },
+    });
+    this.subtotalChange.subscribe((res) => {
+      this.subtotalAmount = res;
+      this.totalChange.subscribe((res) => {
+        this.totalAmount = res;
       });
-      this.subtotalChange.subscribe((res) => {
-        this.subtotalAmount = res;
-        this.totalChange.subscribe((res) => {
-          this.totalAmount = res;
-        });
-      })
-      // this.cartItems = this.cartService.getCartItems();
-    
+    });
+    // this.cartItems = this.cartService.getCartItems();
   }
 
   calculateSubtotal() {
@@ -116,7 +113,7 @@ export class CartComponent implements OnInit, OnDestroy {
     if (status === 'close') {
       this.deleteClicked = false;
     } else {
-      if (this.deleteCartId ) this.onDeleteCart(this.deleteCartId);
+      if (this.deleteCartId) this.onDeleteCart(this.deleteCartId);
       this.deleteClicked = false;
       this.deleteCartId = null;
     }
@@ -129,10 +126,10 @@ export class CartComponent implements OnInit, OnDestroy {
     checkout = this.cartItems.filter((cart) => cart.saveForCheckout);
     console.log(checkout);
 
-    this.checkout.setCheckoutCart(checkout, this.totalAmount, 20);
+    this.checkout.setCheckoutCart(checkout, this.totalAmount, this.discount);
     this.router.navigate(['/checkout']);
   }
- 
+
   onSaveForCheckout(id: number) {
     let index = this.cartItems.findIndex((cart) => cart.productId === id);
     this.cartItems[index].saveForCheckout =
@@ -140,23 +137,33 @@ export class CartComponent implements OnInit, OnDestroy {
   }
   onApplyCoupon() {
     // console.log(this.coupon);
-    const correctCoupon = this.availableCoupon.find(item => item.name === this.coupon);
+    const correctCoupon = this.availableCoupon.find(
+      (item) => item.name === this.coupon
+    );
     if (correctCoupon) {
-      if (!correctCoupon.used) {
-        this.invalidCouponError = this.usedCouponError = false;
+      if (!correctCoupon.used && this.subtotalAmount > 0) {
+        this.invalidCouponError =
+          this.usedCouponError =
+          this.invalidTotalError =
+            false;
         let updatedTotal: number = this.totalAmount - correctCoupon.amount;
         this.coupon = '';
         correctCoupon.used = true;
+        this.discount += correctCoupon.amount;
         this.totalChange.next(updatedTotal);
+      } else if (!correctCoupon.used && this.subtotalAmount <= 0) {
+        this.invalidTotalError = true;
+        this.invalidCouponError = this.usedCouponError = false;
       } else {
+        this.invalidTotalError = this.invalidCouponError = false;
         this.usedCouponError = true;
       }
     } else {
+      this.invalidTotalError = this.usedCouponError = false;
       this.invalidCouponError = true;
     }
   }
   ngOnDestroy(): void {
-
     this.cartChangesSubscription.unsubscribe();
   }
 }

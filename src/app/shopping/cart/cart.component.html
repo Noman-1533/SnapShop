@@ -177,9 +177,10 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-md-3 coupon-error">
+              <div class="col-md-6 coupon-error">
                 <span *ngIf="invalidCouponError">invalid Coupon!</span>
                 <span *ngIf="usedCouponError">Coupon Already Used!</span>
+                <span *ngIf="invalidTotalError">Please select some item for getting Discount!</span>
               </div>
             </div>
           </div>
