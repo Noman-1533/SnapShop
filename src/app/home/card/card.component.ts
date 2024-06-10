@@ -14,7 +14,7 @@ export class CardComponent implements OnInit {
   userId: number = -1;
   @Input() cardInfo: Product;
   ratingArray: string[] = [];
-
+  showAlert: boolean = false;
   constructor(
     private router: Router,
     private cartService: CartService,
@@ -43,7 +43,13 @@ export class CardComponent implements OnInit {
       this.cartService.saveDataInCart(key);
       this.cartService.onCreateCart(this.cardInfo, key);
     } else {
-      this.router.navigate(['/login']);
+      this.showAlert = true;
+      
+      setTimeout(() => {
+        this.showAlert = false;
+        // alert("Please Login First!");
+        this.router.navigate(['/login']);
+      }, 100);
     }
   }
 

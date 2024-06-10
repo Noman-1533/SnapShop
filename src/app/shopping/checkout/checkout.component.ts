@@ -6,6 +6,7 @@ import { PaymentMethod } from './payment.model';
 import { CartService } from '../cart/cart.service';
 import { Router } from '@angular/router';
 import { UserService } from '../../authentication/login/user.service';
+import { ProfileService } from '../../profile/profile.service';
 
 @Component({
   selector: 'app-checkout',
@@ -44,6 +45,7 @@ export class CheckoutComponent implements OnInit {
     private cartService: CartService,
     private usedData:UserService,
     private router: Router,
+    private profileService: ProfileService
 
   ) {}
 
@@ -112,6 +114,8 @@ export class CheckoutComponent implements OnInit {
       for (let cart of this.checkoutItems) {
         this.cartService.deleteCartItem(cart.productId, key);
       }
+      this.checkoutService.orderPlaced.next(true);
+      this.profileService.addOrderInformation();
       this.router.navigate(['/cart']);
     }
   }
