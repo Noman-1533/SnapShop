@@ -75,38 +75,7 @@
   border-radius: 35px;
 }
 
-@media (max-width: 775px) {
-  .container {
-    flex-direction: column;
-  }
 
-  .helo {
-    margin-left: 50px;
-    /* background-color: red; */
-  }
-}
-
-@media (max-width: 665px) {
-  .helo {
-    margin-left: 60px;
-    top: 100px;
-    /* background-color: red; */
-  }
-
-  .helo h3 {
-    font-size: 0.2vw;
-  }
-}
-
-@media (max-width: 445px) {
-  .helo {
-    margin-left: 60px;
-    /* background-color: red; */
-  }
-}
-
-@media (max-width: 390px) {
-}
 
 /* kdjsdjfffffffffffffffffffffffffffffffffffff */
 
@@ -504,10 +473,11 @@
 .newArival {
   height: 600px;
   width: 100%;
-  /* background-color: green; */
+  
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .box1 {
@@ -613,3 +583,71 @@ Attribution required
 }
 
 /* ------------------------------------------------------------------------------------------------- */
+
+
+
+@media (max-width: 1330px) {
+  
+  .FlashSaleSection{
+  /* height: auto; */
+  margin-bottom: 100px;
+  }
+}
+
+
+
+@media (max-width: 994px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .newarrivalSec {
+    height: auto;
+  }
+
+  .newArival{
+    /* background-color: green; */
+    flex-direction: column;
+    height: auto;
+    gap:30px
+  }
+
+}
+
+
+
+
+
+@media (max-width: 775px) {
+  
+  .helo {
+    margin-left: 50px;
+    background-color: red;
+  }
+}
+
+
+
+
+
+@media (max-width: 665px) {
+  .helo {
+    margin-left: 60px;
+    top: 100px;
+    /* background-color: red; */
+  }
+
+  .helo h3 {
+    font-size: 0.2vw;
+  }
+}
+
+@media (max-width: 445px) {
+  .helo {
+    margin-left: 60px;
+    /* background-color: red; */
+  }
+}
+
+@media (max-width: 390px) {
+}
