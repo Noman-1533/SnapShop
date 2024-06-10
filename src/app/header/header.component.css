@@ -244,6 +244,7 @@
   border: none;
   box-shadow: none;
   text-transform: lowercase;
+  border-radius: 4px;
 }
 
 .btn-primary:hover {
