@@ -27,7 +27,7 @@ export class HomeComponent implements AfterViewInit, OnInit {
 
   combinedArraycategory: { category: string; icon: string }[] = [];
   numberOfSlidesRatting: any[];
-  numberOfSlidesss: any[];
+  numberOfSlidesss;
 
   ngAfterViewInit() {
   //   initMDB();
@@ -43,8 +43,12 @@ export class HomeComponent implements AfterViewInit, OnInit {
     private authService: AuthService,
     private userService: UserService
   ) {
+
+
+    debugger;
     const data = this.route.snapshot.data['homeData'];
     console.log('data', data);
+    console.log('num', this.numberOfSlidesss);
     this.category = data.categories;
     this.numberOfSlidesss = data.limitedProducts; // for card of top product
     this.numberOfSlidesRatting = data.limitedProductsWithDiscount; // for card of top rated product
