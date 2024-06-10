@@ -197,18 +197,31 @@
           <div class="col-md-6 d-flex align-items-start mt-4">
             <div class="d-flex align-items-between mb-3">
               <input
-                type="text"
-                class="form-control me-2"
-                id="couponCode"
-                placeholder="Coupon Code"
-              />
-              <button
-                type="button"
-                class="btn btn-primary apply-coupon w-50"
-                style="white-space: nowrap"
-              >
-                Apply Coupon
-              </button>
+              type="text"
+              class="form-control me-2"
+              id="couponCode"
+              placeholder="Coupon Code"
+              [(ngModel)]="couponCode"
+            />
+            <button
+              type="button"
+              class="btn btn-primary apply-coupon w-50"
+              style="white-space: nowrap"
+              (click)="onApplyCoupon()"
+            >
+              Apply Coupon
+            </button>
+            </div>
+            
+            
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="error-messages">
+                <span *ngIf="invalidCouponError">Invalid Coupon!</span>
+                <span *ngIf="usedCouponError">Coupon Already Used!</span>
+                <span *ngIf="invalidTotalError">Please select some item for getting Discount!</span>
+              </div>
             </div>
           </div>
           <div>
