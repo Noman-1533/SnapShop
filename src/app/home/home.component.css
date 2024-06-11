@@ -1,28 +1,24 @@
 .main {
   height: auto;
-  /* width: calc(100% - 40px); */
   margin: 60px 0 70px 80px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  /* background-color: red; */
 }
 
-.categorysection .carousel-control-prev, .carousel-control-next {
+.categorysection .carousel-control-prev,
+.carousel-control-next {
   width: 0.5rem;
   height: 2.1rem;
   display: none !important;
 }
-
-
 
 .topSectioSlider {
   width: 100%;
   height: 50vh;
   margin-top: -70px;
 }
-
 
 .container {
   display: flex;
@@ -45,12 +41,7 @@
   font-size: 18px;
 }
 
-
-
-
-
 .container1 {
-  /* background-color: red; */
   height: 160px;
   width: 300px;
   display: flex;
@@ -80,10 +71,6 @@
   border-radius: 35px;
 }
 
-
-
-/* kdjsdjfffffffffffffffffffffffffffffffffffff */
-
 /* top start  */
 
 .FirstSectionTop {
@@ -91,8 +78,8 @@
   justify-content: space-around;
 }
 
-.topratedProduct{
-  height: 550px!important;
+.topratedProduct {
+  height: 550px !important;
 }
 
 .rightListBar {
@@ -192,67 +179,64 @@
   align-items: center;
 }
 
+.carousel-inner {
+  height: 100%;
+}
 
-  .carousel-inner {
-    height: 100%;
-  }
-  
-  #cursoulDiv {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    height: 100%;
-  }
-  
-  .hero {
-    color: white;
-    padding: 10px;
-    width: 30%;
-    background: rgba(0, 0, 0, 0.5);
-  }
-  
-  .imageSection {
-    height: 100%;
-    width: 40%; 
-    background-color: black;
-    padding: 20px;
-  }
-  
-  .carousel-item img {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .carousel-control-prev,
-  .carousel-control-next {
-    z-index: 2;
-  }
-  
-  .hero h3 {
-    margin: 0;
-    font-size: 3vw;
-    color: white;
-  }
-  
-  .hero a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  .hero a:hover {
-    text-decoration: underline;
-  }
-  
-  .tittle-bar-forTop-rated {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+#cursoulDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+}
 
-  
-  
+.hero {
+  color: white;
+  padding: 10px;
+  width: 30%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.imageSection {
+  height: 100%;
+  width: 40%;
+  background-color: black;
+  padding: 20px;
+}
+
+.carousel-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  z-index: 2;
+}
+
+.hero h3 {
+  margin: 0;
+  font-size: 3vw;
+  color: white;
+}
+
+.hero a {
+  color: white;
+  text-decoration: none;
+}
+
+.hero a:hover {
+  text-decoration: underline;
+}
+
+.tittle-bar-forTop-rated {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .tittle-bar-forTop-rated {
   display: flex;
   justify-content: space-between;
@@ -270,7 +254,6 @@
   margin-bottom: 10px;
   margin-top: 80px;
   margin: 0;
-  /* background-color: red; */
 }
 
 /* top end  */
@@ -278,7 +261,6 @@
 /* slider  start */
 
 .slider {
-  /* background-color: red; */
   width: 100%;
   overflow: hidden;
 }
@@ -290,11 +272,8 @@
   padding: 40px;
 }
 
-.Explore-product .slider{
-
-  /* background-color: red; */
+.Explore-product .slider {
   margin-bottom: 20px;
-
 }
 
 .buttonView {
@@ -306,7 +285,6 @@
   color: white;
   font-size: 14px;
   z-index: 50000;
-  /* margin-top: 20px; */
 }
 
 .buttonViewProduct .buttonView:hover {
@@ -355,15 +333,7 @@
   display: flex;
   justify-content: space-around;
   gap: 25px;
-  /* background-color: red; */
 }
-
-/* .card-group {
-  display: flex;
-  gap: 190px;
-  overflow: hidden;
-  justify-content: space-between;
-} */
 
 .Day {
   display: flex;
@@ -407,7 +377,6 @@
   height: 300px;
   width: 35%;
   color: white;
-  /* background-color: red; */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -474,8 +443,6 @@
 
 .right-img-section img {
   width: 70%;
-
-  /* filter: drop-shadow(5px 5px 10px rgb(59, 59, 59)); */
 }
 
 /* enhance your product end  */
@@ -489,7 +456,7 @@
 .newArival {
   height: 600px;
   width: 100%;
-  
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -499,9 +466,6 @@
 .box1 {
   height: 90%;
   width: 49%;
-  /* border: 2px solid red; */
-  /* background-color: black; */
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -514,7 +478,6 @@
 .boxright {
   height: 48%;
   width: 100%;
-  /* background-color: black; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -545,7 +508,6 @@
   top: 220px;
   color: rgb(15, 14, 14);
   width: 200px;
-  /* background-color: red; */
 }
 
 .helo h3 {
@@ -564,13 +526,6 @@
 
 /* ------------------------------------------------------------------------------------------------- */
 
-/*
-
-CC 2.0 License Iatek LLC 2018
-Attribution required
-
-*/
-
 .custom-hr {
   height: 30px;
   width: 12px;
@@ -586,7 +541,6 @@ Attribution required
 }
 
 .related-items {
-  /* "display: flex;align-items:center;margin-bottom: 30px;margin-top: 10px; gap: 15px;" */
   display: flex;
   align-items: center;
   margin-bottom: 5vh;
@@ -600,22 +554,9 @@ Attribution required
 
 /* ------------------------------------------------------------------------------------------------- */
 
-
-
-
-
-
-
-
-
-
-
-
-
 @media (max-width: 1330px) {
-  
-  .FlashSaleSection{
-  margin-bottom: 100px;
+  .FlashSaleSection {
+    margin-bottom: 100px;
   }
 }
 
@@ -627,16 +568,11 @@ Attribution required
   }
 }
 
-
-
 @media (max-width: 999px) {
-
-  .Enhance-Your-Product-Section
-  {
-      align-items: center;
-      margin: auto
+  .Enhance-Your-Product-Section {
+    align-items: center;
+    margin: auto;
   }
-
 
   .carousel-item img {
     max-width: 100%;
@@ -644,21 +580,19 @@ Attribution required
   }
 
   .container {
-   width: 100%;
-   margin: 0;
-   flex-direction: column;
-
+    width: 100%;
+    margin: 0;
+    flex-direction: column;
   }
 
-  .sliderDiv{
+  .sliderDiv {
     width: 20px;
     margin: 0;
   }
 
-  .car{
+  .car {
     margin: 0;
   }
-
 
   .newarrivalSec {
     height: auto;
@@ -668,42 +602,35 @@ Attribution required
     justify-content: center;
   }
 
-  .newArival{
+  .newArival {
     flex-direction: column;
     height: auto;
-    gap:30px;
+    gap: 30px;
     width: 80%;
     /* background-color: green; */
     margin-left: 50px;
   }
 
-  .box1{
+  .box1 {
     width: 100%;
     align-items: center;
     gap: 30px;
   }
 
- .boxright-bottom {
-  height:100%!important;
-  margin-bottom: 0;
-  background-color: black;
- }
+  .boxright-bottom {
+    height: 100% !important;
+    margin-bottom: 0;
+    background-color: black;
+  }
 
   .categorysection {
-
     flex-wrap: wrap;
     height: auto;
-
   }
-  .CardList{
+  .CardList {
     flex-wrap: wrap;
   }
-
 }
-
-
-
-
 
 @media (min-width: 992px) {
   .carousel-item h1,
@@ -728,7 +655,3 @@ Attribution required
     font-size: 24px;
   }
 }
-
-
-
-
