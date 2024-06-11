@@ -216,4 +216,29 @@ button[type="submit"] {
 }
 
 
+.password {
+  position: relative;
+  width: 100%;
+}
+ 
+ 
+ 
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-60%);
+  cursor: pointer;
+  color: #000000;
+}
+ 
+.toggle-password:hover {
+  color: #000000;
+}
+
+.text-danger {
+  text-align: left;
+  width: 100%;
+  display: block;
+}
 

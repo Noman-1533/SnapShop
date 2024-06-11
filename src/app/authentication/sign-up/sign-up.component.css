@@ -7,7 +7,6 @@ input.ng-invalid.ng-touched {
 }
 
 .image-section{
-  /* background-color: red; */
   width: 50%;
 }
 
@@ -49,7 +48,6 @@ input[type="email"]{
   border-bottom: 2px solid #ccc!important;
   border-radius: 0px!important;
   box-shadow: none!important;
-  /* background-color: red; */
   padding:10px 0px;
 
 }

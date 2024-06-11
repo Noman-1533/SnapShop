@@ -8,9 +8,7 @@
     <div class="alert alert-success" role="alert">
       Form submitted successfully!
     </div>
-    <!-- <div>
-      <button (click)="onClick()" class="btn btn-primary">Close</button>
-    </div> -->
+
   </div>
   <div
     class="mt-4 form-section col-md-6 card border shadow p-4 rounded"
@@ -185,9 +183,6 @@
         >
           Password and confirm password do not match!
         </div>
-        <!-- <div *ngIf="signUpForm.get('confirmPassword').invalid && signUpForm.get('confirmPassword').touched && signUpForm.get('password').hasError('required')" class="text-danger mt-2">
-          Confirm Password is required!
-        </div> -->
       </div>
 
       <div class="d-grid gap-2">
@@ -203,8 +198,5 @@
     <div class="bottom text-center mt-4">
       <p  style="color: var(--button-color);">Already have an account?<a style="color: var(--button-color);" [routerLink]="['/login']"><span >Log In</span></a></p>
     </div>
-    <!-- <div *ngIf="showConfirmationMessage" class="alert alert-success mt-3" role="alert">
-      Form submitted successfully!
-    </div> -->
   </div>
 </div>

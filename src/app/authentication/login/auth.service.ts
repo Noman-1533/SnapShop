@@ -45,7 +45,6 @@ export class AuthService implements OnInit {
 
   logout()
   {
-    // this.userService.LoggedUser.next();
     this.userService.LoggedUserId=-1;
     localStorage.removeItem('loggedInUser');
     this.loggedIn.next(false);
