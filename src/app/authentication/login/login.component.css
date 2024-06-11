@@ -216,3 +216,31 @@ button[type="submit"] {
 
 
 
+/* Add these styles to your existing CSS */
+
+.password {
+  position: relative;
+  width: 100%;
+}
+ 
+ 
+ 
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-60%);
+  cursor: pointer;
+  color: #000000;
+}
+ 
+.toggle-password:hover {
+  color: #000000;
+}
+
+.text-danger {
+  text-align: left;
+  width: 100%;
+  display: block;
+}
+/* Ensure you have FontAwesome included in your project for the icons to display */
