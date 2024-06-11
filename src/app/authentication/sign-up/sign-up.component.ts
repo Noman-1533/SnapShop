@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -10,7 +11,7 @@ export class SignUpComponent implements OnInit {
   signUpForm: FormGroup;
   showConfirmationMessage: boolean = false;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private router :Router) {}
 
   ngOnInit() {
     this.signUpForm = this.fb.group({
@@ -36,7 +37,8 @@ export class SignUpComponent implements OnInit {
       this.showConfirmationMessage = true;
       setTimeout(() => {
         this.showConfirmationMessage = false;
-      }, 3000);
+        this.router.navigate(['/login']);
+      }, 2000);
 
     }
   }

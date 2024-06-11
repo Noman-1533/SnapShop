@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
     private authService: AuthService,
     private userService: UserService,
     private profileService: ProfileService
-  ) {}
+  ) { }
   ngOnInit(): void {
     this.loggedInUser = this.userService.getLoggedInUser();
     this.profileKey = {
@@ -38,5 +38,10 @@ export class ProfileComponent implements OnInit {
   }
   onSaveChanges(): void {
     this.router.navigate(['/home']);
+  }
+  onClearHistory() {
+    this.orderList = [];
+    this.profileService.saveDataInLocalStorage(this.profileKey, this.orderList);
+    this.orderList = this.profileService.getOrderInformation(this.profileKey);
   }
 }
