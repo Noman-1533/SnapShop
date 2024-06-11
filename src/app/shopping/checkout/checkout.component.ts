@@ -31,7 +31,7 @@ export class CheckoutComponent implements OnInit {
     private formBuilder: FormBuilder,
     private checkoutService: CheckoutService,
     private cartService: CartService,
-    private usedData:UserService,
+    private userData:UserService,
     private router: Router,
     private profileService: ProfileService
 
