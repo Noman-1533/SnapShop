@@ -25,10 +25,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     { name: 'About' },
     { name: 'Products' },
   ];
-  currentCartItem: number;
-  userId: number ;
-  key: Key;
-  cartUpdateSubscription: Subscription;
+  currentCartItem!: number;
+  userId!: number ;
+  key!: Key;
+  cartUpdateSubscription!: Subscription;
 
   constructor(
     private router: Router,
@@ -109,7 +109,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
             this.router.navigate(['/cart']);
           }
           else{
-            alert("You have to login first");
             this.router.navigate(['/login']);
           }
       }

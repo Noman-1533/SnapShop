@@ -10,7 +10,7 @@
       <div
         class="div"
         *ngIf="
-          selectedProductDetails == undefined && starLoad;
+          !selectedProductDetails && starLoad;
           else definedSelect
         "
       ></div>

@@ -116,21 +116,8 @@ h4:hover {
   color: black;
 }
 
-/* Add to cart hover style */
 
 .addToCart a:hover {
   cursor: pointer;
 }
 
-
-.alert {
-  background-color: #f44336; /* Red */
-  color: white;
-  padding: 15px;
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 1000;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}

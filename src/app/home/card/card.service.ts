@@ -5,7 +5,7 @@ import { Product } from "../../shared/product.model";
   providedIn: 'root',
 })
 export class CardService {
-  cardItem: Product;
+  cardItem!: Product;
 
   setCardItem(newCard: Product) {
     this.cardItem = newCard;
