@@ -35,6 +35,6 @@ export class ProductCarouselComponent implements OnInit {
   }
 
   getRandomDiscount(): number {
-    return Math.floor(Math.random() * 21) + 5; // Random discount between 5 and 25
+    return 10; // Random discount between 5 and 25
   }
 }

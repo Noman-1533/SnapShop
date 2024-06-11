@@ -71,7 +71,10 @@ export class DataService {
         `https://fakestoreapi.com/products/category/${categoryName}`
       )
       .pipe(
-        tap((products: Product[]) => {}),
+        tap((products: Product[]) => {
+          products.forEach((product) => {
+            product.discount = this.getRandomDiscount();})
+        }),
         catchError((error) => {
           console.error('Error fetching category products:', error);
           return throwError(error);
@@ -124,7 +127,7 @@ export class DataService {
   getRandomDiscount(): number {
     const minDiscount = 5;
     const maxDiscount = 25;
-    return Math.floor(Math.random() * (maxDiscount - minDiscount + 1)) + minDiscount;
+    return 10;
   }
 
   getAllUser() {
