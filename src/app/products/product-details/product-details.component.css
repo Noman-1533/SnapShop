@@ -10,7 +10,6 @@
 
 .input-width {
   max-width: 70px;
-  /* Set your desired width */
   text-align: center;
 }
 
@@ -76,7 +75,6 @@ img {
 }
 
 .related-items {
-  /* "display: flex;align-items:center;margin-bottom: 30px;margin-top: 10px; gap: 15px;" */
   display: flex;
   align-items: center;
   margin-bottom: 5vh;
@@ -90,8 +88,11 @@ img {
 
 .card {
   border: none;
+  box-shadow: none;
 }
-
+.card-border{
+  border: 1px solid black;
+}
 .card-wrapper {
   display: flex;
   margin: 50px;
@@ -101,6 +102,7 @@ img {
   font-size: 25px;
   padding-left: 0;
 }
+
 .breadcrumb-link {
   text-decoration: none;
   color: black;
@@ -110,4 +112,3 @@ img {
   text-decoration: none;
   color: black;
 }
-

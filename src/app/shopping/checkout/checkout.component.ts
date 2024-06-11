@@ -134,13 +134,14 @@ export class CheckoutComponent implements OnInit {
   onPlaceOrder() {
     if (this.checkoutItems.length > 0) {
       this.onSubmit();
+      this.profileService.addOrderInformation(this.checkoutItems);
       // console.log(this.userId);
       let key: Key = this.cartService.setKey('cart', this.userId);
       for (let cart of this.checkoutItems) {
         this.cartService.deleteCartItem(cart.productId, key);
       }
       this.checkoutService.orderPlaced.next(true);
-      this.profileService.addOrderInformation();
+      
       alert('Order Successful');
       setTimeout(() => {
         this.router.navigate(['/cart']);

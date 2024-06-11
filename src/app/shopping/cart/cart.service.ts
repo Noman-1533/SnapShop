@@ -205,26 +205,36 @@ export class CartService {
     let usedCouponError = false;
     let invalidTotalError = false;
 
-    const correctCoupon = this.availableCoupon.find((item) => item.name === coupon);
+    const correctCoupon = this.availableCoupon.find(
+      (item) => item.name === coupon
+    );
 
     if (correctCoupon) {
-      if (!correctCoupon.used && subtotalAmount > 0) {
+      if (!correctCoupon.used && totalAmount > 0) {
         invalidCouponError = usedCouponError = invalidTotalError = false;
-        updatedTotalAmount -= correctCoupon.amount;
-        updatedDiscount += correctCoupon.amount;
-        correctCoupon.used = true;
-      } else if (!correctCoupon.used && subtotalAmount <= 0) {
+        if (totalAmount > correctCoupon.amount) {
+          updatedTotalAmount -= correctCoupon.amount;
+          updatedDiscount += correctCoupon.amount;
+          correctCoupon.used = true;
+        } else {
+          invalidTotalError = true;
+          usedCouponError = invalidCouponError = false;
+        }
+      } else if (!correctCoupon.used && totalAmount <= 0) {
         invalidTotalError = true;
+        usedCouponError = invalidCouponError = false;
       } else {
         usedCouponError = true;
+        invalidTotalError = invalidCouponError = false;
       }
     } else {
       invalidCouponError = true;
+      usedCouponError = invalidTotalError = false;
     }
 
     return {
       subtotalAmount,
-      totalAmount: updatedTotalAmount,
+      totalAmount: parseFloat(updatedTotalAmount.toFixed(2)),
       discount: updatedDiscount,
       invalidCouponError,
       usedCouponError,

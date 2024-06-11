@@ -1,14 +1,16 @@
 import { Injectable, OnInit } from '@angular/core';
-import { Key } from '../shopping/cart/cart.model';
+import { CartProduct, Key } from '../shopping/cart/cart.model';
 import { UserService } from '../authentication/login/user.service';
 import { DataService } from '../shared/data.service';
 import { CheckoutService } from '../shopping/checkout/checkout.service';
+import { Product } from '../shared/product.model';
 
 
 export interface Order{
   orderId: string;
   orderDate: string;
   orderStatus?: string;
+  products?: CartProduct[];
 }
 
 @Injectable({
@@ -35,17 +37,18 @@ export class ProfileService{
     const randomStr = Math.random().toString(36).substring(2, 15); 
     return `${timestamp}-${randomStr}`;
   }
-  addOrderInformation()
+  addOrderInformation(cart:CartProduct[])
   {
     this.userService.loginChanged.subscribe((res) => {
-      this.currentLoggedInUserId = res;
+    this.currentLoggedInUserId = res;
     const orderId1 = this.generateOrderId();
     const orderDate1 = new Date().toDateString();
     this.currentInfo = { name: 'orderInfo', id: this.currentLoggedInUserId };
     const newOrder: Order = {
       orderId:orderId1,
       orderDate: orderDate1,
-      orderStatus: 'Completed'
+      orderStatus: 'Completed',
+      products:cart
     };
     const previousOrder=this.getOrderInformation(this.currentInfo);
     let orderInformationList: Order[] = previousOrder ? previousOrder : [];
