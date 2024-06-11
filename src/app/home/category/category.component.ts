@@ -6,6 +6,6 @@ import { Component, Input } from '@angular/core';
   styleUrl: './category.component.css',
 })
 export class CategoryComponent {
-  @Input() category:string;
-  @Input() iconCategory:string;
+  @Input() category!:string;
+  @Input() iconCategory!:string;
 }
