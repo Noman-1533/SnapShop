@@ -1,13 +1,13 @@
 <div class="container">
   <div class="breadcrumb">
-    <a href="#">Home</a> / <a href="#">My Account</a>
+    <a [routerLink]="['']">Home</a> / My Account
   </div>
   <div class="welcome-message">
     Welcome! <span class="username">{{ loggedInUser.name.firstname |capitalizeFirst }}</span>
   </div>
   <div class="content">
     <div class="sidebar">
-      <h3>Manage My Account</h3>
+      <h3>Account</h3>
       <ul class="sidebar-menu">
         <li
           [class.active]="activeTab === 'profile'"
@@ -16,41 +16,11 @@
           My Profile
         </li>
         <li
-          [class.active]="activeTab === 'address'"
-          (click)="setActiveTab('address')"
+          [class.active]="activeTab === 'order'"
+          (click)="setActiveTab('order')"
         >
-          Address Book
-        </li>
-        <li
-          [class.active]="activeTab === 'payment'"
-          (click)="setActiveTab('payment')"
-        >
-          My Payment Options
-        </li>
-      </ul>
-      <h3>My Orders</h3>
-      <ul class="sidebar-menu">
-        <li
-          [class.active]="activeTab === 'returns'"
-          (click)="setActiveTab('returns')"
-        >
-          My Returns
-        </li>
-        <li
-          [class.active]="activeTab === 'cancellations'"
-          (click)="setActiveTab('cancellations')"
-        >
-          My Cancellations
-        </li>
-      </ul>
-      <h3>My WishList</h3>
-      <ul class="sidebar-menu">
-        <li
-          [class.active]="activeTab === 'wishlist'"
-          (click)="setActiveTab('wishlist')"
-        >
-          My WishList
-        </li>
+          Order History
+        </li>     
       </ul>
     </div>
     <div class="profile-content" *ngIf="activeTab === 'profile'">
@@ -111,8 +81,9 @@
     </div>
 
     <!--  Address Book -->
-    <div class="addressBook-content d-flex justify-content-center align-items-center" *ngIf="activeTab === 'address'">
+    <div class="addressBook-content d-flex justify-content-center align-items-center" *ngIf="activeTab === 'order'">
       <div *ngIf="orderList?.length > 0; else noOrders" class="container">
+        <button class="btn btn-danger" (click)="onClearHistory()">Clear History</button>
         <h2 class="order-info-header mb-4 text-center">Order Information</h2>
         <div class="row row-cols-1 row-cols-md-2 g-4 scrollable-list">
           <div class="col-md-10 mx-auto" *ngFor="let order of orderList">

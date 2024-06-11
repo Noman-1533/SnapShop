@@ -100,6 +100,7 @@
                         class="btn btn-outline-secondary"
                         type="button"
                         (click)="decrement()"
+                        [disabled]="amount===1"
                       >
                         -
                       </button>
@@ -107,12 +108,13 @@
                         type="text"
                         class="input-width form-control text-center"
                         [(ngModel)]="amount"
-                        min="0"
+                        min="1"
                       />
                       <button
                         class="btn btn-outline-secondary"
                         type="button"
                         (click)="increment()"
+                        
                       >
                         +
                       </button>

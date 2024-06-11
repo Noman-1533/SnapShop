@@ -5,6 +5,8 @@ import { CartService } from '../../shopping/cart/cart.service';
 import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
 import { UserService } from '../../authentication/login/user.service';
 import { ViewportScroller } from '@angular/common';
+import { CartProduct } from '../../shopping/cart/cart.model';
+import { CheckoutService } from '../../shopping/checkout/checkout.service';
 
 @Component({
   selector: 'app-product-details',
@@ -23,7 +25,7 @@ export class ProductDetailsComponent implements OnInit {
 
   products: Product[];
   selectedSize: string = 'M';
-  amount: number = 0;
+  amount: number = 1;
   userId: number = -1;
 
   deliveryOptions: { name: string; iconClass: string }[] = [
@@ -36,7 +38,8 @@ export class ProductDetailsComponent implements OnInit {
     private cartService: CartService,
     private userService: UserService,
     private router: Router,
-    private viewportScroller: ViewportScroller
+    private viewportScroller: ViewportScroller,
+    private checkout:CheckoutService
   ) {}
 
   ngOnInit(): void {
@@ -141,7 +144,21 @@ export class ProductDetailsComponent implements OnInit {
     }
   }
   onBuyItem() {
+    // console.log(this.userId);
     if (this.userId !== -1) {
+      let cart: CartProduct=
+      {
+        productId:this.selectedProductDetails.id,
+        quantity : this.amount,
+        image : this.selectedProductDetails.image,
+        price : this.selectedProductDetails.price,
+        name: this.selectedProductDetails.title,
+        saveForCheckout:true
+      }
+      // console.log(cart)
+      this.checkout.setCheckoutCart(new Array(cart), this.amount*cart.price, 0);
+      this.router.navigate(['/checkout']);
+
     } else {
       this.router.navigate(['/login']);
     }
