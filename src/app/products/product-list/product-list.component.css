@@ -44,3 +44,8 @@
   font-weight: bold;
   margin-bottom: 10px;
 }
+
+/* loader CSS */
+.loader{
+  margin-top: 10%;
+}

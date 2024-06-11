@@ -55,9 +55,12 @@ export class CheckoutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.userData.LoggedUserId !== -1) {
-      this.userId = this.userData.LoggedUserId;
-    }
+    // if (this.userData.LoggedUserId !== -1) {
+    //   this.userId = this.userData.LoggedUserId;
+    // }
+    this.userData.loginChanged.subscribe((res) => {
+      this.userId = res;
+    })
     this.getCheckoutItems();
     this.checkoutForm = this.formBuilder.group({
       firstName: ['', Validators.required],
@@ -131,13 +134,17 @@ export class CheckoutComponent implements OnInit {
   onPlaceOrder() {
     if (this.checkoutItems.length > 0) {
       this.onSubmit();
+      // console.log(this.userId);
       let key: Key = this.cartService.setKey('cart', this.userId);
       for (let cart of this.checkoutItems) {
         this.cartService.deleteCartItem(cart.productId, key);
       }
       this.checkoutService.orderPlaced.next(true);
       this.profileService.addOrderInformation();
-      this.router.navigate(['/cart']);
+      alert('Order Successful');
+      setTimeout(() => {
+        this.router.navigate(['/cart']);
+      }, 500);
     }
   }
 }
