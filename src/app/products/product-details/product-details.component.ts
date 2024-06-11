@@ -88,6 +88,7 @@ export class ProductDetailsComponent implements OnInit {
   fetchProductDetails(productId: number): void {
     this.dataService.getSingleProduct(productId).subscribe((product) => {
       this.selectedProductDetails = product;
+      
     });
   }
 
