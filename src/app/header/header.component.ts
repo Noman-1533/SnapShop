@@ -109,7 +109,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
             this.router.navigate(['/cart']);
           }
           else{
-            alert("You have to login first");
             this.router.navigate(['/login']);
           }
       }
