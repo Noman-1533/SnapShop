@@ -226,11 +226,12 @@
             </div>
           </div>
           <div>
-            <button
+            <button variant="outline"
               type="submit"
               class="btn btn-primary"
               (click)="onPlaceOrder()"
               [disabled]="checkoutItems.length === 0||checkoutForm.invalid"
+              
             >
               Place Order
             </button>

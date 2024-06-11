@@ -164,6 +164,7 @@ button[type="submit"] {
 .forgot .signUp{
 
   font-weight: 1000;
+  text-decoration: underline;
   
 
 }
