@@ -17,7 +17,24 @@ export class CheckoutComponent implements OnInit {
   shippingKey: Key;
   checkoutForm: FormGroup;
   checkoutItems: CartProduct[] = [];
-  paymentMethod: PaymentMethod[] = [/* Payment methods array */];
+  paymentMethod: PaymentMethod[] = [
+    {
+      logo: 'https://www.freepnglogos.com/uploads/verified-by-visa-logo-png-0.png',
+      name: 'VISA',
+    },
+    {
+      logo: 'https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-transparent-png-stickpng-10.png',
+      name: 'Mastercard',
+    },
+    {
+      logo: 'https://1000logos.net/wp-content/uploads/2021/02/Bkash-logo.png',
+      name: 'Bkash',
+    },
+    {
+      logo: 'https://www.freepnglogos.com/uploads/paypal-logo-png-29.png',
+      name: 'PayPal',
+    },
+  ];;
   totalAmount = 0;
   discount: number = 0;
   subtotalAmount: number = 0;
