@@ -23,9 +23,6 @@
   margin-top: -70px;
 }
 
-#header {
-  background: url("../../assets/images/banner-img-1.jpg") top/cover no-repeat;
-}
 
 .container {
   display: flex;
@@ -92,6 +89,10 @@
 .FirstSectionTop {
   display: flex;
   justify-content: space-around;
+}
+
+.topratedProduct{
+  height: 550px!important;
 }
 
 .rightListBar {
@@ -629,6 +630,14 @@ Attribution required
 
 
 @media (max-width: 999px) {
+
+  .Enhance-Your-Product-Section
+  {
+      align-items: center;
+      margin: auto
+  }
+
+
   .carousel-item img {
     max-width: 100%;
     height: auto;
@@ -653,13 +662,32 @@ Attribution required
 
   .newarrivalSec {
     height: auto;
+    width: 100%;
+    /* background-color: red; */
+    align-items: center;
+    justify-content: center;
   }
 
   .newArival{
     flex-direction: column;
     height: auto;
-    gap:30px
+    gap:30px;
+    width: 80%;
+    /* background-color: green; */
+    margin-left: 50px;
   }
+
+  .box1{
+    width: 100%;
+    align-items: center;
+    gap: 30px;
+  }
+
+ .boxright-bottom {
+  height:100%!important;
+  margin-bottom: 0;
+  background-color: black;
+ }
 
   .categorysection {
 

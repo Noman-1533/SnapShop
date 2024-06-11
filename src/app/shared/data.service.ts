@@ -120,10 +120,11 @@ export class DataService {
         })
       );
   }
-  //for sorting by ratting
 
-  getRandomDiscount() {
-    return 5 + 25;
+  getRandomDiscount(): number {
+    const minDiscount = 5;
+    const maxDiscount = 25;
+    return Math.floor(Math.random() * (maxDiscount - minDiscount + 1)) + minDiscount;
   }
 
   getAllUser() {
