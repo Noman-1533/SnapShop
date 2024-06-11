@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Product } from '../shared/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,15 +11,16 @@ export class HeaderService {
 
   constructor(private http: HttpClient) {}
 
-  getItems(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+  getItems(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.apiUrl);
   }
 
-  getItemById(id: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${id}`);
+  getItemById(id: string): Observable<Product> {
+    return this.http.get<Product>(`${this.apiUrl}/${id}`);
   }
 
-  searchItems(query: string, items: any[]): any[] {
+
+  searchItems(query: string, items: Product[]): Product[] {
     if (!query) {
       return [];
     }

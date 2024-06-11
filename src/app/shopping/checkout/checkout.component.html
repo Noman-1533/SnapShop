@@ -149,7 +149,8 @@
                     <td id="shipping">
                         <span *ngIf="totalAmount >= 300">Free</span>
                         <span *ngIf="totalAmount < 300&&totalAmount>0">$24.99</span>
-                        <span *ngIf="totalAmount==-0">$0.00</span>
+                        <span *ngIf="totalAmount==0">$0.00</span>
+                        <span *ngIf="totalAmount===0">$0.00</span>
                     </td>
                 </tr>
                 <tr>
