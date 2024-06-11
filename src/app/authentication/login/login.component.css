@@ -215,9 +215,6 @@ button[type="submit"] {
 }
 
 
-
-/* Add these styles to your existing CSS */
-
 .password {
   position: relative;
   width: 100%;
@@ -243,4 +240,4 @@ button[type="submit"] {
   width: 100%;
   display: block;
 }
-/* Ensure you have FontAwesome included in your project for the icons to display */
+

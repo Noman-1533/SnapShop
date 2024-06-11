@@ -21,8 +21,8 @@
 .contact-form .form-control {
   padding: 15px;
   font-size: 16px;
-  border: none; /* Add this line to remove the border */
-  background-color: #f4f4f4c5; /* Change background color to ash */
+  border: none; 
+  background-color: #f4f4f4c5; 
   border-radius: 4px;
 }
 
