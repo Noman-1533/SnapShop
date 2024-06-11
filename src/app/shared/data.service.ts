@@ -65,19 +65,32 @@ export class DataService {
       );
   }
 
+
+
   getProductsOfCategory(categoryName: string): Observable<Product[]> {
     return this.http
       .get<Product[]>(
         `https://fakestoreapi.com/products/category/${categoryName}`
       )
       .pipe(
-        tap((products: Product[]) => {}),
+        tap((products: Product[]) => {
+
+        
+          products.forEach((product) => {
+            product.discount = this.getRandomDiscount();})
+          
+
+
+        }),
         catchError((error) => {
           console.error('Error fetching category products:', error);
           return throwError(error);
         })
       );
   }
+
+
+
 
   getSingleUserCart(id: number): Observable<Cart[]> {
     return this.http

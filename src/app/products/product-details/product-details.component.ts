@@ -62,17 +62,16 @@ export class ProductDetailsComponent implements OnInit {
 
     this.inPage = false;
 
+
     this.route.params.subscribe((params) => {
       console.log(params);
 
       this.fetchProductDetails(params['id'])
-      // const productId = +params['id'];
-
-      // if (productId && this.inPage) {
-      //   this.fetchProductDetails(productId);
-      // }
       this.updateBreadcrumbPath();
     });
+
+
+
 
     setTimeout(
       () => {
@@ -91,7 +90,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   updateBreadcrumbPath(): void {
-    this.breadcrumbPath = this.router.url;  // Update the breadcrumb path based on the current URL
+    this.breadcrumbPath = this.router.url;
   }
 
   fetchProductDetails(productId: number): void {
@@ -102,7 +101,6 @@ export class ProductDetailsComponent implements OnInit {
         .getProductsOfCategory(product.category)
         .subscribe((categoryProducts) => {
           console.log('hab ',categoryProducts);
-          // this.RelatedProducts = categoryProducts;
           console.log('form details ',this.RelatedProducts);
         });
     });
@@ -144,7 +142,6 @@ export class ProductDetailsComponent implements OnInit {
     }
   }
   onBuyItem() {
-    // console.log(this.userId);
     if (this.userId !== -1) {
       let cart: CartProduct=
       {
@@ -155,7 +152,6 @@ export class ProductDetailsComponent implements OnInit {
         name: this.selectedProductDetails.title,
         saveForCheckout:true
       }
-      // console.log(cart)
       this.checkout.setCheckoutCart(new Array(cart), this.amount*cart.price, 0);
       this.router.navigate(['/checkout']);
 

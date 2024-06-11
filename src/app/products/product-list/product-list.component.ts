@@ -19,7 +19,6 @@ export class ProductListComponent implements OnInit {
   qparam: any;
 
   constructor(
-    private router: Router,
     private dataService: DataService,
     private route: ActivatedRoute
   ) {}
@@ -27,9 +26,8 @@ export class ProductListComponent implements OnInit {
     this.qparam = this.route.queryParams.subscribe((queryparam: Params) => {
       this.Category = queryparam['Category'];
     });
-    //  console.log("cat :",this.Category)
-
-    if (this.Category == undefined) {
+    
+    if (!this.Category) {
       this.dataService.getAllProducts().subscribe((products) => {
         this.products = products;
         this.isLoading = false;
@@ -39,33 +37,15 @@ export class ProductListComponent implements OnInit {
         .getProductsOfCategory(this.Category)
         .subscribe((products) => {
           this.products = products;
+          this.isLoading = false;
         });
     }
 
 
-    // this.numberOfSlides.forEach((slide) => {
-    //   slide.forEach((product) => {
-    //     product.discount = this.getRandomDiscount();
-    //     // console.log("data from coursol split ", this.numberOfSlides);
-    //   });
-    // });
-    // if (this.numberOfSlides) {
-    //   this.numberOfSlides.forEach((slide:any[]) => {
-    //     slide.forEach((product) => {
-    //       product.discount = this.getRandomDiscount();
-    //       // console.log("data from coursol split ", this.numberOfSlides);
-    //     });
-    //   });
-    // }
+   
   }
 
-  arrayLength=0
+  
 
  
-
-  // getRandomDiscount() {
-  //   return 5 + 21;
-
-  //   // demoProduct: number[] = Array(10).fill(1)
-  // }
 }
