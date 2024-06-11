@@ -19,6 +19,9 @@ export class CheckoutService {
     this.totalAmount = Amount
     this.discount = discount;
   }
+  getcartToCheckout() {
+    return this.cartToCheckout;
+  }
   getCheckout() {
     return this.cartToCheckout;
   }

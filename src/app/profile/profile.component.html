@@ -101,6 +101,7 @@
                     <span class="badge bg-primary">{{ order.orderStatus }}</span>
                   </li>
                 </ul>
+                <button class="btn btn-primary mt-3" (click)="showOrderDetails(order)">Show Details</button>
               </div>
             </div>
           </div>
@@ -112,7 +113,44 @@
     </div>
     
     
-    
+    <!-- Modal -->
+<div class="modal fade" id="orderDetailsModal" tabindex="100" aria-labelledby="orderDetailsModalLabel" aria-hidden="false">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="orderDetailsModalLabel">Order Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Order ID:</strong> {{ currentActiveOrder?.orderId }}</p>
+        <p><strong>Order Date:</strong> {{ currentActiveOrder?.orderDate }}</p>
+        <p><strong>Current Status:</strong> {{ currentActiveOrder?.orderStatus }}</p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Image</th>
+              <th scope="col">Name</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of currentActiveOrder?.products">
+              <td><img [src]="product.image" alt="{{ product.name }}" class="img-thumbnail" width="50"></td>
+              <td>{{ product.name }}</td>
+              <td>{{ product.quantity }}</td>
+              <td>{{ product.price | currency }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
     
     
     
