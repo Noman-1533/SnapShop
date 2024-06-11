@@ -1,12 +1,14 @@
+<!-- card.component.html -->
 <div *ngIf="cardInfo === undefined; else content"></div>
 
 <ng-template #content>
+  <div class="alert alert-warning" *ngIf="showAlert">Please log in to add items to the cart.</div>
   <div class="col-sm-3 card1">
     <div class="thumb-wrapper">
       <div class="topsectionforcart">
-        <span class="wish-icon discount"
-          ><button class="discountbutton">-{{cardInfo.discount}}%</button></span
-        >
+        <span class="wish-icon discount">
+          <button class="discountbutton">-{{cardInfo.discount}}%</button>
+        </span>
         <!-- <span class="wish-icon discount"><button class="discountbutton">{{cardInfo.rating.rate}}</button></span> -->
         <span class="wish-icon"><i class="ri-heart-3-line"></i></span>
       </div>
@@ -33,8 +35,7 @@
                   'fa-star-half-alt': star === 'half',
                   'fa-star-o': star === 'empty'
                 }"
-              >
-              </i>
+              ></i>
             </li>
             <li class="list-inline-item count">
               ({{ cardInfo.rating.count }})
