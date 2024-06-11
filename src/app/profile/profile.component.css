@@ -148,3 +148,82 @@ button {
   background-color: #dc3545;
   color: white;
 }
+
+
+/* new */
+
+/* For WebKit browsers (Chrome, Safari) */
+.scrollable-list::-webkit-scrollbar {
+  width: 8px; /* Adjust scrollbar width */
+}
+
+.scrollable-list::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track color */
+}
+
+.scrollable-list::-webkit-scrollbar-thumb {
+  background: #888; /* Scrollbar thumb color */
+  border-radius: 10px; /* Scrollbar thumb border radius */
+}
+
+.scrollable-list::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Scrollbar thumb color on hover */
+}
+
+/* For Firefox */
+.scrollable-list {
+  scrollbar-width: thin; /* Scrollbar width */
+  scrollbar-color: #888 #f1f1f1; /* Scrollbar thumb and track color */
+}
+
+/* General styles */
+.addressBook-content {
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.order-info-header {
+  color: #007bff; /* Bootstrap primary color */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+}
+
+.scrollable-list {
+  max-height: 70vh;
+  overflow-y: auto;
+  padding-right: 15px; /* Add some padding for scrollbar */
+}
+
+.card {
+  background-color: #e9ecef; /* Light gray background */
+  border: 1px solid #007bff; /* Bootstrap primary border color */
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.list-group-item {
+  background-color: transparent; /* Transparent background for list items */
+  border: none; /* Remove borders from list items */
+}
+
+.list-group-item strong {
+  color: #343a40; /* Dark color for strong text */
+}
+
+.badge {
+  font-size: 0.9rem;
+}
+
+/* Media query for larger screens */
+@media (min-width: 992px) {
+  .addressBook-content {
+    min-height: 80vh; /* Adjust height for larger screens */
+  }
+
+  .scrollable-list {
+    max-height: 60vh; /* Adjust scrollable list height for larger screens */
+  }
+}
