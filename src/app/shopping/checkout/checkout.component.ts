@@ -18,7 +18,24 @@ export class CheckoutComponent implements OnInit {
   shippingKey: Key;
   checkoutForm: FormGroup;
   checkoutItems: CartProduct[] = [];
-  paymentMethod: PaymentMethod[] = [/* Payment methods array */];
+  paymentMethod: PaymentMethod[] = [
+    {
+      logo: 'https://www.freepnglogos.com/uploads/verified-by-visa-logo-png-0.png',
+      name: 'VISA',
+    },
+    {
+      logo: 'https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-transparent-png-stickpng-10.png',
+      name: 'Mastercard',
+    },
+    {
+      logo: 'https://1000logos.net/wp-content/uploads/2021/02/Bkash-logo.png',
+      name: 'Bkash',
+    },
+    {
+      logo: 'https://www.freepnglogos.com/uploads/paypal-logo-png-29.png',
+      name: 'PayPal',
+    },
+  ];;
   totalAmount = 0;
   discount: number = 0;
   subtotalAmount: number = 0;
@@ -38,9 +55,12 @@ export class CheckoutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.userData.LoggedUserId !== -1) {
-      this.userId = this.userData.LoggedUserId;
-    }
+    // if (this.userData.LoggedUserId !== -1) {
+    //   this.userId = this.userData.LoggedUserId;
+    // }
+    this.userData.loginChanged.subscribe((res) => {
+      this.userId = res;
+    })
     this.getCheckoutItems();
     this.checkoutForm = this.formBuilder.group({
       firstName: ['', Validators.required],
@@ -68,6 +88,7 @@ export class CheckoutComponent implements OnInit {
     for (let item of this.checkoutItems) {
       total += item.price * item.quantity;
     }
+    total = parseFloat(total.toFixed(2));
     return total;
   }
 
@@ -113,13 +134,18 @@ export class CheckoutComponent implements OnInit {
   onPlaceOrder() {
     if (this.checkoutItems.length > 0) {
       this.onSubmit();
+      this.profileService.addOrderInformation(this.checkoutItems);
+      // console.log(this.userId);
       let key: Key = this.cartService.setKey('cart', this.userId);
       for (let cart of this.checkoutItems) {
         this.cartService.deleteCartItem(cart.productId, key);
       }
       this.checkoutService.orderPlaced.next(true);
-      this.profileService.addOrderInformation();
-      this.router.navigate(['/cart']);
+      
+      alert('Order Successful');
+      setTimeout(() => {
+        this.router.navigate(['/cart']);
+      }, 500);
     }
   }
 }

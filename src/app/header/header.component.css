@@ -10,7 +10,6 @@
   top: 35px;
   box-shadow: 0px 0px 0px 1px rgba(99, 97, 97, 0.05),
     inset 0px 0px 0px 1px rgb(222, 227, 235);
-   
 }
 
 .topNav {
@@ -20,7 +19,7 @@
   display: flex;
   justify-content: space-around;
   color: white;
-  font-size: 12px;
+  font-size: 13px;
   align-items: center;
 }
 
@@ -194,43 +193,9 @@
 
 .btn:active {
   background-color: transparent !important;
-  border:2px solid var(--button-color);
+  border: 2px solid var(--button-color);
   transition: 0.5s;
   color: black;
-}
-
-@media (max-width: 990px) {
-  .Middletext {
-    display: none;
-  }
-
-  .dropdown {
-    display: block;
-  }
-
-  .bottom {
-    justify-content: space-between;
-    padding: 0px 4vw;
-  }
-}
-
-@media (max-width: 445px) {
-  .language {
-    display: none;
-  }
-}
-
-@media (max-width: 390px) {
-  .mid p {
-    display: none;
-  }
-
-  .mid {
-    justify-content: none;
-    text-align: center;
-    margin-right: 30vw;
-    text-decoration: underline;
-  }
 }
 
 .nav-link:hover,
@@ -259,14 +224,12 @@
   box-shadow: none;
 }
 
-/* cart Item Number */
 .cartItemNumber {
   color: rgb(240, 234, 234);
   font-size: 13px;
   background-color: var(--button-color);
   padding: 1px 6px;
   border-radius: 35px;
-  /* margin-bottom: 100px; */
   position: absolute;
 }
 
@@ -305,11 +268,9 @@
 }
 
 .navbar {
-  /* height: 80px !important; */
   font-family: "Trebuchet MS", sans-serif !important;
 }
 
-/* Search Suggestions Styling */
 .search-container {
   position: relative;
   display: flex;
@@ -346,23 +307,11 @@
 .suggestions li:hover {
   background-color: #f0f0f0;
 }
-/* header.component.css */
-/* header.component.css */
-/* header.component.css */
+
 .nav-link.active {
   font-weight: bold;
-  /* color: #ff0000 !important; Ensure this color is applied */
   text-decoration: underline;
 }
-
-/* You may need to increase specificity if there are competing styles */
-/* .navbar-nav .nav-item .nav-link.active {
-  color: #007bff !important;
-  font-weight: bold;
-  text-decoration: underline;
-} */
-
-/* header.component.css */
 
 .search-container {
   position: relative;
@@ -376,7 +325,6 @@
 .form-control {
   padding-right: 40px;
   width: 100%;
-  
 }
 
 .input-group-text {
@@ -386,7 +334,7 @@
   transform: translateY(-50%);
   border: none;
   background: transparent;
-  pointer-events: none; /* Makes the icon non-interactive */
+  pointer-events: none;
 }
 
 .search-icon {
@@ -406,12 +354,47 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.shoppingIcon.active{
-
+.shoppingIcon.active {
   border-radius: 35px;
-  /* background-color: var(--button-color); */
-  
   border: 1px solid var(--button-color);
+}
 
-  
+
+
+
+
+/* @media  */
+
+@media (max-width: 990px) {
+  .Middletext {
+    display: none;
+  }
+
+  .dropdown {
+    display: block;
+  }
+
+  .bottom {
+    justify-content: space-between;
+    padding: 0px 4vw;
+  }
+}
+
+@media (max-width: 445px) {
+  .language {
+    display: none;
+  }
+}
+
+@media (max-width: 390px) {
+  .mid p {
+    display: none;
+  }
+
+  .mid {
+    justify-content: none;
+    text-align: center;
+    margin-right: 30vw;
+    text-decoration: underline;
+  }
 }

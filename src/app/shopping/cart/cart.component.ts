@@ -125,6 +125,7 @@ export class CartComponent implements OnInit, OnDestroy {
       this.discount,
       this.coupon
     );
+    
 
     this.subtotalAmount = subtotalAmount;
     this.totalAmount = totalAmount;
@@ -132,8 +133,8 @@ export class CartComponent implements OnInit, OnDestroy {
     this.invalidCouponError = invalidCouponError;
     this.usedCouponError = usedCouponError;
     this.invalidTotalError = invalidTotalError;
+    
   }
-
   ngOnDestroy(): void {
     this.cartChangesSubscription.unsubscribe();
   }

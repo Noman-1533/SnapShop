@@ -13,7 +13,6 @@
   border: none;
   margin-left: 10px;
   margin-bottom: 20px;
-  /* color: yellowgreen; */
 }
 
 .tittle-section {
@@ -43,4 +42,9 @@
   font-size: 1.8em;
   font-weight: bold;
   margin-bottom: 10px;
+}
+
+/* loader CSS */
+.loader{
+  margin-top: 10%;
 }

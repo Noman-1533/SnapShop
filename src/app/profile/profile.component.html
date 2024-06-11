@@ -1,13 +1,13 @@
 <div class="container">
   <div class="breadcrumb">
-    <a href="#">Home</a> / <a href="#">My Account</a>
+    <a [routerLink]="['']">Home</a> / My Account
   </div>
   <div class="welcome-message">
     Welcome! <span class="username">{{ loggedInUser.name.firstname |capitalizeFirst }}</span>
   </div>
   <div class="content">
     <div class="sidebar">
-      <h3>Manage My Account</h3>
+      <h3>Account</h3>
       <ul class="sidebar-menu">
         <li
           [class.active]="activeTab === 'profile'"
@@ -16,41 +16,11 @@
           My Profile
         </li>
         <li
-          [class.active]="activeTab === 'address'"
-          (click)="setActiveTab('address')"
+          [class.active]="activeTab === 'order'"
+          (click)="setActiveTab('order')"
         >
-          Address Book
-        </li>
-        <li
-          [class.active]="activeTab === 'payment'"
-          (click)="setActiveTab('payment')"
-        >
-          My Payment Options
-        </li>
-      </ul>
-      <h3>My Orders</h3>
-      <ul class="sidebar-menu">
-        <li
-          [class.active]="activeTab === 'returns'"
-          (click)="setActiveTab('returns')"
-        >
-          My Returns
-        </li>
-        <li
-          [class.active]="activeTab === 'cancellations'"
-          (click)="setActiveTab('cancellations')"
-        >
-          My Cancellations
-        </li>
-      </ul>
-      <h3>My WishList</h3>
-      <ul class="sidebar-menu">
-        <li
-          [class.active]="activeTab === 'wishlist'"
-          (click)="setActiveTab('wishlist')"
-        >
-          My WishList
-        </li>
+          Order History
+        </li>     
       </ul>
     </div>
     <div class="profile-content" *ngIf="activeTab === 'profile'">
@@ -111,8 +81,9 @@
     </div>
 
     <!--  Address Book -->
-    <div class="addressBook-content d-flex justify-content-center align-items-center" *ngIf="activeTab === 'address'">
+    <div class="addressBook-content d-flex justify-content-center align-items-center" *ngIf="activeTab === 'order'">
       <div *ngIf="orderList?.length > 0; else noOrders" class="container">
+        <button class="btn btn-danger" (click)="onClearHistory()">Clear History</button>
         <h2 class="order-info-header mb-4 text-center">Order Information</h2>
         <div class="row row-cols-1 row-cols-md-2 g-4 scrollable-list">
           <div class="col-md-10 mx-auto" *ngFor="let order of orderList">
@@ -130,6 +101,7 @@
                     <span class="badge bg-primary">{{ order.orderStatus }}</span>
                   </li>
                 </ul>
+                <button class="btn btn-primary mt-3" (click)="showOrderDetails(order)">Show Details</button>
               </div>
             </div>
           </div>
@@ -141,7 +113,44 @@
     </div>
     
     
-    
+    <!-- Modal -->
+<div class="modal fade" id="orderDetailsModal" tabindex="100" aria-labelledby="orderDetailsModalLabel" aria-hidden="false">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="orderDetailsModalLabel">Order Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Order ID:</strong> {{ currentActiveOrder?.orderId }}</p>
+        <p><strong>Order Date:</strong> {{ currentActiveOrder?.orderDate }}</p>
+        <p><strong>Current Status:</strong> {{ currentActiveOrder?.orderStatus }}</p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Image</th>
+              <th scope="col">Name</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of currentActiveOrder?.products">
+              <td><img [src]="product.image" alt="{{ product.name }}" class="img-thumbnail" width="50"></td>
+              <td>{{ product.name }}</td>
+              <td>{{ product.quantity }}</td>
+              <td>{{ product.price | currency }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
     
     
     

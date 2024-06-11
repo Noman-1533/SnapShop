@@ -13,6 +13,7 @@ export class ProductListComponent implements OnInit {
   @Input() numberOfSlides;
   products: Product[] = [];
   Category: string = '';
+  isLoading: boolean= true;
 
   inShow_All = false;
   qparam: any;
@@ -31,12 +32,14 @@ export class ProductListComponent implements OnInit {
     if (this.Category == undefined) {
       this.dataService.getAllProducts().subscribe((products) => {
         this.products = products;
+        this.isLoading = false;
       });
     } else {
       this.dataService
         .getProductsOfCategory(this.Category)
         .subscribe((products) => {
           this.products = products;
+          this.isLoading = false;
         });
     }
 

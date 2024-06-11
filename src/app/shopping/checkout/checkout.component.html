@@ -112,7 +112,7 @@
                 <tr>
                     <th>Item</th>
                     <th>Quantity</th>
-                    <th>Subtotal</th>
+                    <th id="subtotal">Subtotal</th>
                 </tr>
             </thead>
             <tbody>
@@ -131,25 +131,30 @@
                         <span *ngIf="product.name.length > 20"> ...</span>
                     </td>
                     <td>{{ product.quantity }}</td>
-                    <td>{{ product.price * product.quantity }}</td>
+                    <td id="subtotal">${{ product.price * product.quantity }}</td>
                 </tr>
+            </tbody>
+          </table>
+          <table class="table table-striped "><tbody>
                 <tr>
-                    <td colspan="2">Subtotal</td>
+                    <td colspan="3">Subtotal</td>
                     <td id="subtotal">${{ calculateSubTotal() }}</td>
                 </tr>
                 <tr *ngIf="discount">
-                  <td colspan="2">Discount</td>
-                  <td>-{{discount}}</td>
+                  <td colspan="3">Discount</td>
+                  <td id="discount">-${{discount}}</td>
                 </tr>
                 <tr>
-                    <td colspan="2">Shipping</td>
+                    <td colspan="3">Shipping</td>
                     <td id="shipping">
                         <span *ngIf="totalAmount >= 300">Free</span>
-                        <span *ngIf="totalAmount < 300">$24.99</span>
+                        <span *ngIf="totalAmount < 300&&totalAmount>0">$24.99</span>
+                        <span *ngIf="totalAmount==0">$0.00</span>
+                        <span *ngIf="totalAmount===0">$0.00</span>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2">Total</td>
+                    <td colspan="3">Total</td>
                     <td id="total">${{ totalAmount }}</td>
                 </tr>
             </tbody>
