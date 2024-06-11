@@ -39,6 +39,7 @@ export class ProductListComponent implements OnInit {
         .getProductsOfCategory(this.Category)
         .subscribe((products) => {
           this.products = products;
+          this.isLoading = false;
         });
     }
 

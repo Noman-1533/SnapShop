@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   isFormSubmitted: boolean = false;
   passwordFieldType: string = 'password';
+  loggedIn=false;
 
   constructor(
     private authService: AuthService,
@@ -25,6 +26,20 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    debugger;
+    this.loggedIn=false;
+    this.authService.loggedIn.subscribe(
+      loggedIn=>{
+        if(loggedIn)
+          {
+            this.loggedIn=true;
+            this.router.navigate(['/home']);
+          }
+
+      }
+    );
+      
+
     this.loginForm = new FormGroup({
       username: new FormControl(null, [Validators.required, Validators.minLength(3)]),
       password: new FormControl(null, [Validators.required, Validators.minLength(5)]),
