@@ -10,7 +10,6 @@
 
 .input-width {
   max-width: 70px;
-  /* Set your desired width */
   text-align: center;
 }
 
@@ -76,7 +75,6 @@ img {
 }
 
 .related-items {
-  /* "display: flex;align-items:center;margin-bottom: 30px;margin-top: 10px; gap: 15px;" */
   display: flex;
   align-items: center;
   margin-bottom: 5vh;
@@ -110,4 +108,3 @@ img {
   text-decoration: none;
   color: black;
 }
-

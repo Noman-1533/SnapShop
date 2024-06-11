@@ -14,14 +14,15 @@ import { CheckoutService } from '../../shopping/checkout/checkout.service';
   styleUrl: './product-details.component.css',
 })
 export class ProductDetailsComponent implements OnInit {
-  dataService = inject(DataService);
-  starLoad = false;
-  inPage = false;
+  dataService:DataService = inject(DataService);
+
+  starLoad:boolean = false;
+  inPage:boolean = false;
   selectedProductDetails: Product;
-  RelatedProducts:Product[]=[];
+  RelatedProducts: Product[] = [];
   ratingArray: string[] = [];
   sizes: string[] = ['XS', 'S', 'M', 'L', 'XL'];
-  breadcrumbPath: string;
+  breadcrumbPath: string='';
 
   products: Product[];
   selectedSize: string = 'M';
@@ -39,18 +40,15 @@ export class ProductDetailsComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private viewportScroller: ViewportScroller,
-    private checkout:CheckoutService
+    private checkout: CheckoutService
   ) {}
 
   ngOnInit(): void {
-
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.viewportScroller.scrollToPosition([0, 0]);
       }
     });
-
-
 
     this.userService.loginChanged.subscribe((res) => {
       this.userId = res;
@@ -64,9 +62,7 @@ export class ProductDetailsComponent implements OnInit {
 
 
     this.route.params.subscribe((params) => {
-      console.log(params);
-
-      this.fetchProductDetails(params['id'])
+      this.fetchProductDetails(params['id']);
       this.updateBreadcrumbPath();
     });
 
@@ -94,15 +90,9 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   fetchProductDetails(productId: number): void {
-    console.log('fetch called');
     this.dataService.getSingleProduct(productId).subscribe((product) => {
       this.selectedProductDetails = product;
-      this.dataService
-        .getProductsOfCategory(product.category)
-        .subscribe((categoryProducts) => {
-          console.log('hab ',categoryProducts);
-          console.log('form details ',this.RelatedProducts);
-        });
+      
     });
   }
 
@@ -134,7 +124,7 @@ export class ProductDetailsComponent implements OnInit {
 
   onClickCart() {
     if (this.userId !== -1) {
-      let key= this.cartService.setKey('cart', this.userId)
+      let key = this.cartService.setKey('cart', this.userId);
       this.cartService.saveDataInCart(key);
       this.cartService.onCreateCart(this.selectedProductDetails, key);
     } else {
@@ -143,18 +133,20 @@ export class ProductDetailsComponent implements OnInit {
   }
   onBuyItem() {
     if (this.userId !== -1) {
-      let cart: CartProduct=
-      {
-        productId:this.selectedProductDetails.id,
-        quantity : this.amount,
-        image : this.selectedProductDetails.image,
-        price : this.selectedProductDetails.price,
+      let cart: CartProduct = {
+        productId: this.selectedProductDetails.id,
+        quantity: this.amount,
+        image: this.selectedProductDetails.image,
+        price: this.selectedProductDetails.price,
         name: this.selectedProductDetails.title,
-        saveForCheckout:true
-      }
-      this.checkout.setCheckoutCart(new Array(cart), this.amount*cart.price, 0);
+        saveForCheckout: true,
+      };
+      this.checkout.setCheckoutCart(
+        new Array(cart),
+        this.amount * cart.price,
+        0
+      );
       this.router.navigate(['/checkout']);
-
     } else {
       this.router.navigate(['/login']);
     }
