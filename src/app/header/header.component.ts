@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { CartService } from '../shopping/cart/cart.service';
 import { Key } from '../shopping/cart/cart.model';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../authentication/login/auth.service';
 import { UserService } from '../authentication/login/user.service';
 import { HeaderService } from './header.service';
+import { Product } from '../shared/product.model';
 
 @Component({
   selector: 'app-header',
@@ -14,10 +14,9 @@ import { HeaderService } from './header.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  icon = faHeart;
   isLoggedIn = false;
-  items: any[] = [];
-  filteredItems: any[] = [];
+  items: Product[] = [];
+  filteredItems: Product[] = [];
   searchText: string = '';
 
   headerText = [
@@ -25,7 +24,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     { name: 'Contact' },
     { name: 'About' },
     { name: 'Products' },
-    // { name: 'login' },
   ];
   currentCartItem: number;
   userId: number ;
@@ -39,7 +37,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private headerService: HeaderService
   ) {
-    // Subscribe to router events to clear the search text and filtered items on navigation
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.clearSearch();
@@ -48,7 +45,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.headerService.getItems().subscribe((data: any[]) => {
+    this.headerService.getItems().subscribe((data: Product[]) => {
       this.items = data;
       
     });
@@ -68,7 +65,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.searchText = event.target.value;
   
     if (this.searchText.trim() === '') {
-      this.filteredItems = []; // Reset to no items when search is cleared
+      this.filteredItems = []; 
       this.router.navigate(['/home']); 
     } else {
       this.filteredItems = this.headerService.searchItems(this.searchText, this.items);
@@ -77,7 +74,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   
   clearSearch(): void {
     this.searchText = '';
-    this.filteredItems = []; // Clear filtered items
+    this.filteredItems = []; 
   }
 
   getCartItemNumber() {
