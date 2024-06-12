@@ -31,7 +31,6 @@ const routes: Routes = [
     component: ProductDetailsComponent,
     resolve: { productData: ProductDetailsResolverService },
   },
-  // { path: 'product-details/:id', component: ProductDetailsComponent},
   { path: 'cart', component: CartComponent},
   { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },

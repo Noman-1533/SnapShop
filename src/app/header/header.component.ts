@@ -14,6 +14,7 @@ import { Product } from '../shared/product.model';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  isCollapsed: boolean = false;
   isLoggedIn = false;
   items: Product[] = [];
   filteredItems: Product[] = [];
@@ -115,7 +116,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
             this.router.navigate(['/cart']);
           }
           else{
-            alert("You have to login first");
             this.router.navigate(['/login']);
           }
       }
@@ -138,6 +138,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.userService.LoggedUserId=-1;
     this.userService.loginChanged.next(-1);
     this.router.navigate(['/home']);
+  }
+  toggleNavMenu() {
+    this.isCollapsed = !this.isCollapsed;
   }
 
   ngOnDestroy(): void {
