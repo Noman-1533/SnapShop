@@ -33,6 +33,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
   totalChange = new BehaviorSubject<number>(0);
   subtotalChange = new BehaviorSubject<number>(0);
+  // cartChange = new BehaviorSubject<{ cart: CartProduct[], total: number, discount: number }>({ cart: [], total: this.totalAmount, discount: this.discount });
 
   constructor(
     private cartService: CartService,
@@ -47,13 +48,11 @@ export class CartComponent implements OnInit, OnDestroy {
       this.key = this.cartService.setKey('cart', this.userId);
       this.hasData = this.cartService.isDataInLocalStorage(this.key);
       this.cartService.saveDataInCart(this.key);
-      
     });
     this.cartChangesSubscription = this.cartService.changeOnCart.subscribe({
       next: (res) => {
         this.cartItems = this.cartService.getCartItems(res);
         this.calculateSubtotal();
-        
       },
     });
     this.subtotalChange.subscribe((res) => {
@@ -61,6 +60,8 @@ export class CartComponent implements OnInit, OnDestroy {
       this.calculateTotal();
       this.totalChange.subscribe((res) => {
         this.totalAmount = res;
+        this.checkout.checkoutItemChange.next({ cart: this.cartItems, total: this.totalAmount, discount: this.discount });
+        // this.cartChange.next({ cart: this.cartItems, total: this.totalAmount, discount: this.discount })
       });
     });
   }
@@ -68,7 +69,6 @@ export class CartComponent implements OnInit, OnDestroy {
   calculateSubtotal() {
     let subTotal = 0;
     this.cartItems.forEach((item) => {
-      // if (item.saveForCheckout)
       {
         subTotal += item.price * item.quantity;
       }
@@ -84,15 +84,11 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   onCheckDeleteCart(productId: number) {
-
-    // debugger;
     this.deleteClicked = true;
     this.deleteCartId = productId;
   }
 
   onDeleteCart(productId: number) {
-
-    
     this.cartItems = this.cartItems.filter(
       (item) => item.productId !== productId
     );
@@ -110,26 +106,28 @@ export class CartComponent implements OnInit, OnDestroy {
   }
   updateCart() {}
   onCheckout() {
-    let checkout: CartProduct[];
-    checkout = this.cartItems.filter((cart) => cart.saveForCheckout);
-    this.checkout.setCheckoutCart(this.cartItems, this.totalAmount, this.discount);
+    this.checkout.setCheckoutCart(
+      this.cartItems,
+      this.totalAmount,
+      this.discount
+    );
     this.router.navigate(['/checkout']);
   }
 
-  onSaveForCheckout(id: number) {
-    let index = this.cartItems.findIndex((cart) => cart.productId === id);
-    this.cartItems[index].saveForCheckout =
-      !this.cartItems[index].saveForCheckout;
-  }
-
   onApplyCoupon() {
-    const { subtotalAmount, totalAmount, discount, invalidCouponError, usedCouponError, invalidTotalError } = this.cartService.onApplyCoupon(
+    const {
+      subtotalAmount,
+      totalAmount,
+      discount,
+      invalidCouponError,
+      usedCouponError,
+      invalidTotalError,
+    } = this.cartService.onApplyCoupon(
       this.subtotalAmount,
       this.totalAmount,
       this.discount,
       this.coupon
     );
-    
 
     this.subtotalAmount = subtotalAmount;
     this.totalAmount = totalAmount;
@@ -137,7 +135,6 @@ export class CartComponent implements OnInit, OnDestroy {
     this.invalidCouponError = invalidCouponError;
     this.usedCouponError = usedCouponError;
     this.invalidTotalError = invalidTotalError;
-    
   }
   ngOnDestroy(): void {
     this.cartChangesSubscription.unsubscribe();

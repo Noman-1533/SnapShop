@@ -14,7 +14,7 @@ import { Product } from '../shared/product.model';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  isCollapsed: boolean = false;
+  isCollapsed: boolean = true;
   isLoggedIn = false;
   items: Product[] = [];
   filteredItems: Product[] = [];
@@ -131,6 +131,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.userService.LoggedUser=null;
     this.userService.LoggedUserId=-1;
     this.userService.loginChanged.next(-1);
+    this.cartService.availableCoupon.forEach((item => {
+      item.used = false;
+    }))
     this.router.navigate(['/home']);
   }
   toggleNavMenu() {

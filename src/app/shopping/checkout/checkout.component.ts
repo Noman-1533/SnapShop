@@ -77,10 +77,17 @@ export class CheckoutComponent implements OnInit {
   }
 
   getCheckoutItems() {
-    this.checkoutItems = this.checkoutService.getCheckout();
-    this.discount = this.checkoutService.discount;
-    this.totalAmount = parseFloat(this.checkoutService.totalAmount.toFixed(2));
-    this.subtotalAmount = this.calculateSubTotal();
+    // this.checkoutItems = this.checkoutService.getCheckout();
+    // this.discount = this.checkoutService.discount;
+    // this.totalAmount = parseFloat(this.checkoutService.totalAmount.toFixed(2));
+    // this.subtotalAmount = this.calculateSubTotal();
+    this.checkoutService.checkoutItemChange.subscribe(res => {
+      if (res) {
+        this.checkoutItems = res.cart;
+        this.totalAmount = parseFloat(res.total.toFixed(2)) ;
+        this.discount = res.discount;
+      }
+    })
   }
 
   calculateSubTotal() {
