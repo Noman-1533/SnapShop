@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../authentication/login/auth.service';
 import { UserService } from '../authentication/login/user.service';
@@ -18,34 +19,55 @@ export class ProfileComponent implements OnInit {
   orderList: Order[] = [];
   profileKey: Key;
   currentActiveOrder: Order;
+  profileForm: FormGroup; 
 
   constructor(
     private router: Router,
     private authService: AuthService,
     private userService: UserService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private fb: FormBuilder 
   ) { }
+
   ngOnInit(): void {
     this.loggedInUser = this.userService.getLoggedInUser();
     this.profileKey = {
       name: 'orderInfo',
       id: this.loggedInUser.id,
-    }
+    };
     this.orderList = this.profileService.getOrderInformation(this.profileKey);
-    console.log(this.orderList);
+
+   
+    this.profileForm = this.fb.group({
+      firstName: [this.loggedInUser.name.firstname, [Validators.required, this.noNumbersValidator]],
+      lastName: [this.loggedInUser.name.lastname, [this.noNumbersValidator]],
+      email: [this.loggedInUser.email, [Validators.required, Validators.email]],
+      address: ['Kingston, 5236, United States', [Validators.required]],
+      currentPassword: [''],
+      newPassword: [''],
+      confirmNewPassword: ['']
+    });
   }
 
   setActiveTab(tab: string): void {
     this.activeTab = tab;
   }
+
   onSaveChanges(): void {
-    this.router.navigate(['/home']);
+    if (this.profileForm.valid) {
+
+      this.router.navigate(['/home']);
+    } else {
+
+    }
   }
+
   onClearHistory() {
     this.orderList = [];
     this.profileService.saveDataInLocalStorage(this.profileKey, this.orderList);
     this.orderList = this.profileService.getOrderInformation(this.profileKey);
   }
+
   showOrderDetails(order: Order): void {
     console.log(order);
     this.currentActiveOrder = order;
@@ -54,5 +76,10 @@ export class ProfileComponent implements OnInit {
       const modal = new bootstrap.Modal(modalElement);
       modal.show();
     }
+  }
+
+  noNumbersValidator(control) {
+    const hasNumber = /\d/.test(control.value);
+    return hasNumber ? { hasNumber: true } : null;
   }
 }

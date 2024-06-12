@@ -7,6 +7,7 @@ import { AuthService } from '../authentication/login/auth.service';
 import { UserService } from '../authentication/login/user.service';
 import { HeaderService } from './header.service';
 import { Product } from '../shared/product.model';
+import { Category } from './category.model';
 
 @Component({
   selector: 'app-header',
@@ -17,6 +18,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isCollapsed: boolean = false;
   isLoggedIn = false;
   items: Product[] = [];
+  categoryies;
   filteredItems: Product[] = [];
   searchText: string = '';
 
@@ -51,6 +53,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
       
     });
 
+    this.headerService.getCategory().subscribe((category) => {
+      this.categoryies = category;
+      
+    });
+
+
+
     this.authService.loggedIn.subscribe((data) => {
       this.isLoggedIn = data;
       console.log("logged user ",this.isLoggedIn)
@@ -63,20 +72,32 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onSearch(event: any): void {
+
+   
     this.searchText = event.target.value;
   
     if (this.searchText.trim() === '') {
       this.clickSearch = true;
       this.filteredItems = []; 
-      // this.router.navigate(['/home']); 
+  
     } else {
-      this.filteredItems = this.headerService.searchItems(this.searchText, this.items);
+      this.filteredItems = this.headerService.searchItems(this.searchText, this.items, this.categoryies);
+      console.log("item:",this.filteredItems);
     }
   }
 
+
+   isProduct(item) {
+    return typeof item === 'object';
+}
+
+ isCategory(item) {
+    return typeof item !== 'object';
+}
+
   onClickSearch() {
     this.clickSearch = false;
-    this.router.navigate(['/home']);
+    // this.router.navigate(['/contact']);
   }
   
   clearSearch(): void {

@@ -38,18 +38,28 @@
               <i class="fa fa-search"></i>
             </span>
             <ul class="suggestions" *ngIf="filteredItems.length > 0">
-              <li
-                *ngFor="let item of filteredItems"
-                class="border-bottom border-dark"
-              >
-                <a
-                  [routerLink]="['product-details', item.id]"
+              <li *ngFor="let item of filteredItems" class="border-bottom border-dark">
+                <a 
+                  *ngIf="isProduct(item)"
+                  [routerLink]="['product-list']"
+                  [queryParams]="{ paramName: item.id }"
                   (click)="clearSearch()"
                   class="text-decoration-none d-block py-2 px-3 text-dark"
-                  >{{ item.title }}</a
                 >
+                  {{ item.title }}
+                </a>
+                <a 
+                  *ngIf="isCategory(item)"
+                  [routerLink]="['product-list']"
+                  [queryParams]="{ Category: item}"
+                  (click)="clearSearch()"
+                  class="text-decoration-none d-block py-2 px-3 text-dark"
+                >
+                  {{item}}
+                </a>
               </li>
             </ul>
+            
           </div>
         </div>
       </button>
