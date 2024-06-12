@@ -30,6 +30,8 @@
               type="text"
               class="form-control"
               (input)="onSearch($event)"
+              (keypress)="clickSearch===true?onClickSearch():''"
+             
               placeholder="What are you looking for?"
             />
             <span class="input-group-text search-icon">

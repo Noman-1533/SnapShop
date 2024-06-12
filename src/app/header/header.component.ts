@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userId: number ;
   key: Key;
   cartUpdateSubscription: Subscription;
-
+  clickSearch:boolean = false;
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -65,11 +65,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.searchText = event.target.value;
   
     if (this.searchText.trim() === '') {
+      this.clickSearch = true;
       this.filteredItems = []; 
-      this.router.navigate(['/home']); 
+      // this.router.navigate(['/home']); 
     } else {
       this.filteredItems = this.headerService.searchItems(this.searchText, this.items);
     }
+  }
+
+  onClickSearch() {
+    this.clickSearch = false;
+    this.router.navigate(['/home']);
   }
   
   clearSearch(): void {
