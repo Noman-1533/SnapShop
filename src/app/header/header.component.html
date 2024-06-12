@@ -33,7 +33,8 @@
               (blur)="collapseSearch()"
               [(ngModel)]="searchText"
               (input)="onSearch($event)"
-              (keypress)="clickSearch === true ? onClickSearch() : ''"
+              (keypress)="clickSearch===true?onClickSearch():''"
+             
               placeholder="What are you looking for?"
             />
             <span class="input-group-text search-icon">
@@ -41,18 +42,31 @@
             </span>
             <ul class="list-group suggestions" *ngIf="filteredItems.length > 0">
               <li *ngFor="let item of filteredItems" class="list-group-item d-flex align-items-center justify-content-between">
-                <a (click)="clearSearch()" [routerLink]="['/product-details', item.id]"  class="text-decoration-none text-dark w-100 d-flex align-items-center">
-                  <img [src]="item.image" alt="" class="img-thumbnail" width="60px" height="60px">
-                  <div class="ms-3 me-auto">
-                    <div class="fw-bold">{{ item.title | slice:0:20 }}...</div>
-                    <div class="text-muted">{{ item.price }}$</div>
-                  </div>
+                <a 
+                  *ngIf="isProduct(item)"
+                  [routerLink]="['product-list']"
+                  [queryParams]="{ paramName: item.id }"
+                  (click)="clearSearch()"
+                  class="text-decoration-none text-dark w-100 d-flex align-items-center"
+                >
+                <img [src]="item.image" alt="" class="img-thumbnail" width="60px" height="60px">
+                <div class="ms-3 me-auto">
+                  <div class="fw-bold">{{ item.title | slice:0:20 }}...</div>
+                  <div class="text-muted">{{ item.price }}$</div>
+                </div>
                 </a>
-                <!-- <button type="button" class="btn btn-outline-secondary ms-2" (click)="addToCart()">
-                  <i class="ri-shopping-cart-2-line"></i>
-                </button> -->
+                <a 
+                  *ngIf="isCategory(item)"
+                  [routerLink]="['product-list']"
+                  [queryParams]="{ Category: item}"
+                  (click)="clearSearch()"
+                  class="text-decoration-none d-block py-2 px-3 text-dark"
+                >
+                  {{item}}
+                </a>
               </li>
             </ul>
+            
           </div>
         </div>
       </button>

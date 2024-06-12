@@ -26,6 +26,8 @@ const routes: Routes = [
     resolve: { homeData: HomeResolverService },
   },
   { path: 'product-list', component: ProductListComponent },
+  
+
   {
     path: 'product-details/:id',
     component: ProductDetailsComponent,
