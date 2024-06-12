@@ -47,15 +47,18 @@ export class CartComponent implements OnInit, OnDestroy {
       this.key = this.cartService.setKey('cart', this.userId);
       this.hasData = this.cartService.isDataInLocalStorage(this.key);
       this.cartService.saveDataInCart(this.key);
+      
     });
-
     this.cartChangesSubscription = this.cartService.changeOnCart.subscribe({
       next: (res) => {
         this.cartItems = this.cartService.getCartItems(res);
+        this.calculateSubtotal();
+        
       },
     });
     this.subtotalChange.subscribe((res) => {
       this.subtotalAmount = res;
+      this.calculateTotal();
       this.totalChange.subscribe((res) => {
         this.totalAmount = res;
       });
@@ -65,7 +68,8 @@ export class CartComponent implements OnInit, OnDestroy {
   calculateSubtotal() {
     let subTotal = 0;
     this.cartItems.forEach((item) => {
-      if (item.saveForCheckout) {
+      // if (item.saveForCheckout)
+      {
         subTotal += item.price * item.quantity;
       }
     });
@@ -108,7 +112,7 @@ export class CartComponent implements OnInit, OnDestroy {
   onCheckout() {
     let checkout: CartProduct[];
     checkout = this.cartItems.filter((cart) => cart.saveForCheckout);
-    this.checkout.setCheckoutCart(checkout, this.totalAmount, this.discount);
+    this.checkout.setCheckoutCart(this.cartItems, this.totalAmount, this.discount);
     this.router.navigate(['/checkout']);
   }
 
