@@ -95,13 +95,13 @@
     <button
       class="navbar-toggler border-0"
       type="button"
-      data-bs-toggle="collapse"
+      (click)="toggleNavMenu()"
       data-bs-target="#navMenu"
     >
       <i class="ri-menu-3-line"></i>
     </button>
 
-    <div class="collapse navbar-collapse order-lg-1" id="navMenu">
+    <div class="collapse navbar-collapse order-lg-1" id="navMenu" [class.collapse]="isCollapsed">
       <ul class="navbar-nav mx-auto text-center">
         <li
           class="nav-item px-2 py-2"

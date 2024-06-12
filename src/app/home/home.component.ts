@@ -1,18 +1,14 @@
-import { AfterViewInit, Component, OnInit, inject } from '@angular/core';
-import { Carousel, initMDB } from 'mdb-ui-kit';
+import { Component, OnInit, inject } from '@angular/core';
 import { DataService } from '../shared/data.service';
-import { HomeService } from './home.service';
-
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../authentication/login/auth.service';
-import { UserService } from '../authentication/login/user.service';
+import { Product } from '../shared/product.model';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-export class HomeComponent implements AfterViewInit, OnInit {
+export class HomeComponent implements OnInit {
   category;
   icon = [
     'ri-computer-line',
@@ -22,37 +18,20 @@ export class HomeComponent implements AfterViewInit, OnInit {
   ];
 
   isLoading: boolean = true;
-  topProducts;
   sliderImages: string[] = [];
-
   combinedArraycategory: { category: string; icon: string }[] = [];
-  numberOfSlidesRatting: any[];
-  numberOfSlidesss;
+  numberOfSlidesRatting: Product[] = [];
+  numberOfSlidesss: Product[] = [];
 
-  ngAfterViewInit() {
-  //   initMDB();
-  //   new Carousel(document.querySelector('.carousel'));
-  //
-   }
+  private dataService: DataService = inject(DataService);
+  private route: ActivatedRoute = inject(ActivatedRoute);
+  private router: Router = inject(Router);
 
-  private dataService = inject(DataService);
-
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private authService: AuthService,
-    private userService: UserService
-  ) {
-
-
-    
-    // debugger;
+  constructor() {
     const data = this.route.snapshot.data['homeData'];
-    console.log('data', data);
-    console.log('num', this.numberOfSlidesss);
     this.category = data.categories;
-    this.numberOfSlidesss = data.limitedProducts; // for card of top product
-    this.numberOfSlidesRatting = data.limitedProductsWithDiscount; // for card of top rated product
+    this.numberOfSlidesss = data.limitedProducts;
+    this.numberOfSlidesRatting = data.limitedProductsWithDiscount;
     this.combinedArraycategory = this.category.map((cat, index) => {
       return { category: cat, icon: this.icon[index] };
     });
@@ -74,20 +53,18 @@ export class HomeComponent implements AfterViewInit, OnInit {
 
     this.dataService.getLimitedProducts(20).subscribe(
       (data) => {
-        // console.log(data);
         this.sliderImages = data.map((product) => product.image);
-        // console.log(this.sliderImages);
       },
       (error) => {
         console.error(error);
       }
     );
-    
 
     setTimeout(() => {
       this.isLoading = false;
-    }, 1000); // Adjust the timeout as needed
+    }, 1000);
   }
+
   viewAllProducts() {
     this.router.navigate(['/product-list']);
   }
@@ -96,5 +73,4 @@ export class HomeComponent implements AfterViewInit, OnInit {
       queryParams: { Category: category },
     });
   }
-
 }
