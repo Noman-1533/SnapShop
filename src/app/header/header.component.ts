@@ -21,6 +21,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   categoryies;
   filteredItems: Product[] = [];
   searchText: string = '';
+  isSearchExpanded: boolean = false;
+  
 
   headerText = [
     { name: 'Home' },
@@ -95,9 +97,21 @@ export class HeaderComponent implements OnInit, OnDestroy {
     return typeof item !== 'object';
 }
 
+  
+    // this.router.navigate(['/contact']);
+      // this.router.navigate(['/home']); 
+    
+  
+  expandSearch(): void {
+    this.isSearchExpanded = true;
+  }
+
+  collapseSearch(): void {
+    this.isSearchExpanded = false;
+  }
   onClickSearch() {
     this.clickSearch = false;
-    // this.router.navigate(['/contact']);
+    this.router.navigate(['/home']);
   }
   
   clearSearch(): void {

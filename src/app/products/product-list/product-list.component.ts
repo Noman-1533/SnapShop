@@ -28,7 +28,6 @@ export class ProductListComponent implements OnInit {
   ) {}
   ngOnInit(): void {
 
-    // debugger;
     this.qparam = this.route.queryParams.subscribe((queryparam: Params) => {
       this.Category = queryparam['Category'];
       this.productId = +queryparam['paramName'];
@@ -37,28 +36,6 @@ export class ProductListComponent implements OnInit {
     });
 
 
-
-    //  console.log("cat :",this.Category)
-
-   
-
-
-
-
-    // this.numberOfSlides.forEach((slide) => {
-    //   slide.forEach((product) => {
-    //     product.discount = this.getRandomDiscount();
-    //     // console.log("data from coursol split ", this.numberOfSlides);
-    //   });
-    // });
-    // if (this.numberOfSlides) {
-    //   this.numberOfSlides.forEach((slide:any[]) => {
-    //     slide.forEach((product) => {
-    //       product.discount = this.getRandomDiscount();
-    //       // console.log("data from coursol split ", this.numberOfSlides);
-    //     });
-    //   });
-    // }
   }
 
 
@@ -91,10 +68,6 @@ export class ProductListComponent implements OnInit {
 
  
 
-  // getRandomDiscount() {
-  //   return 5 + 21;
-
-  //   // demoProduct: number[] = Array(10).fill(1)
 
 
   ngOnDestroy(): void {

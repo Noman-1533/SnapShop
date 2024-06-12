@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-// import { MyCarouselComponent } from './my-carousel/my-carousel.component';g
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +28,7 @@ import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { SliderComponent } from './home/slider/slider.component';
+import { SplicePipe } from './shared/pipe/splice.pipe';
 
 @NgModule({
   declarations: [
@@ -54,6 +54,7 @@ import { SliderComponent } from './home/slider/slider.component';
     AboutComponent,
     LoadingSpinnerComponent,
     SliderComponent,
+    SplicePipe,
     
   ],
   imports: [

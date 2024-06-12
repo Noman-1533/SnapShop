@@ -6,8 +6,8 @@
 
 .carousel-control-next-icon::after,
 .carousel-control-prev-icon::after {
-  content: "";
-  font-family: "Font Awesome 6 Pro", "Font Awesome 6 Free";
+ 
+  display: none;
 }
 
 .text-left h2 {
@@ -71,13 +71,7 @@
   color: white;
 }
 
-.carousel-control-next-icon {
-  margin-right: 150px;
-}
 
-.carousel-control-prev-icon {
-  margin-left: 150px;
-}
 
 @media (max-width: 767px) {
   .carousel-item .text-left {

@@ -25,10 +25,13 @@
     <div class="order-lg-2 nav-btns">
       <button type="button" class="btn position-relative">
         <div class="search-container">
-          <div class="input-group searchgroup">
+          <div class="input-group searchgroup" [ngClass]="{'expanded': isSearchExpanded}">
             <input
               type="text"
               class="form-control"
+              (click)="expandSearch()"
+              (blur)="collapseSearch()"
+              [(ngModel)]="searchText"
               (input)="onSearch($event)"
               (keypress)="clickSearch===true?onClickSearch():''"
              
@@ -37,16 +40,20 @@
             <span class="input-group-text search-icon">
               <i class="fa fa-search"></i>
             </span>
-            <ul class="suggestions" *ngIf="filteredItems.length > 0">
-              <li *ngFor="let item of filteredItems" class="border-bottom border-dark">
+            <ul class="list-group suggestions" *ngIf="filteredItems.length > 0">
+              <li *ngFor="let item of filteredItems" class="list-group-item d-flex align-items-center justify-content-between">
                 <a 
                   *ngIf="isProduct(item)"
                   [routerLink]="['product-list']"
                   [queryParams]="{ paramName: item.id }"
                   (click)="clearSearch()"
-                  class="text-decoration-none d-block py-2 px-3 text-dark"
+                  class="text-decoration-none text-dark w-100 d-flex align-items-center"
                 >
-                  {{ item.title }}
+                <img [src]="item.image" alt="" class="img-thumbnail" width="60px" height="60px">
+                <div class="ms-3 me-auto">
+                  <div class="fw-bold">{{ item.title | slice:0:20 }}...</div>
+                  <div class="text-muted">{{ item.price }}$</div>
+                </div>
                 </a>
                 <a 
                   *ngIf="isCategory(item)"
@@ -63,7 +70,9 @@
           </div>
         </div>
       </button>
-
+      
+      
+      
       <button
         type="button"
         class="btn position-relative shoppingIcon"
