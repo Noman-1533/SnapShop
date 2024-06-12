@@ -16,6 +16,7 @@ import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { AuthGuard } from './authentication/login/auth.guard.service';
 import { NoAuthGuard } from './authentication/login/NoAuth.guard';
+import { checkoutGuard } from './shopping/checkout.guard.service';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -24,7 +25,6 @@ const routes: Routes = [
     component: HomeComponent,
     resolve: { homeData: HomeResolverService },
   },
-  // { path: 'home', component: HomeComponent},
   { path: 'product-list', component: ProductListComponent },
   {
     path: 'product-details/:id',
@@ -32,7 +32,7 @@ const routes: Routes = [
     resolve: { productData: ProductDetailsResolverService },
   },
   { path: 'cart', component: CartComponent},
-  { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] },
+  { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard,checkoutGuard], },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent,canActivate: [NoAuthGuard] },
   { path: 'sign-up', component: SignUpComponent, canActivate: [NoAuthGuard] },

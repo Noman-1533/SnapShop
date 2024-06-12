@@ -29,11 +29,13 @@ export class ProductListComponent implements OnInit {
     });
     //  console.log("cat :",this.Category)
 
-    if (this.Category == undefined) {
+    if (!this.Category) {
       this.dataService.getAllProducts().subscribe((products) => {
         this.products = products;
         this.isLoading = false;
       });
+
+
     } else {
       this.dataService
         .getProductsOfCategory(this.Category)
