@@ -15,8 +15,9 @@
 
       <div class="img-box">
         <img src="{{ cardInfo.image }}" class="img-fluid" alt="Watch" />
-        <div class="addToCart">
-          <a (click)="onClickCart()">Add to Cart</a>
+        <div class="addToCart" (click)="onClickCart()">
+          <i class="ri-shopping-cart-2-line"></i>
+          <a>Add to Cart</a>
         </div>
       </div>
       <div class="thumb-content">

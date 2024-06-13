@@ -59,12 +59,16 @@ export class ProductDetailsComponent implements OnInit {
     this.RelatedProducts = resolvedData.categoryProducts;
  
     this.inPage = false;
- 
+
+
     this.route.params.subscribe((params) => {
       this.fetchProductDetails(params['id']);
       this.updateBreadcrumbPath();
     });
- 
+
+
+
+
     setTimeout(
       () => {
         if (

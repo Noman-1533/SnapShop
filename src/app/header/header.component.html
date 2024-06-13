@@ -33,9 +33,8 @@
               (blur)="collapseSearch()"
               [(ngModel)]="searchText"
               (input)="onSearch($event)"
-              (keypress)="clickSearch===true?onClickSearch():''"
-             
-              placeholder="What are you looking for?"
+              (keypress)="clickSearch === true ? onClickSearch() : ''"
+              placeholder="Search .."
             />
             <span class="input-group-text search-icon">
               <i class="fa fa-search"></i>
