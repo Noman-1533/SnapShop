@@ -15,7 +15,7 @@ import { CheckoutService } from '../../shopping/checkout/checkout.service';
 })
 export class ProductDetailsComponent implements OnInit {
   dataService:DataService = inject(DataService);
- 
+  isLoading:boolean=true;
   starLoad:boolean = false;
   inPage:boolean = false;
   selectedProductDetails: Product;
@@ -57,6 +57,7 @@ export class ProductDetailsComponent implements OnInit {
     const resolvedData = this.route.snapshot.data['productData'];
     this.selectedProductDetails = resolvedData.product;
     this.RelatedProducts = resolvedData.categoryProducts;
+    
  
     this.inPage = false;
  
@@ -88,7 +89,7 @@ export class ProductDetailsComponent implements OnInit {
   fetchProductDetails(productId: number): void {
     this.dataService.getSingleProduct(productId).subscribe((product) => {
       this.selectedProductDetails = product;
-     
+      this.isLoading=false;
     });
   }
  

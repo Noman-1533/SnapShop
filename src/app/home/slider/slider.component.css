@@ -62,6 +62,7 @@
   /* position: cover; */
   height: 100%;
   width: 100%;
+  filter: drop-shadow(-30px -20px 100px #363632);
 }
 
 .row {
