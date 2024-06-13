@@ -6,8 +6,12 @@
 
 .carousel-control-next-icon::after,
 .carousel-control-prev-icon::after {
-  content: "";
-  font-family: "Font Awesome 6 Pro", "Font Awesome 6 Free";
+  display: none;
+}
+.text-left {
+  /* background-color: red; */
+  height: 35vh;
+  width: 60%;
 }
 
 .text-left h2 {
@@ -54,11 +58,15 @@
 }
 
 .carousel-item img {
-  position: cover;
+  /* position: cover; */
+  height: 100%;
+  width: 100%;
 }
 
 .row {
   height: 80%;
+  width: 80%;
+  /* background-color: green; */
 }
 
 .carousel-item .text-left {
@@ -69,14 +77,6 @@
 .carousel-item h1,
 .carousel-item a.btn {
   color: white;
-}
-
-.carousel-control-next-icon {
-  margin-right: 150px;
-}
-
-.carousel-control-prev-icon {
-  margin-left: 150px;
 }
 
 @media (max-width: 767px) {

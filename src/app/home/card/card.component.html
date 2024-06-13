@@ -8,15 +8,16 @@
     <div class="thumb-wrapper">
       <div class="topsectionforcart">
         <span class="wish-icon discount">
-          <button class="discountbutton">-{{cardInfo.discount}}%</button>
+          <button class="discountbutton">-{{ cardInfo.discount }}%</button>
         </span>
         <span class="wish-icon"><i class="ri-heart-3-line"></i></span>
       </div>
 
       <div class="img-box">
         <img src="{{ cardInfo.image }}" class="img-fluid" alt="Watch" />
-        <div class="addToCart">
-          <a (click)="onClickCart()">Add to Cart</a>
+        <div class="addToCart" (click)="onClickCart()">
+          <i class="ri-shopping-cart-2-line"></i>
+          <a>Add to Cart</a>
         </div>
       </div>
       <div class="thumb-content">

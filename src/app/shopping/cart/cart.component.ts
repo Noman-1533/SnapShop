@@ -46,6 +46,7 @@ export class CartComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.cartService.inCart=true;
     this.userData.loginChanged.subscribe((res) => {
       this.userId = res;
       this.key = this.cartService.setKey('cart', this.userId);

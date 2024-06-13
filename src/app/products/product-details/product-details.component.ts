@@ -14,15 +14,15 @@ import { CheckoutService } from '../../shopping/checkout/checkout.service';
   styleUrl: './product-details.component.css',
 })
 export class ProductDetailsComponent implements OnInit {
-  dataService:DataService = inject(DataService);
+  dataService: DataService = inject(DataService);
 
-  starLoad:boolean = false;
-  inPage:boolean = false;
+  starLoad: boolean = false;
+  inPage: boolean = false;
   selectedProductDetails: Product;
   RelatedProducts: Product[] = [];
   ratingArray: string[] = [];
   sizes: string[] = ['XS', 'S', 'M', 'L', 'XL'];
-  breadcrumbPath: string='';
+  breadcrumbPath: string = '';
 
   products: Product[];
   selectedSize: string = 'M';
@@ -88,7 +88,6 @@ export class ProductDetailsComponent implements OnInit {
   fetchProductDetails(productId: number): void {
     this.dataService.getSingleProduct(productId).subscribe((product) => {
       this.selectedProductDetails = product;
-      
     });
   }
 

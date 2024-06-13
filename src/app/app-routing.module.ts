@@ -25,17 +25,21 @@ const routes: Routes = [
     component: HomeComponent,
     resolve: { homeData: HomeResolverService },
   },
-  // { path: 'home', component: HomeComponent},
   { path: 'product-list', component: ProductListComponent },
+
   {
     path: 'product-details/:id',
     component: ProductDetailsComponent,
     resolve: { productData: ProductDetailsResolverService },
   },
-  { path: 'cart', component: CartComponent},
-  { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard,checkoutGuard], },
+  { path: 'cart', component: CartComponent },
+  {
+    path: 'checkout',
+    component: CheckoutComponent,
+    canActivate: [AuthGuard, checkoutGuard],
+  },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: 'login', component: LoginComponent,canActivate: [NoAuthGuard] },
+  { path: 'login', component: LoginComponent, canActivate: [NoAuthGuard] },
   { path: 'sign-up', component: SignUpComponent, canActivate: [NoAuthGuard] },
   { path: 'contact', component: ContactComponent },
   { path: 'about', component: AboutComponent },
@@ -43,9 +47,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    scrollPositionRestoration: 'enabled'
-  })],
+  imports: [
+    RouterModule.forRoot(routes, {
+      scrollPositionRestoration: 'enabled',
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

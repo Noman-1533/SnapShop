@@ -107,10 +107,10 @@ ul {
   right: 10px;
   transform: translateY(-50%);
   pointer-events: none;
-  color: #888; 
+  color: #888;
 }
 
-.input-container i{
+.input-container i {
   font-size: 15px;
 }
 

@@ -73,7 +73,8 @@ export class DataService {
       .pipe(
         tap((products: Product[]) => {
           products.forEach((product) => {
-            product.discount = this.getRandomDiscount();})
+            product.discount = this.getRandomDiscount();
+          });
         }),
         catchError((error) => {
           console.error('Error fetching category products:', error);
@@ -84,7 +85,7 @@ export class DataService {
 
   getSingleUserCart(id: number): Observable<Cart[]> {
     return this.http
-      .get<Cart[]>(`https://fakestoreapi.com/carts/user/`+id)
+      .get<Cart[]>(`https://fakestoreapi.com/carts/user/` + id)
       .pipe(
         catchError((error) => {
           console.error('Error fetching cart:', error);
@@ -125,8 +126,6 @@ export class DataService {
   }
 
   getRandomDiscount(): number {
-    const minDiscount = 5;
-    const maxDiscount = 25;
     return 10;
   }
 

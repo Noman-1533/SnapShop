@@ -84,7 +84,7 @@ button {
   border-radius: 3px;
 }
 
-.coupon-error{
+.coupon-error {
   margin-top: -245px;
   color: red;
 }
@@ -95,70 +95,38 @@ button {
   height: 0px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
 ::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #888;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
-.table-height{
+.table-height {
   max-height: 400px;
   overflow: scroll;
 }
-table{
+table {
   border-collapse: separate;
   border-spacing: 0 30px;
-  
 }
-td{
-  /* gap: 1000px !important; */
-  /* margin-bottom: 20px !important; */
-  /* background-color: red !important; */
-  /* padding: 30px 0px; */
-  /* margin: 25px; */
-  /* height: 300px; */
+td {
   height: 70px;
   border: none;
-  /* padding: 10px; */
-  /* margin-bottom: 100px; */
-  /* gap: 100px; */
 }
-th{
+th {
   height: 70px;
 }
-tr{
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  /* gap: 10px; */
-  /* margin-bottom: 100px !important; */
+tr {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
-/* .box-style{
-  margin-bottom: 100px;
-} */
 
-.no-item{
+.no-item {
   text-align: center;
-  
 }
-.buttons .btn{
+.buttons .btn {
   margin: 10px;
 }
-.toast-success{
-  background-color: green ;
-  color: white
-}
-
-#custom-toast-container {
-  position: relative; /* Or any other positioning you need */
-  top: 100px;
-  right: 500px;
-}
-/* .toast-container {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-} */

@@ -7,7 +7,7 @@ import { Order, ProfileService } from './profile.service';
 import { Key } from '../shopping/cart/cart.model';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import * as bootstrap from 'bootstrap';
- 
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
   profileKey: Key;
   currentActiveOrder: Order;
   profileForm: FormGroup; // Define profileForm
- 
+
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -28,31 +28,35 @@ export class ProfileComponent implements OnInit {
     private profileService: ProfileService,
     private fb: FormBuilder // Inject FormBuilder
   ) {}
- 
+
   ngOnInit(): void {
     this.loggedInUser = this.userService.getLoggedInUser();
     this.profileKey = {
       name: 'orderInfo',
       id: this.loggedInUser.id,
     };
+
     this.orderList = this.profileService.getOrderInformation(this.profileKey);
- 
+
     // Initialize profileForm with FormBuilder
     this.profileForm = this.fb.group({
-      firstName: [this.loggedInUser.name.firstname, [Validators.required,  this.noNumbersValidator]],
-      lastName: [this.loggedInUser.name.lastname, [this.noNumbersValidator ]],
+      firstName: [
+        this.loggedInUser.name.firstname,
+        [Validators.required, this.noNumbersValidator],
+      ],
+      lastName: [this.loggedInUser.name.lastname, [this.noNumbersValidator]],
       email: [this.loggedInUser.email, [Validators.required, Validators.email]],
       address: ['Kingston, 5236, United States', [Validators.required]],
       currentPassword: [''],
       newPassword: [''],
-      confirmNewPassword: ['']
+      confirmNewPassword: [''],
     });
   }
- 
+
   setActiveTab(tab: string): void {
     this.activeTab = tab;
   }
- 
+
   onSaveChanges(): void {
     if (this.profileForm.valid) {
       // Handle form save here
@@ -61,13 +65,13 @@ export class ProfileComponent implements OnInit {
       // Form is invalid, do something like show error messages
     }
   }
- 
+
   onClearHistory() {
     this.orderList = [];
     this.profileService.saveDataInLocalStorage(this.profileKey, this.orderList);
     this.orderList = this.profileService.getOrderInformation(this.profileKey);
   }
- 
+
   showOrderDetails(order: Order): void {
     console.log(order);
     this.currentActiveOrder = order;
@@ -77,7 +81,7 @@ export class ProfileComponent implements OnInit {
       modal.show();
     }
   }
- 
+
   noNumbersValidator(control) {
     const hasNumber = /\d/.test(control.value);
     return hasNumber ? { hasNumber: true } : null;

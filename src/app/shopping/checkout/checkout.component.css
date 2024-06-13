@@ -83,18 +83,20 @@ input.ng-invalid.ng-touched {
 }
 
 /* Style for the error message */
-.error-messages{
+.error-messages {
   color: #db4444;
   margin-top: -10px;
   margin-bottom: 10px;
 }
-#subtotal,#shipping,#total,#discount{
+#subtotal,
+#shipping,
+#total,
+#discount {
   text-align: right;
 }
 
-
 /* card */
-.card{
+.card {
   border: none;
   box-shadow: none;
 }

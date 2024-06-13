@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,35 +17,37 @@ export class SignUpComponent implements OnInit {
   signUpForm: FormGroup;
   showConfirmationMessage: boolean = false;
 
-  constructor(private fb: FormBuilder, private router :Router) {}
+  constructor(private fb: FormBuilder, private router: Router) {}
 
   ngOnInit() {
-    this.signUpForm = this.fb.group({
-      firstName: ['', [Validators.required,this.noNumbersValidator]],
-      lastName: [''],
-      city: ['', Validators.required],
-      street: [''],
-      geoLocation: [''],
-      zipCode: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      username: ['', [Validators.required, this.noWhitespaceValidator]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
-    }, {
-      validators: this.passwordMatchValidator
-    });
+    this.signUpForm = this.fb.group(
+      {
+        firstName: ['', [Validators.required, this.noNumbersValidator]],
+        lastName: [''],
+        city: ['', Validators.required],
+        street: [''],
+        geoLocation: [''],
+        zipCode: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        username: ['', [Validators.required, this.noWhitespaceValidator]],
+        password: ['', [Validators.required, Validators.minLength(6)]],
+        confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
+      },
+      {
+        validators: this.passwordMatchValidator,
+      }
+    );
   }
 
   onSubmit() {
     console.log('signUp form', this.signUpForm);
-    if (this.signUpForm.valid) { 
+    if (this.signUpForm.valid) {
       this.signUpForm.reset();
       this.showConfirmationMessage = true;
       setTimeout(() => {
         this.showConfirmationMessage = false;
         this.router.navigate(['/login']);
       }, 2000);
-
     }
   }
 
