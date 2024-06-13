@@ -23,16 +23,16 @@ export class HeaderService {
   }
 
   searchItems(query: string, items: Product[], categories: any[]): any[] {
-    // debugger;
+ 
     if (!query) {
       return [];
     }
 
     const filteredItems = items.filter((item) =>
-      item.title.toLowerCase().startsWith(query.toLowerCase())
+      item.title.toLowerCase().includes(query.toLowerCase())
     );
     const filteredCategories = categories.filter((category) =>
-      category.toLowerCase().startsWith(query.toLowerCase())
+      category.toLowerCase().includes(query.toLowerCase())
     );
 
     return [...filteredItems, ...filteredCategories];

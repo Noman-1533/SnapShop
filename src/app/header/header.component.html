@@ -24,10 +24,11 @@
 
     <div class="order-lg-2 nav-btns">
       <button type="button" class="btn position-relative">
-        <div class="search-container">
+        <div class="search-container" >
           <div
             class="input-group searchgroup"
             [ngClass]="{ expanded: isSearchExpanded }"
+            
           >
             <input
               type="text"
@@ -37,7 +38,7 @@
               [(ngModel)]="searchText"
               (input)="onSearch($event)"
               (keypress)="onKeyPress($event)"
-              placeholder="What are you looking for?"
+              placeholder="Search .."
             />
             <span class="input-group-text search-icon">
               <i class="fa fa-search"></i>

@@ -15,7 +15,7 @@ import { CheckoutService } from '../../shopping/checkout/checkout.service';
 })
 export class ProductDetailsComponent implements OnInit {
   dataService:DataService = inject(DataService);
-  isLoading:boolean=true;
+  isLoading:boolean=false;
   starLoad:boolean = false;
   inPage:boolean = false;
   selectedProductDetails: Product;
