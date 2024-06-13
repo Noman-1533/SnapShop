@@ -15,9 +15,22 @@
 </div>
 
 <div class="containerr card-grouppp card-wrapperr">
-  <div *ngFor="let product of products" class="class-wrap">
-    <app-card class="card" [cardInfo]="product"></app-card>
-  </div>
+
+  <ng-container *ngIf="singleProduct; else otherWise">
+    <div class="class-wrap">
+      <app-card class="card" [cardInfo]="singleProduct"></app-card>
+    </div>
+  </ng-container>
+  
+  <ng-template #otherWise>
+    <div *ngFor="let product of products" class="class-wrap">
+      <app-card class="card" [cardInfo]="product"></app-card>
+    </div>
+  </ng-template>
+
+  
+
+
 </div>
 </ng-template>
 
