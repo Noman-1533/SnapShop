@@ -1,4 +1,3 @@
-export class Category{
-   
-    category:string;
+export class Category {
+  category: string;
 }

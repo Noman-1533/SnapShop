@@ -5,6 +5,7 @@ import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { DataService } from '../../shared/data.service';
 import { UserService } from './user.service';
+import { ToastService } from '../../shared/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -15,23 +16,25 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   isFormSubmitted: boolean = false;
   passwordFieldType: string = 'password';
- 
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private dataService: DataService,
-    private userService: UserService
+    private userService: UserService,
+    private toastService: ToastService
   ) {}
 
   ngOnInit() {
-  
-    
-  
-
     this.loginForm = new FormGroup({
-      username: new FormControl(null, [Validators.required, Validators.minLength(3)]),
-      password: new FormControl(null, [Validators.required, Validators.minLength(5)]),
+      username: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(3),
+      ]),
+      password: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(5),
+      ]),
     });
 
     this.setData();
@@ -62,7 +65,12 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/home']);
         },
         (error) => {
-          alert('Invalid username or password');
+          // alert('Invalid username or password');
+          this.toastService.showToast(
+            'error',
+            'Wrong Credential',
+            'Invalid username or password'
+          );
         }
       );
     }
@@ -77,6 +85,7 @@ export class LoginComponent implements OnInit {
   }
 
   togglePasswordVisibility() {
-    this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
+    this.passwordFieldType =
+      this.passwordFieldType === 'password' ? 'text' : 'password';
   }
 }

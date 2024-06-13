@@ -1,4 +1,3 @@
-
 .container-error {
   text-align: center;
   width: 97%;
@@ -9,13 +8,12 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  
 }
 
 .breadcrumb {
-  font-size: 18px; 
+  font-size: 18px;
   color: #999;
-  margin-bottom: 40px; 
+  margin-bottom: 40px;
 }
 
 .breadcrumb a {
@@ -28,7 +26,7 @@
 }
 
 .container-error h1 {
-  font-size: 85px; 
+  font-size: 85px;
   margin-top: 105px;
   color: #000000;
 }
@@ -36,8 +34,8 @@
 .container-error p {
   font-size: 18px;
   color: #666;
-  margin-top: 20px; 
-  margin-bottom: 40px; 
+  margin-top: 20px;
+  margin-bottom: 40px;
 }
 
 .home-button {
@@ -47,7 +45,7 @@
   color: white;
   text-decoration: none;
   border-radius: 5px;
-  font-size: 18px; 
+  font-size: 18px;
   transition: background-color 0.3s ease;
   margin-top: 10px;
   margin-bottom: 50px;

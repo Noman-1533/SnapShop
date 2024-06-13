@@ -15,14 +15,13 @@ import { Category } from './category.model';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  isCollapsed: boolean = false;
+  isCollapsed: boolean = true;
   isLoggedIn = false;
   items: Product[] = [];
   categoryies;
   filteredItems: Product[] = [];
   searchText: string = '';
   isSearchExpanded: boolean = false;
-  
 
   headerText = [
     { name: 'Home' },
@@ -31,10 +30,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     { name: 'Products' },
   ];
   currentCartItem: number;
-  userId: number ;
+  userId: number;
   key: Key;
   cartUpdateSubscription: Subscription;
-  clickSearch:boolean = false;
+  clickSearch: boolean = false;
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -42,7 +41,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private headerService: HeaderService
   ) {
-    this.router.events.subscribe(event => {
+    this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.clearSearch();
       }
@@ -52,56 +51,49 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.headerService.getItems().subscribe((data: Product[]) => {
       this.items = data;
-      
     });
 
     this.headerService.getCategory().subscribe((category) => {
       this.categoryies = category;
-      
     });
-
-
 
     this.authService.loggedIn.subscribe((data) => {
       this.isLoggedIn = data;
-      console.log("logged user ",this.isLoggedIn)
+      console.log('logged user ', this.isLoggedIn);
     });
     this.userService.loginChanged.subscribe((res) => {
       this.userId = res;
       this.getCartItemNumber();
-    })
-    
+    });
   }
 
   onSearch(event: any): void {
-
-   
     this.searchText = event.target.value;
-  
+
     if (this.searchText.trim() === '') {
       this.clickSearch = true;
-      this.filteredItems = []; 
-  
+      this.filteredItems = [];
     } else {
-      this.filteredItems = this.headerService.searchItems(this.searchText, this.items, this.categoryies);
-      console.log("item:",this.filteredItems);
+      this.filteredItems = this.headerService.searchItems(
+        this.searchText,
+        this.items,
+        this.categoryies
+      );
+      console.log('item:', this.filteredItems);
     }
   }
 
-
-   isProduct(item) {
+  isProduct(item) {
     return typeof item === 'object';
-}
+  }
 
- isCategory(item) {
+  isCategory(item) {
     return typeof item !== 'object';
-}
+  }
 
-  
-    // this.router.navigate(['/contact']);
-      // this.router.navigate(['/home']); 
-    
-  
+  // this.router.navigate(['/contact']);
+  // this.router.navigate(['/home']);
+
   expandSearch(): void {
     this.isSearchExpanded = true;
   }
@@ -113,18 +105,24 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.clickSearch = false;
     this.router.navigate(['/home']);
   }
-  
+  onKeyPress(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      if (this.clickSearch) {
+        this.onClickSearch();
+      }
+    }
+  }
   clearSearch(): void {
     this.searchText = '';
-    this.filteredItems = []; 
+    this.filteredItems = [];
   }
 
   getCartItemNumber() {
-    this.key=this.cartService.setKey('cart', this.userId);
+    this.key = this.cartService.setKey('cart', this.userId);
     this.cartService.getCartItemNumber(this.key).subscribe({
       next: (res) => {
         this.currentCartItem = this.cartService.getCartItems(res).length;
-      }
+      },
     });
   }
 
@@ -142,36 +140,29 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.router.navigate(['/home']);
   }
 
-  addToCart()
-  {
-    this.authService.loggedIn.subscribe(
-      user=>{
-        if(user)
-          {
-            this.router.navigate(['/cart']);
-          }
-          else{
-            this.router.navigate(['/login']);
-          }
+  addToCart() {
+    this.authService.loggedIn.subscribe((user) => {
+      if (user) {
+        this.router.navigate(['/cart']);
+      } else {
+        this.router.navigate(['/login']);
       }
-    );
+    });
   }
 
-
-  logIn()
-  {
-    this.router.navigate(["/login"]);
+  logIn() {
+    this.router.navigate(['/login']);
   }
 
   logout() {
-
-    
-
     localStorage.removeItem('loggedInUser');
     this.authService.loggedIn.next(false);
-    this.userService.LoggedUser=null;
-    this.userService.LoggedUserId=-1;
+    this.userService.LoggedUser = null;
+    this.userService.LoggedUserId = -1;
     this.userService.loginChanged.next(-1);
+    this.cartService.availableCoupon.forEach((item) => {
+      item.used = false;
+    });
     this.router.navigate(['/home']);
   }
   toggleNavMenu() {
