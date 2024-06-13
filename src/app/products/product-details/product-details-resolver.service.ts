@@ -25,7 +25,10 @@ export class ProductDetailsResolverService implements Resolve<Product> {
     state: RouterStateSnapshot
   ): Observable<any> {
     
+
     const productId = +route.params['id'];
+
+    
 
    
 

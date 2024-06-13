@@ -65,7 +65,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.userId = res;
       this.getCartItemNumber();
     });
+
+    
   }
+
+ 
 
   onSearch(event: any): void {
     this.searchText = event.target.value;
@@ -91,8 +95,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     return typeof item !== 'object';
   }
 
-  // this.router.navigate(['/contact']);
-  // this.router.navigate(['/home']);
+ 
 
   expandSearch(): void {
     this.isSearchExpanded = true;
@@ -116,6 +119,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.searchText = '';
     this.filteredItems = [];
   }
+
+  handleOutsideClick() {
+    if (this.isSearchExpanded) {
+      this.collapseSearch();
+    }
+  }
+
 
   getCartItemNumber() {
     this.key = this.cartService.setKey('cart', this.userId);
