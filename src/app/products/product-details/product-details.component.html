@@ -1,3 +1,9 @@
+<ng-container *ngIf="isLoading;else otherWise">
+  <app-loading-spinner></app-loading-spinner>
+</ng-container>
+<ng-template #otherWise>
+
+
 <div class="container">
   <div class="ms-3">
     <div class="row my-5 pt-3">
@@ -9,7 +15,10 @@
 
       <div
         class="div"
-        *ngIf="!selectedProductDetails && starLoad; else definedSelect"
+        *ngIf="
+          !selectedProductDetails && starLoad;
+          else definedSelect
+        "
       ></div>
 
       <ng-template #definedSelect>
@@ -180,11 +189,19 @@
             <div class="custom-hr"></div>
             <h6>Related Items</h6>
           </div>
+
+
+          
           <app-product-carousel
             [numberOfSlides]="RelatedProducts"
           ></app-product-carousel>
         </div>
+
+
       </ng-template>
     </div>
   </div>
 </div>
+
+
+</ng-template>
