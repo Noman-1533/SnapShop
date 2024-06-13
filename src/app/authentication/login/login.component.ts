@@ -5,6 +5,7 @@ import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { DataService } from '../../shared/data.service';
 import { UserService } from './user.service';
+import { ToastService } from '../../shared/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private dataService: DataService,
-    private userService: UserService
+    private userService: UserService,
+    private toastService:ToastService
   ) {}
 
   ngOnInit() {
@@ -62,7 +64,8 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/home']);
         },
         (error) => {
-          alert('Invalid username or password');
+          // alert('Invalid username or password');
+          this.toastService.showToast('error','Wrong Credential','Invalid username or password')
         }
       );
     }

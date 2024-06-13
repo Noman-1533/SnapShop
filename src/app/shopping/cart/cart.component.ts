@@ -5,6 +5,8 @@ import { CheckoutService } from '../checkout/checkout.service';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { UserService } from '../../authentication/login/user.service';
+import { ToastService } from '../../shared/toast.service';
+
 
 @Component({
   selector: 'app-cart',
@@ -39,7 +41,8 @@ export class CartComponent implements OnInit, OnDestroy {
     private cartService: CartService,
     private checkout: CheckoutService,
     private router: Router,
-    private userData: UserService
+    private userData: UserService,
+    private toastService:ToastService
   ) {}
 
   ngOnInit(): void {
@@ -53,6 +56,8 @@ export class CartComponent implements OnInit, OnDestroy {
       next: (res) => {
         this.cartItems = this.cartService.getCartItems(res);
         this.calculateSubtotal();
+        if(this.cartItems.length!==0)
+        this.cartService.inCart=true;
       },
     });
     this.subtotalChange.subscribe((res) => {
@@ -60,7 +65,7 @@ export class CartComponent implements OnInit, OnDestroy {
       this.calculateTotal();
       this.totalChange.subscribe((res) => {
         this.totalAmount = res;
-        this.checkout.checkoutItemChange.next({ cart: this.cartItems, total: this.totalAmount, discount: this.discount });
+        this.cartService.checkoutItemChange.next({ cart: this.cartItems, total: this.totalAmount, discount: this.discount });
         // this.cartChange.next({ cart: this.cartItems, total: this.totalAmount, discount: this.discount })
       });
     });
@@ -106,12 +111,17 @@ export class CartComponent implements OnInit, OnDestroy {
   }
   updateCart() {}
   onCheckout() {
-    this.checkout.setCheckoutCart(
-      this.cartItems,
-      this.totalAmount,
-      this.discount
-    );
-    this.router.navigate(['/checkout']);
+    if (this.cartItems.length !== 0) {
+      this.checkout.setCheckoutCart(
+        this.cartItems,
+        this.totalAmount,
+        this.discount
+      );
+      this.router.navigate(['/checkout']);
+    } else {
+      this.toastService.showToast('warn','Warning!','Add Some items for checkout')
+      // this.toast.add({severity:'warn',summary:'Warning!',detail:'Add Some items for checkout'})
+    }
   }
 
   onApplyCoupon() {
@@ -135,6 +145,7 @@ export class CartComponent implements OnInit, OnDestroy {
     this.invalidCouponError = invalidCouponError;
     this.usedCouponError = usedCouponError;
     this.invalidTotalError = invalidTotalError;
+    this.totalChange.next(this.totalAmount);
   }
   ngOnDestroy(): void {
     this.cartChangesSubscription.unsubscribe();

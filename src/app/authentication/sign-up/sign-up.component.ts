@@ -15,7 +15,7 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit() {
     this.signUpForm = this.fb.group({
-      firstName: ['', Validators.required],
+      firstName: ['', [Validators.required,this.noNumbersValidator]],
       lastName: [''],
       city: ['', Validators.required],
       street: [''],
@@ -58,6 +58,10 @@ export class SignUpComponent implements OnInit {
     const isWhitespace = (control.value || '').indexOf(' ') >= 0;
     const isValid = !isWhitespace;
     return isValid ? null : { whitespace: true };
+  }
+  noNumbersValidator(control) {
+    const hasNumber = /\d/.test(control.value);
+    return hasNumber ? { hasNumber: true } : null;
   }
   onClick() {
     this.showConfirmationMessage = false;

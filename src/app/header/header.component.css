@@ -292,7 +292,8 @@
   margin: 0;
   padding: 0;
   overflow: scroll;
-  height: 30vh;
+  /* height: 40vh; */
+  min-height: 25rem;
 }
 
 .suggestions li {
@@ -466,5 +467,8 @@
 .suggestions .btn-outline-secondary i {
   font-size: 1.5rem;
   color: #000;
+}
+.nav-btns button{
+  margin-left: 5px ;
 }
 

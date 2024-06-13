@@ -7,6 +7,7 @@ import { CartService } from '../cart/cart.service';
 import { Router } from '@angular/router';
 import { UserService } from '../../authentication/login/user.service';
 import { ProfileService } from '../../profile/profile.service';
+import { ToastService } from '../../shared/toast.service';
 
 @Component({
   selector: 'app-checkout',
@@ -50,7 +51,8 @@ export class CheckoutComponent implements OnInit {
     private cartService: CartService,
     private userData:UserService,
     private router: Router,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private toastService:ToastService
 
   ) {}
 
@@ -81,8 +83,9 @@ export class CheckoutComponent implements OnInit {
     // this.discount = this.checkoutService.discount;
     // this.totalAmount = parseFloat(this.checkoutService.totalAmount.toFixed(2));
     // this.subtotalAmount = this.calculateSubTotal();
-    this.checkoutService.checkoutItemChange.subscribe(res => {
+    this.cartService.checkoutItemChange.subscribe(res => {
       if (res) {
+        console.log(res)
         this.checkoutItems = res.cart;
         this.totalAmount = parseFloat(res.total.toFixed(2)) ;
         this.discount = res.discount;
@@ -146,13 +149,13 @@ export class CheckoutComponent implements OnInit {
       let key: Key = this.cartService.setKey('cart', this.userId);
       for (let cart of this.checkoutItems) {
         this.cartService.deleteCartItem(cart.productId, key);
+        // localStorage.removeItem(JSON.stringify(key));
       }
       this.checkoutService.orderPlaced.next(true);
       
-      alert('Order Successful');
-      setTimeout(() => {
-        this.router.navigate(['/cart']);
-      }, 500);
+      // alert('Order Successful');
+      this.toastService.showToast('success','Successful','Successfully Placed order')
+        this.router.navigate(['']);
     }
   }
 }

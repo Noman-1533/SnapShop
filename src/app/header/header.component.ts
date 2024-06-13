@@ -89,7 +89,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.clickSearch = false;
     this.router.navigate(['/home']);
   }
-  
+  onKeyPress(event: KeyboardEvent) {
+    if (event.key === 'Enter') { 
+      if (this.clickSearch) {
+        this.onClickSearch();
+      }
+    }
+  }
   clearSearch(): void {
     this.searchText = '';
     this.filteredItems = []; 

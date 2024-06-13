@@ -14,7 +14,7 @@ export class CheckoutService {
     totalAmount:  0,
     discount:  0
   }
-  checkoutItemChange=new BehaviorSubject<{ cart: CartProduct[], total: number,discount:number }>({cart:[],total:0,discount:0})
+  // checkoutItemChange=new BehaviorSubject<{ cart: CartProduct[], total: number,discount:number }>({cart:[],total:0,discount:0})
   
   orderPlaced=new BehaviorSubject<boolean>(false);
 

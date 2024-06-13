@@ -139,5 +139,26 @@ tr{
   margin-bottom: 100px;
 } */
 
+.no-item{
+  text-align: center;
+  
+}
+.buttons .btn{
+  margin: 10px;
+}
+.toast-success{
+  background-color: green ;
+  color: white
+}
 
-
+#custom-toast-container {
+  position: relative; /* Or any other positioning you need */
+  top: 100px;
+  right: 500px;
+}
+/* .toast-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+} */
