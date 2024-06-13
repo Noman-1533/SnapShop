@@ -42,6 +42,15 @@
   margin-top: 12px;
   text-align: center;
   display: none;
+  padding: 5px;
+  
+  
+}
+
+.addToCart i{
+  color: white;
+  margin-left: 2px;
+
 }
 
 .addToCart a {
