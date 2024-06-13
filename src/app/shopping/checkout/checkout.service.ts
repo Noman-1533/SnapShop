@@ -8,22 +8,22 @@ import { ProfileService } from '../../profile/profile.service';
   providedIn: 'root',
 })
 export class CheckoutService {
-  cartToCheckout: CartProduct[] = [];
-  totalAmount: number = 0;
-  discount: number = 0;
-  
-  orderPlaced=new BehaviorSubject<boolean>(false);
+  cart = {
+    cartToCheckout: [],
+    totalAmount: 0,
+    discount: 0,
+  };
+  // checkoutItemChange=new BehaviorSubject<{ cart: CartProduct[], total: number,discount:number }>({cart:[],total:0,discount:0})
 
-  setCheckoutCart(cart: CartProduct[],Amount:number,discount:number) {
-    this.cartToCheckout = cart;
-    this.totalAmount = Amount
-    this.discount = discount;
+  orderPlaced = new BehaviorSubject<boolean>(false);
+
+  setCheckoutCart(cart: CartProduct[], Amount: number, discount: number) {
   }
-  getcartToCheckout() {
-    return this.cartToCheckout;
-  }
+  // getcartToCheckout() {
+  //   return this.cartToCheckout;
+  // }
   getCheckout() {
-    return this.cartToCheckout;
+    // return this.cartToCheckout;
   }
   onSaveShippingDetails() {}
 }

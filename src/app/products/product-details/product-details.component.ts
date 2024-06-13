@@ -7,33 +7,33 @@ import { UserService } from '../../authentication/login/user.service';
 import { ViewportScroller } from '@angular/common';
 import { CartProduct } from '../../shopping/cart/cart.model';
 import { CheckoutService } from '../../shopping/checkout/checkout.service';
- 
+
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css',
 })
 export class ProductDetailsComponent implements OnInit {
-  dataService:DataService = inject(DataService);
- 
-  starLoad:boolean = false;
-  inPage:boolean = false;
+  dataService: DataService = inject(DataService);
+
+  starLoad: boolean = false;
+  inPage: boolean = false;
   selectedProductDetails: Product;
   RelatedProducts: Product[] = [];
   ratingArray: string[] = [];
   sizes: string[] = ['XS', 'S', 'M', 'L', 'XL'];
-  breadcrumbPath: string='';
- 
+  breadcrumbPath: string = '';
+
   products: Product[];
   selectedSize: string = 'M';
   amount: number = 1;
   userId: number = -1;
- 
+
   deliveryOptions: { name: string; iconClass: string }[] = [
     { name: 'Free Delivery', iconClass: 'bi bi-truck' },
     { name: 'Return Delivery', iconClass: 'bi bi-arrow-return-left' },
   ];
- 
+
   constructor(
     private route: ActivatedRoute,
     private cartService: CartService,
@@ -42,14 +42,14 @@ export class ProductDetailsComponent implements OnInit {
     private viewportScroller: ViewportScroller,
     private checkout: CheckoutService
   ) {}
- 
+
   ngOnInit(): void {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.viewportScroller.scrollToPosition([0, 0]);
       }
     });
- 
+
     this.userService.loginChanged.subscribe((res) => {
       this.userId = res;
     });
@@ -57,17 +57,13 @@ export class ProductDetailsComponent implements OnInit {
     const resolvedData = this.route.snapshot.data['productData'];
     this.selectedProductDetails = resolvedData.product;
     this.RelatedProducts = resolvedData.categoryProducts;
- 
-    this.inPage = false;
 
+    this.inPage = false;
 
     this.route.params.subscribe((params) => {
       this.fetchProductDetails(params['id']);
       this.updateBreadcrumbPath();
     });
-
-
-
 
     setTimeout(
       () => {
@@ -80,48 +76,47 @@ export class ProductDetailsComponent implements OnInit {
           this.starLoad = true;
         }
       },
- 
+
       100
     );
   }
- 
+
   updateBreadcrumbPath(): void {
     this.breadcrumbPath = this.router.url;
   }
- 
+
   fetchProductDetails(productId: number): void {
     this.dataService.getSingleProduct(productId).subscribe((product) => {
       this.selectedProductDetails = product;
-     
     });
   }
- 
+
   increment() {
     this.amount++;
   }
- 
+
   decrement() {
     if (this.amount > 0) {
       this.amount--;
     }
   }
- 
+
   setRatingArray(rating: number) {
     this.ratingArray = [];
- 
+
     for (let i = 0; i < Math.floor(rating); i++) {
       this.ratingArray.push('full');
     }
- 
+
     if (rating % 1 !== 0) {
       this.ratingArray.push('half');
     }
- 
+
     while (this.ratingArray.length < 5) {
       this.ratingArray.push('empty');
     }
   }
- 
+
   onClickCart() {
     if (this.userId !== -1) {
       let key = this.cartService.setKey('cart', this.userId);

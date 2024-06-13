@@ -6,10 +6,9 @@
 
 .carousel-control-next-icon::after,
 .carousel-control-prev-icon::after {
- 
   display: none;
 }
-.text-left{
+.text-left {
   /* background-color: red; */
   height: 35vh;
   width: 60%;
@@ -79,8 +78,6 @@
 .carousel-item a.btn {
   color: white;
 }
-
-
 
 @media (max-width: 767px) {
   .carousel-item .text-left {

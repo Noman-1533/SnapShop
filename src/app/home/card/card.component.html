@@ -1,4 +1,4 @@
-
+<p-toast></p-toast>
 <ng-container *ngIf="!cardInfo; else cardContent">
   <app-loading-spinner></app-loading-spinner>
 </ng-container>
@@ -8,7 +8,7 @@
     <div class="thumb-wrapper">
       <div class="topsectionforcart">
         <span class="wish-icon discount">
-          <button class="discountbutton">-{{cardInfo.discount}}%</button>
+          <button class="discountbutton">-{{ cardInfo.discount }}%</button>
         </span>
         <span class="wish-icon"><i class="ri-heart-3-line"></i></span>
       </div>

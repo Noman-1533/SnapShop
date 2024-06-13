@@ -13,12 +13,11 @@ export class UserService {
   setLoggedInUserId(userNameToGet: string) {
     this.Users.subscribe((users) => {
       for (let user of users) {
-        
         if (user.username === userNameToGet) {
-          this.LoggedUserId=user.id;
-         
+          this.LoggedUserId = user.id;
+
           this.LoggedUser = user;
-          this.loginChanged.next( this.LoggedUserId);
+          this.loginChanged.next(this.LoggedUserId);
         }
       }
     });

@@ -19,15 +19,15 @@ export class ProfileComponent implements OnInit {
   orderList: Order[] = [];
   profileKey: Key;
   currentActiveOrder: Order;
-  profileForm: FormGroup; 
+  profileForm: FormGroup; // Define profileForm
 
   constructor(
     private router: Router,
     private authService: AuthService,
     private userService: UserService,
     private profileService: ProfileService,
-    private fb: FormBuilder 
-  ) { }
+    private fb: FormBuilder // Inject FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.loggedInUser = this.userService.getLoggedInUser();
@@ -35,17 +35,21 @@ export class ProfileComponent implements OnInit {
       name: 'orderInfo',
       id: this.loggedInUser.id,
     };
+
     this.orderList = this.profileService.getOrderInformation(this.profileKey);
 
-   
+    // Initialize profileForm with FormBuilder
     this.profileForm = this.fb.group({
-      firstName: [this.loggedInUser.name.firstname, [Validators.required, this.noNumbersValidator]],
+      firstName: [
+        this.loggedInUser.name.firstname,
+        [Validators.required, this.noNumbersValidator],
+      ],
       lastName: [this.loggedInUser.name.lastname, [this.noNumbersValidator]],
       email: [this.loggedInUser.email, [Validators.required, Validators.email]],
       address: ['Kingston, 5236, United States', [Validators.required]],
       currentPassword: [''],
       newPassword: [''],
-      confirmNewPassword: ['']
+      confirmNewPassword: [''],
     });
   }
 
@@ -55,10 +59,10 @@ export class ProfileComponent implements OnInit {
 
   onSaveChanges(): void {
     if (this.profileForm.valid) {
-
+      // Handle form save here
       this.router.navigate(['/home']);
     } else {
-
+      // Form is invalid, do something like show error messages
     }
   }
 

@@ -9,10 +9,7 @@
 
       <div
         class="div"
-        *ngIf="
-          !selectedProductDetails && starLoad;
-          else definedSelect
-        "
+        *ngIf="!selectedProductDetails && starLoad; else definedSelect"
       ></div>
 
       <ng-template #definedSelect>

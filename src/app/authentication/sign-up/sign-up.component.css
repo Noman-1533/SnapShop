@@ -1,4 +1,3 @@
-
 input.ng-invalid.ng-touched {
   border-bottom: 2px solid red !important;
 }
@@ -6,19 +5,17 @@ input.ng-invalid.ng-touched {
   color: red;
 }
 
-.image-section{
+.image-section {
   width: 50%;
 }
 
-.image-section img{
-  width: 95%!important;
+.image-section img {
+  width: 95% !important;
   height: 70vh;
-
 }
 
-
-.container{
- justify-content: space-around!important;
+.container {
+  justify-content: space-around !important;
 }
 
 .confirmation-overlay {
@@ -32,27 +29,24 @@ input.ng-invalid.ng-touched {
   justify-content: center;
   align-items: center;
   z-index: 10;
-  
 }
 
-.form-section{
-  box-shadow: none!important;
-  border: none!important;
+.form-section {
+  box-shadow: none !important;
+  border: none !important;
 }
 
 input[type="text"],
 input[type="password"],
-input[type="email"]{
-
-  border: none!important;
-  border-bottom: 2px solid #ccc!important;
-  border-radius: 0px!important;
-  box-shadow: none!important;
-  padding:10px 0px;
-
+input[type="email"] {
+  border: none !important;
+  border-bottom: 2px solid #ccc !important;
+  border-radius: 0px !important;
+  box-shadow: none !important;
+  padding: 10px 0px;
 }
 
-.btn-primary{
+.btn-primary {
   background-color: var(--button-color);
   border: none;
   box-shadow: none;
@@ -64,30 +58,25 @@ button.btn:active {
   background-color: transparent !important;
 }
 
-.btn-primary:hover{
-
+.btn-primary:hover {
   scale: 1.01;
   transition: 0.3s;
 
   background-color: var(--button-color-hover);
   box-shadow: none;
-
-
 }
 
-.bottom{
-
-  color:  #887a7a;
+.bottom {
+  color: #887a7a;
 }
 
-.bottom a{
+.bottom a {
   font-weight: bold;
   text-decoration: underline;
   padding: 2px;
-  
 }
 
-.bottom a:hover{
+.bottom a:hover {
   color: var(--button-color);
   scale: 1.02;
   transition: 0.3s;

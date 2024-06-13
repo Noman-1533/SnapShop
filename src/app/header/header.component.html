@@ -25,7 +25,10 @@
     <div class="order-lg-2 nav-btns">
       <button type="button" class="btn position-relative">
         <div class="search-container">
-          <div class="input-group searchgroup" [ngClass]="{'expanded': isSearchExpanded}">
+          <div
+            class="input-group searchgroup"
+            [ngClass]="{ expanded: isSearchExpanded }"
+          >
             <input
               type="text"
               class="form-control"
@@ -33,45 +36,53 @@
               (blur)="collapseSearch()"
               [(ngModel)]="searchText"
               (input)="onSearch($event)"
-              (keypress)="clickSearch === true ? onClickSearch() : ''"
-              placeholder="Search .."
+              (keypress)="onKeyPress($event)"
+              placeholder="What are you looking for?"
             />
             <span class="input-group-text search-icon">
               <i class="fa fa-search"></i>
             </span>
             <ul class="list-group suggestions" *ngIf="filteredItems.length > 0">
-              <li *ngFor="let item of filteredItems" class="list-group-item d-flex align-items-center justify-content-between">
-                <a 
+              <li
+                *ngFor="let item of filteredItems"
+                class="list-group-item d-flex align-items-center justify-content-between"
+              >
+                <a
                   *ngIf="isProduct(item)"
                   [routerLink]="['product-list']"
                   [queryParams]="{ paramName: item.id }"
                   (click)="clearSearch()"
                   class="text-decoration-none text-dark w-100 d-flex align-items-center"
                 >
-                <img [src]="item.image" alt="" class="img-thumbnail" width="60px" height="60px">
-                <div class="ms-3 me-auto">
-                  <div class="fw-bold">{{ item.title | slice:0:20 }}...</div>
-                  <div class="text-muted">{{ item.price }}$</div>
-                </div>
+                  <img
+                    [src]="item.image"
+                    alt=""
+                    class="img-thumbnail"
+                    width="60px"
+                    height="60px"
+                  />
+                  <div class="ms-3 me-auto">
+                    <div class="fw-bold">
+                      {{ item.title | slice : 0 : 20 }}...
+                    </div>
+                    <div class="text-muted">{{ item.price }}$</div>
+                  </div>
                 </a>
-                <a 
+                <a
                   *ngIf="isCategory(item)"
                   [routerLink]="['product-list']"
-                  [queryParams]="{ Category: item}"
+                  [queryParams]="{ Category: item }"
                   (click)="clearSearch()"
                   class="text-decoration-none d-block py-2 px-3 text-dark"
                 >
-                  {{item}}
+                  {{ item }}
                 </a>
               </li>
             </ul>
-            
           </div>
         </div>
       </button>
-      
-      
-      
+
       <button
         type="button"
         class="btn position-relative shoppingIcon"
@@ -114,7 +125,11 @@
       <i class="ri-menu-3-line"></i>
     </button>
 
-    <div class="collapse navbar-collapse order-lg-1" id="navMenu" [class.collapse]="isCollapsed">
+    <div
+      class="collapse navbar-collapse order-lg-1"
+      id="navMenu"
+      [class.collapse]="isCollapsed"
+    >
       <ul class="navbar-nav mx-auto text-center">
         <li
           class="nav-item px-2 py-2"

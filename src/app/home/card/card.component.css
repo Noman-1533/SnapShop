@@ -4,7 +4,6 @@
   width: 282px;
   max-width: 282px;
   border-radius: 2px;
-  
 }
 
 .img-box {
@@ -43,14 +42,11 @@
   text-align: center;
   display: none;
   padding: 5px;
-  
-  
 }
 
-.addToCart i{
+.addToCart i {
   color: white;
   margin-left: 2px;
-
 }
 
 .addToCart a {
@@ -125,8 +121,6 @@ h4:hover {
   color: black;
 }
 
-
 .addToCart a:hover {
   cursor: pointer;
 }
-

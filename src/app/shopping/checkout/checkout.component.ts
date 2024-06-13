@@ -7,6 +7,7 @@ import { CartService } from '../cart/cart.service';
 import { Router } from '@angular/router';
 import { UserService } from '../../authentication/login/user.service';
 import { ProfileService } from '../../profile/profile.service';
+import { ToastService } from '../../shared/toast.service';
 
 @Component({
   selector: 'app-checkout',
@@ -35,7 +36,7 @@ export class CheckoutComponent implements OnInit {
       logo: 'https://www.freepnglogos.com/uploads/paypal-logo-png-29.png',
       name: 'PayPal',
     },
-  ];;
+  ];
   totalAmount = 0;
   discount: number = 0;
   subtotalAmount: number = 0;
@@ -48,10 +49,10 @@ export class CheckoutComponent implements OnInit {
     private formBuilder: FormBuilder,
     private checkoutService: CheckoutService,
     private cartService: CartService,
-    private userData:UserService,
+    private userData: UserService,
     private router: Router,
-    private profileService: ProfileService
-
+    private profileService: ProfileService,
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -60,7 +61,7 @@ export class CheckoutComponent implements OnInit {
     // }
     this.userData.loginChanged.subscribe((res) => {
       this.userId = res;
-    })
+    });
     this.getCheckoutItems();
     this.checkoutForm = this.formBuilder.group({
       firstName: ['', Validators.required],
@@ -77,10 +78,18 @@ export class CheckoutComponent implements OnInit {
   }
 
   getCheckoutItems() {
-    this.checkoutItems = this.checkoutService.getCheckout();
-    this.discount = this.checkoutService.discount;
-    this.totalAmount = parseFloat(this.checkoutService.totalAmount.toFixed(2));
-    this.subtotalAmount = this.calculateSubTotal();
+    // this.checkoutItems = this.checkoutService.getCheckout();
+    // this.discount = this.checkoutService.discount;
+    // this.totalAmount = parseFloat(this.checkoutService.totalAmount.toFixed(2));
+    // this.subtotalAmount = this.calculateSubTotal();
+    this.cartService.checkoutItemChange.subscribe((res) => {
+      if (res) {
+        console.log(res);
+        this.checkoutItems = res.cart;
+        this.totalAmount = parseFloat(res.total.toFixed(2));
+        this.discount = res.discount;
+      }
+    });
   }
 
   calculateSubTotal() {
@@ -116,7 +125,14 @@ export class CheckoutComponent implements OnInit {
   }
 
   onApplyCoupon() {
-    const { subtotalAmount, totalAmount, discount, invalidCouponError, usedCouponError, invalidTotalError } = this.cartService.onApplyCoupon(
+    const {
+      subtotalAmount,
+      totalAmount,
+      discount,
+      invalidCouponError,
+      usedCouponError,
+      invalidTotalError,
+    } = this.cartService.onApplyCoupon(
       this.subtotalAmount,
       this.totalAmount,
       this.discount,
@@ -139,13 +155,17 @@ export class CheckoutComponent implements OnInit {
       let key: Key = this.cartService.setKey('cart', this.userId);
       for (let cart of this.checkoutItems) {
         this.cartService.deleteCartItem(cart.productId, key);
+        // localStorage.removeItem(JSON.stringify(key));
       }
       this.checkoutService.orderPlaced.next(true);
-      
-      alert('Order Successful');
-      setTimeout(() => {
-        this.router.navigate(['/cart']);
-      }, 500);
+
+      // alert('Order Successful');
+      this.toastService.showToast(
+        'success',
+        'Successful',
+        'Successfully Placed order'
+      );
+      this.router.navigate(['']);
     }
   }
 }

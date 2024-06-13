@@ -4,21 +4,31 @@ import { Cart, Key, CartProduct } from './cart.model';
 import { BehaviorSubject, forkJoin, tap } from 'rxjs';
 import { Product } from '../../shared/product.model';
 import { Router } from '@angular/router';
+import { ToastService } from '../../shared/toast.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
   changeOnCart = new BehaviorSubject<Cart[]>([]);
+  checkoutItemChange = new BehaviorSubject<{
+    cart: CartProduct[];
+    total: number;
+    discount: number;
+  }>({ cart: [], total: 0, discount: 0 });
   cart: Cart[] = [];
-  inCart=false;
+  inCart = false;
   availableCoupon: { name: string; amount: number; used: boolean }[] = [
     { name: 'save20', amount: 20, used: false },
     { name: 'save10', amount: 10, used: false },
     { name: 'save30', amount: 30, used: false },
   ];
 
-  constructor(private dataService: DataService, private router: Router) {}
+  constructor(
+    private dataService: DataService,
+    private router: Router,
+    private toastService: ToastService
+  ) {}
 
   setKey(name: string, id: number) {
     let key: Key = { name, id };
@@ -119,9 +129,15 @@ export class CartService {
       this.saveDataInLocalStorage(key);
       this.changeOnCart.next(this.cart);
       console.log(this.cart);
-      alert('Successfully added to CART');
+      // alert('Successfully added to CART');
+      this.toastService.showToast(
+        'success',
+        'Success',
+        'Successfully added to CART'
+      );
     } else {
-      alert('Already in Cart');
+      // alert('Already in Cart');
+      this.toastService.showToast('warn', 'Warning!', 'Already in Cart');
     }
   }
 

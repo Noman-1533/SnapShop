@@ -5,40 +5,36 @@ import { Product } from '../shared/product.model';
 import { DataService } from '../shared/data.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HeaderService {
-
-  constructor(private http: HttpClient,private dataService:DataService) {}
+  constructor(private http: HttpClient, private dataService: DataService) {}
 
   getItems(): Observable<Product[]> {
     return this.dataService.getAllProducts();
   }
 
-
   getCategory(): Observable<any> {
     return this.dataService.getAllCategories();
   }
-
 
   getItemById(id: string): Observable<Product> {
     return this.dataService.getSingleProduct(+id);
   }
 
-
   searchItems(query: string, items: Product[], categories: any[]): any[] {
-
     // debugger;
     if (!query) {
       return [];
     }
-  
-const filteredItems = items.filter(item => item.title.toLowerCase().startsWith(query.toLowerCase()));
-const filteredCategories = categories.filter(category => category.toLowerCase().startsWith(query.toLowerCase()));
 
+    const filteredItems = items.filter((item) =>
+      item.title.toLowerCase().startsWith(query.toLowerCase())
+    );
+    const filteredCategories = categories.filter((category) =>
+      category.toLowerCase().startsWith(query.toLowerCase())
+    );
 
     return [...filteredItems, ...filteredCategories];
   }
-
-
 }
