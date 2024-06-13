@@ -12,7 +12,6 @@ export class SliderComponent implements AfterViewInit {
     ) as HTMLElement;
     const carousel = new bootstrap.Carousel(myCarousel, {
       interval: 3000,
-      // Set the interval to 3000ms (3 seconds)
       ride: 'carousel',
     });
   }

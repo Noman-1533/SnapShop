@@ -135,8 +135,6 @@ export class DataService {
   }
 
   getRandomDiscount(): number {
-    const minDiscount = 5;
-    const maxDiscount = 25;
     return 10;
   }
 

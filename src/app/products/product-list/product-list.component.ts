@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { DataService } from '../../shared/data.service';
 import { Product } from '../../shared/product.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-product-list',
@@ -11,41 +12,65 @@ import { Product } from '../../shared/product.model';
 export class ProductListComponent implements OnInit {
   demoProduct: number[] = Array(10).fill(1);
   @Input() numberOfSlides;
-  products: Product[] = [];
+  products:Product[]=[];
+  singleProduct;
   Category: string = '';
+  productId:number;
   isLoading: boolean= true;
 
   inShow_All = false;
-  qparam: any;
+  qparam: Subscription;
 
   constructor(
     private dataService: DataService,
     private route: ActivatedRoute
   ) {}
   ngOnInit(): void {
+
     this.qparam = this.route.queryParams.subscribe((queryparam: Params) => {
       this.Category = queryparam['Category'];
+      this.productId = +queryparam['paramName'];
+      this.fetchData();
+     
     });
-    
-    if (!this.Category) {
-      this.dataService.getAllProducts().subscribe((products) => {
-        this.products = products;
-        this.isLoading = false;
-      });
-    } else {
-      this.dataService
-        .getProductsOfCategory(this.Category)
-        .subscribe((products) => {
-          this.products = products;
-          this.isLoading = false;
-        });
-    }
 
 
-   
   }
 
-  
+
+  fetchData() {
+    if (this.Category == undefined && !this.productId) {
+      this.dataService.getAllProducts().subscribe((products) => {
+        this.products = products.map(product => {
+          product.discount = this.dataService.getRandomDiscount();
+          return product;
+        });
+        this.isLoading = false;
+      });
+    } else if (this.Category) {
+      this.dataService.getProductsOfCategory(this.Category).subscribe((products) => {
+        this.products = products.map(product => {
+          product.discount = this.dataService.getRandomDiscount();
+          return product;
+        });
+        this.isLoading = false;
+      });
+    } else if (this.productId) {
+      this.dataService.getSingleProduct(this.productId).subscribe((product) => {
+        this.singleProduct = product;
+        this.singleProduct.discount = this.dataService.getRandomDiscount();
+        this.isLoading = false;
+      });
+    }
+  }
+  arrayLength=0
 
  
+
+
+
+  ngOnDestroy(): void {
+    this.qparam.unsubscribe(); 
+  }
+  
 }

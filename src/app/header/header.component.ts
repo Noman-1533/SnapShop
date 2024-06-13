@@ -7,6 +7,7 @@ import { AuthService } from '../authentication/login/auth.service';
 import { UserService } from '../authentication/login/user.service';
 import { HeaderService } from './header.service';
 import { Product } from '../shared/product.model';
+import { Category } from './category.model';
 
 @Component({
   selector: 'app-header',
@@ -14,10 +15,14 @@ import { Product } from '../shared/product.model';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  isCollapsed: boolean = false;
   isLoggedIn = false;
   items: Product[] = [];
+  categoryies;
   filteredItems: Product[] = [];
   searchText: string = '';
+  isSearchExpanded: boolean = false;
+  
 
   headerText = [
     { name: 'Home' },
@@ -25,11 +30,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     { name: 'About' },
     { name: 'Products' },
   ];
-  currentCartItem!: number;
-  userId!: number ;
-  key!: Key;
-  cartUpdateSubscription!: Subscription;
-
+  currentCartItem: number;
+  userId: number ;
+  key: Key;
+  cartUpdateSubscription: Subscription;
+  clickSearch:boolean = false;
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -50,6 +55,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
       
     });
 
+    this.headerService.getCategory().subscribe((category) => {
+      this.categoryies = category;
+      
+    });
+
+
+
     this.authService.loggedIn.subscribe((data) => {
       this.isLoggedIn = data;
       console.log("logged user ",this.isLoggedIn)
@@ -62,14 +74,44 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onSearch(event: any): void {
+
+   
     this.searchText = event.target.value;
   
     if (this.searchText.trim() === '') {
+      this.clickSearch = true;
       this.filteredItems = []; 
-      this.router.navigate(['/home']); 
+  
     } else {
-      this.filteredItems = this.headerService.searchItems(this.searchText, this.items);
+      this.filteredItems = this.headerService.searchItems(this.searchText, this.items, this.categoryies);
+      console.log("item:",this.filteredItems);
     }
+  }
+
+
+   isProduct(item) {
+    return typeof item === 'object';
+}
+
+ isCategory(item) {
+    return typeof item !== 'object';
+}
+
+  
+    // this.router.navigate(['/contact']);
+      // this.router.navigate(['/home']); 
+    
+  
+  expandSearch(): void {
+    this.isSearchExpanded = true;
+  }
+
+  collapseSearch(): void {
+    this.isSearchExpanded = false;
+  }
+  onClickSearch() {
+    this.clickSearch = false;
+    this.router.navigate(['/home']);
   }
   
   clearSearch(): void {
@@ -109,7 +151,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
             this.router.navigate(['/cart']);
           }
           else{
-            alert("You have to login first");
             this.router.navigate(['/login']);
           }
       }
@@ -132,6 +173,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.userService.LoggedUserId=-1;
     this.userService.loginChanged.next(-1);
     this.router.navigate(['/home']);
+  }
+  toggleNavMenu() {
+    this.isCollapsed = !this.isCollapsed;
   }
 
   ngOnDestroy(): void {

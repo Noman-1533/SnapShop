@@ -5,7 +5,6 @@ import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { DataService } from '../../shared/data.service';
 import { UserService } from './user.service';
-import { User } from './user.model';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +15,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   isFormSubmitted: boolean = false;
   passwordFieldType: string = 'password';
+ 
 
   constructor(
     private authService: AuthService,
@@ -25,6 +25,10 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+  
+    
+  
+
     this.loginForm = new FormGroup({
       username: new FormControl(null, [Validators.required, Validators.minLength(3)]),
       password: new FormControl(null, [Validators.required, Validators.minLength(5)]),
@@ -70,5 +74,9 @@ export class LoginComponent implements OnInit {
 
   get password() {
     return this.loginForm.get('password');
+  }
+
+  togglePasswordVisibility() {
+    this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
   }
 }

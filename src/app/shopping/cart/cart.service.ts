@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class CartService {
   changeOnCart = new BehaviorSubject<Cart[]>([]);
   cart: Cart[] = [];
+  inCart=false;
   availableCoupon: { name: string; amount: number; used: boolean }[] = [
     { name: 'save20', amount: 20, used: false },
     { name: 'save10', amount: 10, used: false },
