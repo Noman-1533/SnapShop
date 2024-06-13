@@ -22,7 +22,6 @@ export class ProductListComponent implements OnInit {
   qparam: Subscription;
 
   constructor(
-    private router: Router,
     private dataService: DataService,
     private route: ActivatedRoute
   ) {}
