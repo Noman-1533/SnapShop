@@ -53,17 +53,14 @@ export class ProductDetailsComponent implements OnInit {
     this.userService.loginChanged.subscribe((res) => {
       this.userId = res;
     });
-    this.selectedProductDetails = this.route.snapshot.data['product'];
-    const resolvedData = this.route.snapshot.data['productData'];
-    this.selectedProductDetails = resolvedData.product;
-    this.RelatedProducts = resolvedData.categoryProducts;
     
- 
+    this.RelatedProducts = this.route.snapshot.data['productData'].categoryProducts;
+    
     this.inPage = false;
 
-    this.route.params.subscribe((params) => {
-      this.fetchProductDetails(params['id']);
-      this.updateBreadcrumbPath();
+    this.route.params.subscribe(() => {
+      const resolvedData = this.route.snapshot.data['productData'];
+      this.selectedProductDetails = resolvedData.product;
     });
 
     setTimeout(
@@ -78,21 +75,13 @@ export class ProductDetailsComponent implements OnInit {
         }
       },
 
-      100
+      50
     );
   }
 
-  updateBreadcrumbPath(): void {
-    this.breadcrumbPath = this.router.url;
-  }
+ 
 
-  fetchProductDetails(productId: number): void {
-    this.dataService.getSingleProduct(productId).subscribe((product) => {
-      this.selectedProductDetails = product;
-      this.isLoading=false;
-    });
-  }
-
+  
   increment() {
     this.amount++;
   }
