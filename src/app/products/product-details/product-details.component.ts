@@ -58,10 +58,11 @@ export class ProductDetailsComponent implements OnInit {
     
     this.inPage = false;
 
-    this.route.params.subscribe(() => {
-      const resolvedData = this.route.snapshot.data['productData'];
-      this.selectedProductDetails = resolvedData.product;
+    this.route.data.subscribe((res:any) => {
+      this.selectedProductDetails=res['productData'].product;
     });
+
+    
 
     setTimeout(
       () => {
