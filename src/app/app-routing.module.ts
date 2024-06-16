@@ -8,7 +8,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ErrorComponent } from './error/error.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { SignUpComponent } from './authentication/sign-up/sign-up.component';
-import { ProductListComponent } from './products/product-list/product-list.component';
+import { ProductListComponent } from './shared/product-list/product-list.component';
 import { HomeResolverService } from './home/home-resolver.service';
 import { ProductDetailsResolverService } from './products/product-details/product-details-resolver.service';
 
