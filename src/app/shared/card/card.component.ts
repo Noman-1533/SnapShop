@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Product } from '../../shared/product.model';
+import { Product } from '../product.model';
 import { CartService } from '../../shopping/cart/cart.service';
 import { UserService } from '../../authentication/login/user.service';
 
