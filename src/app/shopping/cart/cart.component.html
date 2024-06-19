@@ -59,7 +59,7 @@
                     />
                   </td>
                   <td id="{{ product.productId }}Subtotal">
-                    ${{ product.price * product.quantity }}
+                    ${{ calculateSingleProductTotal(product.price,product.quantity) }}
                   </td>
                   <td>
                     <i

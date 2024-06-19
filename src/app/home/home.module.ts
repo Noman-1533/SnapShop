@@ -8,16 +8,8 @@ import { SliderComponent } from './slider/slider.component';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [
-    HomeComponent,
-    CategoryComponent,
-    SliderComponent,
-  ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    FormsModule,
-    SharedModule
-  ]
+  declarations: [HomeComponent, CategoryComponent, SliderComponent],
+  imports: [CommonModule, RouterModule, FormsModule, SharedModule],
+  exports: [HomeComponent, CategoryComponent, SliderComponent],
 })
-export class HomeModule { }
+export class HomeModule {}
