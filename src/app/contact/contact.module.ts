@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ContactComponent } from './contact.component';
 import { SharedModule } from '../shared/shared.module';
+import { ContactRoutingModule } from './contact-routing.module';
 
 
 
@@ -15,7 +16,8 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     FormsModule,
     RouterModule,
-    SharedModule
+    SharedModule,
+    ContactRoutingModule
   ],
   exports:[ContactComponent]
 })

@@ -8,6 +8,7 @@ import { ToastModule } from 'primeng/toast';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SharedModule } from '../shared/shared.module';
+import { AuthRoutingModule } from './auth-routing.module'; 
 
 
 
@@ -22,7 +23,8 @@ import { SharedModule } from '../shared/shared.module';
     ReactiveFormsModule,
     FormsModule,
     ToastModule,
-    SharedModule
+    SharedModule,
+    AuthRoutingModule
   ],
   exports: [
     SignUpComponent,

@@ -20,30 +20,14 @@ import { checkoutGuard } from './shopping/checkout.guard.service';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  {
-    path: 'home',
-    component: HomeComponent,
-    resolve: { homeData: HomeResolverService },
-  },
-  { path: 'product-list', component: ProductListComponent },
-
-  {
-    path: 'product-details/:id',
-    component: ProductDetailsComponent,
-    resolve: { productData: ProductDetailsResolverService },
-  },
-  { path: 'cart', component: CartComponent },
-  {
-    path: 'checkout',
-    component: CheckoutComponent,
-    canActivate: [AuthGuard, checkoutGuard],
-  },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: 'login', component: LoginComponent, canActivate: [NoAuthGuard] },
-  { path: 'sign-up', component: SignUpComponent, canActivate: [NoAuthGuard] },
-  { path: 'contact', component: ContactComponent },
-  { path: 'about', component: AboutComponent },
-  { path: '**', component: ErrorComponent },
+  { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
+  { path: 'products', loadChildren: () => import('./products/product.module').then(m => m.ProductModule) },
+  { path: 'shopping', loadChildren: () => import('./shopping/shopping.module').then(m => m.ShoppingModule) },
+  { path: 'profile', loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule) },
+  { path: 'authentication', loadChildren: () => import('./authentication/auth.module').then(m => m.AuthModule) },
+  { path: 'contact', loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule) },
+  { path: 'about', loadChildren: () => import('./about/about.module').then(m => m.AboutModule) },
+  // { path: '**', component: ErrorComponent },
 ];
 
 @NgModule({
