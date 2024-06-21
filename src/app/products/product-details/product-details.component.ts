@@ -55,18 +55,16 @@ export class ProductDetailsComponent implements OnInit {
     this.userService.loginChanged.subscribe((res) => {
       this.userId = res;
     });
-
+    
+    this.RelatedProducts = this.route.snapshot.data['productData'].categoryProducts;
+    
     this.inPage = false;
 
-    this.RelatedProducts = this.route.snapshot.data['productData'].categoryProducts;     
-  
-
-    this.route.data.subscribe((res) => {
-          
-      this.selectedProductDetails = res['productData'].product;
-      this.isLoading=false;
-      
+    this.route.data.subscribe((res:any) => {
+      this.selectedProductDetails=res['productData'].product;
     });
+
+    
 
     setTimeout(
       () => {
@@ -80,12 +78,13 @@ export class ProductDetailsComponent implements OnInit {
         }
       },
 
-      100
+      50
     );
   }
 
+ 
 
-
+  
   increment() {
     this.amount++;
   }

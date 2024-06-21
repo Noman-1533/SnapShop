@@ -59,7 +59,7 @@
                     />
                   </td>
                   <td id="{{ product.productId }}Subtotal">
-                    ${{ product.price * product.quantity }}
+                    ${{ calculateSingleProductTotal(product.price,product.quantity) }}
                   </td>
                   <td>
                     <i
@@ -122,8 +122,8 @@
                         </label>
                         <div class="col-sm-9">
                           <span id="subtotal">{{
-                            subtotalAmount | currency
-                          }}</span>
+                            subtotalAmount
+                          }}$</span>
                         </div>
                       </div>
 
@@ -134,8 +134,8 @@
                         <div class="col-sm-9">
                           <span id="shipping">
                             <span *ngIf="shippingCharge && subtotalAmount">{{
-                              shippingCharge | currency
-                            }}</span>
+                              shippingCharge
+                            }}$</span>
                             <span *ngIf="shippingCharge && !subtotalAmount"
                               >$0.00</span
                             >
@@ -151,7 +151,7 @@
                           Discount
                         </label>
                         <div class="col-sm-9">
-                          <span id="subtotal">{{ discount | currency }}</span>
+                          <span id="subtotal">{{ discount }}$</span>
                         </div>
                       </div>
                       <div class="row mb-3">
@@ -159,7 +159,7 @@
                           Total
                         </label>
                         <div class="col-sm-9">
-                          <span id="total">{{ totalAmount | currency }}</span>
+                          <span id="total">{{ totalAmount  }}$</span>
                         </div>
                       </div>
                       <div class="d-flex justify-content-center">

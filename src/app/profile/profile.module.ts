@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile.component';
-import { AppRoutingModule } from '../app-routing.module';
-import { CapitalizeFirstPipe } from '../home/capitalize-first.pipe';
+import { SharedModule } from '../shared/shared.module';
+import { ProfileRoutingModule } from './profile-routing.module';
 
 
 
@@ -12,12 +14,12 @@ import { CapitalizeFirstPipe } from '../home/capitalize-first.pipe';
   ],
   imports: [
     CommonModule,
-    AppRoutingModule,
-    CapitalizeFirstPipe
-
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule,
+    ProfileRoutingModule
   ],
-  exports: [
-    ProfileComponent
-  ],
+  exports:[ProfileComponent]
 })
 export class ProfileModule { }

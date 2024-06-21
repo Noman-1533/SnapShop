@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { DataService } from '../../shared/data.service';
-import { Product } from '../../shared/product.model';
+import { DataService } from '../data.service';
+import { Product } from '../product.model';
 import { Subscription } from 'rxjs';
 
 @Component({

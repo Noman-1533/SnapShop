@@ -81,13 +81,21 @@ export class CartComponent implements OnInit, OnDestroy {
       }
     });
     subTotal >= 300 ? (this.shippingCharge = 0) : (this.shippingCharge = 24.99);
+    subTotal = parseFloat(subTotal.toFixed(2));
     this.subtotalChange.next(subTotal);
   }
 
   calculateTotal() {
     let subTotal = this.subtotalAmount;
     subTotal = subTotal + (subTotal ? this.shippingCharge : 0);
+    subTotal = parseFloat(subTotal.toFixed(2));
     this.totalChange.next(subTotal);
+  }
+
+  calculateSingleProductTotal(price:number,quantity:number) {
+    let total = price * quantity;
+    total = parseFloat(total.toFixed(2));
+    return total;
   }
 
   onCheckDeleteCart(productId: number) {
