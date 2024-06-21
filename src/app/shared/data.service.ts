@@ -138,9 +138,5 @@ export class DataService {
     );
   }
 
-  signUp() {
-    this.http.post(`http://172.18.105.167:3000/auth/signup`, { name: 'tanvir', email: 'tanvir@gmail.com', password: '123456' }).subscribe((res) => {
-      console.log(res);
-     })
-  }
+  
 }

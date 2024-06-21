@@ -192,9 +192,5 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   }
 
-  onsubmit(){
-    this.http.post(`http://172.18.105.167:3000/auth/signup`, { name: 'tanvir', email: 'tanvir@gmail.com', password: '123456',roles:"user" }).subscribe((res) => {
-      console.log(res);
-     })
-  }
+  
 }
