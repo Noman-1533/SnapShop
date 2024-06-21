@@ -1,4 +1,4 @@
-.card-wrapper{
+.card-wrapper {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -28,13 +28,13 @@
 
 .day p {
   font-size: 0.9em;
-  color: #db4444;
+  color: var(--button-color);
 }
 
 .box {
   height: 28px;
   width: 14px;
-  background-color: #db4444;
+  background-color: var(--button-color);
   border-radius: 3px;
 }
 
@@ -47,14 +47,13 @@
   margin-top: 10%;
 }
 
-@media(max-width:480px)
-{
-   .card-wrapper{
+@media (max-width: 480px) {
+  .card-wrapper {
     margin-right: 0px;
-   }
+  }
 
-   .containerr{
+  .containerr {
     margin-left: 0px;
     padding-left: 15px;
-   }
+  }
 }

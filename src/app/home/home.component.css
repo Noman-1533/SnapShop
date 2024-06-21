@@ -5,7 +5,6 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  
 }
 
 .categorysection .carousel-control-prev,
@@ -446,8 +445,6 @@
   height: 85%;
 }
 
-
-
 .newarrivalSec {
   height: auto;
   padding: 20px;
@@ -504,11 +501,11 @@
   background-color: black;
 }
 
-.bg-image{
+.bg-image {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0px 0px 20px 20px
+  margin: 0px 0px 20px 20px;
 }
 
 .helo {
@@ -528,13 +525,6 @@
 .helo a {
   color: rgb(17, 16, 16);
 }
-
-
-
-
-
-
-
 
 .carousel-control-next-icon,
 .carousel-control-prev-icon {
@@ -571,19 +561,11 @@
 
 /* ------------------------------------------------------------------------------------------------- */
 
-
-
-
-
-
-
-
 @media (max-width: 1330px) {
   .FlashSaleSection {
     margin-bottom: 100px;
   }
 }
-
 
 @media (max-width: 1200px) {
   .carousel-item h1,
@@ -599,11 +581,11 @@
     padding: 20px;
   }
 
-  .Left-text-section, .right-img-section {
+  .Left-text-section,
+  .right-img-section {
     width: 100%;
     height: auto;
     text-align: center;
-
   }
 
   .Left-text-section {
@@ -674,7 +656,6 @@
     margin: 0;
   }
 
-  
   .categorysection {
     flex-wrap: wrap;
     height: auto;
@@ -692,7 +673,7 @@
   }
 }
 
- @media (min-width: 768px) {
+@media (min-width: 768px) {
   .carousel-item h1,
   .carousel-item h2,
   .carousel-item a.btn {
@@ -728,8 +709,7 @@
   .helo h3 {
     font-size: 5vw;
   }
-
- }
+}
 
 @media (max-width: 480px) {
   .carousel-item h1,
@@ -738,26 +718,24 @@
     font-size: 24px;
   }
 
-  .buttonView{
+  .buttonView {
     margin-left: -50px;
-    }
-    .horizontalLine{
+  }
+  .horizontalLine {
+    margin-left: -50px;
+    width: 80%;
+  }
 
-     margin-left: -50px;
-     width: 80%;
-   } 
-
-   .FlashSaleSection{
+  .FlashSaleSection {
     margin-left: -40px;
     padding: 0px;
-   }
+  }
 
-   .buttonView[_ngcontent-ng-c1195759665] {
+  .buttonView[_ngcontent-ng-c1195759665] {
     margin: 0px;
-   }
+  }
 
-
-   .Enhance-Your-Product-Section {
+  .Enhance-Your-Product-Section {
     margin: 20px;
     padding: 10px;
   }
@@ -810,8 +788,7 @@
     padding: 0 10px;
   }
 
-  .tittle-bar-forTop-rated .buttonViewProduct .buttonView{
+  .tittle-bar-forTop-rated .buttonViewProduct .buttonView {
     margin-right: 8em;
-
   }
 }

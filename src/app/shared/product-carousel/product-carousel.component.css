@@ -52,35 +52,33 @@
     flex: 1 1 30%;
   }
 
-  .custom-control-prev, .custom-control-next{
+  .custom-control-prev,
+  .custom-control-next {
     top: -6%;
- }
+  }
 }
 
 @media (max-width: 768px) {
   .card-wrapper {
-    flex: 1 1 100%;    
+    flex: 1 1 100%;
   }
 
-  .card-group{
+  .card-group {
     max-width: 90%;
     /* background-color: red; */
   }
 
-  .custom-control-prev, .custom-control-next{
+  .custom-control-prev,
+  .custom-control-next {
     top: -2%;
- }
-  
+  }
 }
 
 @media (max-width: 480px) {
-  
 }
 
 @media (max-width: 380px) {
   .card-wrapper {
     margin-left: 0px;
   }
-  
 }
-
