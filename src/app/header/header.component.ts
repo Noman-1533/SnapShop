@@ -8,6 +8,7 @@ import { UserService } from '../authentication/login/user.service';
 import { HeaderService } from './header.service';
 import { Product } from '../shared/product.model';
 import { Category } from './category.model';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-header',
@@ -39,7 +40,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private cartService: CartService,
     private userService: UserService,
-    private headerService: HeaderService
+    private headerService: HeaderService,
+    private http:HttpClient
   ) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -120,6 +122,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.filteredItems = [];
   }
 
+  onBlur(): void {
+    this.isSearchExpanded = false;
+    this.clearSearch();
+  }
+
   handleOutsideClick() {
     if (this.isSearchExpanded) {
       this.collapseSearch();
@@ -184,4 +191,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.cartUpdateSubscription.unsubscribe();
     }
   }
+
+  
 }

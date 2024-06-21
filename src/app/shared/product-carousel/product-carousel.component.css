@@ -1,9 +1,7 @@
-/* General card styles */
 .card {
   border: none;
 }
 
-/* Card wrapper styles */
 .card-wrapper {
   display: flex !important;
   margin: 50px;
@@ -11,11 +9,9 @@
   justify-content: center;
   align-items: center;
   width: 100px;
-  /* background-color: red; */
   box-shadow: none;
 }
 
-/* Carousel control button styles */
 .custom-control-prev,
 .custom-control-next {
   position: absolute;
@@ -55,10 +51,34 @@
   .card-wrapper {
     flex: 1 1 30%;
   }
+
+  .custom-control-prev,
+  .custom-control-next {
+    top: -6%;
+  }
 }
 
 @media (max-width: 768px) {
   .card-wrapper {
     flex: 1 1 100%;
+  }
+
+  .card-group {
+    max-width: 90%;
+    /* background-color: red; */
+  }
+
+  .custom-control-prev,
+  .custom-control-next {
+    top: -2%;
+  }
+}
+
+@media (max-width: 480px) {
+}
+
+@media (max-width: 380px) {
+  .card-wrapper {
+    margin-left: 0px;
   }
 }
