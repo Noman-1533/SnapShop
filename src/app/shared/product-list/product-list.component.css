@@ -1,4 +1,4 @@
-.card-wrapperr {
+.card-wrapper{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -20,13 +20,13 @@
   margin-top: 30px;
 }
 
-.Day {
+.day {
   display: flex;
   gap: 10px;
   align-items: normal;
 }
 
-.Day p {
+.day p {
   font-size: 0.9em;
   color: #db4444;
 }
@@ -43,8 +43,18 @@
   font-weight: bold;
   margin-bottom: 10px;
 }
-
-/* loader CSS */
 .loader {
   margin-top: 10%;
+}
+
+@media(max-width:480px)
+{
+   .card-wrapper{
+    margin-right: 0px;
+   }
+
+   .containerr{
+    margin-left: 0px;
+    padding-left: 15px;
+   }
 }

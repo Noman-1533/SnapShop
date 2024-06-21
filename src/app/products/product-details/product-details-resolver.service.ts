@@ -13,38 +13,27 @@ import { Product } from '../../shared/product.model';
 @Injectable({
   providedIn: 'root',
 })
-export class ProductDetailsResolverService implements Resolve<Product>,OnInit {
+export class ProductDetailsResolverService implements Resolve<Product>, OnInit {
   productId;
   constructor(
     private dataService: DataService,
     private route: ActivatedRoute
   ) {}
 
-
-  ngOnInit()
-  {
+  ngOnInit() {
     // const productId = +route.params['id'];
 
-    this.route.params.subscribe(param=>
-      {
-        this.productId=+param['id'];
-      }
-    )
+    this.route.params.subscribe((param) => {
+      this.productId = +param['id'];
+    });
   }
 
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> {
-    
+    const productId = +route.params['id'];
 
-   
-    
-     const productId = +route.params['id'];
-    
-
-   
-    
     return this.dataService.getSingleProduct(productId).pipe(
       mergeMap((product) => {
         const productCategory = product.category || 'default-category';
@@ -62,4 +51,3 @@ export class ProductDetailsResolverService implements Resolve<Product>,OnInit {
     );
   }
 }
-

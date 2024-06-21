@@ -14,10 +14,10 @@ import { CheckoutService } from '../../shopping/checkout/checkout.service';
   styleUrl: './product-details.component.css',
 })
 export class ProductDetailsComponent implements OnInit {
-  dataService:DataService = inject(DataService);
-  isLoading:boolean=true;
-  starLoad:boolean = false;
-  inPage:boolean = false;
+  dataService: DataService = inject(DataService);
+  isLoading: boolean = true;
+  starLoad: boolean = false;
+  inPage: boolean = false;
   selectedProductDetails: Product;
   RelatedProducts: Product[] = [];
   ratingArray: string[] = [];
@@ -44,8 +44,6 @@ export class ProductDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
-    // debugger;
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.viewportScroller.scrollToPosition([0, 0]);
@@ -55,16 +53,14 @@ export class ProductDetailsComponent implements OnInit {
     this.userService.loginChanged.subscribe((res) => {
       this.userId = res;
     });
-    
-    this.RelatedProducts = this.route.snapshot.data['productData'].categoryProducts;
-    
+
+    this.RelatedProducts =
+      this.route.snapshot.data['productData'].categoryProducts;
     this.inPage = false;
-
-    this.route.data.subscribe((res:any) => {
-      this.selectedProductDetails=res['productData'].product;
+    this.route.data.subscribe((res: any) => {
+      this.selectedProductDetails = res['productData'].product;
+      this.isLoading = false;
     });
-
-    
 
     setTimeout(
       () => {
@@ -82,9 +78,6 @@ export class ProductDetailsComponent implements OnInit {
     );
   }
 
- 
-
-  
   increment() {
     this.amount++;
   }

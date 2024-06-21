@@ -13,7 +13,6 @@ const routes: Routes = [
   { path: 'authentication', loadChildren: () => import('./authentication/auth.module').then(m => m.AuthModule) },
   { path: 'contact', loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule) },
   { path: 'about', loadChildren: () => import('./about/about.module').then(m => m.AboutModule) },
-  { path: '**', component: ErrorComponent },
 ];
 
 @NgModule({
