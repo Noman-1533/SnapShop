@@ -6,6 +6,7 @@
       <a class="font-weight-bold" style="font-weight: bolder; font-size: 13px"
         >ShopNow</a
       >
+      
     </div>
     <div class="language">
       <a>English <i class="ri-arrow-right-s-line"></i></a>
@@ -18,12 +19,12 @@
     <a
       class="navbar-brand d-flex justify-content-between align-items-center order-lg-0"
     >
-      <img src="../../assets/images/shopping-bag-icon.png" alt="site icon" />
+      <img src="../../assets/images/shopping-bag-icon.png" alt="site icon" (click)="homeClick()" class="logoImage"/>
       <span class="fw-lighter ms-2" (click)="homeClick()">SnapShop</span>
     </a>
 
     <div class="order-lg-2 nav-btns">
-      <button type="button" class="btn position-relative">
+      <button type="button" class="btn position-relative" appClickOutside (clickOutside)="onBlur()">
         <div class="search-container" >
           <div
             class="input-group searchgroup"
@@ -34,7 +35,7 @@
               type="text"
               class="form-control"
               (click)="expandSearch()"
-              (blur)="collapseSearch()"
+              
               [(ngModel)]="searchText"
               (input)="onSearch($event)"
               (keypress)="onKeyPress($event)"
@@ -153,3 +154,5 @@
     </div>
   </div>
 </nav>
+
+

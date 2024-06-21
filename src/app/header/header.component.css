@@ -12,6 +12,12 @@
     inset 0px 0px 0px 1px rgb(222, 227, 235);
 }
 
+.logoImage:hover{
+  scale: 1.02;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
 .topNav {
   height: 35px;
   width: 100%;

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import {
   ActivatedRoute,
   ActivatedRouteSnapshot,
@@ -13,12 +13,24 @@ import { Product } from '../../shared/product.model';
 @Injectable({
   providedIn: 'root',
 })
-export class ProductDetailsResolverService implements Resolve<Product> {
+export class ProductDetailsResolverService implements Resolve<Product>,OnInit {
   productId;
   constructor(
     private dataService: DataService,
     private route: ActivatedRoute
   ) {}
+
+
+  ngOnInit()
+  {
+    // const productId = +route.params['id'];
+
+    this.route.params.subscribe(param=>
+      {
+        this.productId=+param['id'];
+      }
+    )
+  }
 
   resolve(
     route: ActivatedRouteSnapshot,
@@ -26,12 +38,13 @@ export class ProductDetailsResolverService implements Resolve<Product> {
   ): Observable<any> {
     
 
-    const productId = +route.params['id'];
-
+   
+    
+     const productId = +route.params['id'];
     
 
    
-
+    
     return this.dataService.getSingleProduct(productId).pipe(
       mergeMap((product) => {
         const productCategory = product.category || 'default-category';

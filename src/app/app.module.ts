@@ -35,6 +35,8 @@ import { ProductCarouselComponent } from './shared/product-carousel/product-caro
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { ClickOutsideDirective} from './header/onclick-outside.directive';
+
 
 @NgModule({
   declarations: [
@@ -53,7 +55,7 @@ import { ToastModule } from 'primeng/toast';
     CardComponent,
     CategoryComponent,
     ErrorComponent,
-    ProfileComponent,
+     ProfileComponent,
     ProductCarouselComponent,
     CapitalizeFirstPipe,
     ContactComponent,
@@ -61,7 +63,9 @@ import { ToastModule } from 'primeng/toast';
     LoadingSpinnerComponent,
     SliderComponent,
     SplicePipe,
-   
+    ClickOutsideDirective 
+
+  
     
   ],
   imports: [
@@ -72,8 +76,7 @@ import { ToastModule } from 'primeng/toast';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    ToastModule
-    
+    ToastModule,
 
   ],
   providers: [MessageService],

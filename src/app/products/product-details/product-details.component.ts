@@ -15,7 +15,7 @@ import { CheckoutService } from '../../shopping/checkout/checkout.service';
 })
 export class ProductDetailsComponent implements OnInit {
   dataService:DataService = inject(DataService);
-  isLoading:boolean=false;
+  isLoading:boolean=true;
   starLoad:boolean = false;
   inPage:boolean = false;
   selectedProductDetails: Product;
@@ -44,6 +44,8 @@ export class ProductDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+    // debugger;
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.viewportScroller.scrollToPosition([0, 0]);
@@ -53,17 +55,17 @@ export class ProductDetailsComponent implements OnInit {
     this.userService.loginChanged.subscribe((res) => {
       this.userId = res;
     });
-    this.selectedProductDetails = this.route.snapshot.data['product'];
-    const resolvedData = this.route.snapshot.data['productData'];
-    this.selectedProductDetails = resolvedData.product;
-    this.RelatedProducts = resolvedData.categoryProducts;
-    
- 
+
     this.inPage = false;
 
-    this.route.params.subscribe((params) => {
-      this.fetchProductDetails(params['id']);
-      this.updateBreadcrumbPath();
+    this.RelatedProducts = this.route.snapshot.data['productData'].categoryProducts;     
+  
+
+    this.route.data.subscribe((res) => {
+          
+      this.selectedProductDetails = res['productData'].product;
+      this.isLoading=false;
+      
     });
 
     setTimeout(
@@ -82,16 +84,7 @@ export class ProductDetailsComponent implements OnInit {
     );
   }
 
-  updateBreadcrumbPath(): void {
-    this.breadcrumbPath = this.router.url;
-  }
 
-  fetchProductDetails(productId: number): void {
-    this.dataService.getSingleProduct(productId).subscribe((product) => {
-      this.selectedProductDetails = product;
-      this.isLoading=false;
-    });
-  }
 
   increment() {
     this.amount++;

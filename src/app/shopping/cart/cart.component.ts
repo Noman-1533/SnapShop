@@ -14,6 +14,7 @@ import { ToastService } from '../../shared/toast.service';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit, OnDestroy {
+  
   cartItems: CartProduct[];
   deleteClicked: boolean = false;
   deleteCartId: number = null;
