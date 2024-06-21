@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import { SharedModule } from '../shared/shared.module';
 import { AboutComponent } from './about.component';
+import { AboutRoutingModule } from './about-routing.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { AboutComponent } from './about.component';
     CommonModule,
     FormsModule,
     RouterModule,
-    SharedModule
+    SharedModule,
+    AboutRoutingModule
   ],
   exports:[AboutComponent]
 })

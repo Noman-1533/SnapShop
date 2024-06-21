@@ -8,6 +8,7 @@ import { ToastModule } from 'primeng/toast';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { SharedModule } from '../shared/shared.module';
+import { ShoppingRoutingModule } from './shopping-routing.module';
 
 
 
@@ -23,7 +24,8 @@ import { SharedModule } from '../shared/shared.module';
     ReactiveFormsModule,
     FormsModule,
     ToastModule,
-    SharedModule
+    SharedModule,
+    ShoppingRoutingModule
   ],
   exports:[ CartComponent,
     CheckoutComponent,]
