@@ -59,13 +59,16 @@
 }
 
 @media (max-width: 768px) {
-  .card-wrapper {
+  /* .card-wrapper {
     flex: 1 1 100%;
-  }
+  } */
 
   .card-group {
-    max-width: 90%;
-    /* background-color: red; */
+    max-width: 96%;
+   background-color: green;
+   display: flex;
+   flex: 1 1 96%;
+   flex-wrap: wrap;
   }
 
   .custom-control-prev,
@@ -79,6 +82,6 @@
 
 @media (max-width: 380px) {
   .card-wrapper {
-    margin-left: 0px;
+    margin-left: 3%;
   }
 }
