@@ -464,3 +464,20 @@
 .nav-btns button {
   margin-left: 5px;
 } 
+
+.suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 20%;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-top: none;
+  z-index: 1000;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow: auto; /* Added overflow property */
+  min-height: 25rem;
+}
