@@ -86,7 +86,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
       console.log(this.searchText, this.filteredItems);
     }
   }
-
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: Event) {
+    if (this.isSearchExpanded && !this.eRef.nativeElement.contains(event.target)) {
+      this.collapseSearch();
+    }
+  }
   isProduct(item) {
     return typeof item === 'object';
   }
@@ -103,7 +108,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   collapseSearch(): void {
     this.isSearchExpanded = false;
     this.lastTimeFilterItems = this.filteredItems;
-    this.filteredItems= [];
+    setTimeout(() => {
+      this.filteredItems = [];
+    }, 90);
+    
   }
   onClickSearch() {
     this.clickSearch = false;

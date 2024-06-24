@@ -24,7 +24,7 @@
     </a>
 
     <div class="order-lg-2 nav-btns">
-      <button type="button" class="btn position-relative ">
+      <button type="button" class="btn position-relative Search">
         <div class="search-container" >
           <div
             class="input-group searchgroup"
@@ -35,7 +35,7 @@
               type="text"
               class="form-control"
               (click)="expandSearch()"
-              (blur)="collapseSearch()"
+             
               [(ngModel)]="searchText"
               (input)="onSearch($event)"
               (keypress)="onKeyPress($event)"
@@ -60,8 +60,8 @@
                     [src]="item.image"
                     alt=""
                     class="img-thumbnail"
-                    width="60px"
-                    height="60px"
+                    width="40px"
+                    height="30px"
                   />
                   <div class="ms-3 me-auto">
                     <div class="fw-bold">
