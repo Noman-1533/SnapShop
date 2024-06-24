@@ -1,10 +1,11 @@
 .main {
   height: auto;
-  margin: 60px 30px 70px 80px;
+  margin: 60px 5% 70px 5%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  background-color: red;
 }
 
 .categorysection .carousel-control-prev,
@@ -245,12 +246,12 @@
 
 .FlashSaleSection {
   padding: 0px 0px 0px 20px;
-  height: 600px;
+  height: 594px;
   width: 90vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   margin-bottom: 10px;
   margin-top: 80px;
   margin: 0;
@@ -455,6 +456,7 @@
 .newArival {
   height: 600px;
   width: 100%;
+  border: 2px solid red;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -464,7 +466,8 @@
 
 .box1 {
   height: 100%;
-  width: 49%;
+  max-width: 49%;
+  border: 3px solid green;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -600,7 +603,7 @@
     width: 80%;
   }
 
-  .newarrivalSec {
+   .newarrivalSec {
     padding: 15px;
     margin-top: -20px;
   }
@@ -612,7 +615,7 @@
   }
 
   .box1 {
-    width: 100%;
+    min-width: 100%;
     margin-bottom: 20px;
   }
 
@@ -628,7 +631,7 @@
 
   .helo h3 {
     font-size: 4vw;
-  }
+  } 
 }
 
 @media (max-width: 999px) {
@@ -666,7 +669,7 @@
   }
 }
 
-@media (min-width: 992px) {
+@media (max-width: 992px) {
   .carousel-item h1,
   .carousel-item h2,
   .carousel-item a.btn {
@@ -674,7 +677,7 @@
   }
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   .carousel-item h1,
   .carousel-item h2,
   .carousel-item a.btn {
@@ -704,7 +707,7 @@
   .box1,
   .boxright,
   .boxright-bottom {
-    width: 100%;
+    min-width: 100%;
   }
 
   .helo h3 {
@@ -719,17 +722,14 @@
     font-size: 24px;
   }
 
-  .buttonView {
-    margin-left: -50px;
-  }
   .horizontalLine {
-    margin-left: -50px;
-    width: 80%;
+     margin-bottom: 20px; 
+    /* width: 80%; */
   }
 
   .FlashSaleSection {
-    margin-left: -40px;
-    padding: 0px;
+    /* margin-left: -40px; */
+    /* padding: 0px; */
   }
 
   .buttonView[_ngcontent-ng-c1195759665] {
@@ -776,7 +776,7 @@
   .box1,
   .boxright,
   .boxright-bottom {
-    width: 100%;
+    min-width: 100%;
   }
 
   .helo h3 {
@@ -792,4 +792,9 @@
   .tittle-bar-forTop-rated .buttonViewProduct .buttonView {
     margin-right: 8em;
   }
+}
+
+@media(max-width:431px)
+{
+   
 }
