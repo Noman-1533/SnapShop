@@ -1,0 +1,1 @@
+import{g as e,m as a}from"./chunk-ITCRWGAV.js";var u=(()=>{let t=class t{constructor(){this.cart={cartToCheckout:[],totalAmount:0,discount:0},this.orderPlaced=new e(!1)}setCheckoutCart(c,r,i){}getCheckout(){}onSaveShippingDetails(){}};t.\u0275fac=function(r){return new(r||t)},t.\u0275prov=a({token:t,factory:t.\u0275fac,providedIn:"root"});let o=t;return o})();export{u as a};
