@@ -11,18 +11,19 @@
 
 .row {
   height: 100%;
-  width: 100%;
+  width: 80%;
   flex-wrap: nowrap;
 }
 
 .text-left {
-  height: 32vh;
-  width: 60%;
+  height: 100%;
+  width: 90%;
   position: relative;
+  /* background-color: blue; */
 }
 
 .text-left h2 {
-  font-size: clamp(0.08em, 2.5vw, 2em);
+  font-size: clamp(0.08em, 2vw, 2em);
 }
 
 .text-left a {
@@ -53,7 +54,7 @@
 
 .carousel-inner .images {
   width: 80vw;
-  height: 45vh;
+  height:280px;
   background-color: black;
   display: flex !important;
   align-items: center;
@@ -127,6 +128,10 @@
   .carousel-item .text-left {
     padding: 0vh 2vh;
     padding-top: 0px !important;
+  }
+
+  .carousel-inner .images {
+    height: 350px;
   }
 
   .row {
