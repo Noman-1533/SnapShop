@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { CartService } from '../shopping/cart/cart.service';
 import { Key } from '../shopping/cart/cart.model';
@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   filteredItems: Product[] = [];
   searchText: string = '';
   isSearchExpanded: boolean = false;
-
+  lastTimeFilterItems: Product[] = [];
   headerText = [
     { name: 'Home' },
     { name: 'Contact' },
@@ -41,7 +41,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private cartService: CartService,
     private userService: UserService,
     private headerService: HeaderService,
-    private http:HttpClient
+    private http: HttpClient,
+    private eRef: ElementRef
   ) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -70,9 +71,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     
   }
-
- 
-
   onSearch(event: any): void {
     this.searchText = event.target.value;
 
@@ -85,10 +83,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.items,
         this.categoryies
       );
-      console.log('item:', this.filteredItems);
+      console.log(this.searchText, this.filteredItems);
     }
   }
-
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: Event) {
+    if (this.isSearchExpanded && !this.eRef.nativeElement.contains(event.target)) {
+      this.collapseSearch();
+    }
+  }
   isProduct(item) {
     return typeof item === 'object';
   }
@@ -97,14 +100,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
     return typeof item !== 'object';
   }
 
- 
-
   expandSearch(): void {
     this.isSearchExpanded = true;
+    this.filteredItems = this.lastTimeFilterItems;
   }
 
   collapseSearch(): void {
     this.isSearchExpanded = false;
+    this.lastTimeFilterItems = this.filteredItems;
+    setTimeout(() => {
+      this.filteredItems = [];
+    }, 90);
+    
   }
   onClickSearch() {
     this.clickSearch = false;
