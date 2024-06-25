@@ -435,13 +435,11 @@
   background: #555;
 }
 
-/* For Firefox */
 body {
-  scrollbar-width: thin; /* Options: auto, thin, none */
-  scrollbar-color: #888 #f1f1f1; /* Thumb color, Track color */
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
 }
 
-/* Applying to specific elements */
 .navigation {
   scrollbar-width: thin;
   scrollbar-color: #888 #f1f1f1;
@@ -469,6 +467,19 @@ body {
 
 /* <----------------------------------- @media quries start from here -------------------------------------------*/
 
+@media (min-width: 1200px) {
+  .suggestions .fw-bold {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .searchgroup {
+    width: 260px;
+  }
+
+  .searchgroup.expanded {
+    width: 350px;
+  }
+}
 
 @media only screen and (max-width: 1200px) {
   .topBlackNav .middleTextTopbar p {
@@ -543,7 +554,12 @@ body {
   .list-group-item {
     font-size: 12px;
   }
+  .suggestions .fw-bold {
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
 }
+
 @media (max-width: 1200px) {
   .topBlackNav {
     font-size: 12px !important;

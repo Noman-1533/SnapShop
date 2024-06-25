@@ -102,7 +102,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   expandSearch(): void {
     this.isSearchExpanded = true;
-    this.filteredItems = this.lastTimeFilterItems;
+    if (this.searchText.length > 0) this.filteredItems = this.lastTimeFilterItems;
+    else this.filteredItems= [];
   }
 
   collapseSearch(): void {
