@@ -27,5 +27,18 @@
   </head>
   <body>
     <app-root></app-root>
+    <script type="text/javascript">
+      (function() {
+        // Check for the redirect parameter
+        var urlParams = new URLSearchParams(window.location.search);
+        var redirect = urlParams.get('redirect');
+        if (redirect) {
+          // Remove redirect query param from URL
+          window.history.replaceState({}, '', redirect);
+          // Reload Angular app
+          window.location.href = redirect;
+        }
+      })();
+    </script>
   </body>
 </html>
