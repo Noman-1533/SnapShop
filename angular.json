@@ -33,7 +33,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/_redirects"
+              "src/_redirects",
+              "src/404.html"
             ],
             "styles": [
               "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
