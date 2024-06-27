@@ -21,10 +21,9 @@
         var urlParams = new URLSearchParams(window.location.search);
         var redirect = urlParams.get('redirect');
         if (redirect) {
-          // Remove redirect query param from URL
-          window.history.replaceState({}, '', redirect);
-          // Reload Angular app
-          window.location.href = redirect;
+          // Decode the redirect parameter and update the history state
+          var decodedRedirect = decodeURIComponent(redirect);
+          window.history.replaceState({}, '', decodedRedirect);
         }
       })();
     </script>
