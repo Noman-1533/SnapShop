@@ -8,7 +8,10 @@
       var pathname = window.location.pathname;
       console.log(pathname);
       var newUrl = window.location.origin + '/SnapShop/index.html?redirect=' + pathname;
-      window.location.replace(newUrl);
+      setTimeout(() => {
+        
+        window.location.replace(newUrl);
+      }, 10000); 
     </script>
   </head>
   <body>
