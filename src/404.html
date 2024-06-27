@@ -1,11 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Page Not Found</title>
-    <meta http-equiv="refresh" content="0; URL=./index.html">
+    <title>SnapShop</title>
+    <base href="/SnapShop/">
   </head>
   <body>
-    <p>Redirecting to homepage...</p>
+    <app-root></app-root>
+    <script type="text/javascript">
+      // Check for the redirect parameter
+      var urlParams = new URLSearchParams(window.location.search);
+      var redirect = urlParams.get('redirect');
+      if (redirect) {
+        window.history.replaceState({}, '', redirect);
+      }
+    </script>
   </body>
 </html>
