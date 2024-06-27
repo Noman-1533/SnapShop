@@ -1,19 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8">
-    <title>SnapShop</title>
-    <base href="/SnapShop/">
+    <title>Page Not Found</title>
+    <script type="text/javascript">
+      // Preserve the URL and redirect to index.html
+      var pathname = window.location.pathname;
+      var newUrl = window.location.origin + '/SnapShop/index.html?redirect=' + pathname;
+      window.location.replace(newUrl);
+    </script>
   </head>
   <body>
-    <app-root></app-root>
-    <script type="text/javascript">
-      // Check for the redirect parameter
-      var urlParams = new URLSearchParams(window.location.search);
-      var redirect = urlParams.get('redirect');
-      if (redirect) {
-        window.history.replaceState({}, '', redirect);
-      }
-    </script>
+    <p>Redirecting to the application...</p>
   </body>
 </html>
